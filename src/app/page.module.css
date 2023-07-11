@@ -1,0 +1,132 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.subtitle {
+  font-size: 25pt;
+  margin: 20px 40px;
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 30%));
+  gap: 5%;
+  row-gap: 5%;
+  padding: 2% 5% 10%;
+  list-style: none;
+  /* padding: 0; */
+}
+
+.gridImage {
+  width: 50%;
+  margin: 1% 0%;
+  aspect-ratio: 1; /*square image*/
+}
+
+.card {
+  width: 100%;
+  display: grid;
+  position: relative;
+  align-content: flex-start; /* put the extra space at bottom of card */
+  background-color: #191c20;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: all 0.5s ease; 
+  transition: all 0.5s ease;
+}
+
+.cardTop {
+  width: 100%;
+  height: min-content;
+  position: relative;
+  text-align: center;
+  /* transition: max-height 0.1s ease-out; */
+  z-index: 1; /* force being above the base */
+  border-radius: 20px;
+}
+
+.cardTitle {
+  margin: 3% 0%;
+}
+
+.cardDescription {
+  margin: 2% 0%;
+}
+
+.cardBase {
+  width: 95%;
+  /* margin: auto; */
+  margin: 2% 2% 9% 2%;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: calc(8pt + 1vw);
+  border-radius: 10px;
+}
+
+.card-base h1 {
+  font-size: calc(12pt + 2vw);
+}
+
+.card-base h2 {
+  font-size: calc(12pt + 1.5vw);
+}
+
+.projectInfoText {
+  position: absolute;
+  justify-self: right;
+  align-self: flex-end;
+  font-size: 12pt;
+  text-align: right;
+  color:#a0a0a0;
+  margin: 0 5% 3% 0;
+}
+
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: scale(1.1);
+    /* background: rgba(var(--card-rgb), 0.1); */
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  }
+
+  .card:hover span {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .card:hover span {
+    transform: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+
+}
+
+@media (prefers-color-scheme: dark) {
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
