@@ -1,3 +1,5 @@
+@import url(//fonts.googleapis.com/css?family=Quicksand);
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -6,6 +8,12 @@
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
   --font-sans: 'Quicksand', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  --title-primary: #ffffff;
+  --title-secondary: #a0a0a0;
+  
+  --text-primary: #f0f0f0;
+  --card-background: #191c20;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -48,7 +56,10 @@
     --background-start-rgb: 18, 21, 24;
     --background-end-rgb: 12, 15, 18;
 
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+    --primary-glow: radial-gradient(
+      rgba(45, 53, 122, 0.4), 
+      rgba(17, 19, 23, 0)
+      );
     --secondary-glow: linear-gradient(
       to bottom right,
       rgba(1, 65, 255, 0),

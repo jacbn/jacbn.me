@@ -1,7 +1,6 @@
 .main {
   width: 100%;
   height: max-content;
-  padding: 0% 4%;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
@@ -18,9 +17,8 @@
   display: grid;
   position: relative;
   align-content: flex-start; /* put the extra space at bottom of card */
-  background-color: #191c20;
+  background-color: var(--card-background);
   border-radius: 20px;
-  color: #fff;
   cursor: pointer;
   -webkit-transition: all 0.5s ease; 
   transition: all 0.5s ease;
@@ -53,7 +51,7 @@
   margin: 2% 2% 9% 2%;
   position: relative;
   text-align: center;
-  color: white;
+  color: var(--text-primary);
   font-size: calc(8pt + 1vw);
   border-radius: 10px;
 }
@@ -74,7 +72,7 @@
   flex-wrap: wrap;
   gap: 3%;
   row-gap: 6%;
-  padding: 2% 0% 15%;
+  padding: 2% 4% 15%;
   list-style: none;
 }
 
@@ -122,24 +120,25 @@
 
 .titleContainer {
   width: 100%;
-  height: calc(10rem + 15vh);
-  margin: 0 0 40px;
+  height: calc(10rem + 15vh + 40px); /* 40px bottom margin */
+  margin: 0 0 40px; /* top margin */
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: var(--primary-glow);
 }
 
 .titleSVG {
   width: 100%;
   height: calc(100% - 2.1rem); /* container height - roller */
   display: block;
+  margin-bottom: 20px;
 }
 
-.titleText, .titleTextFadeW, .titleTextFadeG {
+.titleText {
   font-family: var(--font-sans);
   font-size: calc(6rem + 3vw);
   font-weight: 500;
-  fill: none;
   stroke-dasharray: 0px 110px;
   stroke-width: 2px;
   stroke-dashoffset: 0;
@@ -147,19 +146,40 @@
   animation: dash 4s forwards ease-in-out;
 }
 
-.titleTextFadeW {
-  fill: white;
+.titleFade {
+  animation: fade 5s forwards ease-in-out;
+}
+
+.titlePrimaryStroke {
+  stroke: var(--title-primary);
+  fill: none;
+}
+
+.titleSecondaryStroke {
+  stroke: var(--title-secondary);
+  fill: none;
+}
+
+.titlePrimaryFill {
+  fill: var(--title-primary);
+}
+
+.titleSecondaryFill {
+  fill: var(--title-secondary);
+}
+
+/* .titleTextFadeW {
+  fill: var(--title-primary);
   animation: fade 5s forwards ease-in-out;
 }
 
 .titleTextFadeG {
-  fill: #a0a0a0;
+  fill: var(--title-secondary);
   animation: fade 5s forwards ease-in-out;
-}
+} */
 
 .roller {
   width: 100%;
-  margin-top: 15px;
   height: 2.5rem;
   line-height: 2rem;
   text-align: center;
@@ -168,6 +188,8 @@
   align-items: center;
   overflow: hidden;
   position: relative;
+  margin-bottom: 40px;
+  color: var(--title-primary);
 }
 
 .rollerText {
@@ -269,15 +291,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+  /* todo */
 }
 
 @keyframes stroke-offset{

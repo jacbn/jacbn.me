@@ -11,10 +11,10 @@ export default function Title() {
                     <text x="52%" y="99%" textAnchor='middle'>Brown</text>
                 </symbol>
                 <g>
-                    <use xlinkHref="#s-text2" className={styles.titleText} stroke='#a0a0a0'></use>
-                    <use xlinkHref="#s-text2" className={styles.titleTextFadeG}></use>
-                    <use xlinkHref="#s-text" className={styles.titleText} stroke='white'></use>
-                    <use xlinkHref="#s-text" className={styles.titleTextFadeW}></use>
+                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleSecondaryStroke}`}></use>
+                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleFade} ${styles.titleSecondaryFill}`}></use>
+                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titlePrimaryStroke}`}></use>
+                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleFade} ${styles.titlePrimaryFill}`}></use>
                 </g>
             </svg>
             <h2 className={styles.roller}>
