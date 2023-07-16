@@ -1,4 +1,4 @@
-import styles from '../page.module.css'
+import styles from '../styles/home.module.css'
 import GridSquare from './gridSquare';
 
 // todo: fill alt text of svgs
@@ -16,7 +16,7 @@ export default function MainGrid() {
           path: "./assets/index/logo-green-maps.svg",
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
-        link="./projects/greenmaps/"
+        link="/projects/greenmaps/"
         podiumNum={2}
       />
       <GridSquare 
@@ -29,7 +29,7 @@ export default function MainGrid() {
           path: "./assets/index/logo-yawnn.svg",
           alt: ""
         }}
-        link="./projects/yawnn/"
+        link="/projects/yawnn/"
         podiumNum={1}
       />
       <GridSquare 
@@ -42,7 +42,7 @@ export default function MainGrid() {
           path: "./assets/index/logo-maths-art.svg",
           alt: ""
         }}
-        link="./maths-art/"
+        link="/maths-art/"
         podiumNum={3}
       />
       <GridSquare 
@@ -55,7 +55,7 @@ export default function MainGrid() {
           path: "",
           alt: ""
         }}
-        link="./projects/jcompiler/"
+        link="/projects/jcompiler/"
         podiumNum={0}
       />
       <GridSquare 
@@ -68,7 +68,7 @@ export default function MainGrid() {
           path: "",
           alt: ""
         }}
-        link="./projects/sentiment/"
+        link="/projects/sentiment/"
         podiumNum={0}
       />
       <GridSquare 
@@ -81,7 +81,7 @@ export default function MainGrid() {
           path: "",
           alt: ""
         }}
-        link="./projects/pandemic/"
+        link="/projects/pandemic/"
         podiumNum={0}
       />
       <GridSquare 

@@ -1,6 +1,6 @@
-import styles from '../page.module.css'
-import GridImage from "./gridImage";
-import { GridImageProps } from "./gridImage";
+import styles from '../styles/home.module.css'
+
+import Link from 'next/link'
 
 export interface GridSquareProps {
   title: string;
@@ -8,7 +8,10 @@ export interface GridSquareProps {
   year: string;
   lang: string;
   colour: string;
-  image: GridImageProps;
+  image: {
+    path: string;
+    alt: string;
+  };
   link: string;
   podiumNum?: number;
 }
@@ -20,11 +23,15 @@ const podiumClasses : {[id: number]: string} = {
   3: styles.podium3
 }
 
-export function CardTop({colour, image, podiumNum} : {colour: string, image: GridImageProps, podiumNum: number}) {
+export function CardTop({colour, image, podiumNum} : {colour: string, image: {path: string; alt: string;}, podiumNum: number}) {
   if (podiumNum > 0) {
     return (
       <div className={styles.cardTop} style={{backgroundColor: colour}}>
-        <GridImage path={image.path} alt={image.alt} />
+        <img
+          className={styles.gridImage}
+          src={image.path}
+          alt={image.alt}
+        />
       </div>
     )
   } else {
@@ -36,7 +43,7 @@ export default function GridSquare({title, description, year, lang, colour, imag
   // let cardClass = "card transition" + (podiumNum == 0 ? "" : " podium" + podiumNum);
   const cardClass = `${styles.card} ${styles.transition} ${podiumClasses[podiumNum]}`
   return (
-    <li className={cardClass} data-href={link}>
+    <Link href={link} className={cardClass}>
       <CardTop colour={colour} image={image} podiumNum={podiumNum}/>
       <div className={styles.cardBase}>
         <h2 className={styles.cardTitle} style={{color: colour}}>{title}</h2>
@@ -45,6 +52,6 @@ export default function GridSquare({title, description, year, lang, colour, imag
       <p className={styles.projectInfoText}>
         {year} &#183; {lang}
       </p>
-    </li>
+    </Link> 
   )
 }

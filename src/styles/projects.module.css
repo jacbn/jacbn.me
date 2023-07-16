@@ -1,0 +1,26 @@
+.titlePrimary {
+  color: var(--title-primary);
+}
+
+.titleSecondary {
+  color: var(--title-secondary);
+}
+
+.myName {
+  font-size: 2rem;
+}
+
+nav .navBox {
+  float: right;
+  color:#a0a0a0;
+  text-align: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+}
+
+nav .navBox:hover {
+  color:#fff;
+  background-color: #394146;
+  transition: all 50ms ease-in;
+}

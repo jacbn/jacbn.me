@@ -109,6 +109,26 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+main {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200vh;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: max-content;
+  background-color: #191c20;
+  transition: top 0.3s;
+  z-index: 99;
+}
+
 a {
   color: inherit;
   text-decoration: none;
