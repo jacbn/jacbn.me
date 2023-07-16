@@ -10,10 +10,6 @@
   font-size: 2rem;
 }
 
-.myName a {
-  text-decoration: none;
-}
-
 .blog {
   width: 100%;
   row-gap: 2rem;
@@ -32,6 +28,10 @@
 
 .blogText p {
   margin: 0 0 1.5rem;
+}
+
+.blogText p a {
+  text-decoration: underline;
 }
 
 .blogImage {
