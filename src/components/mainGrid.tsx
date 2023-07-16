@@ -13,7 +13,7 @@ export default function MainGrid() {
         lang="Dart"
         colour="wheat"
         image={{
-          path: "./assets/index/logo-green-maps.svg",
+          src: "/assets/index/logo-green-maps.svg",
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
         link="/projects/greenmaps/"
@@ -26,7 +26,7 @@ export default function MainGrid() {
         lang="Python, Dart"
         colour="lightgreen"
         image={{
-          path: "./assets/index/logo-yawnn.svg",
+          src: "/assets/index/logo-yawnn.svg",
           alt: ""
         }}
         link="/projects/yawnn/"
@@ -39,7 +39,7 @@ export default function MainGrid() {
         lang="JS, Python"
         colour="lightblue"
         image={{
-          path: "./assets/index/logo-maths-art.svg",
+          src: "/assets/index/logo-maths-art.svg",
           alt: ""
         }}
         link="/maths-art/"
@@ -52,7 +52,7 @@ export default function MainGrid() {
         lang="OCaml, Java"
         colour="#F9D1DA"
         image={{
-          path: "",
+          src: "",
           alt: ""
         }}
         link="/projects/jcompiler/"
@@ -65,7 +65,7 @@ export default function MainGrid() {
         lang="Java"
         colour="#6EB5FF"
         image={{
-          path: "",
+          src: "",
           alt: ""
         }}
         link="/projects/sentiment/"
@@ -78,7 +78,7 @@ export default function MainGrid() {
         lang="Python"
         colour="lightcoral"
         image={{
-          path: "",
+          src: "",
           alt: ""
         }}
         link="/projects/pandemic/"
@@ -91,7 +91,7 @@ export default function MainGrid() {
         lang="Python"
         colour="#C3B1E1"
         image={{
-          path: "",
+          src: "",
           alt: ""
         }}
         link="https://play.google.com/store/apps/details?id=com.JBLabs.Hexad"

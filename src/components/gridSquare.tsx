@@ -9,7 +9,7 @@ export interface GridSquareProps {
   lang: string;
   colour: string;
   image: {
-    path: string;
+    src: string;
     alt: string;
   };
   link: string;
@@ -23,13 +23,13 @@ const podiumClasses : {[id: number]: string} = {
   3: styles.podium3
 }
 
-export function CardTop({colour, image, podiumNum} : {colour: string, image: {path: string; alt: string;}, podiumNum: number}) {
+export function CardTop({colour, image, podiumNum} : {colour: string, image: {src: string; alt: string;}, podiumNum: number}) {
   if (podiumNum > 0) {
     return (
       <div className={styles.cardTop} style={{backgroundColor: colour}}>
         <img
           className={styles.gridImage}
-          src={image.path}
+          src={image.src}
           alt={image.alt}
         />
       </div>
