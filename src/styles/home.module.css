@@ -127,7 +127,6 @@
 }
 
 .titleText {
-  font-family: var(--font-sans);
   font-size: calc(6rem + 3vw);
   font-weight: 500;
   stroke-dasharray: 0px 110px;

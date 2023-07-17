@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <main>
       <Title />
-        <div className={styles.subtitle}>
-          My Projects:
-        </div>
+      <div className={styles.subtitle}>
+        My Projects:
+      </div>
       <MainGrid />
     </main> 
   )
