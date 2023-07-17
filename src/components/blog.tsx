@@ -2,7 +2,7 @@ import styles from '../styles/projects.module.css'
 
 export interface BlogProps {
   title: string
-  image: {
+  image?: {
     src: string
     alt: string
   }
@@ -15,9 +15,11 @@ export default function Blog(props : BlogProps) {
       <main className={styles.blog}>
         <h1>{props.title}</h1> 
         <div className={styles.blogBody}>
+          {props.image !== undefined && (
           <div className={styles.blogImage} style={{backgroundColor: props.colour}}>
-            <img src={props.image.src} alt={props.image.alt}/> 
+            <img src={props.image?.src} alt={props.image?.alt}/> 
           </div>
+          )}
           <div className={styles.blogText}>
             {props.text}
           </div>
