@@ -23,14 +23,15 @@
 
 .blogText {
   width: 100%;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .blogText p {
   margin: 0 0 1.5rem;
 }
 
-.blogText p a {
+.blogText p a,
+.blogText blockquote a {
   text-decoration: underline;
 }
 
