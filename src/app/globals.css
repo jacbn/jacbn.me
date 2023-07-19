@@ -19,15 +19,14 @@
   --font-sans-fallback: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
   'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
-  --title-primary: #ffffff;
-  --title-secondary: #a0a0a0;
+  --title-primary: #000000; /* TODO */
+  --title-secondary: #5F5F5F;
+  --text-primary: #0a0a0a;
   
-  --text-primary: #f0f0f0;
-  --card-background: #191c20;
 
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+  --background-start-rgb: #d6dbdc;
+  --background-end-rgb: #ffffff;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -62,9 +61,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 18, 21, 24;
-    --background-end-rgb: 12, 15, 18;
+    --text-primary: #f0f0f0;
+    --title-primary: #ffffff;
+    --title-secondary: #a0a0a0;
+    
+    --background-start-rgb: #121518;
+    --background-end-rgb: #0c0f12;
+    --background-alt-light: #191c20;
+    --background-alt-dark: #0e1114;
+    --background-alt-dark-accent: #090b0e;
+
+    --foreground-accent: #88bbee;
 
     --primary-glow: radial-gradient(
       rgba(45, 53, 122, 0.4), 
@@ -110,13 +117,13 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: var(--text-primary);
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      var(--background-end-rgb)
     )
-    rgb(var(--background-start-rgb));
+    var(--background-start-rgb);
   font-family: var(--font-sans-body);
 }
 
@@ -132,12 +139,11 @@ main {
 nav {
   position: sticky;
   top: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  width: 100%;
+  display: block;
   align-items: center;
   height: max-content;
-  background-color: #191c20;
+  background-color: var(--background-alt-light);
   transition: top 0.3s;
   z-index: 99;
 }
@@ -167,10 +173,11 @@ a {
 }
 
 blockquote {
-  background-color: #191c20;
+  background-color: var(--background-alt-dark);
   padding: 0.5rem;
   border-radius: 0.5rem;
-  border-left: 0.25rem solid #88bbee;
+  border: 0.1rem solid var(--background-alt-dark-accent);
+  border-left: 0.25rem solid var(--foreground-accent);
   margin: 1.2rem 0 1.2rem 2rem;
   font-style: italic;
 }

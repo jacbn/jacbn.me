@@ -33,12 +33,11 @@
   line-height: 1.55rem;
 }
 
-.blogText p {
+.blogText p:not(.footnote) {
   margin: 0 0 1.5rem;
 }
 
-.blogText p a,
-.blogText blockquote a {
+.blogText * a {
   text-decoration: underline;
 }
 
@@ -80,8 +79,21 @@ nav .navBox:hover {
   margin-bottom: 5%;
 }
 
+.footnote {
+  font-size: 0.8rem;
+  color: #a0a0a0;
+  line-height: 1rem;
+  margin: 0 0 0.8rem;
+}
+
+@media (max-width: 1680px) {
+  .blog {
+    padding: 1rem 15%;
+  }
+}
+
 /* Mobile */
-@media (max-width: 720px) {
+@media (max-width: 840px) {
   .blog {
     padding: 1rem 10%;
   }

@@ -14,11 +14,9 @@ export default function NavBar({showName}: {showName: boolean}) {
         </Link>
       </div>
       )}
-      <div>
-        <Link className={styles.navBox} href="/contact">Contact</Link>
-        <Link className={styles.navBox} href="/about">About</Link>
-        <Link className={styles.navBox} href="/">Home</Link>
-      </div>
+      <Link className={styles.navBox} href="/contact">Contact</Link>
+      <Link className={styles.navBox} href="/about">About</Link>
+      <Link className={styles.navBox} href="/">Home</Link>
     </nav>
   )
 }
