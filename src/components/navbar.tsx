@@ -7,6 +7,7 @@ export default function NavBar({showName}: {showName: boolean}) {
   return (
     <nav>
       <div className={styles.myName}>
+      {/* do not move conditional outside, empty div keeps the rest right-floating */}
       {showName && (
         <Link href="/">
           <span className={styles.titlePrimary}>Jacob </span> 
