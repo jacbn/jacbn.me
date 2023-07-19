@@ -7,7 +7,7 @@
   display: grid;
   position: relative;
   align-content: flex-start; /* put the extra space at bottom of card */
-  background-color: var(--card-background);
+  background-color: var(--background-alt-light);
   border-radius: 20px;
   cursor: pointer;
   -webkit-transition: all 0.5s ease; 
@@ -104,7 +104,6 @@
 .titleContainer {
   width: 100%;
   height: calc(10rem + 15vh + 40px); /* 40px bottom margin */
-  margin: 0 0 40px; /* top margin */
   display: flex;
   flex-direction: column;
   align-items: center;
