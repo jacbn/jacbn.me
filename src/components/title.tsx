@@ -17,13 +17,13 @@ export default function Title() {
                     <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleFade} ${styles.titlePrimaryFill}`}></use>
                 </g>
             </svg>
-            <h2 className={styles.roller}>
+            <h3 className={styles.roller}>
                 <span className={styles.rollerText}>
                     Software Engineer
                     <br />
                     Python &#183; Java &#183; Flutter &#183; React
                 </span>
-            </h2>
+            </h3>
         </div>
     )
 }

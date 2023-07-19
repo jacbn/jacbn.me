@@ -1,7 +1,12 @@
 import '../globals.css'
+import ScrollTop from '../../components/scrollTop'
 
 export default function ProjectLayout({children}: {children: React.ReactNode}) {
   return (
-    <section>{children}</section>
+    <>
+      <ScrollTop /> 
+      {/* TODO: why is this ScrollTop needed??? shouldn't this be default behaviour? */}
+      <section>{children}</section>
+    </>
   )
 }

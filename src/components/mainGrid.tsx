@@ -16,7 +16,7 @@ export default function MainGrid() {
           src: "/assets/index/logo-green-maps.svg",
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
-        link="/projects/greenmaps/"
+        link="/projects/greenmaps"
         podiumNum={2}
       />
       <GridSquare 

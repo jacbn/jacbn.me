@@ -7,14 +7,20 @@
 }
 
 .myName {
+  font-family: var(--font-sans-title);
   font-size: 2rem;
 }
 
 .blog {
   width: 100%;
-  row-gap: 2rem;
+  row-gap: 1rem;
   align-items: center;
-  padding: 1rem 15%;
+  padding: 1rem 25%;
+}
+
+.blogTitle {
+  margin-top: 1%;
+  margin-bottom: 3%;
 }
 
 .blogBody {
@@ -23,7 +29,8 @@
 
 .blogText {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.55rem;
 }
 
 .blogText p {
@@ -40,7 +47,7 @@
   height: 16rem;
   float: right;
   border-radius: 20px;
-  margin: 0 2rem 2rem;
+  margin: 1rem 0 2rem 2rem;
 }
 
 .blogImage img {
