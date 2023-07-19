@@ -140,7 +140,9 @@ nav {
   position: sticky;
   top: 0;
   width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: max-content;
   background-color: var(--background-alt-light);
