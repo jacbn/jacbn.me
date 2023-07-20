@@ -219,8 +219,9 @@
   width: 100%;
   position: absolute;
   top: 0;
-  animation: slide 7s infinite 4s ease-in-out,
-             fade 6s forwards ease-in-out;
+  animation: 
+  slide 7s infinite 4s ease-in-out,
+  fadeIn 6s forwards ease-in-out;
 }
 
 /* media properties */
@@ -321,6 +322,16 @@
   to {
     stroke-dashoffset: -22%;
     stroke-dasharray: 300px 0;
+  }
+}
+
+@keyframes fadeIn {
+  0%, 
+  81% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
