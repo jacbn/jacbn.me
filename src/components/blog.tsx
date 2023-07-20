@@ -13,7 +13,7 @@ export interface BlogProps {
 export default function Blog(props : BlogProps) {
     return (
       <main className={styles.blog}>
-        <h1 className={styles.blogTitle}>{props.title}</h1> 
+        <h1>{props.title}</h1> 
         <div className={styles.blogBody}>
           {props.image !== undefined && (
           <div className={styles.blogImage} style={{backgroundColor: props.colour}}>

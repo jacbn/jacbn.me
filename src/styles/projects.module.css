@@ -18,9 +18,15 @@
   padding: 1rem 25%;
 }
 
-.blogTitle {
+.blog h1 {
   margin-top: 1%;
   margin-bottom: 3%;
+}
+
+.blog h2 {
+  margin-top: 0;
+  margin-bottom: 3%;
+  font-size: 2.2rem;
 }
 
 .blogBody {

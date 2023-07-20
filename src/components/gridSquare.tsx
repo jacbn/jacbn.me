@@ -46,7 +46,7 @@ export default function GridSquare({title, description, year, lang, colour, imag
     <Link href={link} className={cardClass}>
       <CardTop colour={colour} image={image} podiumNum={podiumNum}/>
       <div className={styles.cardBase}>
-        <h2 className={styles.cardTitle} style={{color: colour}}>{title}</h2>
+        <h2 style={{color: colour}}>{title}</h2>
         <p className={styles.cardDescription}>{description}</p>
       </div>
       <p className={styles.projectInfoText}>

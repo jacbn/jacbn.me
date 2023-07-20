@@ -161,6 +161,7 @@ h1 {
 h2 {
   font-size: calc(12pt + 1.5vw);
   font-family: var(--font-sans-title);
+  margin: 1rem 0;
 }
 
 h3 {
