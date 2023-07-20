@@ -161,14 +161,8 @@
   font-size: calc(6rem + 3vw);
   font-weight: 500;
   stroke-dasharray: 0px 110px;
-  stroke-width: 2px;
+  stroke-width: 3px;
   stroke-dashoffset: 0;
-  /* animation: stroke-offset 2s infinite linear; */
-  animation: dash 4s forwards ease-in-out;
-}
-
-.titleFade {
-  animation: fade 5s forwards ease-in-out;
 }
 
 .titlePrimaryStroke {
@@ -182,11 +176,29 @@
 }
 
 .titlePrimaryFill {
+  stroke: var(--title-primary);
   fill: var(--title-primary);
 }
 
 .titleSecondaryFill {
+  stroke: var(--title-secondary);
   fill: var(--title-secondary);
+}
+
+.titleStrokeAnimation {
+  animation:
+  dash 4s forwards ease-in-out,
+  fadeOutInstant 5s forwards ease-in-out;
+}
+
+.titleFillAnimation {
+  animation: fadeInInstant 5s forwards ease-in-out;
+  stroke-dashoffset: -22%;
+  stroke-dasharray: 300px 0;
+}
+
+.titleMask {
+  animation: fadeOut 5s forwards ease-in-out;
 }
 
 .roller {
@@ -305,12 +317,6 @@
   /* todo */
 }
 
-@keyframes stroke-offset{
-  100% {
-    stroke-dashoffset: -25%;
-  }
-}
-
 @keyframes dash {
   to {
     stroke-dashoffset: -22%;
@@ -318,13 +324,33 @@
   }
 }
 
-@keyframes fade {
-  0%,
+@keyframes fadeOut {
+  0%, 
+  81% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInInstant {
+  0%, 
   80% {
     opacity: 0;
   }
-  100% {
+  80.01%, 100% {
     opacity: 1;
+  }
+}
+
+@keyframes fadeOutInstant {
+  0%, 
+  80% {
+    opacity: 1;
+  }
+  80.01%, 100% {
+    opacity: 0;
   }
 }
 

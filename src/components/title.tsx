@@ -11,11 +11,16 @@ export default function Title() {
                 <symbol id="s-text2">
                     <text x="52%" y="99%" textAnchor='middle'>Brown</text>
                 </symbol>
+                <mask id="mask">
+                    <rect width="100%" height="100%" fill="white" />
+                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleMask}`} />
+                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleMask}`} />
+                </mask>
                 <g>
-                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleSecondaryStroke}`}></use>
-                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleFade} ${styles.titleSecondaryFill}`}></use>
-                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titlePrimaryStroke}`}></use>
-                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleFade} ${styles.titlePrimaryFill}`}></use>
+                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleStrokeAnimation} ${styles.titleSecondaryStroke}`} mask='url(#mask)'></use>
+                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleFillAnimation} ${styles.titleSecondaryFill}`} mask='url(#mask)'></use>
+                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleStrokeAnimation} ${styles.titlePrimaryStroke}`} mask='url(#mask)'></use>
+                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleFillAnimation} ${styles.titlePrimaryFill}`} mask='url(#mask)'></use>
                 </g>
             </svg>
             <h3 className={styles.roller}>
