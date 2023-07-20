@@ -3,6 +3,7 @@ import styles from '../styles/home.module.css'
 export default function Title() {
     return (
         <div className={styles.titleContainer}>
+            <div className={styles.titleBackground}></div>
             <svg className={styles.titleSVG}>
                 <symbol id="s-text">
                     <text x="48%" y="59%" textAnchor='middle'>Jacob</text>

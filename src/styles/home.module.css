@@ -107,8 +107,46 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--primary-glow);
+  /* light mode? v v */
+  /* background-image: url("/assets/index/title-bg.svg"), linear-gradient(
+    to bottom right,
+    rgb(1, 65, 255),
+    rgb(1, 255, 255),
+    rgb(255, 65, 255)
+  ); */
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/index/title-bg.svg");
+  /* triangle background (title-bg.svg) modified from SVGBackgrounds.com */
   font-family: var(--font-sans-title);
+}
+
+.titleBackground {
+  /* same positioning as titleContainer */
+  width: 100%;
+  height: calc(10rem + 15vh + 40px);
+  position: absolute;
+  background-image:
+  linear-gradient(
+    to bottom right,
+    rgba(1, 65, 255, 0.1),
+    rgba(1, 255, 255, 0.1),
+    rgba(219, 115, 219, 0.1),
+    rgba(1, 65, 255, 0.1)
+  );
+  background-size: 400% 400%;
+  animation: titleBackground 20s infinite ease-in-out;
+}
+
+@keyframes titleBackground {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
 
 .titleSVG {
@@ -116,6 +154,11 @@
   height: calc(100% - 2.1rem); /* container height - roller */
   display: block;
   margin-bottom: 20px;
+}
+
+.titleBackgroundSVG {
+  height: inherit;
+  position: absolute;
 }
 
 .titleText {
