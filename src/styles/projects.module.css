@@ -36,7 +36,8 @@
 .blogText {
   width: 100%;
   font-size: 1rem;
-  line-height: 1.55rem;
+  line-height: 1.4rem;
+  text-align: justify;
 }
 
 .blogText p:not(.footnote) {
@@ -83,6 +84,29 @@ nav .navBox:hover {
   margin-right: auto;
   width: 90%;
   margin-bottom: 5%;
+}
+
+.imageContainer {
+  width: 85%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  row-gap: 1rem;
+  align-items: center;
+  margin: 1rem auto 2rem;
+}
+
+.imageContainer p {
+  text-align: center;
+}
+
+.doubleImage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem 0 0;
 }
 
 .footnote {
