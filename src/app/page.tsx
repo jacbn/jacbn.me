@@ -71,7 +71,7 @@ export function Contact() {
         center={true}
         text={
           <>
-            <p>I'm happy to have a chat about anything, work-related or not -- just drop me a message!</p>
+            <p>I'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
               <div> 
                 <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={im_linkedin.src} />
                 <AppIcon href="https://github.com/jacbn" image={im_github.src} />
