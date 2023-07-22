@@ -3,7 +3,7 @@ import styles from '../styles/projects.module.css'
 
 import Link from 'next/link'
 
-export default function NavBar({showName}: {showName: boolean}) {
+export default function NavBar({showName, onClickFunction}: {showName: boolean, onClickFunction: Function}) {
   return (
     <nav>
       <div className={styles.myName}>
@@ -16,9 +16,9 @@ export default function NavBar({showName}: {showName: boolean}) {
       )}
       </div>
       <div>
-        <Link className={styles.navBox} href="/contact">Contact</Link>
-        <Link className={styles.navBox} href="/about">About</Link>
-        <Link className={styles.navBox} href="/">Home</Link>
+        <div className={styles.navBox} onClick={() => onClickFunction('contact')}>Contact</div>
+        <div className={styles.navBox} onClick={() => onClickFunction('about')}>About Me</div>
+        <div className={styles.navBox} onClick={() => onClickFunction('home')}>Home</div>
       </div>
     </nav>
   )

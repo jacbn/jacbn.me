@@ -224,6 +224,88 @@
   fadeIn 6s forwards ease-in-out;
 }
 
+.homeTextContainer {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeTextBody {
+  width: 100%;
+  text-align: justify;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.homeTextBody > p {
+  margin-top: 2%;
+}
+
+.qna {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.inset {
+  padding-left: 2%;
+  border-left: 0.25rem solid var(--foreground-accent);
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.iconContainer {
+  text-decoration: none;
+  padding: 2% 1% 1%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltipText {
+  visibility: hidden;
+  width: 200px;
+  /* todo: ^ would ideally be fit-content, but see below */
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 20px;
+  padding: 7px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -100px;
+  /* above needs to be half of the width */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltipText::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
+}
+
+.filterWhite {
+  filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(6deg) brightness(107%) contrast(108%);
+}
+
 /* media properties */
 
 /* Enable hover only on non-touch devices */
