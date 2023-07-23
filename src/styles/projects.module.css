@@ -72,6 +72,10 @@ nav .navBox {
   transition: all 200ms ease-out;
 }
 
+nav .activeNavBox {
+  background-color: #23282c;
+}
+
 nav .navBox:hover {
   color:#fff;
   background-color: #394146;

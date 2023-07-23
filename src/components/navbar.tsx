@@ -3,7 +3,13 @@ import styles from '@/styles/projects.module.css'
 
 import Link from 'next/link'
 
-export default function NavBar({showName}: {showName: boolean}) {
+export function NavBox({text, href, active}: {text: string, href: string, active: boolean}) {
+  return (
+    <Link className={`${styles.navBox} ${(active) ? styles.activeNavBox : ''}`} href={href}>{text}</Link>
+  )
+}
+
+export default function NavBar({showName, activePage}: {showName: boolean, activePage?: string}) {
   return (
     <nav>
       <div className={styles.myName}>
@@ -16,9 +22,9 @@ export default function NavBar({showName}: {showName: boolean}) {
       )}
       </div>
       <div>
-        <Link className={styles.navBox} href="/contacts">Contacts</Link>
-        <Link className={styles.navBox} href="/about">About Me</Link>
-        <Link className={styles.navBox} href="/">Home</Link>
+        <NavBox text="Contacts" href="/contacts" active={activePage === '/contacts'} />
+        <NavBox text="About Me" href="/about" active={activePage === '/about'} />
+        <NavBox text="Home" href="/" active={activePage === '/'} />
       </div>
     </nav>
   )

@@ -105,7 +105,7 @@ export default function Page() {
   return (
     <main>
       <Title />
-      <NavBar showName={false} />
+      <NavBar showName={false} activePage={router.asPath} />
       <PageContent pageName={router.asPath} />
     </main> 
   )
