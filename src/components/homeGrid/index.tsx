@@ -3,7 +3,7 @@ import GridSquare from './gridSquare';
 
 // todo: fill alt text of svgs
 
-export default function MainGrid() {
+export default function HomeGrid() {
   return (
     <ol className={styles.grid}>
       <GridSquare 

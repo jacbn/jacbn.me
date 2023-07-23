@@ -2,7 +2,7 @@
 
 import styles from '@/styles/home.module.css'
 import Title from '@/components/title'
-import MainGrid from '@/components/mainGrid'
+import HomeGrid from '@/components/homeGrid'
 import NavBar from '@/components/navbar'
 import HomeText from '@/components/homeText'
 import AppIcon from '@/components/appIcon'
@@ -23,7 +23,7 @@ export function Home() {
     <>
       <ScrollTop />
       <h1>My Projects:</h1>
-      <MainGrid />
+      <HomeGrid />
     </>
   )
 }
