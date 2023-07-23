@@ -13,7 +13,7 @@ export default function HomeGrid() {
         lang="Dart"
         colour="wheat"
         image={{
-          src: "/assets/index/logo-green-maps.svg",
+          src: "/assets/home/logo-green-maps.svg",
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
         link="/projects/greenmaps"
@@ -26,7 +26,7 @@ export default function HomeGrid() {
         lang="Python, Dart"
         colour="lightgreen"
         image={{
-          src: "/assets/index/logo-yawnn.svg",
+          src: "/assets/home/logo-yawnn.svg",
           alt: ""
         }}
         link="/projects/yawnn/"
@@ -39,7 +39,7 @@ export default function HomeGrid() {
         lang="JS, Python"
         colour="lightblue"
         image={{
-          src: "/assets/index/logo-maths-art.svg",
+          src: "/assets/home/logo-maths-art.svg",
           alt: ""
         }}
         link="/maths-art/"
