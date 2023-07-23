@@ -1,4 +1,4 @@
-import styles from '../styles/projects.module.css'
+import styles from '@/styles/projects.module.css'
 
 export interface BlogProps {
   title: string

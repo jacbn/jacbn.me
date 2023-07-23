@@ -9,13 +9,14 @@ import AppIcon from '@/components/appIcon'
 import ScrollTop from '@/components/scrollTop'
 import React, { PureComponent } from 'react'
 
-import im_discord from './assets/discord.svg'
-import im_github from './assets/github.svg'
-import im_linkedin from './assets/linkedin.svg'
-import im_messenger from './assets/messenger.svg'
-import im_spotify from './assets/spotify.svg'
-import im_switch from './assets/switch.svg'
-import im_twitter from './assets/twitter.svg'
+import im_discord from '@/assets/home/discord.svg'
+import im_github from '@/assets/home/github.svg'
+import im_linkedin from '@/assets/home/linkedin.svg'
+import im_messenger from '@/assets/home/messenger.svg'
+import im_spotify from '@/assets/home/spotify.svg'
+import im_switch from '@/assets/home/switch.svg'
+import im_twitter from '@/assets/home/twitter.svg'
+import { useRouter } from 'next/router'
 
 export function Home() {
   return (
@@ -62,7 +63,7 @@ export function About() {
   )
 }
 
-export function Contact() {
+export function Contacts() {
   return (
     <>
     <ScrollTop />
@@ -88,35 +89,24 @@ export function Contact() {
   )
 }
 
-export class Page extends PureComponent<{}, { page : React.JSX.Element }> {
-  constructor(props : any) {
-    super(props);
-    this.state = {page: <Home />}
-  }
-
-  switchToPage(pageName : string) {
-    switch (pageName) {
-      case 'about':
-        this.setState({page: <About />})
-        break;
-      case 'contact':
-        this.setState({page: <Contact />})
-        break;
-      default:
-        this.setState({page: <Home />})
-        break;
-    }
-  }
-
-  render() {
-    return (
-      <main>
-        <Title />
-        <NavBar showName={false} onClickFunction={(pageName : string) => this.switchToPage(pageName)} />
-        {this.state.page}
-      </main> 
-    )
+export function PageContent({pageName} : {pageName : string }) {
+  switch (pageName) {
+    case '/about':
+      return <About />
+    case '/contacts':
+      return <Contacts />
+    default:
+      return <Home />
   }
 }
 
-export default Page;
+export default function Page() {
+  const router = useRouter();
+  return (
+    <main>
+      <Title />
+      <NavBar showName={false} />
+      <PageContent pageName={router.asPath} />
+    </main> 
+  )
+}

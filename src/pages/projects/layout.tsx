@@ -1,5 +1,5 @@
-import '../globals.css'
-import ScrollTop from '../../components/scrollTop'
+import '@/globals.css'
+import ScrollTop from '@/components/scrollTop'
 
 export default function ProjectLayout({children}: {children: React.ReactNode}) {
   return (

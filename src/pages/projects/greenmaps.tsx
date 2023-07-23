@@ -1,5 +1,5 @@
-import NavBar from '../../../components/navbar'
-import Blog from '../../../components/blog'
+import NavBar from '@/components/navbar'
+import Blog from '@/components/blog'
 
 export default function GreenMaps() {
   return (

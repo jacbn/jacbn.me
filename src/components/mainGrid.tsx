@@ -1,4 +1,4 @@
-import styles from '../styles/home.module.css'
+import styles from '@/styles/home.module.css'
 import GridSquare from './gridSquare';
 
 // todo: fill alt text of svgs

@@ -1,9 +1,9 @@
-import '../app/globals.css'
-import styles from '../styles/projects.module.css'
+import '@/app/globals.css'
+import styles from '@/styles/projects.module.css'
 
 import Link from 'next/link'
 
-export default function NavBar({showName, onClickFunction}: {showName: boolean, onClickFunction: Function}) {
+export default function NavBar({showName}: {showName: boolean}) {
   return (
     <nav>
       <div className={styles.myName}>
@@ -16,9 +16,9 @@ export default function NavBar({showName, onClickFunction}: {showName: boolean, 
       )}
       </div>
       <div>
-        <div className={styles.navBox} onClick={() => onClickFunction('contact')}>Contact</div>
-        <div className={styles.navBox} onClick={() => onClickFunction('about')}>About Me</div>
-        <div className={styles.navBox} onClick={() => onClickFunction('home')}>Home</div>
+        <Link className={styles.navBox} href="/contacts">Contacts</Link>
+        <Link className={styles.navBox} href="/about">About Me</Link>
+        <Link className={styles.navBox} href="/">Home</Link>
       </div>
     </nav>
   )

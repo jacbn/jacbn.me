@@ -1,11 +1,11 @@
-import styles from '../../../styles/projects.module.css'
-import NavBar from '../../../components/navbar'
-import Blog from '../../../components/blog'
+import styles from '@/styles/projects.module.css'
+import NavBar from '@/components/navbar'
+import Blog from '@/components/blog'
 
-import im_app_plots from './gfx/app/plots.png'
-import im_app_recording from './gfx/app/recording.png'
-import im_prelim_eating from './gfx/prelim/eating.png'
-import im_prelim_yawn from './gfx/prelim/yawn.png'
+import im_app_plots from '@/assets/yawnn/app/plots.png'
+import im_app_recording from '@/assets/yawnn/app/recording.png'
+import im_prelim_eating from '@/assets/yawnn/prelim/eating.png'
+import im_prelim_yawn from '@/assets/yawnn/prelim/yawn.png'
 
 export default function YawNN() {
   return (

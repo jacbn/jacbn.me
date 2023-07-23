@@ -1,7 +1,7 @@
 'use client'
 
-import NavBar from '../../../components/navbar'
-import Blog from '../../../components/blog'
+import NavBar from '@/components/navbar'
+import Blog from '@/components/blog'
 import TeX from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
 
