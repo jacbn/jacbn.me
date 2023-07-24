@@ -111,7 +111,7 @@
     rgb(255, 65, 255)
   ); */
 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/index/title-bg.svg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/home/title-bg.svg");
   /* triangle background (title-bg.svg) modified from SVGBackgrounds.com */
   font-family: var(--font-sans-title);
 }
