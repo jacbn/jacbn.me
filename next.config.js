@@ -2,7 +2,6 @@
 const nextConfig = {
   async rewrites() {
     return [
-      // Rewrite everything else to use `pages/index`
       {
         source: '/about',
         destination: '/',
@@ -10,6 +9,10 @@ const nextConfig = {
       {
         source: '/contacts',
         destination: '/',
+      },
+      {
+        source: '/maths-art/:path*',
+        destination: '/maths-art',
       },
     ];
   },
