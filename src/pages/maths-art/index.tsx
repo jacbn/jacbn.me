@@ -4,6 +4,7 @@ import styles from '@/styles/mathsart.module.css'
 import Apollo from './_apollo'
 import { useRouter } from 'next/router'
 import Radials from './_radials'
+import Lotfollah from './_lotfollah'
 
 export function MathsArtDirectory() {
   return (
