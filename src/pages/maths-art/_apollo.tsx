@@ -27,7 +27,7 @@ export default function Apollo() {
         </>
       }
       script={<ApolloScript />}
-      options={
+      controls={
         <>
           <div className={styles.sliderOptions}>
             <h4>Circle Ratio</h4>
