@@ -230,6 +230,14 @@ function setExample(example) {
             addCircle(20, 11);
             changeRollType(0, true);
             break;
+        case "8-flower":
+            circleRadii = [0];
+            circleSpeeds = [25];
+            addCircle(80, 0, true);
+            addCircle(40, 1);
+            addCircle(30, -7);
+            changeRollType(0, true);
+            break;
     }
     reset(baseSpeed, example);
 }

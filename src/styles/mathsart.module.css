@@ -120,6 +120,15 @@
     justify-content: space-around;
 }
 
+.detailsIndent {
+    background-color: var(--background-alt-dark);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid var(--background-alt-dark-accent);
+    border-left: 0.25rem solid var(--foreground-accent);
+    margin: 0.5rem 0 0 1rem;
+  }
+
 .radialsNumericalInput {
     width: 150px;
     height: 16px;
