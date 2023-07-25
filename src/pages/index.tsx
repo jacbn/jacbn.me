@@ -7,15 +7,8 @@ import NavBar from '@/components/navbar'
 import HomeText from '@/components/homeText'
 import AppIcon from '@/components/appIcon'
 import ScrollTop from '@/components/scrollTop'
-import React, { PureComponent } from 'react'
+import React from 'react'
 
-import im_discord from '@/assets/home/discord.svg'
-import im_github from '@/assets/home/github.svg'
-import im_linkedin from '@/assets/home/linkedin.svg'
-import im_messenger from '@/assets/home/messenger.svg'
-import im_spotify from '@/assets/home/spotify.svg'
-import im_switch from '@/assets/home/switch.svg'
-import im_twitter from '@/assets/home/twitter.svg'
 import { useRouter } from 'next/router'
 
 export function Home() {
@@ -74,13 +67,13 @@ export function Contacts() {
           <>
             <p>I'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
               <div> 
-                <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={im_linkedin.src} />
-                <AppIcon href="https://github.com/jacbn" image={im_github.src} />
-                <AppIcon href="https://m.me/100054856335934" image={im_messenger.src} />
-                <AppIcon href="https://twitter.com/jcbbn" image={im_twitter.src} />
-                <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={im_spotify.src} />
-                <AppIcon hoverText="@jzabn" image={im_discord.src} />
-                <AppIcon hoverText="SW-0524-5461-9909" image={im_switch.src} />
+                <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={"/assets/contacts/linkedin.svg"} />
+                <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} />
+                <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} />
+                <AppIcon href="https://twitter.com/jcbbn" image={"/assets/contacts/twitter.svg"} />
+                <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"/assets/contacts/spotify.svg"} />
+                <AppIcon hoverText="@jzabn" image={"/assets/contacts/discord.svg"} />
+                <AppIcon hoverText="SW-0524-5461-9909" image={"/assets/contacts/switch.svg"} />
               </div>
           </>
         }
