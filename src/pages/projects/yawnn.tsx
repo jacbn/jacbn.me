@@ -63,8 +63,11 @@ export default function YawNN() {
 
                 <p>On reflection, the project was a huge success. I thoroughly enjoyed the challenge of working on something novel, and the thrills of getting things working after a lot of pain aren't something I'll forget soon. The diss ended up scoring 90 marks, one of the best in the year, which I'm also incredibly proud of. From something I initially thought was amusingly niche, yawning detection came to define a lot of my ups and downs for the year and I'm glad it did!</p>
 
-              {/* <h3>Paper</h3> */}
+              <h3>Paper</h3>
 
+                <p>Following the success of the dissertation, my supervisor had the idea of converting the project into a full scientific paper. A second dataset had been made accessible a few days before the deadline of the diss (unfortunately too little time to use then), but this could now be used to provide a more robust analysis of the models, and whether they would generalise to other people.</p>
+
+                <p>We've now submitted this and are currently awaiting the results of whether it'll be accepted into the <a href="https://smart-wear-2023-bjfs.vercel.app/">SmartWear 2023 Workshop</a>. I'll update this page when we know!</p>
 
               <p id="ref1" className={styles.footnote}>[1] NHTSA. 2017. Drowsy Driving. <a href="https://www.nhtsa.gov/risky-driving/drowsy-driving">https://www.nhtsa.gov/risky-driving/drowsy-driving</a>. Accessed: 2023-23-03.</p>
               <p id="ref2" className={styles.footnote}>[2] Michael H. Bonnet. 1985. Effect of Sleep Disruption on Sleep, Performance, and Mood. Sleep 8, 1 (03 1985), 11-19. <a href="https://doi.org/10.1093/sleep/8.1.11">https://doi.org/10.1093/sleep/8.1.11</a><br/> arXiv: <a href="https://academic.oup.com/sleep/article-pdf/8/1/11/13678498/080102.pdf">https://academic.oup.com/sleep/article-pdf/8/1/11/13678498/080102.pdf</a></p>
