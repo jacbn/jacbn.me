@@ -48,7 +48,7 @@ export default function Radials() {
           <details>
             <summary>Answer</summary>
             <div className={styles.detailsIndent}>
-              <b>Yes.</b> Without offset, all circles start/end each cycle being aligned vertically. Consider what happens from this state after one timestep; call this state <TeX math='A' />. Then, consider what happened one timestep <i>before</i> being aligned; call this state <TeX math='B' />. Since the speeds are constant, <TeX math='A' /> and <TeX math='B'/> are surely mirror images of each other. This reasoning can continue until some timestep where the circles are aligned again, in which case the same reasoning applies.
+              <b>Yes.</b> Without offset, all circles start/end each cycle being aligned vertically. Consider what happens from this state after one timestep; call this state <TeX math='A' />. Then, consider what happened one timestep <i>before</i> being aligned; call this state <TeX math='B' />. Since the speeds are constant, <TeX math='A' /> and <TeX math='B'/> are surely mirror images of each other. This reasoning continues all the way up to some timestep where the circles are aligned again.
               <br/><br/>
               I'll emphasise the word <i>some</i> in that last sentence. If the speeds are such that the circles align <TeX math='n'/> times in one cycle, you'll get <TeX math='n'/> lines of symmetry. So how, you ask, do you get the circles to align several times? 
               <br/><br/>
