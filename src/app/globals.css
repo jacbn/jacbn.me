@@ -173,6 +173,9 @@ h3 {
 
 a {
   color: inherit;
+}
+
+nav a {
   text-decoration: none;
 }
 

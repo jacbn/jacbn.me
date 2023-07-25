@@ -15,6 +15,7 @@
   font-family: var(--font-sans-title);
   order: 99; /* allows custom orders below this */ 
   flex: 0 0 31.3%;
+  text-decoration: none;
 }
 
 .cardTop {
@@ -258,7 +259,6 @@
 }
 
 .iconContainer {
-  text-decoration: none;
   padding: 2% 1% 1%;
 }
 

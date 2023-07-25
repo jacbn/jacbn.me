@@ -44,10 +44,6 @@
   margin: 0 0 1.5rem;
 }
 
-.blogText * a {
-  text-decoration: underline;
-}
-
 .blogImage {
   width: 16rem;
   height: 16rem;
