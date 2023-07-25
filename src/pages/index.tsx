@@ -1,5 +1,6 @@
 'use client'
 
+import '@/app/globals.css'
 import styles from '@/styles/home.module.css'
 import Title from '@/components/title'
 import HomeGrid from '@/components/homeGrid'
