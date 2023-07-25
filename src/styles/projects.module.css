@@ -9,6 +9,7 @@
 .myName {
   font-family: var(--font-sans-title);
   font-size: 2rem;
+  padding-left: 0.5rem;
 }
 
 .blog {

@@ -24,7 +24,7 @@ export default function Radials() {
           <p>Click the "Add Circle" button to see what happens!</p>
           <br/>
           <h4>Can we change the shapes that are made?</h4>
-          <p>Sure! The circles' relative radii, rotation speeds and starting offset all change the shapes produced. In theory, any continuous curve can be produced given enough circles*. There's a number of nice examples in the examples tab, but it's great fun to experiment (make sure to try negative speeds)!</p>  
+          <p>Sure! The circles' relative radii, rotation speeds and starting offset all change the shapes produced. In theory, any continuous curve can be constructed given enough circles*. There's a number of nice examples in the examples tab, but it's great fun to experiment (make sure to try negative speeds)!</p>  
           <br/>
           <p>*I'm not sure this JS simulation will quite have the precision for works of art, though!</p>
           <br/>
