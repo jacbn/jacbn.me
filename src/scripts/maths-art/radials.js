@@ -112,8 +112,10 @@ function render() {
         // apply offset rotation to dx and dy, then add back the previous circle's centre
         if (offsetsEnabled) {
             const offset = -circleOffsets[i] * angleConversion;
-            centreX = dx * Math.cos(offset) - dy * Math.sin(offset) + prevX;
-            centreY = dx * Math.sin(offset) + dy * Math.cos(offset) + prevY;
+            const sinOffset = Math.sin(offset);
+            const cosOffset = Math.cos(offset);
+            centreX = dx * cosOffset - dy * sinOffset + prevX;
+            centreY = dx * sinOffset + dy * cosOffset + prevY;
         } else {
             centreX = dx + prevX;
             centreY = dy + prevY;
