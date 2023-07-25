@@ -186,6 +186,11 @@ blockquote {
   font-style: italic;
 }
 
+summary {
+  color: var(--text-secondary);
+  margin-left: 1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

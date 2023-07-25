@@ -8,12 +8,16 @@ var circlesOptionsDivInitial;
 
 var circleRadii = [0]; // pointer
 var circleSpeeds = [4];
+var circleOffsets = [0];
+var angleConversion = 2.0 * Math.PI / 360.0;
 var path = [];
 var pathComplete = false;
-var angle = 0;
+var globalPhase = 0;
 var baseSpeed = 0.5;
 var speedsHcf = 1;
 var rollType = 0;
+
+var offsetsEnabled = false;
 
 export function runRadials() {
 
@@ -24,15 +28,16 @@ export function runRadials() {
 
     circleRadii = [0];
     circleSpeeds = [4];
+    circleOffsets = [0];
     path = [];
     pathComplete = false;
-    angle = 0;
-    baseSpeed = parseInt(speedSlider.value)/10;
+    globalPhase = 0;
+    baseSpeed = parseFloat(speedSlider.value)/10;
     speedsHcf = 1;
     rollType = 0;
     
     $("[id^=circleOptions]").remove(); // remove all circle options html elements
-    addCircle(80, 0, true); // add back the initial circle and the pointer
+    addCircle(80, 0, 0, true); // add back the initial circle and the pointer
     reset();
     render();
 }
@@ -53,6 +58,8 @@ function initialiseDOMElements() {
         $('#removeCircle').click(function () {removeCircle()});
         $('#changeRollType').click(function() {changeRollType()});
         $('#unlockButton').click(function() {addExamples(); $('#unlockButton').attr("disabled", true)});
+        $('#toggleOffsets').click(function() {toggleOffsets()});
+        $('#offsetUnit').change(function(event) {toggleOffsetUnit(event.target.value)});
         $('#examples').val('empty');
         $('#examples').change(function(event) {setExample(event.target.value)});
     })
@@ -63,7 +70,7 @@ function initialiseDOMElements() {
 function reset(speed=baseSpeed, exampleName='empty') {
     path = [];
     pathComplete = false;
-    angle = 0;
+    globalPhase = 0;
     baseSpeed = speed;
 
     $('#examples').val(exampleName);
@@ -84,49 +91,76 @@ function clearCanvas() {
 
 function render() {
     clearCanvas();
-    var tx = 0;
-    var ty = 0;
+    var centreX = 0;
+    var centreY = 0;
+    var dx;
+    var dy;
     var prevR = circleRadii[0];
-    bc.drawCircle(ctx, tx, ty, prevR, "#666");
+    bc.drawCircle(ctx, centreX, centreY, prevR, "#666");
+
+    /* The basic idea here is to calculate the position of each circle, starting from the base, in turn;
+    for example, the centre of the second circle is the radius of the first circle away from its centre,
+    with a rotation given by how far through one cycle we are (globalPhase) multiplied by the speed of 
+    the second circle. */
 
     for (var i = 1; i < circleRadii.length; i++) {
-        tx += (prevR+circleRadii[i]*rollType) * Math.sin(angle*baseSpeed*circleSpeeds[i]);
-        ty += (prevR+circleRadii[i]*rollType) * Math.cos(angle*baseSpeed*circleSpeeds[i]);
-        bc.drawCircle(ctx, tx, ty, circleRadii[i], "#666");
+        const prevX = centreX;
+        const prevY = centreY;
+        // calculate the position of the centre of the next circle, assuming no offset
+        dx = (prevR + circleRadii[i] * rollType) * Math.sin(globalPhase * baseSpeed * circleSpeeds[i]);
+        dy = (prevR + circleRadii[i] * rollType) * Math.cos(globalPhase * baseSpeed * circleSpeeds[i]);
+        // apply offset rotation to dx and dy, then add back the previous circle's centre
+        if (offsetsEnabled) {
+            const offset = -circleOffsets[i] * angleConversion;
+            centreX = dx * Math.cos(offset) - dy * Math.sin(offset) + prevX;
+            centreY = dx * Math.sin(offset) + dy * Math.cos(offset) + prevY;
+        } else {
+            centreX = dx + prevX;
+            centreY = dy + prevY;
+        }
+
+        bc.drawCircle(ctx, centreX, centreY, circleRadii[i], "#666");
         if (!pathComplete && i == circleRadii.length - 1) {
-            path.push([tx, ty]);
+            path.push([centreX, centreY]);
         }
         prevR = circleRadii[i];
     }
-    angle += Math.PI/180; // the angle, uncorrected for speed;
-    // the "true" pointer angle is angle * simulation speed * pointer speed:
-    //console.log(angle*baseSpeed*circleSpeeds[circleSpeeds.length-1]);
+    globalPhase += Math.PI/180;
     
-    if (angle*baseSpeed > 2*Math.PI / speedsHcf) {
-        angle = 0;
+    /* We don't want to keep drawing lines if the shape is already complete. This is usually at 
+    globalPhase = 2pi, but if the shape happens to complete before this, we'll be redrawing lines. 
+    So how do we know if the shape is complete? 
+    
+    Have a look at the first challenge! :) It'll help explain the next line. */
+
+    if (globalPhase*baseSpeed > 2*Math.PI / speedsHcf) {
+        globalPhase = 0;
         pathComplete = true;
         path.push(path[0]);
     }
     bc.drawShape(ctx, path, false);
-    bc.drawCircle(ctx, tx, ty, 2, "#f00", true);
+    bc.drawCircle(ctx, centreX, centreY, 2, "#f00", true);
     requestAnimationFrame(render);
 }
 
-function addCircle(rad=40, spe=2, initial=false) {
+function addCircle(rad=40, spe=2, off=0, initial=false) {
     const ptrRad = circleRadii.pop();
     const ptrSpe = circleSpeeds.pop();
+    const ptrOff = circleOffsets.pop();
     circleRadii.push(rad, ptrRad);
     circleSpeeds.push(spe, ptrSpe);
+    circleOffsets.push(off, ptrOff);
     reset();
     
     const li = $('<li>').prop('id', 'circleOptions' + circleRadii.length).addClass('radialsListEntry');
 
     
     if (initial) {
-        li.append(makeSizeInput(circleRadii.length - 2), makeEmptySpace('0')); // -1 for 0-indexing, -1 for the pointer
+        li.append(makeSizeInput(circleRadii.length - 2), makeEmptySpace('0'), makeEmptySpace('0', true)); // -1 for 0-indexing, -1 for the pointer
         circlesOptionsDiv.append(li);
     } else {
-        li.append(makeSizeInput(circleRadii.length - 2), makeSpeedInput(circleRadii.length - 2));
+        const index = circleRadii.length - 2;
+        li.append(makeSizeInput(index), makeSpeedInput(index), makeOffsetInput(index));
         $('#circleOptionsPtr').replaceWith(li);
     } 
 
@@ -135,36 +169,49 @@ function addCircle(rad=40, spe=2, initial=false) {
 
 function makePointerOptions() {
     const ptr = $('<li>').prop('id', 'circleOptionsPtr').addClass('radialsListEntry');
-    ptr.append(makeEmptySpace('Pointer'), makeSpeedInput(circleRadii.length - 1));
+    ptr.append(makeEmptySpace('Pointer'), makeSpeedInput(circleRadii.length - 1), makeOffsetInput(circleRadii.length - 1));
     circlesOptionsDiv.append(ptr);
 }
 
 function makeSizeInput(index) {
     return $('<input>').addClass('radialsNumericalInput').prop('type', 'number').prop('value', circleRadii[index]).prop('min', 0).prop('max', 100).prop('step', 10).on('input', function(event) {
-        circleRadii[index] = parseInt(event.target.value);
+        circleRadii[index] = parseFloat(event.target.value);
         reset();
     });
 }
 
 function makeSpeedInput(index) {
     return $('<input>').addClass('radialsNumericalInput').prop('type', 'number').prop('value', circleSpeeds[index]).prop('min', -10).prop('max', 10).prop('step', 1).on('input', function(event) {
-        circleSpeeds[index] = parseInt(event.target.value);
+        circleSpeeds[index] = parseFloat(event.target.value);
         reset();
     });
 }
 
-function makeEmptySpace(value) {
-    return $('<input>').addClass('radialsEmptyInput').prop('value', value).attr("disabled", true);
+function makeOffsetInput(index) {
+    return $('<input>').addClass('radialsNumericalInput').addClass('offsetHidden').prop('hidden', !offsetsEnabled).prop('type', 'number').prop('value', 0).prop('min', 0).prop('max', 360).prop('step', 5).on('input', function(event) {
+        circleOffsets[index] = parseFloat(event.target.value);
+        reset();
+    });
+}
+
+function makeEmptySpace(value, isOffset=false) {
+    if (isOffset) {
+        return $('<input>').addClass('radialsEmptyInput').addClass('offsetHidden').attr('hidden', true).attr('disabled', true).prop('value', value);
+    }
+    return $('<input>').addClass('radialsEmptyInput').prop('value', value).attr('disabled', true);
 }
 
 function removeCircle() {
     if (circleRadii.length > 2) {
         const ptrSpe = circleSpeeds.pop();
         const ptrRad = circleRadii.pop();
+        const ptrOff = circleOffsets.pop();
         circleSpeeds.pop();
         circleRadii.pop();
+        circleOffsets.pop();
         circleRadii.push(ptrRad);
         circleSpeeds.push(ptrSpe);
+        circleOffsets.push(ptrOff);
 
         // removing a circle changes the index of the pointer in the circleSpeeds array, so remake to update
         $('#circleOptionsPtr').remove();
@@ -190,52 +237,52 @@ function setExample(example) {
         case "3clover":
             circleRadii = [0];
             circleSpeeds = [4];
-            addCircle(80, 0, true)
-            addCircle(20, 1);
+            addCircle(80, 0, 0, true)
+            addCircle(20, 1, 0);
             changeRollType(1, true);
             break;
         case "triangle":
             circleRadii = [0];
             circleSpeeds = [4];
-            addCircle(80, 0, true)
-            addCircle(20, -2);
+            addCircle(80, 0, 0, true)
+            addCircle(20, -2, 0);
             changeRollType(1, true);
             break;
         case "club":
             circleRadii = [0];
             circleSpeeds = [8];
-            addCircle(70, 0, true);
-            addCircle(60, -2);
-            addCircle(40, 6);
+            addCircle(70, 0, 0, true);
+            addCircle(60, -2, 0);
+            addCircle(40, 6, 0);
             changeRollType(0, true);
             break;
         case "powersOfTwo":
             circleRadii = [0];
             circleSpeeds = [128];
-            addCircle(128, 0, true);
-            addCircle(64, 1);
-            addCircle(32, 2);
-            addCircle(16, 4);
-            addCircle(8, 8);
-            addCircle(4, 16);
-            addCircle(2, 32);
-            addCircle(1, 64);
+            addCircle(128, 0, 0, true);
+            addCircle(64, 1, 0);
+            addCircle(32, 2, 0);
+            addCircle(16, 4, 0);
+            addCircle(8, 8, 0);
+            addCircle(4, 16, 0);
+            addCircle(2, 32, 0);
+            addCircle(1, 64, 0);
             changeRollType(0, true);
             break;
         case "pentagon":
             circleRadii = [0];
             circleSpeeds = [16];
-            addCircle(80, 0, true);
-            addCircle(40, 6);
-            addCircle(20, 11);
+            addCircle(80, 0, 0, true);
+            addCircle(40, 6, 0);
+            addCircle(20, 11, 0);
             changeRollType(0, true);
             break;
         case "8-flower":
             circleRadii = [0];
             circleSpeeds = [25];
-            addCircle(80, 0, true);
-            addCircle(40, 1);
-            addCircle(30, -7);
+            addCircle(80, 0, 0, true);
+            addCircle(40, 1, 0);
+            addCircle(30, -7, 0);
             changeRollType(0, true);
             break;
     }
@@ -250,7 +297,23 @@ function hcf(arr) {
 }
 
 function addExamples() {
-    $('.hidden').attr('hidden', false);
+    $('.symmetryHidden').attr('hidden', false);
+}
+
+function toggleOffsets() {
+    $('.offsetHidden').attr('hidden', offsetsEnabled);
+    $('.offsetDisabled').attr('disabled', offsetsEnabled);
+    offsetsEnabled = !offsetsEnabled;
+    reset();
+}
+
+function toggleOffsetUnit(value) {
+    if (value == "degrees") {
+        angleConversion = 2.0 * Math.PI / 360.0;
+    } else {
+        angleConversion = 1.0;
+    }
+    reset();
 }
 
 /*

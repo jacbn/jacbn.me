@@ -24,7 +24,7 @@ export default function Radials() {
           <p>Click the "Add Circle" button to see what happens!</p>
           <br/>
           <h4>Can we change the shapes that are made?</h4>
-          <p>Sure! The circles' relative radii and rotation speeds both change the shapes produced. In theory, any continuous curve can be produced given enough circles*. There's a number of nice examples in the examples tab, but it's great fun to experiment (make sure to try negative speeds)!</p>  
+          <p>Sure! The circles' relative radii, rotation speeds and starting offset all change the shapes produced. In theory, any continuous curve can be produced given enough circles*. There's a number of nice examples in the examples tab, but it's great fun to experiment (make sure to try negative speeds)!</p>  
           <br/>
           <p>*I'm not sure this JS simulation will quite have the precision for works of art, though!</p>
           <br/>
@@ -43,12 +43,12 @@ export default function Radials() {
             </div>
           </details>
           <br/>
-          <p>2. Do all shapes necessarily have a line of symmetry?</p>
+          <p>2. With no offsets, do all shapes necessarily have a line of symmetry?</p>
           <br/>
           <details>
             <summary>Answer</summary>
             <div className={styles.detailsIndent}>
-              <b>Yes.</b> All circles start and end one cycle being aligned vertically. Consider what happens from this state after one timestep; call this state <TeX math='A' /> Then, consider what happened one timestep <i>before</i> being aligned; call this state <TeX math='B' />. Since the speeds are constant, <TeX math='A' /> and <TeX math='B'/> are surely mirror images of each other. This reasoning can continue until some timestep where the circles are aligned again, in which case the same reasoning applies.
+              <b>Yes.</b> Without offset, all circles start/end each cycle being aligned vertically. Consider what happens from this state after one timestep; call this state <TeX math='A' />. Then, consider what happened one timestep <i>before</i> being aligned; call this state <TeX math='B' />. Since the speeds are constant, <TeX math='A' /> and <TeX math='B'/> are surely mirror images of each other. This reasoning can continue until some timestep where the circles are aligned again, in which case the same reasoning applies.
               <br/><br/>
               I'll emphasise the word <i>some</i> in that last sentence. If the speeds are such that the circles align <TeX math='n'/> times in one cycle, you'll get <TeX math='n'/> lines of symmetry. So how, you ask, do you get the circles to align several times? 
               <br/><br/>
@@ -57,6 +57,15 @@ export default function Radials() {
               And that's about it! You can keep adding circles with <TeX math='kn'/>-symmetry to get more complex shapes with <TeX math='k'/> lines of symmetry. If you want to change the speed of the first circle, by the way, you can multiply all circles' speeds by some constant.
               <br/><br/>
               <button style={{width: '40%', height: '2rem', margin: '1% 30% 3%'}} type="button" id="unlockButton" className={styles.radialsButton}>Add more examples!</button>
+            </div>
+          </details>
+          <br/>
+          <p>3. With offsets, what conditions are required for rotational symmetry?</p>
+          <br/>
+          <details>
+            <summary>I'm leaving this one to you. Let me know what you come up with!</summary>
+            <div className={styles.detailsIndent}>
+              If you want a hint though, it's closely related to reflective symmetry :)
             </div>
           </details>
         </>
@@ -70,19 +79,19 @@ export default function Radials() {
               <button type="button" id="removeCircle" className={styles.radialsButton}>Remove Circle</button>
             </div>
             <div>
-              <h4>Simulation Speed</h4>
+              <h4 className={styles.canvasProject__columnFlex}>Simulation Speed</h4>
               <RangeSlider {...{min: "0", max: "30", value: "5", id: "speedSlider"}} />
             </div>
             <div className={styles.canvasProject__columnFlex}>
               <button type="button" id="changeRollType" className={styles.radialsButton}>Change Style</button>
-              <select name="examples" id="examples">
-                <option value="empty" disabled selected hidden>Examples</option>
+              <select name="examples" id="examples" defaultValue={'empty'}>
+                <option value="empty" disabled hidden>Examples</option>
                 <option value="3clover">3-Leaf Clover</option>
                 <option value="triangle">Triangle</option>
                 <option value="club">Club</option>
                 <option value="powersOfTwo">Powers of Two</option>
-                <option className="hidden" value="pentagon" hidden>Pentagon</option>
-                <option className="hidden" value="8-flower" hidden>8-Flower</option>
+                <option className="symmetryHidden" value="pentagon" hidden>Pentagon</option>
+                <option className="symmetryHidden" value="8-flower" hidden>8-Flower</option>
               </select>
             </div>
           </div>
@@ -90,8 +99,19 @@ export default function Radials() {
             <li className={styles.canvasProject__rowFlex}>
               <div>Sizes</div>
               <div>Speeds</div>
+              <div className="offsetHidden" hidden>Offsets</div>
             </li>
           </ul>
+          <div className={styles.canvasProject__columnFlex} style={{marginTop: '2rem'}}>
+            <div>
+              <input type="checkbox" id="toggleOffsets" name="toggleOffsets" />
+              <label htmlFor="toggleOffsets"> Enable Offsets</label>
+            </div>
+            <select name="offsetUnit" id="offsetUnit" disabled className="offsetDisabled" style={{marginTop: '0.4rem'}}>
+              <option value="degrees">Degrees</option>
+              <option value="radians">Radians</option>
+            </select>
+          </div>
         </div>
       }
       />
