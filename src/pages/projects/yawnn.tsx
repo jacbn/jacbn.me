@@ -2,11 +2,6 @@ import styles from '@/styles/projects.module.css'
 import NavBar from '@/components/navbar'
 import Blog from '@/components/blog'
 
-import im_app_plots from '@/assets/yawnn/app/plots.png'
-import im_app_recording from '@/assets/yawnn/app/recording.png'
-import im_prelim_eating from '@/assets/yawnn/prelim/eating.png'
-import im_prelim_yawn from '@/assets/yawnn/prelim/yawn.png'
-
 export default function YawNN() {
   return (
     <>
@@ -14,7 +9,7 @@ export default function YawNN() {
       <Blog 
         title="Yawning Detection"
         image={{
-          src: "/assets/index/logo-yawnn.svg",
+          src: "/assets/home/logo-yawnn.svg",
           alt: ""
         }}
         colour="lightgreen"
@@ -41,8 +36,8 @@ export default function YawNN() {
 
                 <div className={styles.imageContainer}>
                   <div className={styles.doubleImage}>
-                    <img style={{width: "35%"}} src={im_app_recording.src} alt="YeIMU Recording" />
-                    <img style={{width: "35%"}} src={im_app_plots.src} alt="YeIMU Plots" />
+                    <img style={{width: "35%"}} src='/assets/yawnn/app/recording.png' alt="YeIMU Recording" />
+                    <img style={{width: "35%"}} src='/assets/yawnn/app/plots.png' alt="YeIMU Plots" />
                   </div>
                   <p>Figure 1: The YeIMU app. The first shows the main screen once connected to the earphones and recording, the second a post-recording graph accessible from the 'View Results' button on the main screen.</p>
                 </div>
@@ -52,8 +47,8 @@ export default function YawNN() {
 
                 <div className={styles.imageContainer}>
                   <div className={styles.doubleImage}>
-                    <img style={{width: "49%"}} src={im_prelim_eating.src} alt="YeIMU Recording" />
-                    <img style={{width: "49%"}} src={im_prelim_yawn.src} alt="YeIMU Plots" />
+                    <img style={{width: "49%"}} src='/assets/yawnn/prelim/eating.png' alt="YeIMU Recording" />
+                    <img style={{width: "49%"}} src='/assets/yawnn/prelim/yawn.png' alt="YeIMU Plots" />
                   </div>
                   <p>Figure 2: Preliminary analysis. Eating is characterised by oscillatory gyroscope readings in all axes at intervals of just under 2Hz, with mostly flat accelerometer readings. Yawning is characterised by a long period of flat readings in both sets of axes, followed by a spike in activity in gyroscope readings, most notably in the Z-axis.</p>
                 </div>
