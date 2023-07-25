@@ -45,6 +45,16 @@
     transform: scale(1.02);
 }
 
+.backToMathsDirectory {
+    position: absolute;
+    left: 0;
+    padding: 0.6rem;
+    margin: 1rem;
+    background-color: var(--background-alt-light);
+    border-radius: 100%;
+    box-shadow: 0.2rem 0.2rem 0.2rem var(--background-alt-dark-accent);;
+}
+
 /* projects */
 
 .canvasProject {

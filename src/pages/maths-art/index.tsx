@@ -5,6 +5,8 @@ import Apollo from './_apollo'
 import { useRouter } from 'next/router'
 import Radials from './_radials'
 import Lotfollah from './_lotfollah'
+import Link from 'next/link'
+import 'material-icons/iconfont/material-icons.css'
 
 export function MathsArtDirectory() {
   return (
@@ -22,14 +24,39 @@ export function MathsArtDirectory() {
   )
 }
 
+export function BackToMathsDirectory() {
+  return (
+    <div className={styles.backToMathsDirectory}>
+      <Link href="/maths-art">
+        <span className="material-icons-round">arrow_back</span>
+      </Link>
+    </div>
+  )
+}
+
 export function MathsArtPageContent({pageName} : {pageName : string }) {
   switch (pageName) {
     case '/maths-art/apollo':
-      return <Apollo />
+      return (
+        <>
+          <BackToMathsDirectory />
+          <Apollo />
+        </>
+      )
     case '/maths-art/lotfollah':
-      return <Lotfollah />
+      return (
+        <>
+          <BackToMathsDirectory />
+          <Lotfollah />
+        </>
+      )
     case '/maths-art/radials':
-      return <Radials />
+      return (
+        <>
+          <BackToMathsDirectory />
+          <Radials />
+        </>
+      )
     default:
       return <MathsArtDirectory />
   }
