@@ -34,6 +34,7 @@
     -webkit-transition: all 0.5s ease; 
     transition: all 0.5s ease;
     font-family: var(--font-sans-title);
+    text-decoration: none;
 }
 
 .mathsArtGridSquare > img {
