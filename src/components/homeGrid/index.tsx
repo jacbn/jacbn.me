@@ -24,7 +24,7 @@ export default function HomeGrid() {
         description="applying deep learning to safety-critical environments"
         year="2022-2023"
         lang="Python, Dart"
-        colour="lightgreen"
+        colour="#9bfae7"
         image={{
           src: "/assets/home/logo-yawnn-static.png",
           alt: ""
@@ -37,7 +37,7 @@ export default function HomeGrid() {
         description="exploring geometry at its finest"
         year="2016 onwards"
         lang="JS, Python"
-        colour="lightblue"
+        colour="lightgreen"
         image={{
           src: "/assets/home/logo-maths-art.svg",
           alt: ""

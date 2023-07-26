@@ -58,6 +58,7 @@
   height: 95%;
   margin: 2.5%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 nav .navBox {

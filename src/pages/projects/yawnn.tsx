@@ -9,10 +9,10 @@ export default function YawNN() {
       <Blog 
         title="Yawning Detection"
         image={{
-          src: "/assets/home/logo-yawnn.svg",
+          src: "/assets/home/logo-yawnn-static.png",
           alt: ""
         }}
-        colour="lightgreen"
+        colour="#9bfae7"
         text={
             <>
               <h3>Dissertation</h3>
