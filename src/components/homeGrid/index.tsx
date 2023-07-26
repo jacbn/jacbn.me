@@ -26,7 +26,7 @@ export default function HomeGrid() {
         lang="Python, Dart"
         colour="lightgreen"
         image={{
-          src: "/assets/home/logo-yawnn.svg",
+          src: "/assets/home/logo-yawnn-static.png",
           alt: ""
         }}
         link="/projects/yawnn/"

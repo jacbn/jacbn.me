@@ -8,14 +8,21 @@ import NavBar from '@/components/navbar'
 import HomeText from '@/components/homeText'
 import AppIcon from '@/components/appIcon'
 import ScrollTop from '@/components/scrollTop'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { animationOnLoad } from '@/scripts/homeGifs'
 
 import { useRouter } from 'next/router'
+
+export function HomeScript() {
+  useEffect(() => animationOnLoad(), []);
+  return <></>;
+}
 
 export function Home() {
   return (
     <>
       <ScrollTop />
+      <HomeScript />
       <h1>My Projects:</h1>
       <HomeGrid />
     </>

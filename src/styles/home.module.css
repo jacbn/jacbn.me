@@ -61,6 +61,7 @@
   width: 50%;
   margin: 1% 0%;
   aspect-ratio: 1; /*square image*/
+  border-radius: 50%;
 }
 
 .podium1 {
