@@ -240,6 +240,10 @@ function changeRollType(val=rollType, force=false) {
 
 function setExample(example) {
     circlesOptionsDiv.html(circlesOptionsDivInitial);
+    if (offsetsEnabled) {
+        toggleOffsets();
+        $('#toggleOffsets').prop('checked', false);
+    }
     switch (example) {
         case "3clover":
             circleRadii = [0];
