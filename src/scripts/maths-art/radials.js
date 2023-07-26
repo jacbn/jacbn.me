@@ -26,17 +26,18 @@ export function runRadials() {
     // with preloading caching content, it's possible for this to run twice without a full page reload.
     // so, we'll need to manually reset everything to its initial state ourselves.
 
+    $("[id^=circleOptions]").remove(); // remove all circle options html elements
+
     circleRadii = [0];
     circleSpeeds = [4];
     circleOffsets = [0];
     path = [];
     pathComplete = false;
     globalPhase = 0;
-    baseSpeed = parseFloat(speedSlider.value)/10;
+    baseSpeed = parseFloat(speedSlider.value)/10.0;
     speedsHcf = 1;
     rollType = 0;
     
-    $("[id^=circleOptions]").remove(); // remove all circle options html elements
     addCircle(80, 0, 0, true); // add back the initial circle and the pointer
     reset();
     render();
@@ -51,7 +52,7 @@ function initialiseDOMElements() {
 
     speedSlider = document.getElementById("speedSlider");
     speedSlider.oninput = function(event) {
-        reset(event.target.value/10);
+        reset(event.target.value/10.0);
     };
     $(document).ready(function() {
         $('#addCircle').click(function () {addCircle()});
@@ -142,7 +143,11 @@ function render() {
     }
     bc.drawShape(ctx, path, false);
     bc.drawCircle(ctx, centreX, centreY, 2, "#f00", true);
-    requestAnimationFrame(render);
+    if (window.location.href.endsWith("radials")) {
+        /* stops the script if we're not currently on the radials page.
+        without this, multiple functions can be running simultaneously. */
+        requestAnimationFrame(render);
+    }
 }
 
 function addCircle(rad=40, spe=2, off=0, initial=false) {
