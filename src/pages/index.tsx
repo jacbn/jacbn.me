@@ -9,12 +9,19 @@ import HomeText from '@/components/homeText'
 import AppIcon from '@/components/appIcon'
 import ScrollTop from '@/components/scrollTop'
 import React, { useEffect } from 'react'
-import { animationOnLoad } from '@/scripts/homeGifs'
+import { animationOnLoad } from '@/scripts/animatedImages'
 
 import { useRouter } from 'next/router'
 
 export function HomeScript() {
-  useEffect(() => animationOnLoad(), []);
+  useEffect(() => animationOnLoad([
+    {
+      hoverId: '#cardYawningDetection', 
+      imageId: '#gridImageYawningDetection',
+      srcStatic: '/assets/home/logo-yawnn-static.png', 
+      srcAnimated: '/assets/home/logo-yawnn.gif'
+    }
+  ]), []);
   return <></>;
 }
 

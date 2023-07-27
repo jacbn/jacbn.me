@@ -16,8 +16,8 @@ export default function Blog(props : BlogProps) {
         <h1>{props.title}</h1> 
         <div className={styles.blogBody}>
           {props.image !== undefined && (
-          <div className={styles.blogImage} style={{backgroundColor: props.colour}}>
-            <img src={props.image?.src} alt={props.image?.alt}/> 
+          <div className={styles.blogImage} style={{backgroundColor: props.colour}} id={`blogImageContainer${props.title.replaceAll(' ', '')}`}>
+            <img src={props.image?.src} alt={props.image?.alt} id={`blogImage${props.title.replaceAll(' ', '')}`}/> 
           </div>
           )}
           <div className={styles.blogText}>
