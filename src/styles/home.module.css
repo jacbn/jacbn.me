@@ -240,6 +240,7 @@
   font-size: 1.1rem;
   color: var(--text-primary);
   margin-bottom: 25vh;
+  min-height: 25vh;
 }
 
 .homeTextBody > p {
