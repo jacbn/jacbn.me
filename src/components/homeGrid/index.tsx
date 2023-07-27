@@ -13,7 +13,7 @@ export default function HomeGrid() {
         lang="Dart"
         colour="wheat"
         image={{
-          src: "/assets/home/logo-green-maps.svg",
+          src: "/assets/home/logo-green-maps.png",
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
         link="/projects/greenmaps"
