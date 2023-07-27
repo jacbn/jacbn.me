@@ -24,12 +24,12 @@ export default function Radials() {
           <p>Click the "Add Circle" button to see what happens!</p>
           <br/>
           <h4>Can we change the shapes that are made?</h4>
-          <p>Sure! The circles' relative radii, rotation speeds and starting offset all change the shapes produced. In theory, any continuous curve can be constructed given enough circles*. There's a number of nice examples in the examples tab, but it's great fun to experiment (make sure to try negative speeds)!</p>  
+          <p>Sure! The circles' relative sizes, rotation speeds and starting offset all change the shapes produced. In theory, any continuous curve can be constructed given enough circles*. There's a number of nice examples in the examples tab, but it's great fun to experiment (make sure to try negative speeds)!</p>  
           <br/>
           <p>*I'm not sure this JS simulation will quite have the precision for works of art, though!</p>
           <br/>
           <h4>What is this, mathematically?</h4>
-          <p>The shapes made between two circles are called <a href="https://en.wikipedia.org/wiki/Epicycloid">epicycloids</a>, and when there are multiple circles it's called a <i>nested epicycloid</i>.</p>
+          <p>All shapes made are <a href="https://en.wikipedia.org/wiki/Roulette_(curve)"><i>roulettes</i></a>, but the exact type depends on the rolling style. If the shape is made by two circles rolling around each other, it's an <a href="https://en.wikipedia.org/wiki/Epicycloid"><i>epicycloid</i></a> (or a <i>nested epicycloid</i> with more); if the circles are instead rolling inside each other, the shape is known as a <i><a href="https://en.wikipedia.org/wiki/Hypocycloid"><i>hypocycloid</i></a>.</i></p>
           <br/>
           <h4>Challenges!</h4>
           <p>1. Here's something I stumbled over while coding this: how many rotations will each circle do around its parent circle before everything returns to its original position?</p>

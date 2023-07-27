@@ -58,9 +58,9 @@
 }
 
 .gridImage {
-  width: 50%;
   margin: 1% 0%;
   aspect-ratio: 1; /*square image*/
+  border-radius: 50%;
 }
 
 .podium1 {
@@ -68,23 +68,23 @@
 }
 
 .podium1 > div > img {
-  width: calc(35% + 40px);
+  width: 224px;
 }
 
 .podium2 {
-  margin-top: 20px;
+  margin-top: 14px;
 }
 
 .podium2 > div > img {
-  width: calc(35% + 20px)
+  width: 210px;
 }
 
 .podium3 {
-  margin-top: 40px;
+  margin-top: 38px;
 }
 
 .podium3 > div > img {
-  width: 35%;
+  width: 186px;
 }
 
 .projectInfoText {
@@ -238,6 +238,8 @@
   text-align: justify;
   font-size: 1.1rem;
   color: var(--text-primary);
+  margin-bottom: 25vh;
+  min-height: 25vh;
 }
 
 .homeTextBody > p {

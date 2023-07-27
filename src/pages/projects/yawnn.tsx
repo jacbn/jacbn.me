@@ -2,17 +2,33 @@ import styles from '@/styles/projects.module.css'
 import NavBar from '@/components/navbar'
 import Blog from '@/components/blog'
 
+import { animationOnLoad } from '@/scripts/animatedImages'
+import { useEffect } from 'react';
+
+export function AnimatedImage() {
+  useEffect(() => animationOnLoad([
+    {
+      hoverId: '#blogImageContainerYawningDetection', 
+      imageId: '#blogImageYawningDetection',
+      srcStatic: '/assets/home/logo-yawnn-static.png', 
+      srcAnimated: '/assets/home/logo-yawnn.gif'
+    }
+  ]), []);
+  return <></>;
+}
+
 export default function YawNN() {
   return (
     <>
+      <AnimatedImage />
       <NavBar showName={true} />
       <Blog 
         title="Yawning Detection"
         image={{
-          src: "/assets/home/logo-yawnn.svg",
+          src: "/assets/home/logo-yawnn-static.png",
           alt: ""
         }}
-        colour="lightgreen"
+        colour="#9bfae7"
         text={
             <>
               <h3>Dissertation</h3>

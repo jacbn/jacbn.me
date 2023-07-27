@@ -1,5 +1,4 @@
 import CanvasProject from "@/components/canvasProject";
-import styles from "@/styles/mathsart.module.css";
 import { runLotfollahDome } from "@/scripts/maths-art/lotfollah.js"
 
 import RangeSlider from "@/components/rangeSlider";
