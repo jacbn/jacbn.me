@@ -226,13 +226,6 @@
   fadeIn 6s forwards ease-in-out;
 }
 
-.homeTextContainer {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .homeTextBody {
   width: 100%;
   text-align: justify;

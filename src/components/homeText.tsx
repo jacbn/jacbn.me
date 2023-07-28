@@ -1,4 +1,5 @@
 import styles from '@/styles/home.module.css'
+import bodyStyles from '@/styles/body.module.css'
 
 export interface HomeTextProps {
   title: string
@@ -8,7 +9,7 @@ export interface HomeTextProps {
 
 export default function HomeText(props : HomeTextProps) {
     return (
-      <main className={styles.homeTextContainer}>
+      <main className={bodyStyles.wideContainer}>
         <h1>{props.title}</h1> 
         <div className={styles.homeTextBody} style={{textAlign: (props.center) ? 'center' : 'justify'}}>
           {props.text}

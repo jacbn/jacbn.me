@@ -1,4 +1,5 @@
 import styles from '@/styles/projects.module.css'
+import bodyStyles from '@/styles/body.module.css'
 
 export interface BlogProps {
   title: string
@@ -12,7 +13,7 @@ export interface BlogProps {
 
 export default function Blog(props : BlogProps) {
     return (
-      <main className={styles.blog}>
+      <main className={bodyStyles.thinContainer}>
         <h1>{props.title}</h1> 
         <div className={styles.blogBody}>
           {props.image !== undefined && (

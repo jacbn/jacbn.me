@@ -12,13 +12,6 @@
   padding-left: 0.5rem;
 }
 
-.blog {
-  width: 100%;
-  row-gap: 1rem;
-  align-items: center;
-  padding: 1rem 25%;
-}
-
 .blog h1 {
   margin-top: 1%;
   margin-bottom: 3%;
@@ -116,6 +109,25 @@ nav .navBox:hover {
   color: #a0a0a0;
   line-height: 1rem;
   margin: 0 0 0.8rem;
+}
+
+/* game-dev */
+
+.slidingPane {
+  width: 100%;
+  background-color: purple;
+}
+
+.slidingPaneImage {
+
+}
+
+.slidingPaneTitle {
+
+}
+
+.slidingPaneDescription {
+
 }
 
 @media (max-width: 1680px) {
