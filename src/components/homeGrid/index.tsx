@@ -39,7 +39,7 @@ export default function HomeGrid() {
         lang="JS, Python"
         colour="lightgreen"
         image={{
-          src: "/assets/home/logo-maths-art.svg",
+          src: "/assets/home/logo-maths-art.png",
           alt: ""
         }}
         link="/maths-art/"
