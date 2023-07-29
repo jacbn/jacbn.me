@@ -9,7 +9,7 @@ export interface HomeTextProps {
 
 export default function HomeText(props : HomeTextProps) {
     return (
-      <main className={bodyStyles.wideContainer}>
+      <main className={bodyStyles.wideTextContainer}>
         <h1>{props.title}</h1> 
         <div className={styles.homeTextBody} style={{textAlign: (props.center) ? 'center' : 'justify'}}>
           {props.text}

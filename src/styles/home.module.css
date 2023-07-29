@@ -7,7 +7,7 @@
   display: grid;
   position: relative;
   align-content: flex-start; /* put the extra space at bottom of card */
-  background-color: var(--background-alt-light);
+  background-color: var(--card-primary);
   border-radius: 20px;
   cursor: pointer;
   -webkit-transition: all 0.5s ease; 

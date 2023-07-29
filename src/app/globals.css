@@ -65,7 +65,7 @@
     
     --background-start-rgb: #121518;
     --background-end-rgb: #0c0f12;
-    --background-alt-light: #191c20;
+    --card-primary: #191c20;
     --background-alt-dark: #0e1114;
     --background-alt-dark-accent: #090b0e;
 
@@ -142,7 +142,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: max-content;
-  background-color: var(--background-alt-light);
+  background-color: var(--card-primary);
   transition: top 0.3s;
   z-index: 99;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);

@@ -13,7 +13,7 @@ export interface BlogProps {
 
 export default function Blog(props : BlogProps) {
     return (
-      <main className={bodyStyles.thinContainer}>
+      <main className={bodyStyles.thinTextContainer}>
         <h1>{props.title}</h1> 
         <div className={styles.blogBody}>
           {props.image !== undefined && (
