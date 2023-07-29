@@ -85,16 +85,29 @@ export default function HomeGrid() {
         podiumNum={0}
       />
       <GridSquare 
-        title="Hexad"
-        description="reaching for high scores by constructing hexagons"
-        year="2017-2019"
-        lang="Python"
+        title="Game Development"
+        description="designing unique experiences in reaching for high scores"
+        year="2017 onwards"
+        lang="C#"
+        colour="#f0f050"
+        image={{
+          src: "",
+          alt: ""
+        }}
+        link="/gamedev/"
+        podiumNum={0}
+      />
+      <GridSquare 
+        title="Utilities"
+        description="simplifying work with a collection of bespoke tools"
+        year="2021 onwards"
+        lang="JS, Python"
         colour="#C3B1E1"
         image={{
           src: "",
           alt: ""
         }}
-        link="https://play.google.com/store/apps/details?id=com.JBLabs.Hexad"
+        link="/utilities/"
         podiumNum={0}
       />
     </ol>
