@@ -15,8 +15,9 @@
 
 .projectHomeContainer {
   width: 100%;
-  padding: 0 7%;
+  padding: 0 var(--project-body-padding);
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%;
 }
