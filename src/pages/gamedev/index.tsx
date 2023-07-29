@@ -28,6 +28,8 @@ export default function GameDev() {
                 <p>For the Cambridge Game Jam 2023, I worked with 3 friends to create a game from scratch in 48 hours. The theme was 'Beneath the Earth', and our game tells the story of a capybara who must be reunited with his family after being washed underground during a storm.</p>
                 <br/>
                 <p>The game was built in Unity, which was new to the other members of the team. This was a great opportunity to practice fast and effective knowledge sharing, while also being able to learn new features myself like custom lighting and animation rigs. While we might not have won, we're proud of how far we came in such a short time!</p>
+                <br/>
+                <p>The game can be played on <a href="https://itch.io/jam/camgamejam/rate/1923220">itch.io</a>.</p>
               </>
             }
             />
@@ -36,7 +38,7 @@ export default function GameDev() {
             coverImage="/assets/gamedev/hexad.webp"
             description={
               <>
-                <p>2019 saw the development of <b>Hexad</b>, a 2D puzzle game about swapping neighbouring nodes on a hexagonal grid to complete full hexes. It was my first major project after just over a year of learning UnityScript (and later C# after its unfortunate demise) and the Unity engine. The app was released to the Google Play Store that summer, and updates continued throughout the year.</p>
+                <p>2019 saw the development of <b>Hexad</b>, a 2D puzzle game about swapping neighbouring nodes on a hexagonal grid to complete full hexes. It was my first major project after just over a year of learning UnityScript (and later C# after its unfortunate demise) and the Unity engine. The <a href="https://play.google.com/store/apps/details?id=com.JBLabs.Hexad">app</a> was released to the Google Play Store that summer, and updates continued throughout the year.</p>
               </>
             }
             />
