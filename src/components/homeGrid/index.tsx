@@ -97,7 +97,7 @@ export default function HomeGrid() {
         link="/gamedev/"
         podiumNum={0}
       />
-      <GridSquare 
+      {/* <GridSquare 
         title="Utilities"
         description="simplifying work with a collection of bespoke tools"
         year="2021 onwards"
@@ -109,7 +109,7 @@ export default function HomeGrid() {
         }}
         link="/utilities/"
         podiumNum={0}
-      />
+      /> */}
     </ol>
   )
 }
