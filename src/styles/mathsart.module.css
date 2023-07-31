@@ -9,6 +9,12 @@
     flex-wrap: wrap;
     column-gap: 3%;
     padding: 1% 10% 5%;
+    text-align: center;
+}
+
+.topText {
+    width: 65%;
+    text-align: center;
 }
 
 .mathsArtGridSquare {
@@ -26,6 +32,7 @@
     transition: all 0.5s ease;
     font-family: var(--font-sans-title);
     text-decoration: none;
+    padding: 2%;
 }
 
 .mathsArtGridSquare > img {
@@ -37,10 +44,9 @@
 }
 
 .backToMathsDirectory {
-    position: absolute;
-    left: 0;
+    position: fixed;
     padding: 0.6rem;
-    margin: 1rem;
+    margin: 1rem 85vw 1rem 1rem;
     background-color: var(--card-primary);
     border-radius: 100%;
     box-shadow: 0.2rem 0.2rem 0.2rem var(--background-alt-dark-accent);;
@@ -101,6 +107,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .sliderOptions .rangeSlider {
@@ -150,8 +157,46 @@
 .radialsButton {
     width: 100px;
 }
+@media screen and (max-width: 800px) {
+    .canvasProject__canvasAndOptions canvas {
+        width: 100%;
+    }
+}
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1400px) {
+    .mathsArtGrid {
+        padding: 1% 5% 5%;
+    }
+
+    .topText {
+        width: 90%;
+        text-align: center;
+    }
+    
+    .mathsArtGridSquare {
+        flex: 0 0 100%;
+        width: 100%;
+        margin-bottom: 2vh;
+    }
+
+    .canvasProject__mainContainer {
+        flex-direction: column;
+    }
+
+    .canvasProject__canvasAndOptions {
+        order: -1;
+        margin-bottom: 20px;
+    }
+
+    .canvasProject__description {
+        text-align: start;
+        padding-bottom: 200px;
+    }
+
+    .canvasProject__description p {
+        margin-bottom: 2rem;
+    }
+
     .widthContainer {
         display: flex;
         flex-flow: column;

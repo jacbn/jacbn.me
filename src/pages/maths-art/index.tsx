@@ -13,7 +13,7 @@ export function MathsArtDirectory() {
   return (
     <div className={bodyStyles.projectHomeContainer}>
       <h1>Maths Art</h1> 
-      <p style={{width: "65%", textAlign: 'center'}}>
+      <p className={styles.topText}>
         Initially to practice math modules in Python (e.g. NumPy and Matplotlib), and now mainly for fun, I've made several projects relating to making art using maths; I've ported some of my favourites to JavaScript so you can see a live preview. You can also find the JS and, where applicable, Python files on the respective pages.
       </p>
       <ol className={styles.mathsArtGrid}>

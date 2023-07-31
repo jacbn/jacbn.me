@@ -80,8 +80,8 @@ export function Contacts() {
         center={true}
         text={
           <>
-            <p>I'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
-              <div> 
+            <p style={{textAlign: 'center'}}>I'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
+              <div className={styles.contactIconsContainer}> 
                 <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={"/assets/contacts/linkedin.svg"} />
                 <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} />
                 <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} />

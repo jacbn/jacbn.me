@@ -245,7 +245,7 @@
 }
 
 .inset {
-  padding-left: 2%;
+  padding-left: 15px;
   border-left: 0.25rem solid var(--foreground-accent);
 }
 
@@ -255,7 +255,16 @@
 }
 
 .iconContainer {
-  padding: 2% 1% 1%;
+  padding: 2% 10px 1%;
+}
+
+.contactIconsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
 }
 
 .tooltip {
@@ -264,7 +273,7 @@
 }
 
 .tooltip .tooltipText {
-  visibility: hidden;
+  
   width: 200px;
   /* todo: ^ would ideally be fit-content, but see below */
   background-color: #555;
@@ -278,8 +287,15 @@
   left: 50%;
   margin-left: -100px;
   /* above needs to be half of the width */
-  opacity: 0;
   transition: opacity 0.3s;
+}
+
+.tooltipHidden {
+  opacity: 0;
+}
+
+.tooltipVisible {
+  opacity: 1;
 }
 
 .tooltip .tooltipText::after {
@@ -293,10 +309,7 @@
   border-color: #555 transparent transparent transparent;
 }
 
-.tooltip:hover .tooltipText {
-  visibility: visible;
-  opacity: 1;
-}
+
 
 .filterWhite {
   filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(6deg) brightness(107%) contrast(108%);
@@ -324,6 +337,7 @@
   .grid {
     gap: 0;
     row-gap: 2%;
+    margin-bottom: 200px;
   }
   
   .grid > .card:nth-child(1) {
@@ -339,20 +353,33 @@
   }
 
   .podium1 > div > img {
-    width: 40%;
+    width: 140px;
+  }
+
+  .podium2 > div > img {
+    width: 140px;
   }
 
   .podium2 {
     margin-top: 0;
   }
 
+  .podium3 > div > img {
+    width: 140px;
+  }
+
   .podium3 {
     margin-top: 0;
   }
 
-  .podium3 > div > img {
-    width: 40%;
+  .homeTextBody {
+    font-size: 1rem;
   }
+
+  .homeTextBody p {
+    text-align: start;
+  }
+  
 }
 
 /* Tablet and Smaller Desktop */
@@ -360,6 +387,7 @@
   .grid {
     gap: 8%;
     row-gap: 5%;
+    margin-bottom: 100px;
   }
 
   .grid > .card:nth-child(1) {
@@ -375,7 +403,11 @@
   }
 
   .podium1 > div > img {
-    width: 40%;
+    width: 196px;
+  }
+
+  .podium2 > div > img {
+    width: 196px;
   }
 
   .podium2 {

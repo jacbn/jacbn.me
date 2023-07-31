@@ -15,7 +15,7 @@ export default class VerticalPane extends Component<{coverImage : string, coverT
 
   render() {
     return (
-      <div className={styles.verticalPane} onClick={() => this.togglePane()}>
+      <div className={`${styles.verticalPane} ${this.state.isActive ? styles.verticalPaneActive : ''}`} onClick={() => this.togglePane()}>
         <div className={`${styles.verticalPaneTop} ${this.state.isActive ? styles.verticalPaneTopHide : ''}`}>
           <div className={styles.verticalPaneImageContainer}>
             <img src={this.props.coverImage} />
@@ -24,7 +24,7 @@ export default class VerticalPane extends Component<{coverImage : string, coverT
             <h2>{this.props.coverTitle}</h2>
           </div>
         </div>
-        <div className={styles.verticalPaneDescription}>
+        <div className={`${styles.verticalPaneDescription} ${this.state.isActive ? '' : styles.verticalPaneDescriptionHide}`}>
           {this.props.description}
         </div>
       </div>
