@@ -21,3 +21,17 @@
   align-items: center;
   min-height: 100%;
 }
+
+@media (max-width: 768px) {
+  .wideTextContainer {
+    padding: 0 10%;
+  }
+
+  .thinTextContainer {
+    padding: 1rem 10%;
+  }
+
+  .projectHomeContainer {
+    padding: 0 5%;
+  }
+}
