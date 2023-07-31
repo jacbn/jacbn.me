@@ -245,7 +245,7 @@
 }
 
 .inset {
-  padding-left: 2%;
+  padding-left: 15px;
   border-left: 0.25rem solid var(--foreground-accent);
 }
 
@@ -372,6 +372,13 @@
     margin-top: 0;
   }
 
+  .homeTextBody {
+    font-size: 1rem;
+  }
+
+  .homeTextBody p {
+    text-align: start;
+  }
   
 }
 

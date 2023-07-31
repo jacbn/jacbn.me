@@ -315,7 +315,7 @@ nav .navBox:hover {
   }
   
   .blogText {
-    text-align: center;
+    text-align: start;
   }
   
   .blogText p {
@@ -328,6 +328,7 @@ nav .navBox:hover {
     float: none;
     display: flex;
     justify-content: center;
+    margin: 1rem 0;
   }
 
   .blogImage img {
