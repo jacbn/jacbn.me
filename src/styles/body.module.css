@@ -22,9 +22,14 @@
   min-height: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .wideTextContainer {
     padding: 0 10%;
+  }
+
+  .wideTextContainer p {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .thinTextContainer {

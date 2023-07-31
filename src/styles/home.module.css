@@ -324,6 +324,7 @@
   .grid {
     gap: 0;
     row-gap: 2%;
+    margin-bottom: 200px;
   }
   
   .grid > .card:nth-child(1) {
@@ -360,6 +361,7 @@
   .grid {
     gap: 8%;
     row-gap: 5%;
+    margin-bottom: 100px;
   }
 
   .grid > .card:nth-child(1) {
@@ -375,7 +377,11 @@
   }
 
   .podium1 > div > img {
-    width: 40%;
+    width: 196px;
+  }
+
+  .podium2 > div > img {
+    width: 196px;
   }
 
   .podium2 {
