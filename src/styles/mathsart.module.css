@@ -44,10 +44,9 @@
 }
 
 .backToMathsDirectory {
-    position: absolute;
-    left: 0;
+    position: fixed;
     padding: 0.6rem;
-    margin: 1rem;
+    margin: 1rem 85vw 1rem 1rem;
     background-color: var(--card-primary);
     border-radius: 100%;
     box-shadow: 0.2rem 0.2rem 0.2rem var(--background-alt-dark-accent);;
