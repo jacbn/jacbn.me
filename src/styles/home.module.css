@@ -353,20 +353,26 @@
   }
 
   .podium1 > div > img {
-    width: 40%;
+    width: 140px;
+  }
+
+  .podium2 > div > img {
+    width: 140px;
   }
 
   .podium2 {
     margin-top: 0;
   }
 
+  .podium3 > div > img {
+    width: 140px;
+  }
+
   .podium3 {
     margin-top: 0;
   }
 
-  .podium3 > div > img {
-    width: 40%;
-  }
+  
 }
 
 /* Tablet and Smaller Desktop */
