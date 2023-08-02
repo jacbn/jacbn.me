@@ -84,7 +84,7 @@ export default function Radials() {
             </div>
             <div className={styles.canvasProject__columnFlex}>
               <button type="button" id="changeRollType" className={styles.radialsButton}>Change Style</button>
-              <select name="examples" id="examples" defaultValue={'empty'}>
+              <select name="examples" id="examples" className={styles.radialsButton} defaultValue={'empty'}>
                 <option value="empty" disabled hidden>Examples</option>
                 <option value="3clover">3-Leaf Clover</option>
                 <option value="triangle">Triangle</option>
@@ -95,7 +95,7 @@ export default function Radials() {
               </select>
             </div>
           </div>
-          <ul id="circlesOptions" style={{listStyle: 'none', marginTop: '2%'}}>
+          <ul id="circlesOptions" style={{listStyle: 'none', marginTop: '2%', width: '400px'}}>
             <li className={styles.canvasProject__rowFlex}>
               <div>Sizes</div>
               <div>Speeds</div>
