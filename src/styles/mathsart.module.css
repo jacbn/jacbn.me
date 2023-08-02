@@ -46,7 +46,9 @@
 .backToMathsDirectory {
     position: fixed;
     padding: 0.6rem;
-    margin: 1rem 85vw 1rem 1rem;
+    margin-right: 100vw;
+    margin-top: 1.5rem;
+    transform: translateX(3.5rem);
     background-color: var(--card-primary);
     border-radius: 100%;
     box-shadow: 0.2rem 0.2rem 0.2rem var(--background-alt-dark-accent);;
@@ -68,17 +70,17 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 5%;
-    flex: 0 0 45%;
+    flex: 0 0 45vw;
     margin-top: 2%;
 }
 
 .canvasProject__description {
+    width: 100%;
     text-align: justify;
 }
 
 .canvasProject__description h4 {
-    margin: 3% 0 1%;
+    margin: 3vh 0 1vh;
 }
 
 .canvasProject__canvasAndOptions {
@@ -139,24 +141,10 @@
     margin: 0.5rem 0 0 1rem;
   }
 
-.radialsNumericalInput {
-    width: 150px;
-    height: 16px;
-    margin: 5px;
-    padding: 0;
-}
-
-.radialsEmptyInput {
-    width: 150px;
-    height: 16px;
-    margin: 5px;
-    border: none;
-    visibility: hidden;
-}
-
 .radialsButton {
-    width: 100px;
+    width: 120px;
 }
+
 @media screen and (max-width: 800px) {
     .canvasProject__canvasAndOptions canvas {
         width: 100%;

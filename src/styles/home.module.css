@@ -17,6 +17,7 @@
   flex: 0 0 31.3%;
   text-decoration: none;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 3%;
 }
 
 .cardTop {
@@ -51,8 +52,7 @@
   justify-content: center;
   flex: 0 0 20%;
   flex-wrap: wrap;
-  gap: 6% 3%;
-  /* row-gap: 6%; */
+  gap: 0 3%; /* chrome has dodgy support row-gap for flex, using margin-bottom on card instead */
   padding: 2% 4% 15%;
   list-style: none;
 }
@@ -100,8 +100,8 @@
 /* title properties */
 
 .titleContainer {
-  width: 100%;
-  height: calc(10rem + 15vh + 40px); /* 40px bottom margin */
+  width: 100vw;
+  height: calc(30vh + 40px); /* 40px bottom margin */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,8 +120,8 @@
 
 .titleBackground {
   /* same positioning as titleContainer */
-  width: 100%;
-  height: calc(10rem + 15vh + 40px);
+  width: 100vw;
+  height: calc(30vh + 40px);
   position: absolute;
   background-image:
   linear-gradient(
@@ -148,8 +148,8 @@
 }
 
 .titleSVG {
-  width: 100%;
-  height: calc(100% - 2.1rem); /* container height - roller */
+  width: 100vw;
+  height: 30vh;
   display: block;
   margin-bottom: 20px;
 }

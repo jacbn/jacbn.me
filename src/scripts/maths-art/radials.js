@@ -158,7 +158,7 @@ function addCircle(rad=40, spe=2, off=0, initial=false) {
     circleOffsets.push(off, ptrOff);
     reset();
     
-    const li = $('<li>').prop('id', 'circleOptions' + circleRadii.length).addClass('radialsListEntry');
+    const li = $('<li>').prop('id', 'circleOptions' + circleRadii.length).css('display', 'flex').css('justify-content', 'space-around').css('align-items', 'center');
 
     
     if (initial) {
@@ -174,27 +174,27 @@ function addCircle(rad=40, spe=2, off=0, initial=false) {
 }
 
 function makePointerOptions() {
-    const ptr = $('<li>').prop('id', 'circleOptionsPtr').addClass('radialsListEntry');
+    const ptr = $('<li>').prop('id', 'circleOptionsPtr').css('display', 'flex').css('justify-content', 'space-around').css('align-items', 'center');
     ptr.append(makeEmptySpace('Pointer'), makeSpeedInput(circleRadii.length - 1), makeOffsetInput(circleRadii.length - 1));
     circlesOptionsDiv.append(ptr);
 }
 
 function makeSizeInput(index) {
-    return $('<input>').addClass('radialsNumericalInput').prop('type', 'number').prop('value', circleRadii[index]).prop('min', 0).prop('max', 100).prop('step', 10).on('input', function(event) {
+    return $('<input>').css('width', '8em').prop('type', 'number').prop('value', circleRadii[index]).prop('min', 0).prop('max', 100).prop('step', 10).on('input', function(event) {
         circleRadii[index] = parseFloat(event.target.value);
         reset();
     });
 }
 
 function makeSpeedInput(index) {
-    return $('<input>').addClass('radialsNumericalInput').prop('type', 'number').prop('value', circleSpeeds[index]).prop('min', -10).prop('max', 10).prop('step', 1).on('input', function(event) {
+    return $('<input>').css('width', '8em').prop('type', 'number').prop('value', circleSpeeds[index]).prop('min', -10).prop('max', 10).prop('step', 1).on('input', function(event) {
         circleSpeeds[index] = parseFloat(event.target.value);
         reset();
     });
 }
 
 function makeOffsetInput(index) {
-    return $('<input>').addClass('radialsNumericalInput').addClass('offsetHidden').prop('hidden', !offsetsEnabled).prop('type', 'number').prop('value', 0).prop('min', 0).prop('max', 360).prop('step', 5).on('input', function(event) {
+    return $('<input>').css('width', '8em').addClass('offsetHidden').prop('hidden', !offsetsEnabled).prop('type', 'number').prop('value', 0).prop('min', 0).prop('max', 360).prop('step', 5).on('input', function(event) {
         circleOffsets[index] = parseFloat(event.target.value);
         reset();
     });
@@ -202,9 +202,9 @@ function makeOffsetInput(index) {
 
 function makeEmptySpace(value, isOffset=false) {
     if (isOffset) {
-        return $('<input>').addClass('radialsEmptyInput').addClass('offsetHidden').attr('hidden', true).attr('disabled', true).prop('value', value);
+        return $('<input>').css('width', '8em').addClass('offsetHidden').attr('hidden', true).attr('disabled', true).prop('value', value);
     }
-    return $('<input>').addClass('radialsEmptyInput').prop('value', value).attr('disabled', true);
+    return $('<input>').css('width', '8em').prop('value', value).attr('disabled', true);
 }
 
 function removeCircle() {
