@@ -8,7 +8,7 @@ export default function AppIcon({image, href, hoverText} : {image: string, href?
   return (
     <>
       <a className={containerStyle} href={href}>
-        <img className={`${styles.icon} ${styles.filterWhite}`} src={image} onClick={() => setActive(a => !a)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+        <img className={`${styles.icon} ${styles.contactIconFilter}`} src={image} onClick={() => setActive(a => !a)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
         />
         {(hoverText) && <span className={`${styles.tooltipText} ${(hover || active) ? styles.tooltipVisible : styles.tooltipHidden}`}>{hoverText}</span>}
       </a>

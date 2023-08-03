@@ -5,6 +5,11 @@ var ctx;
 var speedSlider;
 var circlesOptionsDiv;
 var circlesOptionsDivInitial;
+var canvasColour;
+var pathColour;
+var constructionColour;
+var pointerColour = "#f00";
+var activeScripts = 0;
 
 var circleRadii = [0]; // pointer
 var circleSpeeds = [4];
@@ -40,7 +45,10 @@ export function runRadials() {
     
     addCircle(80, 0, 0, true); // add back the initial circle and the pointer
     reset();
-    render();
+    if (activeScripts == 0) {
+        activeScripts++; // in theory there is a race condition here, but it would require soft resetting page (e.g. via colour scheme) twice before it's even loaded, which would be quite impressive honestly
+        render();
+    }
 }
 
 function initialiseDOMElements() {
@@ -48,6 +56,10 @@ function initialiseDOMElements() {
     canvas = document.getElementById("mainCanvas");
     ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
+
+    pathColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-primary');
+    constructionColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-secondary');
+    canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background');
 
     speedSlider = document.getElementById("speedSlider");
     speedSlider.oninput = function(event) {
@@ -84,7 +96,7 @@ function reset(speed=baseSpeed, exampleName='empty') {
 function clearCanvas() {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgb(21, 24, 26)";
+    ctx.fillStyle = canvasColour;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 }
@@ -96,7 +108,7 @@ function render() {
     var dx;
     var dy;
     var prevR = circleRadii[0];
-    bc.drawCircle(ctx, centreX, centreY, prevR, "#666");
+    bc.drawCircle(ctx, centreX, centreY, prevR, constructionColour);
 
     /* The basic idea here is to calculate the position of each circle, starting from the base, in turn;
     for example, the centre of the second circle is the radius of the first circle away from its centre,
@@ -121,7 +133,7 @@ function render() {
             centreY = dy + prevY;
         }
 
-        bc.drawCircle(ctx, centreX, centreY, circleRadii[i], "#666");
+        bc.drawCircle(ctx, centreX, centreY, circleRadii[i], constructionColour);
         if (!pathComplete && i == circleRadii.length - 1) {
             path.push([centreX, centreY]);
         }
@@ -140,9 +152,9 @@ function render() {
         pathComplete = true;
         path.push(path[0]);
     }
-    bc.drawShape(ctx, path, false);
-    bc.drawCircle(ctx, centreX, centreY, 2, "#f00", true);
-    if (window.location.href.endsWith("radials")) {
+    bc.drawShape(ctx, path, false, pathColour);
+    bc.drawCircle(ctx, centreX, centreY, 2, pointerColour, true);
+    if (activeScripts <= 1) {
         /* stops the script if we're not currently on the radials page.
         without this, multiple functions can be running simultaneously. */
         requestAnimationFrame(render);

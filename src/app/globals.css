@@ -19,27 +19,44 @@
   --font-sans-fallback: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
   'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
-  --title-primary: #000000; /* TODO */
-  --title-secondary: #5F5F5F;
+  --title-primary: #ffffff;
+  --title-secondary: #191919;
+  --subtitle-primary: #222222;
   --text-primary: #0a0a0a;
+  --text-secondary: #7a7a7a;
   
-
-
-  --background-start-rgb: #d6dbdc;
-  --background-end-rgb: #ffffff;
-
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
+  --title-background-gradient: linear-gradient(
+    to bottom right,
+    #0141ff40,
+    #00c2c240,
+    #ff41ff40,
+    #0141ff40
   );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
+  --title-background-filter: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+
+  --background-start-rgb: #e4e4e4;
+  --background-end-rgb: #e6ebec;
+  --card-primary: #ffffff;
+  --card-secondary: #dadada;
+  --background-alt-dark: #e0e0e0;
+  --background-alt-dark-accent: #cecece;
+  --nav-hover: #c0c0c0;
+  --canvas-primary: #000000;
+  --canvas-secondary: #aaaaaa;
+  --canvas-background: #e0e0e0;
+
+  --shadow-primary: #68686880;
+  --shadow-light: #00000033;
+
+  --foreground-accent: #88bbee;
+
+  --accent-greenmaps: #eed19d;
+  --accent-yawning: #43e6c5;
+  --accent-maths: #55eb93;
+  --accent-compiler: #f8abeb;
+  --accent-sentiment: #6eb5ff;
+  --accent-pandemic: lightcoral;
+  --accent-game-dev: #f0d83c;
 
   --tile-start-rgb: 239, 245, 249;
   --tile-end-rgb: 228, 232, 233;
@@ -60,8 +77,18 @@
   :root {
     --text-primary: #f0f0f0;
     --text-secondary: #c0c0c0;
+    --subtitle-primary: #f0f0f0;
     --title-primary: #ffffff;
     --title-secondary: #a0a0a0;
+
+    --title-background-gradient: linear-gradient(
+      to bottom right,
+      #0141ff1a,
+      #01ffff1a,
+      #db73db1a,
+      #0141ff1a
+    );
+    --title-background-filter: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     
     --background-start-rgb: #121518;
     --background-end-rgb: #0c0f12;
@@ -69,19 +96,22 @@
     --card-secondary: #23282c;
     --background-alt-dark: #0e1114;
     --background-alt-dark-accent: #090b0e;
+    --nav-hover: #394146;
+    --canvas-primary: #ffffff;
+    --canvas-secondary: #666666;
+    --canvas-background: #15181a;
+
+    --shadow-primary: #00000080;
 
     --foreground-accent: #88bbee;
 
-    --primary-glow: radial-gradient(
-      rgba(45, 53, 122, 0.4), 
-      rgba(17, 19, 23, 0)
-      );
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
+    --accent-greenmaps: wheat;
+    --accent-yawning: #9bfae7;
+    --accent-maths: lightgreen;
+    --accent-compiler: #f9d1da;
+    --accent-sentiment: #6eb5ff;
+    --accent-pandemic: lightcoral;
+    --accent-game-dev: #f0d83c;
 
     --tile-start-rgb: 2, 13, 46;
     --tile-end-rgb: 2, 5, 19;
@@ -146,26 +176,28 @@ nav {
   background-color: var(--card-primary);
   transition: top 0.3s;
   z-index: 99;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 5px var(--shadow-primary);
 }
 
 h1 {
   font-size: calc(14pt + 2vw);
   font-family: var(--font-sans-title);
-  color: var(--title-primary);
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: var(--subtitle-primary);
   margin: 1rem 0 0.5rem;
+  font-weight: 300;
 }
 
 h2 {
   font-size: calc(12pt + 1.5vw);
   font-family: var(--font-sans-title);
+  color: var(--subtitle-primary);
   margin: 1rem 0;
 }
 
 h3 {
   font-size: calc(10pt + 0.5vw);
   font-family: var(--font-sans-title);
+  color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
 }
 

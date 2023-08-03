@@ -3,12 +3,7 @@ import { runLotfollahDome } from "@/scripts/maths-art/lotfollah.js"
 import styles from "@/styles/mathsart.module.css";
 
 import RangeSlider from "@/components/rangeSlider";
-import { useEffect } from "react";
-
-export function LotfollahScript() {
-  useEffect(() => runLotfollahDome(), []);
-  return <></>;
-}
+import CanvasScript from "./canvasScript";
 
 export default function Lotfollah() {
   return (
@@ -26,7 +21,7 @@ export default function Lotfollah() {
         <p>Lastly, many thanks to Joumana Medlej for creating <a href="https://design.tutsplus.com/tutorials/geometric-design-the-lotfallah-mosque-dome--cms-24859">this</a> amazing how-to-draw of the dome. It inspired this whole project!</p>
       </>
     }
-    script={<LotfollahScript />}
+    script={<CanvasScript startFunction={runLotfollahDome} />}
     controls={
       <>
         <div className={styles.sliderOptions}>
