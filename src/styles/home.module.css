@@ -16,7 +16,7 @@
   order: 99; /* allows custom orders below this */ 
   flex: 0 0 31.3%;
   text-decoration: none;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 5px var(--shadow-light);
   margin-bottom: 3%;
 }
 
@@ -105,15 +105,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* light mode? v v */
-  /* background-image: url("/assets/index/title-bg.svg"), linear-gradient(
-    to bottom right,
-    rgb(1, 65, 255),
-    rgb(1, 255, 255),
-    rgb(255, 65, 255)
-  ); */
 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/home/title-bg.svg");
+  background-image: var(--title-background-filter), url("/assets/home/title-bg.svg");
   /* triangle background (title-bg.svg) modified from SVGBackgrounds.com */
   font-family: var(--font-sans-title);
 }
@@ -121,16 +114,9 @@
 .titleBackground {
   /* same positioning as titleContainer */
   width: 100vw;
-  height: calc(30vh + 40px);
+  height: calc(30vh + 40px + 5px); /* same as container, with 5 extra pixels to hide slight strobe weirdness */
   position: absolute;
-  background-image:
-  linear-gradient(
-    to bottom right,
-    rgba(1, 65, 255, 0.1),
-    rgba(1, 255, 255, 0.1),
-    rgba(219, 115, 219, 0.1),
-    rgba(1, 65, 255, 0.1)
-  );
+  background-image: var(--title-background-gradient);
   background-size: 400% 400%;
   animation: titleBackground 20s infinite ease-in-out;
 }
@@ -152,6 +138,7 @@
   height: 30vh;
   display: block;
   margin-bottom: 20px;
+  z-index: 1;
 }
 
 .titleBackgroundSVG {
@@ -309,10 +296,14 @@
   border-color: #555 transparent transparent transparent;
 }
 
+.contactIconFilter {
+  filter: invert(10%);
+}
 
-
-.filterWhite {
-  filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(6deg) brightness(107%) contrast(108%);
+@media (prefers-color-scheme: dark) {
+  .contactIconFilter {
+    filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(6deg) brightness(107%) contrast(108%);
+  }
 }
 
 /* media properties */

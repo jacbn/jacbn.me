@@ -3,12 +3,7 @@ import styles from "@/styles/mathsart.module.css";
 import { runApollo } from "@/scripts/maths-art/apollo.js"
 
 import RangeSlider from "@/components/rangeSlider";
-import { useEffect } from "react";
-
-export function ApolloScript() {
-  useEffect(() => runApollo(), []);
-  return <></>;
-}
+import CanvasScript from "./canvasScript";
 
 export default function Apollo() {
   return (
@@ -26,7 +21,7 @@ export default function Apollo() {
             <p>Yeah, there's a few reasons for these. It could be something specific to the browser you're using; most of the issues I've found so far are such and are weirdly specific, e.g. on Firefox drawing circles clockwise seems to not close some circles, but counter-clockwise is fine (??). Another cause might be the coding shortcuts I made to make it run fast, but these should only cause tiny floating-point errors. Do let me know if you can figure any bugs out!</p>
         </>
       }
-      script={<ApolloScript />}
+      script={<CanvasScript startFunction={runApollo} />}
       controls={
         <>
           <div className={styles.sliderOptions}>

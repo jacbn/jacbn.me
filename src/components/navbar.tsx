@@ -61,6 +61,7 @@ export default class NavBar extends React.Component<{showName: boolean, activePa
   }
 
   render(): JSX.Element {
+    const onMainPages = this.props.activePage === '/' || this.props.activePage === '/about' || this.props.activePage === '/contacts';
     return (
       <nav>
         <div className={styles.myName}>
@@ -73,7 +74,7 @@ export default class NavBar extends React.Component<{showName: boolean, activePa
         )}
         </div>
         <div>
-          {(this.state.windowWidth < 600) ? (
+          {((onMainPages && this.state.windowWidth < 300) || (!onMainPages && this.state.windowWidth < 600)) ? (
             <HamburgerBox />
           ) : (
             <>

@@ -11,7 +11,7 @@ export default function HomeGrid() {
         description="reducing vehicle emissions through&nbsp;smarter navigation"
         year="2022"
         lang="Dart"
-        colour="wheat"
+        colour="var(--accent-greenmaps)"
         image={{
           src: "/assets/home/logo-green-maps.png",
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
@@ -24,7 +24,7 @@ export default function HomeGrid() {
         description="applying deep learning to safety-critical environments"
         year="2022-2023"
         lang="Python, Dart"
-        colour="#9bfae7"
+        colour="var(--accent-yawning)"
         image={{
           src: "/assets/home/logo-yawnn-static.png",
           alt: ""
@@ -37,7 +37,7 @@ export default function HomeGrid() {
         description="exploring geometry at its finest"
         year="2016 onwards"
         lang="JS, Python"
-        colour="lightgreen"
+        colour="var(--accent-maths)"
         image={{
           src: "/assets/home/logo-maths-art.png",
           alt: ""
@@ -50,7 +50,7 @@ export default function HomeGrid() {
         description="lexing and parsing an arbitrary input given a grammar"
         year="2021-2022"
         lang="OCaml, Java"
-        colour="#F9D1DA"
+        colour="var(--accent-compiler)"
         image={{
           src: "",
           alt: ""
@@ -63,7 +63,7 @@ export default function HomeGrid() {
         description="interpreting the emotion of reviews using various models"
         year="2021"
         lang="Java"
-        colour="#6EB5FF"
+        colour="var(--accent-sentiment)"
         image={{
           src: "",
           alt: ""
@@ -76,7 +76,7 @@ export default function HomeGrid() {
         description="simulating a pandemic and analysing real Covid data"
         year="2020-2021"
         lang="Python"
-        colour="lightcoral"
+        colour="var(--accent-pandemic)"
         image={{
           src: "",
           alt: ""
@@ -89,7 +89,7 @@ export default function HomeGrid() {
         description="designing unique experiences in reaching for high scores"
         year="2017 onwards"
         lang="C#"
-        colour="#f0f050"
+        colour="var(--accent-game-dev)"
         image={{
           src: "",
           alt: ""

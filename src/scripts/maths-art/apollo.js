@@ -13,7 +13,8 @@ var ITERATIONS = 8;
 var START_SIZE = -OUTER_CIRCLE_SIZE*RATIO;
 var circles = {};
 
-// runApollo();
+var canvasColour;
+var pathColour;
 
 /*
 some things to improve the program:
@@ -55,7 +56,7 @@ class Circle {
     }
 
     draw() {
-        bc.drawCircle(ctx, this.x, this.y, this.r);
+        bc.drawCircle(ctx, this.x, this.y, this.r, pathColour);
     }
 }
 
@@ -68,6 +69,9 @@ function initialiseDOMElements() {
     canvas = document.getElementById("mainCanvas");
     ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
+
+    pathColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-primary');
+    canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background');
 
     document.getElementById("ratioSlider").oninput = function() {render()};
     document.getElementById("offsetSlider").oninput = function() {render()};
@@ -85,7 +89,7 @@ function reset() {
     //clear canvas
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgb(21, 24, 26)";
+    ctx.fillStyle = canvasColour;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 

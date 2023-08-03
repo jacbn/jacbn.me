@@ -10,6 +10,9 @@ var ANGLE = 2*Math.PI/SYMCOUNT;
 var canvas;
 var ctx;
 
+var canvasColour;
+var pathColour;
+var isDarkMode;
 
 export function runLotfollahDome() {
     initialiseDOMElements();
@@ -28,6 +31,11 @@ function initialiseDOMElements() {
     ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 
+    console.log("initialising DOM elements");
+    pathColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-primary');
+    canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background');
+    isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     document.getElementById("sizeSlider").oninput = function() {render()};
     document.getElementById("symcountSlider").oninput = function() {render()};
     document.getElementById("iterationSlider").oninput = function() {render()};
@@ -38,7 +46,7 @@ function reset() {
     //clear canvas
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgb(21, 24, 26)";
+    ctx.fillStyle = canvasColour;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 
@@ -95,7 +103,9 @@ function getCircleIntersection(P, Q, r) {
 }
 
 function calculateColour(squareNum, layer) {
-    return cc.hslToHex((Math.floor(360/SYMCOUNT)*COLOURREPEATS*(squareNum+2*layer))%360, 1, 0.75);
+    const sat = (isDarkMode) ? 1.0 : 0.75;
+    const light = (isDarkMode) ? 0.75 : 0.5;
+    return cc.hslToHex((Math.floor(360/SYMCOUNT)*COLOURREPEATS*(squareNum+2*layer))%360, sat, light);
 }
 
 /**
@@ -134,7 +144,7 @@ function iterate(centre, iters, firstIter = true) {
         );
     }
     
-    if (firstIter) {bc.drawCircle(ctx, 0, 0, hypot(intersectB[0], intersectB[1]));}
+    if (firstIter) {bc.drawCircle(ctx, 0, 0, hypot(intersectB[0], intersectB[1]), pathColour);}
     
     if (iters > 1) {iterate(intersectR, iters-1, false);}
 

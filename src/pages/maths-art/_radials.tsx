@@ -5,12 +5,7 @@ import { runRadials } from "@/scripts/maths-art/radials.js"
 import RangeSlider from "@/components/rangeSlider";
 import TeX from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
-import { useEffect } from "react";
-
-export function RadialsScript() {
-  useEffect(() => runRadials(), []);
-  return <></>;
-}
+import CanvasScript from "./canvasScript";
 
 export default function Radials() {
   return (
@@ -70,7 +65,7 @@ export default function Radials() {
           </details>
         </>
       }
-      script={ <RadialsScript /> }
+      script={ <CanvasScript startFunction={runRadials} /> }
       controls={
         <div className={styles.canvasProject__columnFlex}>
           <div className={styles.canvasProject__options}>

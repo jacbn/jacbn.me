@@ -1,5 +1,12 @@
 .titlePrimary {
-  color: var(--title-primary);
+  color: var(--text-secondary);
+  /* it's otherwise white-on-white, so use an alternative */
+}
+
+@media (prefers-color-scheme: dark) {
+  .titlePrimary {
+    color: var(--title-primary);
+  }
 }
 
 .titleSecondary {
@@ -56,7 +63,7 @@
 
 nav .navBox {
   float: right;
-  color:#a0a0a0;
+  color: var(--text-secondary);
   text-align: center;
   padding: 14px 16px;
   cursor: pointer;
@@ -69,7 +76,7 @@ nav .activeNavBox {
 
 nav .navBox:hover {
   color:#fff;
-  background-color: #394146;
+  background-color: var(--nav-hover);
   transition: all 50ms ease-in;
 }
 
