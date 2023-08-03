@@ -21,8 +21,8 @@ export function MathsArtDirectory() {
       </p>
       <ol className={styles.mathsArtGrid}>
         <MathsSquare href="./maths-art/apollo" title="Apollonian Gaskets" image={{src: "/assets/maths/apollo.png", srcLight: "/assets/maths/apollo-light.png",  alt: "An image of an Apollonian Gasket."}} />
-        <MathsSquare href="./maths-art/lotfollah" title="Lotfollah Mosque Dome" image={{src: "/assets/maths/lotfollah.png", srcLight: "/assets/maths/lotfollah-light.png", alt: "An image of a reconstruction of the Lotfollah Mosque Dome."}} />
         <MathsSquare href="./maths-art/radials" title="Radial Circles" image={{src: "/assets/maths/radials.png", srcLight: "/assets/maths/radials-light.png", alt: "An image of a nested epicycloid."}} />
+        <MathsSquare href="./maths-art/lotfollah" title="Lotfollah Mosque Dome" image={{src: "/assets/maths/lotfollah.png", srcLight: "/assets/maths/lotfollah-light.png", alt: "An image of a reconstruction of the Lotfollah Mosque Dome."}} />
       </ol>
     </div>
   )
