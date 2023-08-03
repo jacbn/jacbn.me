@@ -149,22 +149,22 @@
     .canvasProject__canvasAndOptions canvas {
         width: 100%;
     }
-}
 
-@media screen and (max-width: 1400px) {
     .mathsArtGrid {
         padding: 1% 5% 5%;
     }
 
-    .topText {
-        width: 90%;
-        text-align: center;
-    }
-    
     .mathsArtGridSquare {
         flex: 0 0 100%;
         width: 100%;
         margin-bottom: 2vh;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .topText {
+        width: 90%;
+        text-align: center;
     }
 
     .canvasProject__mainContainer {
