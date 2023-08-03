@@ -174,7 +174,6 @@ nav .navBox:hover {
 
 .slidingPaneTitle {
   width: 50%;
-  background-color: violet;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -249,6 +248,10 @@ nav .navBox:hover {
   background-color: #000000b0;
   z-index: 1;
   transition: all 0.3s ease-in-out;
+}
+
+.verticalPaneTitle h2 {
+  color: #eee;
 }
 
 .verticalPaneDescription {

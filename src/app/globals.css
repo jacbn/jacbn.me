@@ -190,12 +190,14 @@ h1 {
 h2 {
   font-size: calc(12pt + 1.5vw);
   font-family: var(--font-sans-title);
+  color: var(--subtitle-primary);
   margin: 1rem 0;
 }
 
 h3 {
   font-size: calc(10pt + 0.5vw);
   font-family: var(--font-sans-title);
+  color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
 }
 
