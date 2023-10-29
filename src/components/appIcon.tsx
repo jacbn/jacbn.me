@@ -1,4 +1,5 @@
-import styles from "@/styles/home.module.css"
+import React from 'react';
+import styles from "@/styles/home.module.css";
 import { useState } from "react";
 
 export default function AppIcon({image, href, hoverText} : {image: string, href?: string, hoverText?: string}) {

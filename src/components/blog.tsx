@@ -1,5 +1,6 @@
-import styles from '@/styles/projects.module.css'
-import bodyStyles from '@/styles/body.module.css'
+import React from 'react';
+import styles from '@/styles/projects.module.css';
+import bodyStyles from '@/styles/body.module.css';
 
 export interface BlogProps {
   title: string
@@ -27,5 +28,5 @@ export default function Blog(props : BlogProps) {
         </div>
         
       </main>
-    )
+    );
 }

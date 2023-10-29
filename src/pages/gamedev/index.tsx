@@ -1,7 +1,8 @@
+import React from 'react';
 import NavBar from "@/components/navbar";
 import VerticalPane from "@/components/verticalPane";
 
-import bodyStyles from "@/styles/body.module.css"
+import bodyStyles from "@/styles/body.module.css";
 
 export default function GameDev() {
     return (
@@ -48,5 +49,5 @@ export default function GameDev() {
             <div style={{paddingBottom: '10vh'}}/>
         </main>
       </>
-    )
+    );
   }

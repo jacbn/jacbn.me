@@ -1,4 +1,5 @@
-import styles from "@/styles/projects.module.css"
+import React from 'react';
+import styles from "@/styles/projects.module.css";
 import { Component } from "react";
 
 export default class SlidingPane extends Component<{coverImage : string, coverTitle : string, description : string, flip : boolean}, {isFloatingLeft : boolean, isFlipped: boolean}> {

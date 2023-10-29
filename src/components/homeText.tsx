@@ -1,5 +1,6 @@
-import styles from '@/styles/home.module.css'
-import bodyStyles from '@/styles/body.module.css'
+import React from 'react';
+import styles from '@/styles/home.module.css';
+import bodyStyles from '@/styles/body.module.css';
 
 export interface HomeTextProps {
   title: string

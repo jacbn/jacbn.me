@@ -1,9 +1,10 @@
-import styles from '@/styles/projects.module.css'
-import NavBar from '@/components/navbar'
-import Blog from '@/components/blog'
+import styles from '@/styles/projects.module.css';
+import NavBar from '@/components/navbar';
+import Blog from '@/components/blog';
 
-import { animationOnLoad } from '@/scripts/animatedImages'
+import { animationOnLoad } from '@/scripts/animatedImages';
 import { useEffect } from 'react';
+import React from 'react';
 
 export function AnimatedImage() {
   useEffect(() => animationOnLoad([
@@ -92,5 +93,5 @@ export default function YawNN() {
         }
         />
     </>
-  )
+  );
 }

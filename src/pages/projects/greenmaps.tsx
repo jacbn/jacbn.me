@@ -1,5 +1,6 @@
-import NavBar from '@/components/navbar'
-import Blog from '@/components/blog'
+import React from 'react';
+import NavBar from '@/components/navbar';
+import Blog from '@/components/blog';
 
 export default function GreenMaps() {
   return (
@@ -22,5 +23,5 @@ export default function GreenMaps() {
           </>
         }/>
       </>
-  )
+  );
 }

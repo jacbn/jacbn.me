@@ -1,6 +1,7 @@
+import React from 'react';
 import CanvasProject from "@/components/canvasProject";
 import styles from "@/styles/mathsart.module.css";
-import { runRadials } from "@/scripts/maths-art/radials.js"
+import { runRadials } from "@/scripts/maths-art/radials.js";
 
 import RangeSlider from "@/components/rangeSlider";
 import TeX from '@matejmazur/react-katex';

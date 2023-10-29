@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "@/styles/mathsart.module.css";
 
-class RangeSlider extends React.Component<{}, {min: string, max: string, value: string, id: string}> {
+class RangeSlider extends React.Component<object, {min: string, max: string, value: string, id: string}> {
   constructor(props : any) {
     super(props);
     this.state = {

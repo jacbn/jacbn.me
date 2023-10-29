@@ -1,4 +1,5 @@
-import styles from "@/styles/projects.module.css"
+import React from 'react';
+import styles from "@/styles/projects.module.css";
 import { Component } from "react";
 
 export default class VerticalPane extends Component<{coverImage : string, coverTitle : string, description : React.JSX.Element}, {isActive: boolean}> {

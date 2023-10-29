@@ -1,6 +1,6 @@
-import styles from '@/styles/mathsart.module.css'
-import Link from 'next/link'
-import React from 'react'
+import styles from '@/styles/mathsart.module.css';
+import Link from 'next/link';
+import React from 'react';
 
 export default class MathsSquare extends React.Component<{href: string, title: string, image: {src: string, srcLight?: string, alt: string}}, { lightMode : boolean }> {
   constructor(props: any) {

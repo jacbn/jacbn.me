@@ -1,6 +1,7 @@
-import styles from '@/styles/home.module.css'
+import React from 'react';
+import styles from '@/styles/home.module.css';
 
-import Link from 'next/link'
+import Link from 'next/link';
 
 export interface GridSquareProps {
   title: string;
@@ -55,5 +56,5 @@ export default function GridSquare({title, description, year, lang, colour, imag
         {year} &#183; {lang}
       </p>
     </Link> 
-  )
+  );
 }

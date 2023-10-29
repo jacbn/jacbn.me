@@ -7,21 +7,21 @@ class animatedImage {
     }
 
     enable() {
-        $(this.imageId).attr("src", this.srcAnimated);
+        window.$(this.imageId).attr("src", this.srcAnimated);
     }
 
     disable() {
-        $(this.imageId).attr("src", this.srcStatic);
+        window.$(this.imageId).attr("src", this.srcStatic);
     }
 }
 
 export function animationOnLoad(images) {
-    window.$ = window.jQuery = require('jquery')
+    window.$ = window.jQuery = require('jquery'); // eslint-disable-line
 
     images.forEach(i => {
         const image = new animatedImage(i);
-        $(image.hoverId).on("mouseenter", () => {image.enable()});
-        $(image.hoverId).on("mouseleave", () => {image.disable()});
+        window.$(image.hoverId).on("mouseenter", () => {image.enable();});
+        window.$(image.hoverId).on("mouseleave", () => {image.disable();});
     });
 }
 

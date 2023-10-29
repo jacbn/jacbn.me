@@ -1,6 +1,7 @@
-import NavBar from '@/components/navbar'
-import Blog from '@/components/blog'
-import styles from '@/styles/projects.module.css'
+import React from 'react';
+import NavBar from '@/components/navbar';
+import Blog from '@/components/blog';
+import styles from '@/styles/projects.module.css';
 
 export default function Pandemic() {
   return (
@@ -33,5 +34,5 @@ export default function Pandemic() {
         }
         />
     </>
-  )
+  );
 }

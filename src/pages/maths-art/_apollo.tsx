@@ -1,6 +1,7 @@
+import React from "react";
 import CanvasProject from "@/components/canvasProject";
 import styles from "@/styles/mathsart.module.css";
-import { runApollo } from "@/scripts/maths-art/apollo.js"
+import { runApollo } from "@/scripts/maths-art/apollo.js";
 
 import RangeSlider from "@/components/rangeSlider";
 import CanvasScript from "./canvasScript";
@@ -43,5 +44,5 @@ export default function Apollo() {
         </>
       }
     />
-  )
+  );
 }
