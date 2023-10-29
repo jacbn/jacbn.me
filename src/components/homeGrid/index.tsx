@@ -1,4 +1,5 @@
-import styles from '@/styles/home.module.css'
+import React from 'react';
+import styles from '@/styles/home.module.css';
 import GridSquare from './gridSquare';
 
 // todo: fill alt text of svgs
@@ -27,7 +28,7 @@ export default function HomeGrid() {
         colour="var(--accent-yawning)"
         image={{
           src: "/assets/home/logo-yawnn-static.png",
-          alt: ""
+          alt: "An animation of a headphone, a key component of the Yawnn project."
         }}
         link="/projects/yawnn/"
         podiumNum={1}
@@ -40,7 +41,7 @@ export default function HomeGrid() {
         colour="var(--accent-maths)"
         image={{
           src: "/assets/home/logo-maths-art.png",
-          alt: ""
+          alt: "An Apollonian Gasket, one of the projects in the Maths Art collection."
         }}
         link="/maths-art/"
         podiumNum={3}

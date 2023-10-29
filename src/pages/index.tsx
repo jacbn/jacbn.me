@@ -1,17 +1,18 @@
-'use client'
+'use client';
 
-import '@/app/globals.css'
-import styles from '@/styles/home.module.css'
-import Title from '@/components/title'
-import HomeGrid from '@/components/homeGrid'
-import NavBar from '@/components/navbar'
-import HomeText from '@/components/homeText'
-import AppIcon from '@/components/appIcon'
-import ScrollTop from '@/components/scrollTop'
-import React, { useEffect } from 'react'
-import { animationOnLoad } from '@/scripts/animatedImages'
+import '@/app/globals.css';
+import React from 'react';
+import styles from '@/styles/home.module.css';
+import Title from '@/components/title';
+import HomeGrid from '@/components/homeGrid';
+import NavBar from '@/components/navbar';
+import HomeText from '@/components/homeText';
+import AppIcon from '@/components/appIcon';
+import ScrollTop from '@/components/scrollTop';
+import { useEffect } from 'react';
+import { animationOnLoad } from '@/scripts/animatedImages';
 
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 export function HomeScript() {
   useEffect(() => animationOnLoad([
@@ -33,7 +34,7 @@ export function Home() {
       <h1>My Projects:</h1>
       <HomeGrid />
     </>
-  )
+  );
 }
 
 export function About() {
@@ -68,7 +69,7 @@ export function About() {
         }
         />
       </>
-  )
+  );
 }
 
 export function Contacts() {
@@ -95,17 +96,17 @@ export function Contacts() {
         }
       />
     </>
-  )
+  );
 }
 
 export function PageContent({pageName} : {pageName : string }) {
   switch (pageName) {
     case '/about':
-      return <About />
+      return <About />;
     case '/contacts':
-      return <Contacts />
+      return <Contacts />;
     default:
-      return <Home />
+      return <Home />;
   }
 }
 
@@ -117,5 +118,5 @@ export default function Page() {
       <NavBar showName={false} activePage={router.asPath} />
       <PageContent pageName={router.asPath} />
     </main> 
-  )
+  );
 }

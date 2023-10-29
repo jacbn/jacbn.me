@@ -1,6 +1,6 @@
 import * as vec2 from '../modules/vec2.js';
 import * as cc from '../modules/colourConversions.js';
-import * as bc from '../modules/basicCanvas.js'
+import * as bc from '../modules/basicCanvas.js';
 
 var SYMCOUNT = 12;   //n>8 for proper patterns, 12 gives perfect squares
 var ITERATIONS = 8;  //these can be considered const for the runtime of one iteration
@@ -36,9 +36,9 @@ function initialiseDOMElements() {
     canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background');
     isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    document.getElementById("sizeSlider").oninput = function() {render()};
-    document.getElementById("symcountSlider").oninput = function() {render()};
-    document.getElementById("iterationSlider").oninput = function() {render()};
+    document.getElementById("sizeSlider").oninput = function() {render();};
+    document.getElementById("symcountSlider").oninput = function() {render();};
+    document.getElementById("iterationSlider").oninput = function() {render();};
 }
 
 
@@ -51,9 +51,9 @@ function reset() {
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 
     //reset "const"s
-    STARTSIZE = parseFloat(document.getElementById("sizeSlider").value)
-    SYMCOUNT = parseFloat(document.getElementById("symcountSlider").value)
-    ITERATIONS = parseFloat(document.getElementById("iterationSlider").value)
+    STARTSIZE = parseFloat(document.getElementById("sizeSlider").value);
+    SYMCOUNT = parseFloat(document.getElementById("symcountSlider").value);
+    ITERATIONS = parseFloat(document.getElementById("iterationSlider").value);
     ANGLE = 2*Math.PI/SYMCOUNT;
 }
 

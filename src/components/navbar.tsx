@@ -1,15 +1,15 @@
-import '@/app/globals.css'
-import styles from '@/styles/projects.module.css'
+import '@/app/globals.css';
+import styles from '@/styles/projects.module.css';
 
-import Link from 'next/link'
+import Link from 'next/link';
 import React, { useState, useRef, useEffect } from "react";
-import 'material-icons/iconfont/material-icons.css'
+import 'material-icons/iconfont/material-icons.css';
 
 
 export function NavBox({text, href, active}: {text: string, href: string, active?: boolean}) {
   return (
     <Link className={`${styles.navBox} ${(active) ? styles.activeNavBox : ''}`} href={href}>{text}</Link>
-  )
+  );
 }
 
 export function HamburgerBox() {
@@ -39,25 +39,25 @@ export function HamburgerBox() {
         </section>
       )}
     </div>
-  )
+  );
 }
 
 export default class NavBar extends React.Component<{showName: boolean, activePage?: string}, {windowWidth : number}> {
   constructor(props: any) {
-    super(props)
-    this.state = {windowWidth: window.innerWidth}
+    super(props);
+    this.state = {windowWidth: window.innerWidth};
   }
 
   componentDidMount(): void {
-    window.addEventListener('resize', this.updateWindowDimensions.bind(this))
+    window.addEventListener('resize', this.updateWindowDimensions.bind(this));
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('resize', this.updateWindowDimensions.bind(this))
+    window.removeEventListener('resize', this.updateWindowDimensions.bind(this));
   }
 
   updateWindowDimensions(): void {
-    this.setState({windowWidth: window.innerWidth})
+    this.setState({windowWidth: window.innerWidth});
   }
 
   render(): JSX.Element {

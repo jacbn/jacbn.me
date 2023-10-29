@@ -1,15 +1,15 @@
-import MathsSquare from '@/components/mathsGrid/mathsSquare'
-import NavBar from '@/components/navbar'
-import styles from '@/styles/mathsart.module.css'
-import bodyStyles from '@/styles/body.module.css'
-import { useRouter } from 'next/router'
-import Apollo from './_apollo'
-import Radials from './_radials'
-import Lotfollah from './_lotfollah'
-import Link from 'next/link'
-import 'material-icons/iconfont/material-icons.css'
-import { useEffect } from 'react'
-import CanvasScript from './canvasScript'
+import MathsSquare from '@/components/mathsGrid/mathsSquare';
+import NavBar from '@/components/navbar';
+import styles from '@/styles/mathsart.module.css';
+import bodyStyles from '@/styles/body.module.css';
+import { useRouter } from 'next/router';
+import Apollo from './_apollo';
+import Radials from './_radials';
+import Lotfollah from './_lotfollah';
+import Link from 'next/link';
+import 'material-icons/iconfont/material-icons.css';
+import CanvasScript from './canvasScript';
+import React from 'react';
 
 export function MathsArtDirectory() {
   return (
@@ -25,7 +25,7 @@ export function MathsArtDirectory() {
         <MathsSquare href="./maths-art/lotfollah" title="Lotfollah Mosque Dome" image={{src: "/assets/maths/lotfollah.png", srcLight: "/assets/maths/lotfollah-light.png", alt: "An image of a reconstruction of the Lotfollah Mosque Dome."}} />
       </ol>
     </div>
-  )
+  );
 }
 
 export function BackToMathsDirectory() {
@@ -35,7 +35,7 @@ export function BackToMathsDirectory() {
         <span className="material-icons-round">arrow_back</span>
       </Link>
     </div>
-  )
+  );
 }
 
 export function MathsArtPageContent({pageName} : {pageName : string }) {
@@ -46,23 +46,23 @@ export function MathsArtPageContent({pageName} : {pageName : string }) {
           <BackToMathsDirectory />
           <Apollo />
         </>
-      )
+      );
     case '/maths-art/lotfollah':
       return (
         <>
           <BackToMathsDirectory />
           <Lotfollah />
         </>
-      )
+      );
     case '/maths-art/radials':
       return (
         <>
           <BackToMathsDirectory />
           <Radials />
         </>
-      )
+      );
     default:
-      return <MathsArtDirectory />
+      return <MathsArtDirectory />;
   }
 }
 
@@ -75,5 +75,5 @@ export default function MathsArt() {
         <MathsArtPageContent pageName={router.asPath} />
       </main>
     </>
-  )
+  );
 }

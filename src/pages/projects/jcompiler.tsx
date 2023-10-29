@@ -1,5 +1,6 @@
-import NavBar from '@/components/navbar'
-import Blog from '@/components/blog'
+import React from 'react';
+import NavBar from '@/components/navbar';
+import Blog from '@/components/blog';
 
 export default function JCompiler() {
   return (
@@ -18,5 +19,5 @@ export default function JCompiler() {
         }
         />
     </>
-  )
+  );
 }

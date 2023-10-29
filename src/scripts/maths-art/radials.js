@@ -1,4 +1,4 @@
-import * as bc from '../modules/basicCanvas.js'
+import * as bc from '../modules/basicCanvas.js';
 
 var canvas;
 var ctx;
@@ -259,14 +259,14 @@ function setExample(example) {
         case "3clover":
             circleRadii = [0];
             circleSpeeds = [4];
-            addCircle(80, 0, 0, true)
+            addCircle(80, 0, 0, true);
             addCircle(20, 1, 0);
             changeRollType(1, true);
             break;
         case "triangle":
             circleRadii = [0];
             circleSpeeds = [4];
-            addCircle(80, 0, 0, true)
+            addCircle(80, 0, 0, true);
             addCircle(20, -2, 0);
             changeRollType(1, true);
             break;

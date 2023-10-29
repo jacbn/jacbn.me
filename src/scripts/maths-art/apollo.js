@@ -73,10 +73,10 @@ function initialiseDOMElements() {
     pathColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-primary');
     canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background');
 
-    document.getElementById("ratioSlider").oninput = function() {render()};
-    document.getElementById("offsetSlider").oninput = function() {render()};
-    document.getElementById("rotationSlider").oninput = function() {render()};
-    document.getElementById("iterationSlider").oninput = function() {render()};
+    document.getElementById("ratioSlider").oninput = function() {render();};
+    document.getElementById("offsetSlider").oninput = function() {render();};
+    document.getElementById("rotationSlider").oninput = function() {render();};
+    document.getElementById("iterationSlider").oninput = function() {render();};
 }
 
 function render() {
@@ -121,12 +121,7 @@ function calcInitialCircles() {
     //radius of the circle we control the radius of     is     START_SIZE
     //radius of the circle we control the offset of     is     (OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE)
     
-
-    const [sin, cos] = getCircleOrient(315);
-    const [sin2, cos2] = getCircleOrient(0); //admittedly could just use 0 and 1 but it's more understandable
-    const tx = (cos - sin)/Math.SQRT2;
-    const ty = (sin + cos)/Math.SQRT2;
-    /*tx and ty are part of a rotation matrix for rotating the initial circles*/
+    const [sin, cos] = getCircleOrient(0);
     
     const x = ((START_SIZE+(OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE))*(START_SIZE+(OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE)) - (-OUTER_CIRCLE_SIZE-(OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE))*(-OUTER_CIRCLE_SIZE-(OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE)) - (-OUTER_CIRCLE_SIZE-START_SIZE)*(-OUTER_CIRCLE_SIZE-START_SIZE))/(2*(-OUTER_CIRCLE_SIZE-START_SIZE));
     var tempY = Math.sqrt((-OUTER_CIRCLE_SIZE-(OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE))*(-OUTER_CIRCLE_SIZE-(OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE)) - x*x);
@@ -134,12 +129,12 @@ function calcInitialCircles() {
     /*x and y are the positions of the third circle given the initial conditions
     and the other two circles -- see https://www.desmos.com/calculator/akeggyb7gn
     for the maths involved. (nb: r3 is equivalent to an unscaled OFFSET)*/
-    const x2 = (START_SIZE+OUTER_CIRCLE_SIZE)
+    const x2 = (START_SIZE+OUTER_CIRCLE_SIZE);
     
     const a = new Circle(new Complex(0, 0), OUTER_CIRCLE_SIZE);
     //const b = new Circle(new Complex((START_SIZE+OUTER_CIRCLE_SIZE)*tx,(START_SIZE+OUTER_CIRCLE_SIZE)*ty), START_SIZE);
-    const b = new Circle(new Complex(x2*cos2, x2*sin2), START_SIZE);
-    const c = new Circle(new Complex(x*cos2 - y*sin2, x*sin2 + y*cos2), (OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE));
+    const b = new Circle(new Complex(x2*cos, x2*sin), START_SIZE);
+    const c = new Circle(new Complex(x*cos - y*sin, x*sin + y*cos), (OFFSET/180) * (-OUTER_CIRCLE_SIZE-START_SIZE));
     
     a.draw();
     b.draw();

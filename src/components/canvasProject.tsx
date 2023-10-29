@@ -26,5 +26,5 @@ export default function CanvasProject({title, description, script, controls} : C
         </div>
       </div>
     </div>
-  )
+  );
 }

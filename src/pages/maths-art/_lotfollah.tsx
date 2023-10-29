@@ -1,5 +1,6 @@
+import React from 'react';
 import CanvasProject from "@/components/canvasProject";
-import { runLotfollahDome } from "@/scripts/maths-art/lotfollah.js"
+import { runLotfollahDome } from "@/scripts/maths-art/lotfollah.js";
 import styles from "@/styles/mathsart.module.css";
 
 import RangeSlider from "@/components/rangeSlider";
@@ -39,5 +40,5 @@ export default function Lotfollah() {
       </>
     }
     />
-  )
+  );
 }
