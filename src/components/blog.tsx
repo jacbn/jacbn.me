@@ -28,5 +28,5 @@ export default function Blog(props : BlogProps) {
         </div>
         
       </main>
-    )
+    );
 }
