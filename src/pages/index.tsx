@@ -49,7 +49,7 @@ export function About() {
 
             <p className={styles.qna}>What are you up to at the moment?</p>
             <p className={styles.inset}>
-              I started as an EdTech Software Engineer for the <a href="isaacphysics.org">Isaac Platform</a> (including <a href="adacomputerscience.org">Ada CS</a> and others to come) in September, and I'm loving it! I'm mostly working on the frontend of the platform, building the site and the tools that teachers and students use on a daily basis. It's very fulfilling — I get to see the impact of my work on a daily basis, and I'm working with a great team of people who are all passionate about what they do. Also, the presentation for our work on yawning detection took place recently; the published paper is available <a href="https://dl.acm.org/doi/10.1145/3615592.3616854">here</a>!
+              I started as an EdTech Software Engineer for the <a href="https://isaacphysics.org">Isaac Platform</a> (including <a href="https://adacomputerscience.org">Ada CS</a> and others to come) in September, and I'm loving it! I'm mostly working on the frontend of the platform, building the site and the tools that teachers and students use on a daily basis. It's very fulfilling — I get to see the impact of my work on a daily basis, and I'm working with a great team of people who are all passionate about what they do. Also, the presentation for our work on yawning detection took place recently; the published paper is available <a href="https://dl.acm.org/doi/10.1145/3615592.3616854">here</a>!
             </p>
 
             <p className={styles.qna}>Where have you worked previously?</p>
