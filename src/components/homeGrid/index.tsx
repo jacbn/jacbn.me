@@ -1,12 +1,11 @@
 import React from 'react';
-import styles from '@/styles/home.module.css';
 import GridSquare from './gridSquare';
 
 // todo: fill alt text of svgs
 
 export default function HomeGrid() {
   return (
-    <ol className={styles.grid}>
+    <ol className="grid">
       <GridSquare 
         title="Green Maps"
         description="reducing vehicle emissions through&nbsp;smarter navigation"

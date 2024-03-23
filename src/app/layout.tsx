@@ -1,6 +1,5 @@
 import React from 'react';
 import './main.css';
-// import '../styles/main.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

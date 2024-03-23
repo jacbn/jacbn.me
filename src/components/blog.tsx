@@ -1,6 +1,4 @@
 import React from 'react';
-import styles from '@/styles/projects.module.css';
-import bodyStyles from '@/styles/body.module.css';
 
 export interface BlogProps {
   title: string
@@ -14,15 +12,15 @@ export interface BlogProps {
 
 export default function Blog(props : BlogProps) {
     return (
-      <main className={bodyStyles.thinTextContainer}>
+      <main className="thinTextContainer">
         <h1>{props.title}</h1> 
-        <div className={styles.blogBody}>
+        <div className="blogBody">
           {props.image !== undefined && (
-          <div className={styles.blogImage} style={{backgroundColor: props.colour}} id={`blogImageContainer${props.title.replaceAll(' ', '')}`}>
+          <div className="blogImage" style={{backgroundColor: props.colour}} id={`blogImageContainer${props.title.replaceAll(' ', '')}`}>
             <img src={props.image?.src} alt={props.image?.alt} id={`blogImage${props.title.replaceAll(' ', '')}`}/> 
           </div>
           )}
-          <div className={styles.blogText}>
+          <div className="blogText">
             {props.text}
           </div>
         </div>

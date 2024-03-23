@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@/styles/mathsart.module.css";
 
 class RangeSlider extends React.Component<object, {min: string, max: string, value: string, id: string}> {
   constructor(props : any) {
@@ -15,7 +14,7 @@ class RangeSlider extends React.Component<object, {min: string, max: string, val
     return (React.createElement(
         "input", 
         { 
-          className: `${styles.rangeSlider}`,
+          className: "rangeSlider",
           type: "range", 
           id: this.state.id,
           min: this.state.min, 
