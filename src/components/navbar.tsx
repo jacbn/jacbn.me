@@ -1,14 +1,10 @@
-import '@/app/globals.css';
-import styles from '@/styles/projects.module.css';
-
 import Link from 'next/link';
 import React, { useState, useRef, useEffect } from "react";
 import 'material-icons/iconfont/material-icons.css';
 
-
 export function NavBox({text, href, active}: {text: string, href: string, active?: boolean}) {
   return (
-    <Link className={`${styles.navBox} ${(active) ? styles.activeNavBox : ''}`} href={href}>{text}</Link>
+    <Link className={`navBox ${active ? 'activeNavBox' : ''}`} href={href}>{text}</Link>
   );
 }
 
@@ -29,10 +25,10 @@ export function HamburgerBox() {
   }, [open]);
 
   return (
-    <div className={`${styles.navBox} ${open ? styles.activeNavBox : ''}`} onClick={() => setOpen(b => !b)} ref={ref}>
+    <div className={`navBox ${open ? 'activeNavBox' : ''}`} onClick={() => setOpen(b => !b)} ref={ref}>
       <span className="material-icons-round">menu</span>
       {(open) && (
-        <section className={styles.hamburgerMenu}>
+        <section className="hamburgerMenu">
           <NavBox text="Home" href="/" />
           <NavBox text="About Me" href="/about" />
           <NavBox text="Contacts" href="/contacts" />
@@ -64,12 +60,12 @@ export default class NavBar extends React.Component<{showName: boolean, activePa
     const onMainPages = this.props.activePage === '/' || this.props.activePage === '/about' || this.props.activePage === '/contacts';
     return (
       <nav>
-        <div className={styles.myName}>
+        <div className="myName">
         {/* do not move conditional outside, empty div keeps the rest right-floating */}
         {this.props.showName && (
           <Link href="/">
-            <span className={styles.titlePrimary}>Jacob </span> 
-            <span className={styles.titleSecondary}> Brown</span>
+            <span className="titlePrimary">Jacob </span> 
+            <span className="titleSecondary"> Brown</span>
           </Link>
         )}
         </div>

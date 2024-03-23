@@ -1,6 +1,4 @@
-import "@/app/globals.css";
 import React from "react";
-import styles from "@/styles/mathsart.module.css";
 
 export interface CanvasProjectProps {
   title: string;
@@ -11,16 +9,16 @@ export interface CanvasProjectProps {
 
 export default function CanvasProject({title, description, script, controls} : CanvasProjectProps ) {
   return (
-    <div className={styles.canvasProject}>
+    <div className="canvasProject">
       <h2>{title}</h2>
-      <div className={styles.canvasProject__mainContainer}>
-        <div className={styles.canvasProject__description}>
+      <div className="canvasProject__mainContainer">
+        <div className="canvasProject__description">
           {description}
         </div>
-        <div className={styles.canvasProject__canvasAndOptions}>
+        <div className="canvasProject__canvasAndOptions">
           <canvas id="mainCanvas" width="520" height="520"></canvas>
           {script}
-          <div className={styles.canvasProject__options}>
+          <div className="canvasProject__options">
             {controls}
           </div>
         </div>
