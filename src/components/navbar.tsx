@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import React, { useState, useRef, useEffect } from "react";
 import 'material-icons/iconfont/material-icons.css';
+import useDeviceSize, { below } from '@/scripts/hooks/deviceSize';
 
 export function NavBox({text, href, active}: {text: string, href: string, active?: boolean}) {
   return (
@@ -38,49 +41,42 @@ export function HamburgerBox() {
   );
 }
 
-export default class NavBar extends React.Component<{showName: boolean, activePage?: string}, {windowWidth : number}> {
-  constructor(props: any) {
-    super(props);
-    this.state = {windowWidth: window.innerWidth};
-  }
+// extends React.Component<{showName: boolean, activePage?: string}, {windowWidth : number}> {
 
-  componentDidMount(): void {
-    window.addEventListener('resize', this.updateWindowDimensions.bind(this));
-  }
+interface NavBarProps {
+  showName: boolean;
+  activePage?: string;
+}
 
-  componentWillUnmount(): void {
-    window.removeEventListener('resize', this.updateWindowDimensions.bind(this));
-  }
+export const NavBar = ({showName, activePage} : NavBarProps) => {
 
-  updateWindowDimensions(): void {
-    this.setState({windowWidth: window.innerWidth});
-  }
+  const deviceSize = useDeviceSize();
 
-  render(): JSX.Element {
-    const onMainPages = this.props.activePage === '/' || this.props.activePage === '/about' || this.props.activePage === '/contacts';
-    return (
-      <nav>
-        <div className="myName">
+  const onMainPages = activePage === '/' || activePage === '/about' || activePage === '/contacts';
+  return (
+    <nav>
+      <div className="myName">
         {/* do not move conditional outside, empty div keeps the rest right-floating */}
-        {this.props.showName && (
+        {showName && (
           <Link href="/">
             <span className="titlePrimary">Jacob </span> 
             <span className="titleSecondary"> Brown</span>
           </Link>
         )}
-        </div>
-        <div>
-          {((onMainPages && this.state.windowWidth < 300) || (!onMainPages && this.state.windowWidth < 600)) ? (
-            <HamburgerBox />
-          ) : (
-            <>
-              <NavBox text="Contacts" href="/contacts" active={this.props.activePage === '/contacts'} />
-              <NavBox text="About Me" href="/about" active={this.props.activePage === '/about'} />
-              <NavBox text="Home" href="/" active={this.props.activePage === '/'} />
-            </>
-          )}
-        </div>
-      </nav>
-    );
-  }
-}
+      </div>
+      <div>
+        {((onMainPages && below["xs"](deviceSize)) || (!onMainPages && below["sm"](deviceSize))) ? (
+          <HamburgerBox />
+        ) : (
+          <>
+            <NavBox text="Contacts" href="/contacts" active={activePage === '/contacts'} />
+            <NavBox text="About Me" href="/about" active={activePage === '/about'} />
+            <NavBox text="Home" href="/" active={activePage === '/'} />
+          </>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default NavBar;
