@@ -1,8 +1,8 @@
 import React from "react";
-import CanvasProject from "@/components/canvasProject";
-import { runApollo } from "@/scripts/maths-art/apollo.js";
+import CanvasProject from "../../components/canvasProject";
+import { runApollo } from "../../scripts/maths-art/apollo.js";
 
-import RangeSlider from "@/components/rangeSlider";
+import RangeSlider from "../../components/rangeSlider";
 import CanvasScript from "./canvasScript";
 
 export default function Apollo() {

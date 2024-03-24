@@ -1,9 +1,15 @@
-'use client';
+import React from 'react';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-export default function ScrollTop() {
+export default function ScrollTop(props: React.HTMLAttributes<HTMLDivElement>) {
+  const location = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-  return null;
+  }, [location.pathname]);
+
+  return <div>
+    {props.children}
+  </div>;
 }
