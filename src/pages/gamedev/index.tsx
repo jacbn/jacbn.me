@@ -2,13 +2,11 @@ import React from 'react';
 import NavBar from "@/components/navbar";
 import VerticalPane from "@/components/verticalPane";
 
-import bodyStyles from "@/styles/body.module.css";
-
 export default function GameDev() {
     return (
       <>
         <NavBar showName={true} />
-        <main className={bodyStyles.projectHomeContainer}>
+        <main className="projectHomeContainer">
           <h1>Game Development</h1>
           <div style={{textAlign: 'center'}}>
             <p>Gaming has always been a nice escape from reality for me, but there's something fascinating about being the one to design these experiences.</p>
