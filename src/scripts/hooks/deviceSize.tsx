@@ -1,4 +1,7 @@
+'use client';
+
 import { useEffect, useState } from "react";
+import { useIsClient } from "./isClient";
 
 type ScreenSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -10,9 +13,10 @@ const screenSizeMap : Record<ScreenSize, number> = {
     "xl": 1200,
 };
 
-const getScreenSize = () => typeof window !== "undefined" && Object.keys(screenSizeMap).find(size => window.innerWidth < screenSizeMap[size as ScreenSize]) as ScreenSize || "xl";
 
 export default function useDeviceSize() {
+    const isClient = useIsClient();
+    const getScreenSize = () => isClient && Object.keys(screenSizeMap).find(size => window.innerWidth < screenSizeMap[size as ScreenSize]) as ScreenSize || "xl";
     const [screenSize, setScreenSize] = useState(getScreenSize());
 
     useEffect(() => {
@@ -31,17 +35,17 @@ export default function useDeviceSize() {
 }
 
 export const below = {
-    xs: (size: ScreenSize) => screenSizeMap[size] <= screenSizeMap["xs"],
-    sm: (size: ScreenSize) => screenSizeMap[size] <= screenSizeMap["sm"],
-    md: (size: ScreenSize) => screenSizeMap[size] <= screenSizeMap["md"],
-    lg: (size: ScreenSize) => screenSizeMap[size] <= screenSizeMap["lg"],
-    xl: (size: ScreenSize) => screenSizeMap[size] <= screenSizeMap["xl"],
+    xs: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["xs"],
+    sm: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["sm"],
+    md: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["md"],
+    lg: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["lg"],
+    xl: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["xl"],
 };
 
 export const above = {
-    xs: (size: ScreenSize) => screenSizeMap[size] >= screenSizeMap["xs"],
-    sm: (size: ScreenSize) => screenSizeMap[size] >= screenSizeMap["sm"],
-    md: (size: ScreenSize) => screenSizeMap[size] >= screenSizeMap["md"],
-    lg: (size: ScreenSize) => screenSizeMap[size] >= screenSizeMap["lg"],
-    xl: (size: ScreenSize) => screenSizeMap[size] >= screenSizeMap["xl"],
+    xs: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["xs"],
+    sm: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["sm"],
+    md: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["md"],
+    lg: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["lg"],
+    xl: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["xl"],
 };

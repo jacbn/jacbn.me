@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 export default class MathsSquare extends React.Component<{href: string, title: string, image: {src: string, srcLight?: string, alt: string}}, { lightMode : boolean }> {
@@ -18,11 +18,11 @@ export default class MathsSquare extends React.Component<{href: string, title: s
   render() {
     return (
       <>
-        <Link className="mathsArtGridSquare" href={this.props.href}>
+        <Link className="mathsArtGridSquare" to={this.props.href}>
           <h2>{this.props.title}</h2> 
           <img src={(this.state.lightMode && this.props.image.srcLight) ? this.props.image.srcLight : this.props.image.src} alt={this.props.image.alt} />
         </Link>
       </>
-    )
+    );
   }
 }

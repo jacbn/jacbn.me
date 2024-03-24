@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import NavBar from '@/components/navbar';
-import Blog from '@/components/blog';
 import TeX from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
+import Blog from '../../../components/blog';
+import NavBar from '../../../components/navbar';
 
 export default function YawNN() {
   return (

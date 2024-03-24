@@ -1,9 +1,8 @@
-import NavBar from '@/components/navbar';
-import Blog from '@/components/blog';
-
-import { animationOnLoad } from '@/scripts/animatedImages';
+import { animationOnLoad } from '../../../scripts/animatedImages';
 import { useEffect } from 'react';
 import React from 'react';
+import Blog from '../../../components/blog';
+import NavBar from '../../../components/navbar';
 
 export function AnimatedImage() {
   useEffect(() => animationOnLoad([

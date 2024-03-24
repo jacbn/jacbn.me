@@ -1,31 +1,49 @@
 {
   "name": "jacbn.me",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "A rewrite of jacbn.github.io using React",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "webpack serve --config webpack.config.js --mode development",
+    "build": "webpack --mode production",
+    "error": "webpack -display-error-details"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "@babel/preset-react": "^7.24.1",
+    "@babel/preset-typescript": "^7.24.1",
     "@matejmazur/react-katex": "^3.1.3",
-    "@types/node": "20.4.1",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
-    "jquery": "^3.7.0",
-    "katex": "^0.16.8",
-    "material-icons": "^1.13.9",
-    "next": "^14.1.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.1.6"
+    "bootstrap": "^5.3.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
+    "jquery": "^3.7.1",
+    "katex": "^0.16.9",
+    "material-icons": "^1.13.12",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.2",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.69",
+    "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
     "eslint": "^8.52.0",
     "eslint-config-jquery": "^3.0.2",
-    "eslint-plugin-react": "^7.33.2"
+    "eslint-plugin-react": "^7.33.2",
+    "mini-css-extract-plugin": "^2.8.1",
+    "style-loader": "^3.3.4",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   }
 }

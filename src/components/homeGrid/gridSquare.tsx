@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 export interface GridSquareProps {
   title: string;
@@ -43,9 +43,9 @@ export function CardTop({colour, image, podiumNum, id} : {colour: string, image:
 export default function GridSquare({title, description, year, lang, colour, image, link, podiumNum = 0} : GridSquareProps) {
   // let cardClass = "card transition" + (podiumNum == 0 ? "" : " podium" + podiumNum);
   const cardClass = `card transition ${podiumClasses[podiumNum]}`;
-  const id = title.replaceAll(' ', '');
+  const id = title.replace(/ /g, '');
   return (
-    <Link href={link} className={cardClass} id={`card${id}`}>
+    <Link to={link} className={cardClass} id={`card${id}`}>
       <CardTop colour={colour} image={image} podiumNum={podiumNum} id={`gridImage${id}`}/>
       <div className="cardBase">
         <h2 style={{color: colour}}>{title}</h2>

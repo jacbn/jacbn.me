@@ -1,13 +1,13 @@
 'use client';
 
-import Link from 'next/link';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useRef, useEffect } from "react";
 import 'material-icons/iconfont/material-icons.css';
-import useDeviceSize, { below } from '@/scripts/hooks/deviceSize';
+import useDeviceSize, { below } from '../scripts/hooks/deviceSize';
 
 export function NavBox({text, href, active}: {text: string, href: string, active?: boolean}) {
   return (
-    <Link className={`navBox ${active ? 'activeNavBox' : ''}`} href={href}>{text}</Link>
+    <Link className={`navBox ${active ? 'activeNavBox' : ''}`} to={href}>{text}</Link>
   );
 }
 
@@ -45,20 +45,20 @@ export function HamburgerBox() {
 
 interface NavBarProps {
   showName: boolean;
-  activePage?: string;
 }
 
-export const NavBar = ({showName, activePage} : NavBarProps) => {
+export const NavBar = ({showName} : NavBarProps) => {
 
   const deviceSize = useDeviceSize();
+  const location = useLocation();
 
-  const onMainPages = activePage === '/' || activePage === '/about' || activePage === '/contacts';
+  const onMainPages = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/contacts';
   return (
     <nav>
       <div className="myName">
         {/* do not move conditional outside, empty div keeps the rest right-floating */}
         {showName && (
-          <Link href="/">
+          <Link to="/">
             <span className="titlePrimary">Jacob </span> 
             <span className="titleSecondary"> Brown</span>
           </Link>
@@ -69,9 +69,9 @@ export const NavBar = ({showName, activePage} : NavBarProps) => {
           <HamburgerBox />
         ) : (
           <>
-            <NavBox text="Contacts" href="/contacts" active={activePage === '/contacts'} />
-            <NavBox text="About Me" href="/about" active={activePage === '/about'} />
-            <NavBox text="Home" href="/" active={activePage === '/'} />
+            <NavBox text="Contacts" href="/contacts" active={location.pathname === '/contacts'} />
+            <NavBox text="About Me" href="/about" active={location.pathname === '/about'} />
+            <NavBox text="Home" href="/" active={location.pathname === '/'} />
           </>
         )}
       </div>

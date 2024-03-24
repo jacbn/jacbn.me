@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollTop from '@/components/scrollTop';
+import ScrollTop from '../../components/scrollTop';
 
 export default function ProjectLayout({children}: {children: React.ReactNode}) {
   return (

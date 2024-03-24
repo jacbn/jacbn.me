@@ -1,10 +1,9 @@
 import MathsSquare from '@/components/mathsGrid/mathsSquare';
 import NavBar from '@/components/navbar';
-import { useRouter } from 'next/router';
 import Apollo from './_apollo';
 import Radials from './_radials';
 import Lotfollah from './_lotfollah';
-import Link from 'next/link';
+import { Link, useLocation } from 'react-router-dom';
 import 'material-icons/iconfont/material-icons.css';
 import CanvasScript from './canvasScript';
 import React from 'react';
@@ -29,7 +28,7 @@ export function MathsArtDirectory() {
 export function BackToMathsDirectory() {
   return (
     <div className="backToMathsDirectory">
-      <Link href="/maths-art">
+      <Link to="/maths-art">
         <span className="material-icons-round">arrow_back</span>
       </Link>
     </div>
@@ -65,12 +64,12 @@ export function MathsArtPageContent({pageName} : {pageName : string }) {
 }
 
 export default function MathsArt() {
-  const router = useRouter();
+  const location = useLocation();
   return (
     <>
       <NavBar showName={true} />
       <main>
-        <MathsArtPageContent pageName={router.asPath} />
+        <MathsArtPageContent pageName={location.pathname} />
       </main>
     </>
   );

@@ -27,7 +27,7 @@ export default function Title() {
                 <span className="rollerText">
                     Software Engineer
                     <br />
-                    Python &#183; Java &#183; Flutter &#183; React
+                    React &#183;  Python &#183; Java &#183; Flutter
                 </span>
             </h3>
         </div>
