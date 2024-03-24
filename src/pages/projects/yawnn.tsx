@@ -69,7 +69,7 @@ export default function YawNN() {
                   <p>Figure 2: Preliminary analysis. Eating is characterised by oscillatory gyroscope readings in all axes at intervals of just under 2Hz, with mostly flat accelerometer readings. Yawning is characterised by a long period of flat readings in both sets of axes, followed by a spike in activity in gyroscope readings, most notably in the Z-axis.</p>
                 </div>
 
-                <p>Given that these features are so discernable visually (admittedly the recordings were collected in an ideal environment, but the idea holds), using a convolutional network seemed logical as these networks are typically used for pattern recognition in images. The temporal nature of the data alternatively encourages a recurrent neural network, so these two network"were"both constructed and compared.</p>
+                <p>Given that these features are so discernable visually (admittedly the recordings were collected in an ideal environment, but the idea holds), using a convolutional network seemed logical as these networks are typically used for pattern recognition in images. The temporal nature of the data alternatively encourages a recurrent neural network, so these two network types were both constructed and compared.</p>
 
                 <p>The details of preprocessing are a little too complicated for a post like this, but in short 7 neural network models were constructed, being mixtures of CNN / RNN (LSTM) networks with FFT or spectrogram transforms applied. 3 additional models were constructed using classical ML algorithms (KNN / SVM / RF) as baselines, giving 10 total models to compare.</p>
 
