@@ -8,21 +8,18 @@ const path = require("path");
 module.exports = {
     entry: [
         path.join(__dirname, "src", "index.tsx"), 
+        path.join(__dirname, "src", "styles.css"),
     ],
     resolve: {
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
         alias: {
             '@': path.resolve('src'),
         },
     },
-    output: { 
-        path: path.resolve(__dirname, "dist"),
-        filename: '[name].bundle.js'
-    },
     module: {
         rules: [
             {
-                test: /\.(js|ts)x?$/,
+                test: /\.(j|t)sx?$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
@@ -36,25 +33,37 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/i,
+                test: /\.css$/,
                 use: [
-                    process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
+                // process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            mode: "global",
+                        },
+                    },
                 ],
+                include: /\.module\.css$/,
             },
             {
-                test: /\.(ttf|svg)$/,
+                test: /\.css$/,
                 use: [
-                  {
-                    loader: 'file-loader',
-                    options: {
-                      name: '[name].[ext]',
-                      outputPath: 'fonts/'
-                    }
-                  }
-                ]
-              },
+                    "style-loader", 
+                    "css-loader"
+                ],
+                exclude: /\.module\.css$/,
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
         ],
+    },
+    
+    output: { 
+        path: path.resolve(__dirname, "dist"),
+        filename: 'src/main.js'
     },
 
     plugins: [

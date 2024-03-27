@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Quicksand';
-  src: url('../assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+  src: url('../assets/fonts/Quicksand-variable.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('../assets/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+  src: url('../assets/fonts/Inter-variable.ttf') format('truetype');
 }
 
 :root {
