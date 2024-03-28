@@ -63,7 +63,8 @@ module.exports = {
     
     output: { 
         path: path.resolve(__dirname, "dist"),
-        filename: 'src/main.js'
+        filename: 'src/main.js',
+        publicPath: '/',
     },
 
     plugins: [
