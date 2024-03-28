@@ -11,7 +11,7 @@ export default function GameDev() {
       </div>
       <VerticalPane
         coverTitle="AmalgMG"
-        coverImage="/assets/gamedev/amalgmg.webp"
+        coverImage={require("/src/assets/gamedev/amalgmg.webp")}
         description={
           <>
             <p><b>AmalgMG</b> is a MonoGame-based .NET engine with support for physics, shaders, tilemaps, animation and more, built out of frustration at Unity's 2D engine.</p>
@@ -22,7 +22,7 @@ export default function GameDev() {
         />
         <VerticalPane
           coverTitle="Capy'd Away"
-          coverImage="/assets/gamedev/capy.webp"
+          coverImage={require("/src/assets/gamedev/capy.webp")}
           description={
             <>
               <p>For the Cambridge Game Jam 2023, I worked with 3 friends to create a game from scratch in 48 hours. The theme was 'Beneath the Earth', and our <a href="https://itch.io/jam/camgamejam/rate/1923220">game</a> tells the story of a capybara who must be reunited with his family after being washed underground during a storm.</p>
@@ -33,7 +33,7 @@ export default function GameDev() {
         />
         <VerticalPane
           coverTitle="Hexad"
-          coverImage="/assets/gamedev/hexad.webp"
+          coverImage={require("/src/assets/gamedev/hexad.webp")}
           description={
             <>
               <p>2019 saw the development of <b>Hexad</b>, a 2D puzzle game about swapping neighbouring nodes on a hexagonal grid to complete full hexes. It was my first major project after just over a year of learning UnityScript (and later C# after its unfortunate demise) and the Unity engine. The <a href="https://play.google.com/store/apps/details?id=com.JBLabs.Hexad">app</a> was released to the Google Play Store that summer, and updates continued throughout the year.</p>

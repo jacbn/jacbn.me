@@ -1,4 +1,5 @@
 import React from 'react';
+import { ImageProps } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
 
@@ -23,15 +24,14 @@ const podiumClasses : {[id: number]: string} = {
   3: "podium3"
 }
 
-export function CardTop({colour, image, podiumNum, id} : {colour: string, image: {src: string; alt: string;}, podiumNum: number, id: string}) {
+export function CardTop({colour, image, podiumNum, id} : {colour: string, image: ImageProps, podiumNum: number, id: string}) {
   if (podiumNum > 0) {
     return (
       <div className="cardTop" style={{backgroundColor: colour}}>
         <img
           className="gridImage"
-          src={image.src}
-          alt={image.alt}
           id={id}
+          {...image}
         />
       </div>
     )
