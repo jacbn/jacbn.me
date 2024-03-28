@@ -1,11 +1,10 @@
 import React from 'react';
-import styles from '@/styles/home.module.css';
 
 export default function Title() {
     return (
-        <div className={styles.titleContainer}>
-            <div className={styles.titleBackground}></div>
-            <svg className={styles.titleSVG}>
+        <div className="titleContainer">
+            <div className="titleBackground"></div>
+            <svg className="titleSVG">
                 <symbol id="s-text">
                     <text x="48.2%" y="60%" textAnchor='middle'>Jacob</text>
                 </symbol>
@@ -14,21 +13,21 @@ export default function Title() {
                 </symbol>
                 <mask id="mask">
                     <rect width="100%" height="100%" fill="white" />
-                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleMask}`} />
-                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleMask}`} />
+                    <use xlinkHref="#s-text" className="titleText titleMask" />
+                    <use xlinkHref="#s-text2" className="titleText titleMask" />
                 </mask>
                 <g>
-                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleStrokeAnimation} ${styles.titleSecondaryStroke}`} mask='url(#mask)'></use>
-                    <use xlinkHref="#s-text2" className={`${styles.titleText} ${styles.titleFillAnimation} ${styles.titleSecondaryFill}`} mask='url(#mask)'></use>
-                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleStrokeAnimation} ${styles.titlePrimaryStroke}`} mask='url(#mask)'></use>
-                    <use xlinkHref="#s-text" className={`${styles.titleText} ${styles.titleFillAnimation} ${styles.titlePrimaryFill}`} mask='url(#mask)'></use>
+                    <use xlinkHref="#s-text2" className="titleText titleStrokeAnimation titleSecondaryStroke" mask='url(#mask)'></use>
+                    <use xlinkHref="#s-text2" className="titleText titleFillAnimation titleSecondaryFill" mask='url(#mask)'></use>
+                    <use xlinkHref="#s-text" className="titleText titleStrokeAnimation titlePrimaryStroke" mask='url(#mask)'></use>
+                    <use xlinkHref="#s-text" className="titleText titleFillAnimation titlePrimaryFill" mask='url(#mask)'></use>
                 </g>
             </svg>
-            <h3 className={styles.roller}>
-                <span className={styles.rollerText}>
+            <h3 className="roller">
+                <span className="rollerText">
                     Software Engineer
                     <br />
-                    Python &#183; Java &#183; Flutter &#183; React
+                    React &#183;  Python &#183; Java &#183; Flutter
                 </span>
             </h3>
         </div>

@@ -107,7 +107,7 @@
   flex-direction: column;
   align-items: center;
 
-  background-image: var(--title-background-filter), url("/assets/home/title-bg.svg");
+  background-image: var(--title-background-filter), url("../assets/home/title-bg.svg");
   /* triangle background (title-bg.svg) modified from SVGBackgrounds.com */
   font-family: var(--font-sans-title);
 }

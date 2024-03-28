@@ -1,14 +1,11 @@
-import '@/app/globals.css';
-import styles from '@/styles/projects.module.css';
-
-import Link from 'next/link';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useRef, useEffect } from "react";
 import 'material-icons/iconfont/material-icons.css';
-
+import useDeviceSize, { below } from '../scripts/hooks/deviceSize';
 
 export function NavBox({text, href, active}: {text: string, href: string, active?: boolean}) {
   return (
-    <Link className={`${styles.navBox} ${(active) ? styles.activeNavBox : ''}`} href={href}>{text}</Link>
+    <Link className={`navBox ${active ? 'activeNavBox' : ''}`} to={href}>{text}</Link>
   );
 }
 
@@ -29,10 +26,10 @@ export function HamburgerBox() {
   }, [open]);
 
   return (
-    <div className={`${styles.navBox} ${open ? styles.activeNavBox : ''}`} onClick={() => setOpen(b => !b)} ref={ref}>
+    <div className={`navBox ${open ? 'activeNavBox' : ''}`} onClick={() => setOpen(b => !b)} ref={ref}>
       <span className="material-icons-round">menu</span>
       {(open) && (
-        <section className={styles.hamburgerMenu}>
+        <section className="hamburgerMenu">
           <NavBox text="Home" href="/" />
           <NavBox text="About Me" href="/about" />
           <NavBox text="Contacts" href="/contacts" />
@@ -42,49 +39,42 @@ export function HamburgerBox() {
   );
 }
 
-export default class NavBar extends React.Component<{showName: boolean, activePage?: string}, {windowWidth : number}> {
-  constructor(props: any) {
-    super(props);
-    this.state = {windowWidth: window.innerWidth};
-  }
+// extends React.Component<{showName: boolean, activePage?: string}, {windowWidth : number}> {
 
-  componentDidMount(): void {
-    window.addEventListener('resize', this.updateWindowDimensions.bind(this));
-  }
+interface NavBarProps {
+  showName: boolean;
+}
 
-  componentWillUnmount(): void {
-    window.removeEventListener('resize', this.updateWindowDimensions.bind(this));
-  }
+export const NavBar = ({showName} : NavBarProps) => {
 
-  updateWindowDimensions(): void {
-    this.setState({windowWidth: window.innerWidth});
-  }
+  const deviceSize = useDeviceSize();
+  const location = useLocation();
 
-  render(): JSX.Element {
-    const onMainPages = this.props.activePage === '/' || this.props.activePage === '/about' || this.props.activePage === '/contacts';
-    return (
-      <nav>
-        <div className={styles.myName}>
+  const onMainPages = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/contacts';
+  return (
+    <nav>
+      <div className="myName">
         {/* do not move conditional outside, empty div keeps the rest right-floating */}
-        {this.props.showName && (
-          <Link href="/">
-            <span className={styles.titlePrimary}>Jacob </span> 
-            <span className={styles.titleSecondary}> Brown</span>
+        {showName && (
+          <Link to="/">
+            <span className="titlePrimary">Jacob </span> 
+            <span className="titleSecondary"> Brown</span>
           </Link>
         )}
-        </div>
-        <div>
-          {((onMainPages && this.state.windowWidth < 300) || (!onMainPages && this.state.windowWidth < 600)) ? (
-            <HamburgerBox />
-          ) : (
-            <>
-              <NavBox text="Contacts" href="/contacts" active={this.props.activePage === '/contacts'} />
-              <NavBox text="About Me" href="/about" active={this.props.activePage === '/about'} />
-              <NavBox text="Home" href="/" active={this.props.activePage === '/'} />
-            </>
-          )}
-        </div>
-      </nav>
-    );
-  }
-}
+      </div>
+      <div>
+        {((onMainPages && below["xs"](deviceSize)) || (!onMainPages && below["sm"](deviceSize))) ? (
+          <HamburgerBox />
+        ) : (
+          <>
+            <NavBox text="Contacts" href="/contacts" active={location.pathname === '/contacts'} />
+            <NavBox text="About Me" href="/about" active={location.pathname === '/about'} />
+            <NavBox text="Home" href="/" active={location.pathname === '/'} />
+          </>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default NavBar;

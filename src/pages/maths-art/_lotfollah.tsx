@@ -1,7 +1,6 @@
 import React from 'react';
 import CanvasProject from "@/components/canvasProject";
 import { runLotfollahDome } from "@/scripts/maths-art/lotfollah.js";
-import styles from "@/styles/mathsart.module.css";
 
 import RangeSlider from "@/components/rangeSlider";
 import CanvasScript from "./canvasScript";
@@ -25,15 +24,15 @@ export default function Lotfollah() {
     script={<CanvasScript startFunction={runLotfollahDome} />}
     controls={
       <>
-        <div className={styles.sliderOptions}>
+        <div className="sliderOptions">
           <h4>Scale</h4>
           <RangeSlider {...{min: "1", max: "100", value: "20", id: "sizeSlider"}} />
         </div>
-        <div className={styles.sliderOptions}>
+        <div className="sliderOptions">
           <h4>Symmetry Count</h4>
           <RangeSlider {...{min: "9", max: "16", value: "12", id: "symcountSlider"}} />
         </div>
-        <div className={styles.sliderOptions}>
+        <div className="sliderOptions">
           <h4>Iterations</h4>
           <RangeSlider {...{min: "1", max: "10", value: "1", id: "iterationSlider"}} />
         </div>

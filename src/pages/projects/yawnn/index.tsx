@@ -1,18 +1,15 @@
-import styles from '@/styles/projects.module.css';
-import NavBar from '@/components/navbar';
-import Blog from '@/components/blog';
-
-import { animationOnLoad } from '@/scripts/animatedImages';
+import { animationOnLoad } from '../../../scripts/animatedImages';
 import { useEffect } from 'react';
 import React from 'react';
+import Blog from '../../../components/blog';
 
 export function AnimatedImage() {
   useEffect(() => animationOnLoad([
     {
       hoverId: '#blogImageContainerYawningDetection', 
       imageId: '#blogImageYawningDetection',
-      srcStatic: '/assets/home/logo-yawnn-static.png', 
-      srcAnimated: '/assets/home/logo-yawnn.gif'
+      srcStatic: require('/src/assets/home/logo-yawnn-static.png'), 
+      srcAnimated: require('/src/assets/home/logo-yawnn.gif'),
     }
   ]), []);
   return <></>;
@@ -22,11 +19,10 @@ export default function YawNN() {
   return (
     <>
       <AnimatedImage />
-      <NavBar showName={true} />
       <Blog 
         title="Yawning Detection"
         image={{
-          src: "/assets/home/logo-yawnn-static.png",
+          src: require("/src/assets/home/logo-yawnn-static.png"),
           alt: ""
         }}
         colour="#9bfae7"
@@ -51,10 +47,10 @@ export default function YawNN() {
 
                 <p>I first created a simple <a href="https://github.com/jacbn/yawning-detection/tree/main/yeimu">mobile app</a> using Flutter to interface with and collect raw data from the earphones. Data is sent over a BLE connection and stored locally on the device; one of several apps can be used to transfer the data to a more powerful computer for model training via the device's sharesheet.</p>
 
-                <div className={styles.imageContainer}>
-                  <div className={styles.doubleImage}>
-                    <img style={{width: "35%"}} src='/assets/yawnn/app/recording.png' alt="YeIMU Recording" />
-                    <img style={{width: "35%"}} src='/assets/yawnn/app/plots.png' alt="YeIMU Plots" />
+                <div className="imageContainer">
+                  <div className="doubleImage">
+                    <img style={{width: "35%"}} src={require('/src/assets/yawnn/app/recording.png')} alt="YeIMU Recording" />
+                    <img style={{width: "35%"}} src={require('/src/assets/yawnn/app/plots.png')} alt="YeIMU Plots" />
                   </div>
                   <p>Figure 1: The YeIMU app. The first shows the main screen once connected to the earphones and recording, the second a post-recording graph accessible from the 'View Results' button on the main screen.</p>
                 </div>
@@ -62,15 +58,15 @@ export default function YawNN() {
                 <p>With some initial testing data acquired, I manually explored features present in the data to determine what models would best suit the task. The figures below show the raw data for a sample of both eating and of a single yawn:</p>
 
 
-                <div className={styles.imageContainer}>
-                  <div className={styles.doubleImage}>
-                    <img style={{width: "49%"}} src='/assets/yawnn/prelim/eating.png' alt="YeIMU Recording" />
-                    <img style={{width: "49%"}} src='/assets/yawnn/prelim/yawn.png' alt="YeIMU Plots" />
+                <div className="imageContainer">
+                  <div className="doubleImage">
+                    <img style={{width: "49%"}} src={require('/src/assets/yawnn/prelim/eating.png')} alt="YeIMU Recording" />
+                    <img style={{width: "49%"}} src={require('/src/assets/yawnn/prelim/yawn.png')} alt="YeIMU Plots" />
                   </div>
                   <p>Figure 2: Preliminary analysis. Eating is characterised by oscillatory gyroscope readings in all axes at intervals of just under 2Hz, with mostly flat accelerometer readings. Yawning is characterised by a long period of flat readings in both sets of axes, followed by a spike in activity in gyroscope readings, most notably in the Z-axis.</p>
                 </div>
 
-                <p>Given that these features are so discernable visually (admittedly the recordings were collected in an ideal environment, but the idea holds), using a convolutional network seemed logical as these networks are typically used for pattern recognition in images. The temporal nature of the data alternatively encourages a recurrent neural network, so these two network styles were both constructed and compared.</p>
+                <p>Given that these features are so discernable visually (admittedly the recordings were collected in an ideal environment, but the idea holds), using a convolutional network seemed logical as these networks are typically used for pattern recognition in images. The temporal nature of the data alternatively encourages a recurrent neural network, so these two network types were both constructed and compared.</p>
 
                 <p>The details of preprocessing are a little too complicated for a post like this, but in short 7 neural network models were constructed, being mixtures of CNN / RNN (LSTM) networks with FFT or spectrogram transforms applied. 3 additional models were constructed using classical ML algorithms (KNN / SVM / RF) as baselines, giving 10 total models to compare.</p>
 
@@ -86,9 +82,9 @@ export default function YawNN() {
 
                 <p>This paper was submitted and accepted into the <a href="https://smart-wear-2023-bjfs.vercel.app/">SmartWear 2023 Workshop</a>! The workshop ran in early October, and we gave a small presentation on the project to industry experts. The published paper is available <a href="https://dl.acm.org/doi/10.1145/3615592.3616854">here</a>!</p>
 
-              <p id="ref1" className={styles.footnote}>[1] NHTSA. 2017. Drowsy Driving. <a href="https://www.nhtsa.gov/risky-driving/drowsy-driving">https://www.nhtsa.gov/risky-driving/drowsy-driving</a>. Accessed: 2023-23-03.</p>
-              <p id="ref2" className={styles.footnote}>[2] Michael H. Bonnet. 1985. Effect of Sleep Disruption on Sleep, Performance, and Mood. Sleep 8, 1 (03 1985), 11-19. <a href="https://doi.org/10.1093/sleep/8.1.11">https://doi.org/10.1093/sleep/8.1.11</a><br/> arXiv: <a href="https://academic.oup.com/sleep/article-pdf/8/1/11/13678498/080102.pdf">https://academic.oup.com/sleep/article-pdf/8/1/11/13678498/080102.pdf</a></p>
-              <p id="ref3" className={styles.footnote}>[3] Judith A. Ricci, Elsbeth Chee, Amy L. Lorandeau, and Jan Berger. 2007. Fatigue in the U.S. Workforce: Prevalence and Implications for Lost Productive Work Time. Journal of Occupational and Environmental Medicine 49, 1 (2007), 1-10. <a href="http://www.jstor.org/stable/44997095">http://www.jstor.org/stable/44997095</a></p>
+              <p id="ref1" className="footnote">[1] NHTSA. 2017. Drowsy Driving. <a href="https://www.nhtsa.gov/risky-driving/drowsy-driving">https://www.nhtsa.gov/risky-driving/drowsy-driving</a>. Accessed: 2023-23-03.</p>
+              <p id="ref2" className="footnote">[2] Michael H. Bonnet. 1985. Effect of Sleep Disruption on Sleep, Performance, and Mood. Sleep 8, 1 (03 1985), 11-19. <a href="https://doi.org/10.1093/sleep/8.1.11">https://doi.org/10.1093/sleep/8.1.11</a><br/> arXiv: <a href="https://academic.oup.com/sleep/article-pdf/8/1/11/13678498/080102.pdf">https://academic.oup.com/sleep/article-pdf/8/1/11/13678498/080102.pdf</a></p>
+              <p id="ref3" className="footnote">[3] Judith A. Ricci, Elsbeth Chee, Amy L. Lorandeau, and Jan Berger. 2007. Fatigue in the U.S. Workforce: Prevalence and Implications for Lost Productive Work Time. Journal of Occupational and Environmental Medicine 49, 1 (2007), 1-10. <a href="http://www.jstor.org/stable/44997095">http://www.jstor.org/stable/44997095</a></p>
             </>
         }
         />

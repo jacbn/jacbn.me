@@ -1,9 +1,8 @@
 import React from "react";
-import CanvasProject from "@/components/canvasProject";
-import styles from "@/styles/mathsart.module.css";
-import { runApollo } from "@/scripts/maths-art/apollo.js";
+import CanvasProject from "../../components/canvasProject";
+import { runApollo } from "../../scripts/maths-art/apollo.js";
 
-import RangeSlider from "@/components/rangeSlider";
+import RangeSlider from "../../components/rangeSlider";
 import CanvasScript from "./canvasScript";
 
 export default function Apollo() {
@@ -25,19 +24,19 @@ export default function Apollo() {
       script={<CanvasScript startFunction={runApollo} />}
       controls={
         <>
-          <div className={styles.sliderOptions}>
+          <div className="sliderOptions">
             <h4>Circle Ratio</h4>
             <RangeSlider {...{min: "1", max: "100", value: "50", id: "ratioSlider"}} />
           </div>
-          <div className={styles.sliderOptions}>
+          <div className="sliderOptions">
             <h4>Offset</h4>
             <RangeSlider {...{min: "0", max: "180", value: "0", id: "offsetSlider"}} />
           </div>
-          <div className={styles.sliderOptions}>
+          <div className="sliderOptions">
             <h4>Rotation</h4>
             <RangeSlider {...{min: "0", max: "359", value: "0", id: "rotationSlider"}} />
           </div>
-          <div className={styles.sliderOptions}>
+          <div className="sliderOptions">
             <h4>Iterations</h4>
             <RangeSlider {...{min: "0", max: "9", value: "6", id: "iterationSlider"}} />
           </div>

@@ -1,12 +1,11 @@
 import React from 'react';
-import styles from '@/styles/home.module.css';
 import GridSquare from './gridSquare';
 
 // todo: fill alt text of svgs
 
 export default function HomeGrid() {
   return (
-    <ol className={styles.grid}>
+    <ol className="grid">
       <GridSquare 
         title="Green Maps"
         description="reducing vehicle emissions through&nbsp;smarter navigation"
@@ -14,7 +13,7 @@ export default function HomeGrid() {
         lang="Dart"
         colour="var(--accent-greenmaps)"
         image={{
-          src: "/assets/home/logo-green-maps.png",
+          src: require("/src/assets/home/logo-green-maps.png"),
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
         link="/projects/greenmaps"
@@ -27,7 +26,7 @@ export default function HomeGrid() {
         lang="Python, Dart"
         colour="var(--accent-yawning)"
         image={{
-          src: "/assets/home/logo-yawnn-static.png",
+          src: require("/src/assets/home/logo-yawnn-static.png"),
           alt: "An animation of a headphone, a key component of the Yawnn project."
         }}
         link="/projects/yawnn/"
@@ -40,7 +39,7 @@ export default function HomeGrid() {
         lang="JS, Python"
         colour="var(--accent-maths)"
         image={{
-          src: "/assets/home/logo-maths-art.png",
+          src: require("/src/assets/home/logo-maths-art.png"),
           alt: "An Apollonian Gasket, one of the projects in the Maths Art collection."
         }}
         link="/maths-art/"

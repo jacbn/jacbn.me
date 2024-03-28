@@ -1,6 +1,5 @@
 import React from 'react';
 import CanvasProject from "@/components/canvasProject";
-import styles from "@/styles/mathsart.module.css";
 import { runRadials } from "@/scripts/maths-art/radials.js";
 
 import RangeSlider from "@/components/rangeSlider";
@@ -32,7 +31,7 @@ export default function Radials() {
           <br/>
           <details>
             <summary>Answer</summary>
-            <div className={styles.detailsIndent}>
+            <div className="detailsIndent">
               Each circle <TeX math='i' /> will go through <TeX math="\big\lvert \frac{speeds_i}{\text{hcf(}speeds\text{)}} \big\rvert" /> rotations!
               <br/>
               Isn't it surprising how a seemingly completely unrelated function shows up in a problem like this?
@@ -43,7 +42,7 @@ export default function Radials() {
           <br/>
           <details>
             <summary>Answer</summary>
-            <div className={styles.detailsIndent}>
+            <div className="detailsIndent">
               <b>Yes.</b> Without offset, all circles start/end each cycle being aligned vertically. Consider what happens from this state after one timestep; call this state <TeX math='A' />. Then, consider what happened one timestep <i>before</i> being aligned; call this state <TeX math='B' />. Since the speeds are constant, <TeX math='A' /> and <TeX math='B'/> are surely mirror images of each other. This reasoning continues all the way up to some timestep where the circles are aligned again.
               <br/><br/>
               I'll emphasise the word <i>some</i> in that last sentence. If the speeds are such that the circles align <TeX math='n'/> times in one cycle, you'll get <TeX math='n'/> lines of symmetry. So how, you ask, do you get the circles to align several times? 
@@ -52,7 +51,7 @@ export default function Radials() {
               <br/><br/>
               And that's about it! You can keep adding circles with <TeX math='kn'/>-symmetry to get more complex shapes with <TeX math='k'/> lines of symmetry. If you want to change the speed of the first circle, by the way, you can multiply all circles' speeds by some constant.
               <br/><br/>
-              <button style={{width: '40%', height: '2rem', margin: '1% 30% 3%'}} type="button" id="unlockButton" className={styles.radialsButton}>Add more examples!</button>
+              <button style={{width: '40%', height: '2rem', margin: '1% 30% 3%'}} type="button" id="unlockButton" className="radialsButton">Add more examples!</button>
             </div>
           </details>
           <br/>
@@ -60,7 +59,7 @@ export default function Radials() {
           <br/>
           <details>
             <summary>I'm leaving this one to you. Let me know what you come up with!</summary>
-            <div className={styles.detailsIndent}>
+            <div className="detailsIndent">
               If you want a hint though, it's closely related to reflective symmetry :)
             </div>
           </details>
@@ -68,19 +67,19 @@ export default function Radials() {
       }
       script={ <CanvasScript startFunction={runRadials} /> }
       controls={
-        <div className={styles.canvasProject__columnFlex}>
-          <div className={styles.canvasProject__options}>
-            <div className={styles.canvasProject__columnFlex}>
-              <button type="button" id="addCircle" className={styles.radialsButton}>Add Circle</button>
-              <button type="button" id="removeCircle" className={styles.radialsButton}>Remove Circle</button>
+        <div className="canvasProject__columnFlex">
+          <div className="canvasProject__options">
+            <div className="canvasProject__columnFlex">
+              <button type="button" id="addCircle" className="radialsButton">Add Circle</button>
+              <button type="button" id="removeCircle" className="radialsButton">Remove Circle</button>
             </div>
             <div>
-              <h4 className={styles.canvasProject__columnFlex}>Simulation Speed</h4>
+              <h4 className="canvasProject__columnFlex">Simulation Speed</h4>
               <RangeSlider {...{min: "0", max: "30", value: "5", id: "speedSlider"}} />
             </div>
-            <div className={styles.canvasProject__columnFlex}>
-              <button type="button" id="changeRollType" className={styles.radialsButton}>Change Style</button>
-              <select name="examples" id="examples" className={styles.radialsButton} defaultValue={'empty'}>
+            <div className="canvasProject__columnFlex">
+              <button type="button" id="changeRollType" className="radialsButton">Change Style</button>
+              <select name="examples" id="examples" className="radialsButton" defaultValue={'empty'}>
                 <option value="empty" disabled hidden>Examples</option>
                 <option value="3clover">3-Leaf Clover</option>
                 <option value="triangle">Triangle</option>
@@ -92,13 +91,13 @@ export default function Radials() {
             </div>
           </div>
           <ul id="circlesOptions" style={{listStyle: 'none', marginTop: '2%', width: '400px'}}>
-            <li className={styles.canvasProject__rowFlex}>
+            <li className="canvasProject__rowFlex">
               <div>Sizes</div>
               <div>Speeds</div>
               <div className="offsetHidden" hidden>Offsets</div>
             </li>
           </ul>
-          <div className={styles.canvasProject__columnFlex} style={{marginTop: '2rem'}}>
+          <div className="canvasProject__columnFlex" style={{marginTop: '2rem'}}>
             <div>
               <input type="checkbox" id="toggleOffsets" name="toggleOffsets" />
               <label htmlFor="toggleOffsets"> Enable Offsets</label>

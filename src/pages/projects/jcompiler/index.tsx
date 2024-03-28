@@ -1,11 +1,9 @@
 import React from 'react';
-import NavBar from '@/components/navbar';
-import Blog from '@/components/blog';
+import Blog from '../../../components/blog';
 
 export default function JCompiler() {
   return (
     <>
-      <NavBar showName={true} />
       <Blog 
         title="jCompiler"
         colour="lightcoral"

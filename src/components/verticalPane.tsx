@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from "@/styles/projects.module.css";
 import { Component } from "react";
 
 export default class VerticalPane extends Component<{coverImage : string, coverTitle : string, description : React.JSX.Element}, {isActive: boolean}> {
@@ -16,16 +15,16 @@ export default class VerticalPane extends Component<{coverImage : string, coverT
 
   render() {
     return (
-      <div className={`${styles.verticalPane} ${this.state.isActive ? styles.verticalPaneActive : ''}`} onClick={() => this.togglePane()}>
-        <div className={`${styles.verticalPaneTop} ${this.state.isActive ? styles.verticalPaneTopHide : ''}`}>
-          <div className={styles.verticalPaneImageContainer}>
+      <div className={`verticalPane ${this.state.isActive ? "verticalPaneActive" : ''}`} onClick={() => this.togglePane()}>
+        <div className={`verticalPaneTop ${this.state.isActive ? "verticalPaneTopHide" : ''}`}>
+          <div className="verticalPaneImageContainer">
             <img src={this.props.coverImage} />
           </div>
-          <div className={styles.verticalPaneTitle}>
+          <div className="verticalPaneTitle">
             <h2>{this.props.coverTitle}</h2>
           </div>
         </div>
-        <div className={`${styles.verticalPaneDescription} ${this.state.isActive ? '' : styles.verticalPaneDescriptionHide}`}>
+        <div className={`verticalPaneDescription ${this.state.isActive ? '' : "verticalPaneDescriptionHide"}`}>
           {this.props.description}
         </div>
       </div>
