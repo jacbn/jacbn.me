@@ -14,7 +14,7 @@ import MathsArt from './pages/maths-art';
 import Apollo from './pages/maths-art/_apollo';
 import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
-import './styles.css';
+import './styles.scss';
 
 const router = createBrowserRouter([
   {
