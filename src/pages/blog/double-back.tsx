@@ -1,34 +1,24 @@
 import React from 'react';
 import Blog from '../../components/blog';
-import NavBar from '../../components/navbar';
-
-interface BallProps {
-    value: number;
-}
-
-const Ball = (props : BallProps) => {
-    return <div className="db-ball">
-        <span>{props.value}</span>
-    </div>;
-};
+import DoubleBackPlayer from '../../components/doubleBackPlayer';
 
 export const DoubleBack = () => {
     return <>
-        <NavBar showName={true} />
         <Blog 
-        title="Double Back"
-        colour="lightcoral"
-        text={
-            <>
-                text
-            </>
-        }
+            title="Double Back"
+            colour="lightcoral"
+            text={
+                <>
+                    text
+                </>
+            }
+        />
+        <DoubleBackPlayer 
+            cols={7} 
+            gameState={[[1, 7], [5, 6], [4, 5], [3, 4], [2, 3], [1, 2], [7, 6]]}
+        
         />
     </>;
-
-    // return <div>
-    //     <Ball value={10} />
-    // </div>;
 };
 
 export default DoubleBack;

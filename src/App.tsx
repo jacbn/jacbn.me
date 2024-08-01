@@ -14,7 +14,8 @@ import MathsArt from './pages/maths-art';
 import Apollo from './pages/maths-art/_apollo';
 import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
-import './styles.css';
+import DoubleBack from './pages/blog/double-back';
+import './styles.scss';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,19 @@ const router = createBrowserRouter([
           <NavBar showName={false} />
           <Contacts />
         </>
+      },
+      {
+        path: '/blog',
+        element: <>
+          <NavBar showName={true} />
+          <Outlet />
+        </>,
+        children: [
+          {
+            path: '/blog/double-back',
+            element: <DoubleBack />
+          }
+        ]
       },
       {
         path: '/projects',
