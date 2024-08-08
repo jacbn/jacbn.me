@@ -1,0 +1,41 @@
+.db-ball {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 60px 30px, #f00, #000);
+    text-align: center;
+    line-height: 90px;
+    font-size: 2rem;
+    font-family: 'Quicksand';
+    font-weight: 800;
+    margin-bottom: 1rem;
+    &:hover {
+        background: radial-gradient(circle at 60px 30px, #f40, #000);
+    }
+    &.db-target {
+        background: radial-gradient(circle at 60px 30px, #f80, #000);
+    }
+}
+
+.db-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.db-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.db-drop {
+    position: absolute;
+    width: 125px;
+    height: 110px;
+    /* background-color: pink; */
+}

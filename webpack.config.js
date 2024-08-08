@@ -8,7 +8,7 @@ const path = require("path");
 module.exports = {
     entry: [
         path.join(__dirname, "src", "index.tsx"), 
-        path.join(__dirname, "src", "styles.css"),
+        path.join(__dirname, "src", "styles.scss"),
     ],
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -31,6 +31,14 @@ module.exports = {
                         ],
                     }
                 },
+            },
+            {
+                test: /\.s(a|c)ss$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader",
+                ],
             },
             {
                 test: /\.css$/,
