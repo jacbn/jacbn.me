@@ -20,10 +20,11 @@
   'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
   --title-primary: #ffffff;
-  --title-secondary: #191919;
+  --title-secondary: #5f353c;
   --subtitle-primary: #222222;
   --text-primary: #0a0a0a;
   --text-secondary: #7a7a7a;
+  --text-active: #0a0a0a;
   
   --title-background-gradient: linear-gradient(
     to bottom right,
@@ -34,23 +35,25 @@
   );
   --title-background-filter: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
 
-  --background-start-rgb: #e4e4e4;
-  --background-end-rgb: #e6ebec;
+  --background-start-rgb: #fac1ec;
+  --background-end-rgb: #d0f7ff;
   --card-primary: #ffffff;
-  --card-secondary: #dadada;
+  --card-border: none;
   --background-alt-dark: #e0e0e0;
   --background-alt-dark-accent: #cecece;
-  --nav-hover: #c0c0c0;
+  --menu-primary: var(--card-primary);
+  --menu-active: #dadada;
+  --menu-hover: #c0c0c0;
   --canvas-primary: #000000;
   --canvas-secondary: #aaaaaa;
-  --canvas-background: #e0e0e0;
+  --canvas-background: #ffffff;
 
   --shadow-primary: #68686880;
   --shadow-light: #00000033;
 
   --foreground-accent: #88bbee;
 
-  --accent-greenmaps: #eed19d;
+  --accent-greenmaps: #eccc92;
   --accent-yawning: #43e6c5;
   --accent-maths: #55eb93;
   --accent-compiler: #f8abeb;
@@ -77,9 +80,10 @@
   :root {
     --text-primary: #f0f0f0;
     --text-secondary: #c0c0c0;
+    --text-active: #ffffff;
     --subtitle-primary: #f0f0f0;
     --title-primary: #ffffff;
-    --title-secondary: #a0a0a0;
+    --title-secondary: #5f353c;
 
     --title-background-gradient: linear-gradient(
       to bottom right,
@@ -90,14 +94,16 @@
     );
     --title-background-filter: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     
-    --background-start-rgb: #121518;
-    --background-end-rgb: #0c0f12;
-    --card-primary: #191c20;
-    --card-secondary: #23282c;
+    --background-start-rgb: #1d071a;
+    --background-end-rgb: #010d1a;
+    --card-primary: #161421;
+    --card-border: #2e353a;
     --background-alt-dark: #0e1114;
     --background-alt-dark-accent: #090b0e;
-    --nav-hover: #394146;
-    --canvas-primary: #ffffff;
+    --menu-primary: var(--card-primary);
+    --menu-active: #23282c;
+    --menu-hover: #394146;
+    --canvas-primary: #f0f0f0;
     --canvas-secondary: #666666;
     --canvas-background: #15181a;
 
@@ -148,11 +154,10 @@ body {
 body {
   color: var(--text-primary);
   background: linear-gradient(
-      to bottom,
-      transparent,
+      135deg,
+      var(--background-start-rgb),
       var(--background-end-rgb)
-    )
-    var(--background-start-rgb);
+    );
   font-family: var(--font-sans-body);
 }
 
@@ -174,6 +179,9 @@ nav {
   align-items: center;
   height: max-content;
   background-color: var(--card-primary);
+  background-color: color-mix(in srgb, var(--card-primary) 80%, transparent);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   transition: top 0.3s;
   z-index: 99;
   box-shadow: 0 2px 5px var(--shadow-primary);
@@ -210,10 +218,11 @@ nav a {
 }
 
 blockquote {
-  background-color: var(--background-alt-dark);
+  background-color: var(--card-primary);
+  background-color: color-mix(in srgb, var(--card-primary) 60%, #fff2);
+  box-shadow: 2px 2px 5px var(--shadow-primary);
   padding: 0.5rem;
   border-radius: 0.5rem;
-  border: 0.1rem solid var(--background-alt-dark-accent);
   border-left: 0.25rem solid var(--foreground-accent);
   margin: 1.2rem 0 1.2rem 2rem;
   font-style: italic;

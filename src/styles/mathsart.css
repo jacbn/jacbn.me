@@ -181,10 +181,6 @@
         padding-bottom: 200px;
     }
 
-    .canvasProject__description p {
-        margin-bottom: 2rem;
-    }
-
     .widthContainer {
         display: flex;
         flex-flow: column;

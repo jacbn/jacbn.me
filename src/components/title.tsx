@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Title() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <div className="titleContainer">
-            <div className="titleBackground"></div>
+        <button className={`titleContainer ${isOpen ? "expanded" : ""}`} onClick={() => setIsOpen(o => !o)}>
+            <div className="titleBackground"/>
+            <div className="titleShimmer"/>
             <svg className="titleSVG">
                 <symbol id="s-text">
                     <text x="48.2%" y="60%" textAnchor='middle'>Jacob</text>
@@ -30,6 +33,9 @@ export default function Title() {
                     React &#183;  Python &#183; Java &#183; Flutter
                 </span>
             </h3>
-        </div>
-    )
+            <div className="attribution">
+                <span>"sorry i never got to say goodbye", 2024</span>
+            </div>
+        </button>
+    );
 }

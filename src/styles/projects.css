@@ -71,13 +71,12 @@ nav .navBox {
 }
 
 nav .activeNavBox {
-  background-color: var(--card-secondary);
+  color: var(--text-active);
 }
 
 nav .navBox:hover {
-  color:#fff;
-  background-color: var(--nav-hover);
-  transition: all 50ms ease-in;
+  color: var(--text-active);
+  transition: all 100ms ease-in;
 }
 
 .hamburgerMenu {
