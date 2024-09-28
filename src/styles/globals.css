@@ -9,7 +9,7 @@
 }
 
 :root {
-  --max-width: 1100px;
+  --max-width: 1600px;
   --border-radius: 12px;
   --font-mono-body: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
@@ -188,7 +188,7 @@ nav {
 }
 
 h1 {
-  font-size: calc(14pt + 2vw);
+  font-size: calc(14pt + calc(min(2vw, 2*var(--max-width)/100)));
   font-family: var(--font-sans-title);
   color: var(--subtitle-primary);
   margin: 1rem 0 0.5rem;
@@ -196,14 +196,14 @@ h1 {
 }
 
 h2 {
-  font-size: calc(12pt + 1.5vw);
+  font-size: calc(12pt + calc(min(1.5vw, 1.5*var(--max-width)/100)));
   font-family: var(--font-sans-title);
   color: var(--subtitle-primary);
   margin: 1rem 0;
 }
 
 h3 {
-  font-size: calc(10pt + 0.5vw);
+  font-size: calc(10pt + calc(min(0.5vw, 0.5*var(--max-width)/100)));
   font-family: var(--font-sans-title);
   color: var(--subtitle-primary);
   margin-bottom: 0.5rem;

@@ -33,6 +33,11 @@
     font-family: var(--font-sans-title);
     text-decoration: none;
     padding: 2%;
+    box-shadow: 4px 4px 5px var(--shadow-primary);
+}
+
+.mathsArtGridSquare > h2 {
+    margin-top: 0;
 }
 
 .mathsArtGridSquare > img {
