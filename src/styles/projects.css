@@ -39,6 +39,10 @@
   font-size: 1rem;
   line-height: 1.4rem;
   text-align: justify;
+
+  h2 {
+    margin: 2rem 0 1.5rem;
+  }
 }
 
 .blogText p:not(.footnote) {
