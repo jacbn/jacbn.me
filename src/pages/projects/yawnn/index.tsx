@@ -28,8 +28,9 @@ export default function YawNN() {
         colour="#9bfae7"
         text={
             <>
-              <h3>Dissertation</h3>
-                <p>My final year of university saw the development, implementation and analysis of a 9-month solo project and related dissertation. </p>
+              <p>My final year of university saw the development, implementation and analysis of a 9-month solo project and related dissertation. It ended up winning the CST Department Prize for a Highly Commended Dissertation, and my supervisor and I worked together to publish a <a href="https://dl.acm.org/doi/10.1145/3615592.3616854">paper</a> with the results!</p>
+
+              <h2>Dissertation</h2>
 
                 <p>I wanted to work on a project that had the genuine possibility of helping people, while also being novel, engaging and challenging. MedTech has always been interesting to me and seemed like a great place to start, so after getting in contact with the <a href="https://mobile-systems.cl.cam.ac.uk/">Mobile Systems Research Lab</a>, I was introduced to the idea, challenges, and potential of using wearable tech for yawning detection.</p>
 
@@ -76,7 +77,7 @@ export default function YawNN() {
 
                 <p>On reflection, the project was a huge success. I thoroughly enjoyed the challenge of working on something novel, and the thrills of getting things working after a lot of pain aren't something I'll forget soon. The diss ended up scoring 90 marks, one of the best in the year, which I'm also incredibly proud of. From something I initially thought was amusingly niche, yawning detection came to define a lot of my ups and downs for the year and I'm glad it did!</p>
 
-              <h3>Paper</h3>
+              <h2>Paper</h2>
 
                 <p>Following the success of the dissertation, my supervisor had the idea of converting the project into a full scientific paper. A second dataset had been made accessible a few days before the deadline of the diss (unfortunately too little time to use then), but this could now be used to provide a more robust analysis of the models, and whether they would generalise to other people.</p>
 
