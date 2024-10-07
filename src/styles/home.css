@@ -8,16 +8,19 @@
   position: relative;
   align-content: flex-start; /* put the extra space at bottom of card */
   background-color: var(--card-primary);
+  background-color: color-mix(in srgb, var(--card-primary) 50%, transparent);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--card-border);
   border-radius: 20px;
   cursor: pointer;
   -webkit-transition: all 0.5s ease; 
   transition: all 0.5s ease;
   font-family: var(--font-sans-title);
-  order: 99; /* allows custom orders below this */ 
-  flex: 0 0 31.3%;
+  order: 5;
+  flex: 0 0 30%;
   text-decoration: none;
-  box-shadow: 2px 2px 5px var(--shadow-light);
-  margin-bottom: 3%;
+  box-shadow: 4px 4px 5px var(--shadow-primary);
 }
 
 .cardTop {
@@ -41,18 +44,18 @@
   position: relative;
   text-align: center;
   color: var(--text-primary);
-  font-size: calc(8pt + 1vw);
+  font-size: calc(8pt + calc(min(1vw, var(--max-width)/100)));
   border-radius: 10px;
 }
 
 .grid {
-  width: 100%;
+  width: calc(min(100%, var(--max-width)));
   height: 100%;
   display: flex;
   justify-content: center;
   flex: 0 0 20%;
   flex-wrap: wrap;
-  gap: 0 3%; /* chrome has dodgy support row-gap for flex, using margin-bottom on card instead */
+  gap: 50px;
   padding: 2% 4% 15%;
   list-style: none;
 }
@@ -100,30 +103,76 @@
 /* title properties */
 
 .titleContainer {
-  width: 100vw;
+  position: relative;
+  width: 100%;
   height: calc(30vh + 40px); /* 40px bottom margin */
   min-height: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
 
-  background-image: var(--title-background-filter), url("../assets/home/title-bg.svg");
-  /* triangle background (title-bg.svg) modified from SVGBackgrounds.com */
   font-family: var(--font-sans-title);
+
+  transition: height 0.5s, width 0.5s;
+
+  .attribution {
+    position: absolute;
+    font-size: medium;
+    bottom: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: #ffffff;
+  }
+
+  .titleShimmer, .titleSVG, .roller {
+    transition: opacity 0.3s;
+  }
+}
+
+.titleContainer.expanded {
+  height: calc(min(50dvw, 640px));
+
+  .titleBackground {
+    width: calc(min(100dvw, 1280px));
+    min-height: unset;
+  }
+
+  .attribution {
+    opacity: 1;
+  }
+}
+
+.titleContainer:hover, .titleContainer.expanded {
+  .titleShimmer, .titleSVG, .roller {
+    opacity: 0;
+  }
 }
 
 .titleBackground {
-  /* same positioning as titleContainer */
-  width: 100vw;
-  height: calc(30vh + 40px + 5px); /* same as container, with 5 extra pixels to hide slight strobe weirdness */
-  min-height: 225px;
+  /* this is a separate element because we need to be able to click outside it if too big */
   position: absolute;
-  background-image: var(--title-background-gradient);
-  background-size: 400% 400%;
-  animation: titleBackground 20s infinite ease-in-out;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/home/sorry-i-never-got-to-say-goodbye.gif");
+  background-size: cover;
+  background-position: center 70%;
+  image-rendering: pixelated;
+  transition: width 0.5s; /* *not* height, this is managed by the parent */
 }
 
-@keyframes titleBackground {
+.titleShimmer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: var(--title-background-gradient);
+  background-size: 400% 400%;
+  animation: titleShimmerEffect 20s infinite ease-in-out;
+}
+
+@keyframes titleShimmerEffect {
   0% {
     background-position: 0% 0%;
   }
@@ -329,8 +378,7 @@
 /* Mobile */
 @media (max-width: 720px) {
   .grid {
-    gap: 0;
-    row-gap: 2%;
+    gap: 40px 20px;
     margin-bottom: 200px;
   }
   
@@ -377,10 +425,9 @@
 }
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 721px) and (max-width: 1260px) {
+@media (min-width: 721px) and (max-width: 1370px) {
   .grid {
-    gap: 8%;
-    row-gap: 5%;
+    gap: 40px;
     margin-bottom: 100px;
   }
 
@@ -416,10 +463,6 @@
     display: none;
   }
 
-}
-
-@media (prefers-color-scheme: dark) {
-  /* todo */
 }
 
 @keyframes dash {
