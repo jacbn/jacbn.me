@@ -306,12 +306,12 @@
   margin-top: 2%;
 }
 
-.tooltip {
+.iconTooltip {
   position: relative;
   display: inline-block;
 }
 
-.tooltip .tooltipText {
+.iconTooltip .tooltipText {
   
   width: 200px;
   /* todo: ^ would ideally be fit-content, but see below */
@@ -337,7 +337,7 @@
   opacity: 1;
 }
 
-.tooltip .tooltipText::after {
+.iconTooltip .tooltipText::after {
   content: "";
   position: absolute;
   top: 100%;
