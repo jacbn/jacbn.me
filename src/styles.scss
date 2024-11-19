@@ -1,6 +1,8 @@
-@import "./styles/blog.scss";
-@import "./styles/body.css";
-@import "./styles/globals.css";
-@import "./styles/home.css";
-@import "./styles/mathsart.css";
-@import "./styles/projects.css";
+@import "styles/_mixins";
+
+@import "styles/blog";
+@import "styles/body";
+@import "styles/globals";
+@import "styles/home";
+@import "styles/mathsart";
+@import "styles/projects";

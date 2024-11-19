@@ -1,8 +1,3 @@
-.subtitle {
-  font-size: 25pt;
-  margin: 20px 40px;
-}
-
 .card {
   display: grid;
   position: relative;
@@ -44,7 +39,7 @@
   position: relative;
   text-align: center;
   color: var(--text-primary);
-  font-size: calc(8pt + calc(min(1vw, var(--max-width)/100)));
+  @include font-size(1.2rem);
   border-radius: 10px;
 }
 
@@ -94,7 +89,7 @@
   position: absolute;
   justify-self: right;
   align-self: flex-end;
-  font-size: 12pt;
+  @include font-size(0.9rem);
   text-align: right;
   color:#a0a0a0;
   margin: 0 5% 3% 0;
@@ -105,7 +100,7 @@
 .titleContainer {
   position: relative;
   width: 100%;
-  height: calc(30vh + 40px); /* 40px bottom margin */
+  height: calc(35vh + 40px); /* 40px bottom margin */
   min-height: 220px;
   display: flex;
   flex-direction: column;
@@ -120,7 +115,7 @@
 
   .attribution {
     position: absolute;
-    font-size: medium;
+    @include font-size(1rem);
     bottom: 1rem;
     opacity: 0;
     transition: opacity 0.3s;
@@ -156,7 +151,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("../assets/home/sorry-i-never-got-to-say-goodbye.gif");
+  background-image: url("assets/home/sorry-i-never-got-to-say-goodbye.gif");
   background-size: cover;
   background-position: center 70%;
   image-rendering: pixelated;
@@ -191,6 +186,10 @@
   display: block;
   margin-bottom: 20px;
   z-index: 1;
+
+  > symbol:first-child {
+    margin-top: 20px;
+  }
 }
 
 .titleBackgroundSVG {
@@ -199,10 +198,10 @@
 }
 
 .titleText {
-  font-size: calc(6rem + 3vw);
+  @include font-size(calc(4vmin + 800%));
   font-weight: 500;
   stroke-dasharray: 0px 110px;
-  stroke-width: 3px;
+  stroke-width: calc(0.2rem);
   stroke-dashoffset: 0;
 }
 
@@ -244,7 +243,7 @@
 
 .roller {
   width: 100%;
-  height: 2.5rem;
+  height: 2.4rem;
   line-height: 2rem;
   text-align: center;
   display: flex;
@@ -306,12 +305,12 @@
   margin-top: 2%;
 }
 
-.tooltip {
+.iconTooltip {
   position: relative;
   display: inline-block;
 }
 
-.tooltip .tooltipText {
+.iconTooltip .tooltipText {
   
   width: 200px;
   /* todo: ^ would ideally be fit-content, but see below */
@@ -337,7 +336,7 @@
   opacity: 1;
 }
 
-.tooltip .tooltipText::after {
+.iconTooltip .tooltipText::after {
   content: "";
   position: absolute;
   top: 100%;
