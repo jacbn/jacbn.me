@@ -9,10 +9,10 @@ export default function Title() {
             <div className="titleShimmer"/>
             <svg className="titleSVG" viewBox="0 0 600 300">
                 <symbol id="s-text">
-                    <text x="48.2%" y="185" textAnchor='middle'>Jacob</text>
+                    <text x="44.2%" y="185" textAnchor='middle'>Jacob</text>
                 </symbol>
                 <symbol id="s-text2">
-                    <text x="51.5%" y="275" textAnchor='middle'>Brown</text>
+                    <text x="55.5%" y="275" textAnchor='middle'>Brown</text>
                 </symbol>
                 <mask id="mask">
                     <rect width="100%" height="100%" fill="white" />
