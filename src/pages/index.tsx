@@ -86,7 +86,7 @@ export default function Page() {
   return (
     <main>
       <Title />
-      <NavBar showName={false} activePage={location.pathname} />
+      <NavBar showName={false} />
       <PageContent pageName={location.pathname} />
     </main> 
   );

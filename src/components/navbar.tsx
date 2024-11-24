@@ -39,8 +39,6 @@ export function HamburgerBox() {
   );
 }
 
-// extends React.Component<{showName: boolean, activePage?: string}, {windowWidth : number}> {
-
 interface NavBarProps {
   showName: boolean;
 }

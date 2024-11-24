@@ -1,5 +1,6 @@
 import React from "react";
 import CanvasProject from "../../components/canvasProject";
+// @ts-expect-error no types
 import { runApollo } from "../../scripts/maths-art/apollo.js";
 
 import RangeSlider from "../../components/rangeSlider";

@@ -1,6 +1,6 @@
 import React from 'react';
 import CanvasProject from "../../components/canvasProject";
-// @ts-ignore
+// @ts-expect-error no types
 import { runLotfollahDome } from "../../scripts/maths-art/lotfollah.js";
 import RangeSlider from "../../components/rangeSlider";
 import CanvasScript from "./canvasScript";

@@ -110,10 +110,7 @@ const router = createBrowserRouter([
   
 ]);
 
-interface AppProps extends React.HTMLAttributes<HTMLDivElement> {
-}
-
-export const App = (props : AppProps) => {
+export const App = () => {
     return (
       <React.StrictMode>
         <main>

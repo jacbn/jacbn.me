@@ -1,6 +1,6 @@
 import React from 'react';
 import CanvasProject from "../../components/canvasProject";
-// @ts-ignore
+// @ts-expect-error no types
 import { runRadials } from "../../scripts/maths-art/radials.js";
 
 import RangeSlider from "../../components/rangeSlider";
