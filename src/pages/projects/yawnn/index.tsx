@@ -1,25 +1,9 @@
-// @ts-ignore
-import { animationOnLoad } from '../../../scripts/animatedImages';
-import { useEffect } from 'react';
 import React from 'react';
 import Blog from '../../../components/blog';
-
-export function AnimatedImage() {
-  useEffect(() => animationOnLoad([
-    {
-      hoverId: '#blogImageContainerYawningDetection', 
-      imageId: '#blogImageYawningDetection',
-      srcStatic: '/src/assets/home/logo-yawnn-static.png', 
-      srcAnimated: '/src/assets/home/logo-yawnn.gif',
-    }
-  ]), []);
-  return <></>;
-}
 
 export default function YawNN() {
   return (
     <>
-      <AnimatedImage />
       <Blog 
         title="Yawning Detection"
         image={{

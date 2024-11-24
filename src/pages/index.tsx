@@ -1,31 +1,15 @@
 
 import React from 'react';
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AppIcon from '../components/appIcon';
 import HomeGrid from '../components/homeGrid';
 import HomeText from '../components/homeText';
 import NavBar from '../components/navbar';
 import Title from '../components/title';
-// @ts-ignore
-import { animationOnLoad } from '../scripts/animatedImages';
-
-export function HomeScript() {
-  useEffect(() => animationOnLoad([
-    {
-      hoverId: '#cardYawningDetection', 
-      imageId: '#gridImageYawningDetection',
-      srcStatic: '/src/assets/home/logo-yawnn-static.png', 
-      srcAnimated: '/src/assets/home/logo-yawnn.gif',
-    }
-  ]), []);
-  return <></>;
-}
 
 export function Home() {
   return (
     <>
-      <HomeScript />
       <h1>My Projects:</h1>
       <HomeGrid />
     </>

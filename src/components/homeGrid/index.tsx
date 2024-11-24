@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GridSquare from './gridSquare';
 
 // todo: fill alt text of svgs
 
 export default function HomeGrid() {
+  
+  const [animatedImageIndex, setAnimatedImageIndex] = useState<number | undefined>(undefined);
+
   return (
     <ol className="grid">
       <GridSquare 
@@ -12,7 +15,7 @@ export default function HomeGrid() {
         year="2022"
         lang="Dart"
         colour="var(--accent-greenmaps)"
-        image={{
+        imageProps={{
           src: "/src/assets/home/logo-green-maps.png",
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
@@ -25,12 +28,16 @@ export default function HomeGrid() {
         year="2022-2023"
         lang="Python, Dart"
         colour="var(--accent-yawning)"
-        image={{
+        imageProps={{
           src: "/src/assets/home/logo-yawnn-static.png",
+          srcAnimated: "/src/assets/home/logo-yawnn.gif",
+          animated: animatedImageIndex === 0,
           alt: "An animation of a headphone, a key component of the Yawnn project."
         }}
         link="/projects/yawnn/"
         podiumNum={1}
+        onMouseOver={() => setAnimatedImageIndex(0)}
+        onMouseLeave={() => setAnimatedImageIndex(undefined)}
       />
       <GridSquare 
         title="Maths Art"
@@ -38,7 +45,7 @@ export default function HomeGrid() {
         year="2016 onwards"
         lang="JS, Python"
         colour="var(--accent-maths)"
-        image={{
+        imageProps={{
           src: "/src/assets/home/logo-maths-art.png",
           alt: "An Apollonian Gasket, one of the projects in the Maths Art collection."
         }}
@@ -51,7 +58,7 @@ export default function HomeGrid() {
         year="2021-2022"
         lang="OCaml, Java"
         colour="var(--accent-compiler)"
-        image={{
+        imageProps={{
           src: "",
           alt: ""
         }}
@@ -64,7 +71,7 @@ export default function HomeGrid() {
         year="2021"
         lang="Java"
         colour="var(--accent-sentiment)"
-        image={{
+        imageProps={{
           src: "",
           alt: ""
         }}
@@ -77,7 +84,7 @@ export default function HomeGrid() {
         year="2020-2021"
         lang="Python"
         colour="var(--accent-pandemic)"
-        image={{
+        imageProps={{
           src: "",
           alt: ""
         }}
@@ -90,7 +97,7 @@ export default function HomeGrid() {
         year="2017 onwards"
         lang="C#"
         colour="var(--accent-game-dev)"
-        image={{
+        imageProps={{
           src: "",
           alt: ""
         }}
