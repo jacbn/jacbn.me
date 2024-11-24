@@ -1,3 +1,5 @@
+@use "mixins";
+
 .card {
   display: grid;
   position: relative;
@@ -39,7 +41,7 @@
   position: relative;
   text-align: center;
   color: var(--text-primary);
-  @include font-size(1.2rem);
+  @include mixins.font-size(1.2rem);
   border-radius: 10px;
 }
 
@@ -89,7 +91,7 @@
   position: absolute;
   justify-self: right;
   align-self: flex-end;
-  @include font-size(0.9rem);
+  @include mixins.font-size(0.9rem);
   text-align: right;
   color:#a0a0a0;
   margin: 0 5% 3% 0;
@@ -115,7 +117,7 @@
 
   .attribution {
     position: absolute;
-    @include font-size(1rem);
+    @include mixins.font-size(1rem);
     bottom: 1rem;
     opacity: 0;
     transition: opacity 0.3s;
@@ -198,7 +200,7 @@
 }
 
 .titleText {
-  @include font-size(calc(4vmin + 800%));
+  @include mixins.font-size(calc(4vmin + 800%));
   font-weight: 500;
   stroke-dasharray: 0px 110px;
   stroke-width: calc(0.2rem);
