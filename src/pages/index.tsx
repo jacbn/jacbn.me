@@ -56,14 +56,14 @@ export function Contacts() {
       <>
         <p style={{textAlign: 'center'}}>I'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
           <div className="contactIconsContainer"> 
-            <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={"src/assets/contacts/linkedin.svg"} />
-            <AppIcon href="https://github.com/jacbn" image={"src/assets/contacts/github.svg"} />
-            <AppIcon hoverText="jacob@jacbn.me" href="mailto:jacob@jacbn.me" image={"src/assets/contacts/email.svg"} />
-            <AppIcon href="https://m.me/100054856335934" image={"src/assets/contacts/messenger.svg"} />
-            <AppIcon href="https://twitter.com/jcbbn" image={"src/assets/contacts/twitter.svg"} />
-            <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"src/assets/contacts/spotify.svg"} />
-            <AppIcon hoverText="@jzabn" image={"src/assets/contacts/discord.svg"} />
-            <AppIcon hoverText="SW-0524-5461-9909" image={"src/assets/contacts/switch.svg"} />
+            <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={"assets/contacts/linkedin.svg"} />
+            <AppIcon href="https://github.com/jacbn" image={"assets/contacts/github.svg"} />
+            <AppIcon hoverText="jacob@jacbn.me" href="mailto:jacob@jacbn.me" image={"assets/contacts/email.svg"} />
+            <AppIcon href="https://m.me/100054856335934" image={"assets/contacts/messenger.svg"} />
+            <AppIcon href="https://twitter.com/jcbbn" image={"assets/contacts/twitter.svg"} />
+            <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"assets/contacts/spotify.svg"} />
+            <AppIcon hoverText="@jzabn" image={"assets/contacts/discord.svg"} />
+            <AppIcon hoverText="SW-0524-5461-9909" image={"assets/contacts/switch.svg"} />
           </div>
       </>
     }

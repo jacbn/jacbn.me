@@ -6,7 +6,7 @@ export default function GreenMaps() {
     <Blog 
       title="Green Maps"
       image={{
-        src: "/src/assets/home/logo-green-maps.png",
+        src: "/assets/home/logo-green-maps.png",
         alt: "A leaf on a wheat background, the logo of the Green Maps project."
       }}
       colour="wheat"

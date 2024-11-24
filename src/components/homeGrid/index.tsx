@@ -16,7 +16,7 @@ export default function HomeGrid() {
         lang="Dart"
         colour="var(--accent-greenmaps)"
         imageProps={{
-          src: "/src/assets/home/logo-green-maps.png",
+          src: "/assets/home/logo-green-maps.png",
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
         link="/projects/greenmaps"
@@ -29,8 +29,8 @@ export default function HomeGrid() {
         lang="Python, Dart"
         colour="var(--accent-yawning)"
         imageProps={{
-          src: "/src/assets/home/logo-yawnn-static.png",
-          srcAnimated: "/src/assets/home/logo-yawnn.gif",
+          src: "/assets/home/logo-yawnn-static.png",
+          srcAnimated: "/assets/home/logo-yawnn.gif",
           animated: animatedImageIndex === 0,
           alt: "An animation of a headphone, a key component of the Yawnn project."
         }}
@@ -46,7 +46,7 @@ export default function HomeGrid() {
         lang="JS, Python"
         colour="var(--accent-maths)"
         imageProps={{
-          src: "/src/assets/home/logo-maths-art.png",
+          src: "/assets/home/logo-maths-art.png",
           alt: "An Apollonian Gasket, one of the projects in the Maths Art collection."
         }}
         link="/maths-art/"
