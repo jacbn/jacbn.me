@@ -74,6 +74,11 @@
   );
 
   --project-body-padding: 7vw;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -212,6 +217,13 @@ h3 {
 
 a {
   color: inherit;
+  text-decoration: underline;
+  
+  &:hover {
+    color: #646cff;
+    text-decoration: none;
+  }
+}
 }
 
 nav a {

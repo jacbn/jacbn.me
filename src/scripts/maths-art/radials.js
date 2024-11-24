@@ -52,7 +52,7 @@ export function runRadials() {
 }
 
 function initialiseDOMElements() {
-    window.$ = window.jQuery = require('jquery'); // eslint-disable-line -- imported via CDN in html
+    // window.$ = window.jQuery = require('jquery'); // eslint-disable-line -- imported via CDN in html
     canvas = document.getElementById("mainCanvas");
     ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);

@@ -1,8 +1,9 @@
 import React from 'react';
-import CanvasProject from "@/components/canvasProject";
-import { runRadials } from "@/scripts/maths-art/radials.js";
+import CanvasProject from "../../components/canvasProject";
+// @ts-ignore
+import { runRadials } from "../../scripts/maths-art/radials.js";
 
-import RangeSlider from "@/components/rangeSlider";
+import RangeSlider from "../../components/rangeSlider";
 import TeX from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
 import CanvasScript from "./canvasScript";

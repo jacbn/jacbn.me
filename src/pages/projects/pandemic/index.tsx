@@ -14,7 +14,7 @@ export default function Pandemic() {
             <p>Of course, this model isn't perfect. It doesn't take into account the possible virus mutations, the effects of lockdown, etc, partly because the data for how effective these are isn't known. So, we turn to looking at real world data to see how effective these measures are.</p>
             
             <h3>Figure 1: Simulated infection over time in a population of 100,000.</h3>
-            <img className="pandemicIm" src={require("/src/assets/pandemic/Figure_2.png")}/>
+            <img className="pandemicIm" src={"/src/assets/pandemic/Figure_2.png"}/>
             
             <h2>Data Analysis</h2>
             <p>The second half of the project involved processing data (gathered from researchers at John Hopkins University), and looking into the effectiveness of certain measures introduced by the government, such as lockdowns, mask wearing, etc. The first and simplest thing to do, of course, was to format the data into a processable form and plot it; Figure 2 shows a snapshot of the data running up to the 12th Dec 2020.</p>
@@ -22,9 +22,9 @@ export default function Pandemic() {
             <p>A clear example is the first lockdown/reopen in the UK. We can see that initially the R-value was far above 3, and immediately after the lockdown came into effect (March 23rd, 2020) the R-value began to drop significantly, and the number of new infections (i.e. the x-gap between points) slowed. Eventually, the R-value broke below 1 and the number of infected decreased. However, almost immediately after the reopening, this pivoted into a loop and infections jumped and the R-value increased above 1 (unfortunately, some of the data was incorrect for the UK during the following period so the R-value appears to drop far below 0 — it picks back up again on the left side a few weeks later).</p>
             
             <h3>Figure 2: Infections & Deaths over time for the UK, 2020-01-22 to 2020-12-12</h3>
-            <img className="pandemicIm" src={require("/src/assets/pandemic/Figure_4.png")}/>
+            <img className="pandemicIm" src={"/src/assets/pandemic/Figure_4.png"}/>
             <h3>Figure 3: Phase-space plot of R-value against number of people infected (4 countries)</h3>
-            <img className="pandemicIm" src={require("/src/assets/pandemic/Figure_5.png")}/>
+            <img className="pandemicIm" src={"/src/assets/pandemic/Figure_5.png"}/>
         </>
     }
     />;

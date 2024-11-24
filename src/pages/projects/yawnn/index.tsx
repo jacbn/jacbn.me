@@ -1,3 +1,4 @@
+// @ts-ignore
 import { animationOnLoad } from '../../../scripts/animatedImages';
 import { useEffect } from 'react';
 import React from 'react';
@@ -8,8 +9,8 @@ export function AnimatedImage() {
     {
       hoverId: '#blogImageContainerYawningDetection', 
       imageId: '#blogImageYawningDetection',
-      srcStatic: require('/src/assets/home/logo-yawnn-static.png'), 
-      srcAnimated: require('/src/assets/home/logo-yawnn.gif'),
+      srcStatic: '/src/assets/home/logo-yawnn-static.png', 
+      srcAnimated: '/src/assets/home/logo-yawnn.gif',
     }
   ]), []);
   return <></>;
@@ -22,7 +23,7 @@ export default function YawNN() {
       <Blog 
         title="Yawning Detection"
         image={{
-          src: require("/src/assets/home/logo-yawnn-static.png"),
+          src: "/src/assets/home/logo-yawnn-static.png",
           alt: ""
         }}
         colour="#9bfae7"
@@ -50,8 +51,8 @@ export default function YawNN() {
 
                 <div className="imageContainer">
                   <div className="doubleImage">
-                    <img style={{width: "35%"}} src={require('/src/assets/yawnn/app/recording.png')} alt="YeIMU Recording" />
-                    <img style={{width: "35%"}} src={require('/src/assets/yawnn/app/plots.png')} alt="YeIMU Plots" />
+                    <img style={{width: "35%"}} src={'/src/assets/yawnn/app/recording.png'} alt="YeIMU Recording" />
+                    <img style={{width: "35%"}} src={'/src/assets/yawnn/app/plots.png'} alt="YeIMU Plots" />
                   </div>
                   <p>Figure 1: The YeIMU app. The first shows the main screen once connected to the earphones and recording, the second a post-recording graph accessible from the 'View Results' button on the main screen.</p>
                 </div>
@@ -61,8 +62,8 @@ export default function YawNN() {
 
                 <div className="imageContainer">
                   <div className="doubleImage">
-                    <img style={{width: "49%"}} src={require('/src/assets/yawnn/prelim/eating.png')} alt="YeIMU Recording" />
-                    <img style={{width: "49%"}} src={require('/src/assets/yawnn/prelim/yawn.png')} alt="YeIMU Plots" />
+                    <img style={{width: "49%"}} src={'/src/assets/yawnn/prelim/eating.png'} alt="YeIMU Recording" />
+                    <img style={{width: "49%"}} src={'/src/assets/yawnn/prelim/yawn.png'} alt="YeIMU Plots" />
                   </div>
                   <p>Figure 2: Preliminary analysis. Eating is characterised by oscillatory gyroscope readings in all axes at intervals of just under 2Hz, with mostly flat accelerometer readings. Yawning is characterised by a long period of flat readings in both sets of axes, followed by a spike in activity in gyroscope readings, most notably in the Z-axis.</p>
                 </div>

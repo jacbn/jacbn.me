@@ -16,12 +16,12 @@ class animatedImage {
 }
 
 export function animationOnLoad(images) {
-    window.$ = window.jQuery = require('jquery'); // eslint-disable-line
+    // window.$ = window.jQuery = require('jquery');
 
-    images.forEach(i => {
-        const image = new animatedImage(i);
-        window.$(image.hoverId).on("mouseenter", () => {image.enable();});
-        window.$(image.hoverId).on("mouseleave", () => {image.disable();});
-    });
+    // images.forEach(i => {
+    //     const image = new animatedImage(i);
+    //     window.$(image.hoverId).on("mouseenter", () => {image.enable();});
+    //     window.$(image.hoverId).on("mouseleave", () => {image.disable();});
+    // });
 }
 
