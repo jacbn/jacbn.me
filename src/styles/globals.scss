@@ -1,11 +1,13 @@
+@use "mixins";
+
 @font-face {
   font-family: 'Quicksand';
-  src: url('assets/fonts/Quicksand-variable.ttf') format('truetype');
+  src: url('/assets/fonts/Quicksand-variable.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('assets/fonts/Inter-variable.ttf') format('truetype');
+  src: url('/assets/fonts/Inter-variable.ttf') format('truetype');
 }
 
 :root {
@@ -74,6 +76,11 @@
   );
 
   --project-body-padding: 7vw;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -167,7 +174,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  @include font-size(1rem);
+  @include mixins.font-size(1rem);
 }
 
 nav {
@@ -189,7 +196,7 @@ nav {
 }
 
 h1 {
-  @include font-size(2.2rem);
+  @include mixins.font-size(2.2rem);
   font-family: var(--font-sans-title);
   color: var(--subtitle-primary);
   margin: 1rem 0 0.5rem;
@@ -197,14 +204,14 @@ h1 {
 }
 
 h2 {
-  @include font-size(1.8rem);
+  @include mixins.font-size(1.8rem);
   font-family: var(--font-sans-title);
   color: var(--subtitle-primary);
   margin: 1rem 0;
 }
 
 h3 {
-  @include font-size(1.5rem);
+  @include mixins.font-size(1.5rem);
   font-family: var(--font-sans-title);
   color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
@@ -212,6 +219,12 @@ h3 {
 
 a {
   color: inherit;
+  text-decoration: underline;
+  
+  &:hover {
+    color: #646cff;
+    text-decoration: none;
+  }
 }
 
 nav a {

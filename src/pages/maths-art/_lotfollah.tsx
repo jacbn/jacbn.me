@@ -1,8 +1,8 @@
 import React from 'react';
-import CanvasProject from "@/components/canvasProject";
-import { runLotfollahDome } from "@/scripts/maths-art/lotfollah.js";
-
-import RangeSlider from "@/components/rangeSlider";
+import CanvasProject from "../../components/canvasProject";
+// @ts-expect-error no types
+import { runLotfollahDome } from "../../scripts/maths-art/lotfollah.js";
+import RangeSlider from "../../components/rangeSlider";
 import CanvasScript from "./canvasScript";
 
 export default function Lotfollah() {

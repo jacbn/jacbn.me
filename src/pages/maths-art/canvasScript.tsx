@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from "react";
-import resetColourSchemeListeners from '@/scripts/maths-art/resetColourSchemes';
+// @ts-expect-error no types
+import resetColourSchemeListeners from '../../scripts/maths-art/resetColourSchemes'; 
 
 export default function CanvasScript({startFunction} : {startFunction: () => void}) {
     useEffect(() => {

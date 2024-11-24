@@ -1,30 +1,15 @@
 
 import React from 'react';
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AppIcon from '../components/appIcon';
 import HomeGrid from '../components/homeGrid';
 import HomeText from '../components/homeText';
 import NavBar from '../components/navbar';
 import Title from '../components/title';
-import { animationOnLoad } from '../scripts/animatedImages';
-
-export function HomeScript() {
-  useEffect(() => animationOnLoad([
-    {
-      hoverId: '#cardYawningDetection', 
-      imageId: '#gridImageYawningDetection',
-      srcStatic: require('/src/assets/home/logo-yawnn-static.png'), 
-      srcAnimated: require('/src/assets/home/logo-yawnn.gif'),
-    }
-  ]), []);
-  return <></>;
-}
 
 export function Home() {
   return (
     <>
-      <HomeScript />
       <h1>My Projects:</h1>
       <HomeGrid />
     </>
@@ -71,14 +56,14 @@ export function Contacts() {
       <>
         <p style={{textAlign: 'center'}}>I'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
           <div className="contactIconsContainer"> 
-            <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={require("../assets/contacts/linkedin.svg")} />
-            <AppIcon href="https://github.com/jacbn" image={require("../assets/contacts/github.svg")} />
-            <AppIcon hoverText="jacob@jacbn.me" href="mailto:jacob@jacbn.me" image={require("../assets/contacts/email.svg")} />
-            <AppIcon href="https://m.me/100054856335934" image={require("../assets/contacts/messenger.svg")} />
-            <AppIcon href="https://twitter.com/jcbbn" image={require("../assets/contacts/twitter.svg")} />
-            <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={require("../assets/contacts/spotify.svg")} />
-            <AppIcon hoverText="@jzabn" image={require("../assets/contacts/discord.svg")} />
-            <AppIcon hoverText="SW-0524-5461-9909" image={require("../assets/contacts/switch.svg")} />
+            <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={"/assets/contacts/linkedin.svg"} />
+            <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} />
+            <AppIcon hoverText="jacob@jacbn.me" href="mailto:jacob@jacbn.me" image={"/assets/contacts/email.svg"} />
+            <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} />
+            <AppIcon href="https://twitter.com/jcbbn" image={"/assets/contacts/twitter.svg"} />
+            <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"/assets/contacts/spotify.svg"} />
+            <AppIcon hoverText="@jzabn" image={"/assets/contacts/discord.svg"} />
+            <AppIcon hoverText="SW-0524-5461-9909" image={"/assets/contacts/switch.svg"} />
           </div>
       </>
     }
@@ -101,7 +86,7 @@ export default function Page() {
   return (
     <main>
       <Title />
-      <NavBar showName={false} activePage={location.pathname} />
+      <NavBar showName={false} />
       <PageContent pageName={location.pathname} />
     </main> 
   );

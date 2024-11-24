@@ -1,8 +1,8 @@
-@import "styles/_mixins";
+@use "styles/_mixins";
 
-@import "styles/blog";
-@import "styles/body";
-@import "styles/globals";
-@import "styles/home";
-@import "styles/mathsart";
-@import "styles/projects";
+@use "styles/blog";
+@use "styles/body";
+@use "styles/globals";
+@use "styles/home";
+@use "styles/mathsart";
+@use "styles/projects";
