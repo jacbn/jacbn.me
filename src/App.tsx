@@ -15,6 +15,7 @@ import Apollo from './pages/maths-art/_apollo';
 import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
 import './styles.scss';
+import BlogPost from './components/blogPost';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,13 @@ const router = createBrowserRouter([
           <Title />
           <NavBar showName={false} />
           <Contacts />
+        </>
+      },
+      {
+        path: '/blog/:id',
+        element: <>
+          <NavBar showName={true} />
+          <BlogPost />
         </>
       },
       {
