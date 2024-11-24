@@ -31,7 +31,10 @@ export function runRadials() {
     // with preloading caching content, it's possible for this to run twice without a full page reload.
     // so, we'll need to manually reset everything to its initial state ourselves.
 
-    window.$("[id^=circleOptions]").remove(); // remove all circle options html elements
+    // remove all circle options html elements
+    document.querySelectorAll("[id^=circleOptions]").forEach(function(element) {
+        element.remove();
+    }); 
 
     circleRadii = [0];
     circleSpeeds = [4];
@@ -51,8 +54,14 @@ export function runRadials() {
     }
 }
 
+function addEventListenerOnce(target, eventType, callback) {
+    var node = target;
+    var clone = node.cloneNode(true);
+    node.parentNode.replaceChild(clone, node);
+    clone.addEventListener(eventType, callback);
+}
+
 function initialiseDOMElements() {
-    // window.$ = window.jQuery = require('jquery'); // eslint-disable-line -- imported via CDN in html
     canvas = document.getElementById("mainCanvas");
     ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
@@ -65,18 +74,24 @@ function initialiseDOMElements() {
     speedSlider.oninput = function(event) {
         reset(event.target.value/10.0);
     };
-    window.$(document).ready(function() {
-        window.$('#addCircle').click(function () {addCircle();});
-        window.$('#removeCircle').click(function () {removeCircle();});
-        window.$('#changeRollType').click(function() {changeRollType();});
-        window.$('#unlockButton').click(function() {addExamples(); window.$('#unlockButton').attr("disabled", true);});
-        window.$('#toggleOffsets').click(function() {toggleOffsets();});
-        window.$('#offsetUnit').change(function(event) {toggleOffsetUnit(event.target.value);});
-        window.$('#examples').val('empty');
-        window.$('#examples').change(function(event) {setExample(event.target.value);});
+
+    addEventListenerOnce(document.getElementById('addCircle'), 'click', () => addCircle());
+    addEventListenerOnce(document.getElementById('removeCircle'), 'click', () => removeCircle());
+    addEventListenerOnce(document.getElementById('changeRollType'), 'click', () => changeRollType());
+    addEventListenerOnce(document.getElementById('unlockButton'), 'click', function() {
+        addExamples();
+        document.getElementById('unlockButton').setAttribute('disabled', true);
     });
-    circlesOptionsDiv = window.$('#circlesOptions');
-    circlesOptionsDivInitial = circlesOptionsDiv.html();
+    addEventListenerOnce(document.getElementById('toggleOffsets'), 'click', () => toggleOffsets());
+    addEventListenerOnce(document.getElementById('offsetUnit'), 'change', function(event) {
+        toggleOffsetUnit(event.target.value);
+    });
+    document.getElementById('examples').value = 'empty';
+    addEventListenerOnce(document.getElementById('examples'), 'change', function(event) {
+        setExample(event.target.value);
+    });
+    circlesOptionsDiv = document.getElementById('circlesOptions');
+    circlesOptionsDivInitial = circlesOptionsDiv.innerHTML;
 }
 
 function reset(speed=baseSpeed, exampleName='empty') {
@@ -85,7 +100,7 @@ function reset(speed=baseSpeed, exampleName='empty') {
     globalPhase = 0;
     baseSpeed = speed;
 
-    window.$('#examples').val(exampleName);
+    document.getElementById('examples').value = exampleName;
 
     //recalculate hcf (needed to only draw the path once)
     const arr = circleSpeeds.filter(x => x != 0).map(x => Math.abs(x));
@@ -170,53 +185,92 @@ function addCircle(rad=40, spe=2, off=0, initial=false) {
     circleOffsets.push(off, ptrOff);
     reset();
     
-    const li = window.$('<li>').prop('id', 'circleOptions' + circleRadii.length).css('display', 'flex').css('justify-content', 'space-around').css('align-items', 'center');
+    const li = document.createElement('li');
+    li.id = 'circleOptions' + circleRadii.length;
+    li.style.display = 'flex';
+    li.style.justifyContent = 'space-around';
+    li.style.alignItems = 'center';
 
-    
     if (initial) {
         li.append(makeSizeInput(circleRadii.length - 2), makeEmptySpace('0'), makeEmptySpace('0', true)); // -1 for 0-indexing, -1 for the pointer
         circlesOptionsDiv.append(li);
     } else {
         const index = circleRadii.length - 2;
         li.append(makeSizeInput(index), makeSpeedInput(index), makeOffsetInput(index));
-        window.$('#circleOptionsPtr').replaceWith(li);
+        const circleOptionsPtr = document.getElementById('circleOptionsPtr');
+        circleOptionsPtr.replaceWith(li);
     } 
 
     makePointerOptions();
 }
 
 function makePointerOptions() {
-    const ptr = window.$('<li>').prop('id', 'circleOptionsPtr').css('display', 'flex').css('justify-content', 'space-around').css('align-items', 'center');
+    const ptr = document.createElement('li');
+    ptr.id = 'circleOptionsPtr';
+    ptr.style.display = 'flex';
+    ptr.style.justifyContent = 'space-around';
+    ptr.style.alignItems = 'center';
     ptr.append(makeEmptySpace('Pointer'), makeSpeedInput(circleRadii.length - 1), makeOffsetInput(circleRadii.length - 1));
     circlesOptionsDiv.append(ptr);
 }
 
 function makeSizeInput(index) {
-    return window.$('<input>').css('width', '8em').prop('type', 'number').prop('value', circleRadii[index]).prop('min', 0).prop('max', 100).prop('step', 10).on('input', function(event) {
+    const input = document.createElement('input');
+    input.style.width = '8em';
+    input.type = 'number';
+    input.value = circleRadii[index];
+    input.min = 0;
+    input.max = 100;
+    input.step = 10;
+    input.addEventListener('input', function(event) {
         circleRadii[index] = parseFloat(event.target.value);
         reset();
     });
+    return input;
 }
 
 function makeSpeedInput(index) {
-    return window.$('<input>').css('width', '8em').prop('type', 'number').prop('value', circleSpeeds[index]).prop('min', -10).prop('max', 10).prop('step', 1).on('input', function(event) {
+    const input = document.createElement('input');
+    input.style.width = '8em';
+    input.type = 'number';
+    input.value = circleSpeeds[index];
+    input.min = -10;
+    input.max = 10;
+    input.step = 1;
+    input.addEventListener('input', function(event) {
         circleSpeeds[index] = parseFloat(event.target.value);
         reset();
     });
+    return input;
 }
 
 function makeOffsetInput(index) {
-    return window.$('<input>').css('width', '8em').addClass('offsetHidden').prop('hidden', !offsetsEnabled).prop('type', 'number').prop('value', 0).prop('min', 0).prop('max', 360).prop('step', 5).on('input', function(event) {
+    const input = document.createElement('input');
+    input.style.width = '8em';
+    input.classList.add('offsetHidden');
+    input.hidden = !offsetsEnabled;
+    input.type = 'number';
+    input.value = 0;
+    input.min = 0;
+    input.max = 360;
+    input.step = 5;
+    input.addEventListener('input', function(event) {
         circleOffsets[index] = parseFloat(event.target.value);
         reset();
     });
+    return input;
 }
 
 function makeEmptySpace(value, isOffset=false) {
+    const input = document.createElement('input');
+    input.style.width = '8em';
+    input.value = value;
+    input.disabled = true;
     if (isOffset) {
-        return window.$('<input>').css('width', '8em').addClass('offsetHidden').attr('hidden', true).attr('disabled', true).prop('value', value);
+        input.classList.add('offsetHidden');
+        input.hidden = true;
     }
-    return window.$('<input>').css('width', '8em').prop('value', value).attr('disabled', true);
+    return input;
 }
 
 function removeCircle() {
@@ -232,9 +286,9 @@ function removeCircle() {
         circleOffsets.push(ptrOff);
 
         // removing a circle changes the index of the pointer in the circleSpeeds array, so remake to update
-        window.$('#circleOptionsPtr').remove();
+        document.getElementById('circleOptionsPtr').remove();
         makePointerOptions();
-        window.$('#circleOptions' + (circleRadii.length+1)).remove();
+        document.getElementById('circleOptions' + (circleRadii.length + 1)).remove();
 
         reset();
     }
@@ -250,11 +304,16 @@ function changeRollType(val=rollType, force=false) {
 }
 
 function setExample(example) {
-    circlesOptionsDiv.html(circlesOptionsDivInitial);
+    circlesOptionsDiv.innerHTML = circlesOptionsDivInitial;
     if (offsetsEnabled) {
         toggleOffsets();
-        window.$('#toggleOffsets').prop('checked', false);
+        document.getElementById('toggleOffsets').checked = false;
     }
+    
+    document.querySelectorAll("[id^=circleOptions]").forEach(function(element) {
+        element.remove();
+    }); 
+
     switch (example) {
         case "3clover":
             circleRadii = [0];
@@ -319,12 +378,18 @@ function hcf(arr) {
 }
 
 function addExamples() {
-    window.$('.symmetryHidden').attr('hidden', false);
+    document.querySelectorAll('.symmetryHidden').forEach(function(element) {
+        element.hidden = false;
+    });
 }
 
 function toggleOffsets() {
-    window.$('.offsetHidden').attr('hidden', offsetsEnabled);
-    window.$('.offsetDisabled').attr('disabled', offsetsEnabled);
+    document.querySelectorAll('.offsetHidden').forEach(function(element) {
+        element.hidden = offsetsEnabled;
+    });
+    document.querySelectorAll('.offsetDisabled').forEach(function(element) {
+        element.disabled = offsetsEnabled;
+    });
     offsetsEnabled = !offsetsEnabled;
     reset();
 }
