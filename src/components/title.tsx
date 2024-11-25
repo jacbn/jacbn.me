@@ -26,13 +26,13 @@ export default function Title() {
                     <use xlinkHref="#s-text" className="titleText titleFillAnimation titlePrimaryFill" mask='url(#mask)'></use>
                 </g>
             </svg>
-            <h3 className="roller">
+            <h4 className="roller">
                 <span className="rollerText">
                     Software Engineer
                     <br />
                     React &#183;  Python &#183; Java &#183; Flutter
                 </span>
-            </h3>
+            </h4>
             <div className="attribution">
                 <span>"sorry i never got to say goodbye", 2024</span>
             </div>

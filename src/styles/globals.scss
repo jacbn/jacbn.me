@@ -63,6 +63,8 @@
   --accent-pandemic: lightcoral;
   --accent-game-dev: #f0d83c;
 
+  // --code-background-scss: #ff00001a;
+
   --tile-start-rgb: 239, 245, 249;
   --tile-end-rgb: 228, 232, 233;
   --tile-border: conic-gradient(
@@ -125,6 +127,8 @@
     --accent-sentiment: #6eb5ff;
     --accent-pandemic: lightcoral;
     --accent-game-dev: #f0d83c;
+
+    --code-background-scss: #211414;
 
     --tile-start-rgb: 2, 13, 46;
     --tile-end-rgb: 2, 5, 19;
@@ -217,6 +221,21 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
+h4 {
+  @include mixins.font-size(1.2rem);
+  font-family: var(--font-sans-title);
+  color: var(--subtitle-primary);
+  margin-bottom: 0.5rem;
+}
+
+h5 {
+  @include mixins.font-size(1rem);
+  font-family: var(--font-sans-title);
+  font-weight: 800;
+  color: var(--subtitle-primary);
+  margin-bottom: 0.4rem;
+}
+
 a {
   color: inherit;
   text-decoration: underline;
@@ -225,6 +244,10 @@ a {
     color: #646cff;
     text-decoration: none;
   }
+}
+
+a:not(:hover) > code {
+  color: var(--bs-code-color);
 }
 
 nav a {
@@ -242,9 +265,98 @@ blockquote {
   font-style: italic;
 }
 
+@mixin code-color($background-col) {
+  background-color: $background-col;
+  background-color: color-mix(in srgb, $background-col 60%, #fff2) !important;
+
+  &::before {
+    background-color: color-mix(in srgb, $background-col 80%, #fff);
+  }
+}
+
+pre {
+  $pre-margin: 1rem;
+  $pre-header-height: 1.2rem;
+  $pre-button-height: 0.6rem;
+
+  // !importants used to override prism's inline styles 
+
+  position: relative;
+  min-width: 35%;
+  flex-grow: 1;
+  max-width: 100%;
+  overflow: scroll;
+  padding: 1rem;
+  margin: $pre-header-height 0 $pre-margin 0;
+  border-radius: 0 0 0.5rem 0.5rem;
+  box-shadow: 2px 2px 5px var(--shadow-primary);
+  overflow: visible !important;
+  
+  @include code-color(var(--card-primary));
+
+  &:has(code.language-scss) {
+    @include code-color(var(--code-background-scss));
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: -$pre-header-height;
+    width: 100%;
+    height: $pre-header-height;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: calc(($pre-header-height - $pre-button-height) / 2);
+    margin-top: calc(($pre-header-height + $pre-button-height) / -2);
+    width: calc(4 * $pre-button-height);
+    height: $pre-button-height;
+    background-image: url('/assets/components/window-buttons.svg');
+    background-size: calc(4 * $pre-button-height) $pre-button-height;
+  }
+
+  > div {
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+figure {
+  text-align: center;
+  div {
+    margin: 0 5%;
+    box-shadow: 2px 2px 5px var(--shadow-primary);
+    img {
+      width: 100%;
+      border-radius: 0.5rem;
+      filter: invert(95%) hue-rotate(180deg); 
+    }
+  }
+  figcaption {
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+}
+
 summary {
   color: var(--text-secondary);
   margin-left: 1rem;
+}
+
+hr {
+  width: 100%;
+  border-top: 3px solid var(--text-primary);
+  border-radius: 1.5px;
 }
 
 @media (prefers-color-scheme: dark) {

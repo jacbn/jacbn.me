@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface BlogProps {
+export interface BlogProps extends React.HTMLAttributes<HTMLDivElement> { 
   title: string
   image?: {
     src: string
@@ -11,17 +11,19 @@ export interface BlogProps {
 }
 
 export default function Blog(props : BlogProps) {
+    const {title, image, colour, text, ...rest} = props;
+
     return (
       <main className="thinTextContainer">
-        <h1>{props.title}</h1> 
-        <div className="blogBody">
-          {props.image !== undefined && (
-          <div className="blogImage" style={{backgroundColor: props.colour}} id={`blogImageContainer${props.title.replaceAll(' ', '')}`}>
-            <img src={props.image?.src} alt={props.image?.alt} id={`blogImage${props.title.replaceAll(' ', '')}`}/> 
+        <h1>{title}</h1> 
+        <div className="blogBody" {...rest}>
+          {image !== undefined && (
+          <div className="blogImage" style={{backgroundColor: colour}} id={`blogImageContainer${title.replaceAll(' ', '')}`}>
+            <img src={image?.src} alt={image?.alt} id={`blogImage${title.replaceAll(' ', '')}`}/> 
           </div>
           )}
           <div className="blogText">
-            {props.text}
+            {text}
           </div>
         </div>
         
