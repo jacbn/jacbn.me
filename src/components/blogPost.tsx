@@ -9,10 +9,6 @@ import syntaxStyle from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('scss', scss);
 
-interface BlogPostProps {
-
-}
-
 const BlogErrorBoundary = ({children} : {children: React.ReactNode}) => {
     const [hasError, setHasError] = useState(false);
 
@@ -62,7 +58,7 @@ function img(props : ImgHTMLAttributes<HTMLImageElement>) {
   }
   
 
-export default function BlogPost(props : BlogPostProps) {
+export default function BlogPost() {
     const params = useParams();
     const postId = params.id;
     const Post = lazy(() => import(`../pages/blog/${postId}.mdx`));
