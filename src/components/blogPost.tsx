@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
-import css from 'react-syntax-highlighter/dist/esm/languages/prism/css';
+import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 import syntaxStyle from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
-SyntaxHighlighter.registerLanguage('css', css);
+SyntaxHighlighter.registerLanguage('scss', scss);
 
 interface BlogPostProps {
 
@@ -68,7 +68,7 @@ export default function BlogPost(props : BlogPostProps) {
     const Post = lazy(() => import(`../pages/blog/${postId}.mdx`));
     return <BlogErrorBoundary>
         <Suspense fallback={<div>Loading...</div>}>
-            <main className="thinTextContainer">
+            <main className="blog-container">
                 <Post components={{code, img}} />
             </main>
         </Suspense>

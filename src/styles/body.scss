@@ -7,10 +7,19 @@
 }
 
 .thinTextContainer {
-  width: 100%;
-  row-gap: 1rem;
+  width: 50%;
+  row-gap: 0.5rem;
+  left: 50%;
+  margin: auto;
   align-items: center;
-  padding: 1rem 25%;
+  padding: 1rem 3%;
+
+  background-color: color-mix(in srgb, var(--card-primary) 40%, transparent);
+  box-shadow: 0 2px 5px var(--shadow-primary);
+
+  p {
+    width: 100%;
+  }
 }
 
 .projectHomeContainer {
@@ -30,10 +39,6 @@
   .wideTextContainer p {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-  }
-
-  .thinTextContainer {
-    padding: 1rem 10%;
   }
 
   .projectHomeContainer {

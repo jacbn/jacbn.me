@@ -1,0 +1,196 @@
+# `<tr/>` links and `display: contents`
+
+I was recently building an improved display for [tests](https://isaacphysics.org/tests) on Isaac.
+The old display was a questionable mess of cards; it showed the title and assigner as you might expect, followed by a bunch of optional fields displayed spuriously with no fixes to the alignment if any of the fields were missing.
+
+![](/assets/blog/1/cards.png "yuck.")
+
+I *hate* these cards. I doubt anyone who used this page understood how they were ordered. 
+
+Anyway, a table was clearly going to be far more useful. We binned everything but the important information, and put these into their own, nicely aligned columns.
+
+![](/assets/blog/1/table.png "Much better!")
+
+The TSX looks something like this:
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```tsx
+<table>
+  ...
+  <tbody>
+      {quizzes.map(quiz => {<tr>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>})}
+  </tbody>
+</table>
+```
+</div>
+
+Easy enough. There's some slight nuance to consider with the functionality though.
+
+From a UX perspective, you'd expect the entirety of these rows to be clickable. While building this, then, I thought, "let's just whack an `<a/>` tag around the `<tr/>`, give it `display: block`, full width/height, and sort the padding out". Simple!
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```tsx
+<table className="quizzes-table">
+  ...
+  <tbody>
+      {quizzes.map(quiz => {<a href={quiz.url}>
+        <tr>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+      </a>})}
+  </tbody>
+</table>
+```
+```scss
+.quizzes-table {
+  ... 
+  tbody {
+    ...
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+
+      tr {
+        padding: 0;
+        ...
+      }
+    }
+  }
+}
+```
+</div>
+
+![](/assets/blog/1/attempt-1.png "uuh...")
+
+*Yeah*. So it turns out the [HTML spec for `<tbody/>`](https://html.spec.whatwg.org/multipage/tables.html#the-tbody-element) **only** permits `<tr/>` (and scripts) as children. Our insertion of `<a/>` into the table structure breaks this, so browsers won't necessarily support our structure.
+
+## Two options
+
+At this point, there are two options. Option one is to push the `<a/>` links down until they no longer break the table structure. `<tr/>`s are also [not permitted](https://html.spec.whatwg.org/multipage/tables.html#the-tr-element) to have `<a/>` children, so we would have to go two layers down into the `<td/>`s; this duplicates a *lot* of `<a/>` tags. To help things a bit, we could create a component that manages this conversion for us; something like:
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```tsx
+interface TdLinkProps extends React.HTMLAttributes<HTMLTableCellElement> {
+    to: string | undefined;
+}
+
+interface TrLinkProps extends React.HTMLAttributes<HTMLTableRowElement> {
+    to: string | undefined;
+}
+
+const TdLink = ({to, children, ...rest}: TdLinkProps) => {
+    return <td {...rest}>
+        {to ? <Link to={to}>{children}</Link> : <>{children}</>}
+    </td>;
+};
+
+export const TrLink = ({to, children, ...rest}: TrLinkProps) => {
+    return <tr {...rest}>
+        {React.Children.map(children, child => React.isValidElement(child) && child.type === "td" 
+            ? <TdLink to={to} {...child.props}/> 
+            : child
+        )}
+    </tr>;
+};
+```
+</div>
+
+would do the trick. A bit convoluted, perhaps, but this works as a drop-in replacement for `<tr/>`; just swap it with `<TrLink to={url}>` and the generated HTML includes links only in spec-compliant locations.
+
+---
+
+Option 2 is a thought I had while on the loo, which about sums up the nature of it. `display: contents` is a particularly niche prop that prevents the targeted element producing any display boxes, instead allowing its children to do so in its place. For display purposes, this is *similar to* an element not existing in the DOM and its children being moved up one layer, but in truth the element is in fact still present and, while not rendered, inheritable properties that apply to it -- and thus its children -- are still applied.
+
+If we were to apply this to the anchor tag we originally had around the `<tr/>`, it would *in theory* allow the row to appear in a display box that was a direct descendent of the `<tbody/>`. The generated DOM is still invalid under the spec, but...
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```tsx
+<table className="quizzes-table">
+  ...
+  <tbody>
+      {quizzes.map(quiz => {<a href={quiz.url}>
+        <tr>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+      </a>})}
+  </tbody>
+</table>
+```
+```scss
+.quizzes-table {
+  ... 
+  tbody {
+    ...
+    a {
+      display: contents;
+      tr {
+        ...
+      }
+    }
+  }
+}
+```
+</div>
+
+![](/assets/blog/1/this-worked-shocked-pikachu.png "it worked?!")
+
+You'd be forgiven for thinking that this might stop the link being clickable as the `<a/>` isn't being rendered. Lucky for us, though, [clickable-ness](https://www.w3.org/TR/uievents/#click) is inherited by an element's children (note `Bubbles: true`), so we can still follow the anchor tag provided the children have a display box with nonzero dimensions.
+
+I'd have loved to have put this on Isaac, but there's a problem. We use Bootstrap to manage styles, including styling for tables. Bootstrap assumes the traditional `table > {thead, tbody, tfoot} > tr > td` structure, and has a number of CSS rules that assume this structure:
+
+![](/assets/blog/1/its-all-bootstrap-always-has-been.png "aww.")
+
+This starts applying styles to the wrong elements if there's an `<a/>` inside.
+
+---
+
+Unfortunately, then, it was back to the old spec-compliant approach for Isaac. I did end up managing to use `display: contents` anyway, on the `<td/>` elements that contained a link. The `display: block; width: 100%; height: 100%` approach earlier was causing some problems on Firefox, and this seemed to do the trick:
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```scss
+.td-link {
+  vertical-align: middle;
+
+  &:has(> a) {
+    display: contents;
+
+    > a {
+      @extend td;
+      display: table-cell;
+      vertical-align: middle;
+      text-decoration: none !important;
+    }
+  }
+}
+
+/* this was probably unnecessary, but allowed combining td-links with regular tds in the same table. */
+@mixin td-link-padding ($padding: 0.8rem 1rem) {
+  > td:not(.td-link), > td.td-link > a, td.td-link:not(:has(> a)) {
+    padding: $padding;
+  }
+  > td.td-link:has(> a) {
+    padding: 0;
+  }
+}
+```
+</div>
+
+I do think this is for the best; spec compliance guarantees this won't break in future. There are some accessibility concerns with having so many `<a/>` tags on the page, but it's quite easy to modify the basic `TdLink` above to set `tabIndex={-1}` on all but the first anchor on each row, which at least makes jumping around the table easier.
+
+---

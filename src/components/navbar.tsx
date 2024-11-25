@@ -67,6 +67,7 @@ export const NavBar = ({showName} : NavBarProps) => {
           <>
             <NavBox text="Contacts" href="/contacts" active={location.pathname === '/contacts'} />
             <NavBox text="About Me" href="/about" active={location.pathname === '/about'} />
+            <NavBox text="Blog" href="/blog" active={location.pathname === '/blog'} />
             <NavBox text="Home" href="/" active={location.pathname === '/'} />
           </>
         )}
