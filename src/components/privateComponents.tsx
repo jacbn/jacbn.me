@@ -5,17 +5,10 @@ const privateComponent = (f : string) => {
     // @ts-expect-error we are not using the default export for these components
     const Component = React.lazy(() => import("./private").then(m => ({default: m[f]})));
 
-    const isPrivate = () => {
-        try {
-            // @ts-ignore
-            return (async () => await import("./private").then(module => module.isPrivateAccessible).catch(() => false))();
-        } catch (e) {
-            return false;
-        }
-    };
+    const isPrivate = import.meta.env.VITE_PRIVATE_ENABLED ?? false;
 
     return <Suspense fallback={null}>
-        {isPrivate() && <Component/>}
+        {isPrivate && <Component/>}
     </Suspense>;
 };
 
