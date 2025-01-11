@@ -17,6 +17,7 @@ import Radials from './pages/maths-art/_radials';
 import './styles.scss';
 import BlogPost from './components/blogPost';
 import BlogsIntro from './pages/blog';
+import CV from './pages/cv';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,13 @@ const router = createBrowserRouter([
           <Title />
           <NavBar showName={false} />
           <Contacts />
+        </>
+      },
+      {
+        path: '/cv',
+        element: <>
+          <NavBar showName={true} />
+          <CV />
         </>
       },
       {
