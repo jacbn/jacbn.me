@@ -1,0 +1,205 @@
+:root:has(.cv) {
+    --text-primary: black;
+    --subtitle-primary: black;
+
+    @media print {
+        nav {
+            display: none;
+        }
+    }
+}
+
+.cv {
+    font-size: 0.88rem;
+    line-height: 1.25rem;
+
+    font-family: "Inter", "Roboto", -apple-system, "San Francisco", "Segoe UI", "Helvetica Neue", sans-serif;
+
+    h1 {
+        font-size: 42pt;
+        margin-top: 0;
+        margin-bottom: 0.1rem;
+    }
+    
+    h2 {
+        font-size: 21pt;
+
+        font-weight: 300;
+        margin-top: 0.2rem;
+        margin-bottom: 0.3rem;
+        &::after {
+            content: "";
+            display: block;
+            position: relative;
+            width: 100%;
+            margin-top: 0.2rem;
+            border-bottom: 1px solid black;
+        }
+    }
+    
+    .contacts h2 {
+        font-size: 17pt;
+        font-weight: 320;
+        line-height: 2rem;
+        margin-top: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    h3 {
+        font-size: 15pt;
+        font-weight: 400;
+        margin-bottom: 0.1rem;
+    }
+    
+    h4 {
+        font-size: 14pt;
+        font-weight: 300;
+    }
+
+    h5 {
+        margin-bottom: 0;
+    }
+    
+    .tag {
+        color: gray;
+    }
+    
+    .subsection {
+        position: relative;
+        margin-left: 25px;
+    
+        ul {
+            margin-bottom: 0;
+            padding-bottom: 0.5rem;
+        }
+    
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: -15px;
+            border-left: 2px solid black;
+        }
+    
+        &:first-of-type::before {
+            height: calc(100% - 1rem);
+            top: 1rem;
+        }
+    
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: -19px;
+            top: 12px; // line-height/2
+            width: 10px;
+            height: 10px;
+            background: url("/assets/components/bullet.svg") no-repeat center center;
+            background-size: contain;
+        }
+    }
+    
+    .col-l {
+        flex: 0 0 auto;
+        width: 23%;
+    }
+    
+    .col-r {
+        flex: 0 0 auto;
+        width: 77%;
+
+        @media print {
+            margin-top: 0.8cm;
+        }
+    }
+
+    .citation {
+        @extend .tag;
+        font-size: 8pt;
+        line-height: 12pt;
+    }
+    
+    .contacts {
+        margin: -1cm 0 -1cm -0.5cm;
+        padding: 1rem;
+        // background-color: #c8daea;
+        background: linear-gradient(135deg, #370d31, #021a35);
+
+        &, a:not(:hover) {
+            color: #fffc;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #fff;
+
+            &::after {
+                border-color: #fff;
+            }
+        }
+
+        @media print {
+            margin: 0;
+        }
+    
+        .dual-column {
+            display: flex;
+            flex-wrap: wrap;
+    
+            > span {
+                width: 50%;
+            }
+        }
+    
+        .contact-link {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        
+            > img {
+                width: 24px;
+                height: 24px;
+                margin-right: 0.5rem;
+                filter: invert(1);
+            }
+
+            > span {
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+$spacing: 1cm 0cm 1cm 0.5cm;
+
+/*!
+ * HTML-Sheets-of-Paper (https://github.com/delight-im/HTML-Sheets-of-Paper)
+ * Copyright (c) delight.im (https://www.delight.im/)
+ * Licensed under the MIT License (https://opensource.org/licenses/MIT)
+ */
+
+.page {
+    /* Styles for better appearance on screens only -- are reset to defaults in print styles later */
+
+    /* Reflect the paper width in the screen rendering (must match size from @page rule) */
+    width: 21cm;
+    /* Reflect the paper height in the screen rendering (must match size from @page rule) */
+    min-height: 29.7cm;
+
+    /* Force the page to be A4 such that the sidebar extends fully */
+    height: 29.7cm;
+
+    /* Reflect the actual page margin/padding on paper in the screen rendering (must match margin from @page rule) */
+    padding: $spacing;
+}
+/* Use CSS Paged Media to switch from continuous documents to sheet-like documents with separate pages */
+@page {
+    /* You can only change the size, margins, orphans, widows and page breaks here */
+
+    /* Paper size and page orientation */
+    size: A4 portrait;
+
+    /* Margin per single side of the page */
+    margin: $spacing;
+}
