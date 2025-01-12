@@ -2,9 +2,9 @@ import React from 'react';
 import Blog from '../../components/blog';
 import { Link } from 'react-router-dom';
 
-export default function BlogsIntro() {
+export default function BlogIntro() {
   return <Blog
-    title="Blogs"
+    title="Blog"
     colour="rebeccapurple"
     className="w-100"
     text={
