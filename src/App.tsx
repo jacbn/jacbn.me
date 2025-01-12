@@ -16,14 +16,16 @@ import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
 import './styles.scss';
 import BlogPost from './components/blogPost';
-import BlogsIntro from './pages/blog';
+import BlogIntro from './pages/blog';
 import CV from './pages/cv';
+import ColorModeToggle, { ColorModeContextProvider } from './components/colorModeToggle';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <>
       <ScrollTop /> 
+      <ColorModeToggle />
       <Outlet />
     </>,
     children: [
@@ -60,7 +62,10 @@ const router = createBrowserRouter([
       },
       {
         path: '/blog',
-        element: <BlogsIntro />,
+        element: <>
+          <NavBar showName={true} />
+          <BlogIntro />
+        </>
       },
       {
         path: '/blog/:id',
@@ -134,9 +139,11 @@ const router = createBrowserRouter([
 export const App = () => {
     return (
       <React.StrictMode>
-        <main>
-          <RouterProvider router={router} />
-        </main>
+        <ColorModeContextProvider>
+          <main>
+            <RouterProvider router={router} />
+          </main>
+        </ColorModeContextProvider>
       </React.StrictMode>
     );
 };

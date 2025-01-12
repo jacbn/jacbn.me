@@ -1,10 +1,12 @@
-import React, { ImgHTMLAttributes, lazy, Suspense, useEffect, useState } from "react";
+import React, { ImgHTMLAttributes, lazy, Suspense, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
-import syntaxStyle from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
+import lightSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/one-light';
+import darkSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
+import { ColorModeContext } from "./colorModeToggle";
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('scss', scss);
@@ -38,9 +40,11 @@ const BlogErrorBoundary = ({children} : {children: React.ReactNode}) => {
 
 function code({className, ...properties} : {className: string, children: React.ReactNode}) {
     const match = /language-(\w+)/.exec(className || '');
-    
+
+    const {theme} = useContext(ColorModeContext);
+
     return match
-      ? <SyntaxHighlighter language={match[1]} style={syntaxStyle} PreTag={"div"} {...properties}>
+      ? <SyntaxHighlighter language={match[1]} style={theme === 'light' ? lightSyntax : darkSyntax} PreTag={"div"} {...properties}>
             {properties.children as string}
         </SyntaxHighlighter>
       : <code className={className} {...properties} />;
