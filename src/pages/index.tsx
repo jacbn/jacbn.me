@@ -29,7 +29,10 @@ export function About() {
           I also supervise the first-year Algorithms course (parts <a href="https://www.cl.cam.ac.uk/teaching/2425/Algorithm1/">1</a> and <a href="https://www.cl.cam.ac.uk/teaching/2425/Algorithm2/">2</a>) at the uni; a special hello if you're one of my students :)
         </p>
         <p className="qna">Where have you worked previously?</p>
-        <p className="inset">In the summer of 2022 I undertook an internship at <a href="https://umbrella.cisco.com/">Cisco Umbrella</a>, working on their <a href="https://umbrella.cisco.com/products/data-loss-prevention-dlp">Data Loss Prevention solution</a> (in short, a cloud-based network traffic analysis engine that prevents data leaks by scanning data sent through a secure web gateway). I coded in Java, mainly developing a user-facing application for encrypting customer data, though there were several instances where I branched out to other areas of the product, both to suggest and implement improvements, and to learn — one such example being how I saved almost 80% of program runtime in the worst scenario after finding a subtle problem in a library I was working with.</p>
+        <div className="inset">
+          <p>In the summer of 2022 I undertook an internship at <a href="https://umbrella.cisco.com/">Cisco Umbrella</a>, working on their <a href="https://umbrella.cisco.com/products/data-loss-prevention-dlp">Data Loss Prevention solution</a> (in short, a cloud-based network traffic analysis engine that prevents data leaks by scanning data sent through a secure web gateway). I coded in Java, mainly developing a user-facing application for encrypting customer data, though there were several instances where I branched out to other areas of the product, both to suggest and implement improvements, and to learn — one such example being how I saved almost 80% of program runtime in the worst scenario after finding a subtle problem in a library I was working with.</p>
+          <p>(<a href="./cv">Looking for a CV?</a> &ndash; last updated 12/01/25)</p>
+        </div>
 
         {/* <p className="qna">What's an ideal job for you?</p>
         <p className="inset">
