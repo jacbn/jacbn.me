@@ -1,0 +1,79 @@
+.styled-toggle {
+    $toggle-span-min-width: 1rem;
+    $toggle-span-normal-x-padding: 8px;
+    $toggle-span-reduced-x-padding: 4px;
+    $toggle-span-y-padding: 4px;
+
+    height: 32px;
+    position: relative;
+    align-items: center;
+    margin-bottom: 0;
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    border-radius: 3rem;
+    padding: 1px;
+    background: var(--background-alt-dark);
+
+    > input {
+        appearance: none;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        border-radius: 3rem;
+
+        &:checked ~ span:last-of-type, &:not(:checked) ~ span:first-of-type {
+            background: var(--card-primary);
+            color: black;
+            padding: $toggle-span-y-padding $toggle-span-normal-x-padding;
+            border: 1px solid var(--card-border-highlight);
+            img {
+                filter: var(--icon-filter);
+            }
+        }
+
+        &:checked ~ span:first-of-type, &:not(:checked) ~ span:last-of-type {
+            min-width: calc($toggle-span-min-width + $toggle-span-reduced-x-padding - $toggle-span-normal-x-padding);
+            border: 1px solid transparent;
+            img {
+                filter: invert(0.5);
+            }
+        }
+    }
+
+    > span {
+        text-align: center;
+        font-size: 12px;
+        min-width: $toggle-span-min-width;
+        font-weight: 500;
+        height: 100%;
+        line-height: 1;
+        cursor: pointer;
+        display: inline-block;
+        padding: $toggle-span-y-padding $toggle-span-normal-x-padding;
+        transition: all 100ms ease-out;
+        user-select: none;
+        border-radius: 3rem;
+        background: transparent;
+        color: lighten(black, 40%);
+
+        > img {
+            height: 100%;
+        }
+    }
+
+    > span:first-of-type {
+        padding-right: $toggle-span-reduced-x-padding;
+    }
+
+    > span:last-of-type {
+        padding-left: $toggle-span-reduced-x-padding;
+    }
+}

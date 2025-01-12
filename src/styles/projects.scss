@@ -1,12 +1,5 @@
 .titlePrimary {
-  color: var(--text-secondary);
-  /* it's otherwise white-on-white, so use an alternative */
-}
-
-@media (prefers-color-scheme: dark) {
-  .titlePrimary {
-    color: var(--title-primary);
-  }
+  color: var(--nav-title);
 }
 
 .titleSecondary {

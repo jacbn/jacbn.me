@@ -1,8 +1,5 @@
 @use "sass:map";
-
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@use "bootstrap";
 
 @mixin font-size($size) {
   font-size: $size;
@@ -10,7 +7,7 @@
 }
 
 @mixin respond-above($breakpoint) {
-  @media (min-width: map.get($grid-breakpoints, $breakpoint)) {
+  @media (min-width: map.get(bootstrap.$grid-breakpoints, $breakpoint)) {
     @content;
   }
 }
