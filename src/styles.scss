@@ -1,12 +1,11 @@
-// @import "../node_modules/bootstrap/scss/functions";
-// @import "../node_modules/bootstrap/scss/variables";
-// @import "../node_modules/bootstrap/scss/mixins";
-
+@use "styles/globals";
+@use "styles/bootstrap";
 @use "styles/mixins";
 
+@use "styles/elements";
+@use "styles/components";
 @use "styles/blog";
 @use "styles/body";
-@use "styles/globals";
 @use "styles/home";
 @use "styles/mathsart";
 @use "styles/projects";
