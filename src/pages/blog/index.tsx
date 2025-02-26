@@ -11,7 +11,10 @@ export default function BlogIntro() {
         <div className="w-100">
             Some fun thoughts and interesting code I've worked on.
             <br/><br/>
-            <ol>
+            <ol className="invert-counter">
+                <li>
+                    <Link to="/blog/2-css-theming">CSS Theming</Link>
+                </li>
                 <li>
                     <Link to="/blog/1-tr-links"><code>&lt;tr/&gt;</code> links and <code>display: contents</code></Link>
                 </li>

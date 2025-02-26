@@ -6,7 +6,7 @@
     left: 50%;
     margin: auto;
     align-items: center;
-    padding: 1rem 3%;
+    padding: 1rem 3% 15vh;
 
     background-color: color-mix(in srgb, var(--card-primary) 40%, transparent);
     box-shadow: 0 2px 5px var(--shadow-primary);
@@ -26,6 +26,17 @@
     @include mixins.respond-above(xl) {
         width: 920px;
     }
+}
+
+.callout {
+    background-color: var(--card-primary);
+    background-color: color-mix(in srgb, var(--card-primary) 50%, transparent);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    box-shadow: 4px 4px 5px var(--shadow-primary);
+    width: max-content;
 }
 
 .db-ball {
