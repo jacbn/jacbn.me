@@ -1,0 +1,198 @@
+# CSS Theming
+
+So, you're working with a design company and they send over some lovely prototypes with fresh graphics. It all looks great, but to cut down on the amount of duplication, they've designed 90% of the pages in the same *theme*! Sensible from their perspective, but it's up to you to you to take what they've done and make it work under all possible themes on your website.
+
+The themes in question here could be anything from a dark mode, high contrast mode, or a bespoke set of themes for your site. For Isaac, it was subject colours -- we have content specific to physics, maths, chemistry and biology, and in the new designs each page is coloured according to that subject:
+
+![](/assets/blog/2/isaac-question-page.png "enjoy your sneak peek of what's to come!")
+
+We had this to some extent in the old world; certain text (e.g. inside the site search) would be coloured according to that subject. This worked by pulling the relevant subject from the content object, and using it as a CSS class: 
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```tsx
+const ResultsList = (props: ResultsListProps) => {
+    const results = queryApi(...);
+
+    ...
+
+    return results.map((result) => {
+        <div className={result.subject} ...>
+            <h2>{result.title}</h2>
+            ...
+        </div>
+    })
+}
+```
+```scss
+.physics {
+    h1, h2, h3, h4, h5 {
+        color: $physics-purple;
+    }
+}
+
+.maths {
+    h1, h2, h3, h4, h5 {
+        color: $maths-blue;
+    }
+}
+
+...
+```
+</div>
+
+This is *fine*, and in truth not hugely different in how it works from what we produce at the end of this blog. There is, however, a subtle issue in how these classes interact with each other.
+
+### A problem.
+
+With the CSS above, what colour is given to the marked headers (1) and (2) below?
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```tsx
+<div class="maths">
+    <Question ...>
+        <h2>Maths question title</h2>            // (1)
+        ...
+    </Question>
+
+    <RelatedContent ...>
+        <div class="physics">
+            <h3>Related physics question</h3>    // (2)
+            ...
+        </div>
+    </RelatedContent>
+</div>
+```
+</div>
+
+Well, (1) is fairly obvious. Its only `color` declaration is defined by `.maths`, so it'll be `$maths-blue`.
+
+You might think (2) would be physics-coloured, as it's inside a `.physics` div. But it's *also* inside a `.maths` div, and both the `color` declarations' selectors have a [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Specificity) of (0, 1, 1). Specificity does **not** take "closeness" into account, so the winner is whichever comes last in the stylesheet.
+
+Which is... you guessed it, `.maths`.
+
+<div className="callout px-4 pb-4">
+    <style>
+    {`
+        .physics {
+            h1, h2, h3, h4, h5 {
+                color: #944cbe;  
+            }
+        }
+
+        .maths {
+            h1, h2, h3, h4, h5 {
+                color: #007fa9;
+            }
+        }
+    `}
+    </style>
+
+    <div class="maths">
+        <h2>Maths question title</h2>
+        <div class="physics">
+            <h3>Related physics question</h3>
+        </div>
+    </div>
+</div>
+<div className="text-muted mb-4"><i>You can interact with this in your browser! Inspect element away :)</i></div>
+
+Now, I'll admit; this is somewhat of a contrived example, and it's entirely possible to build pages around a restriction of requiring only one theme tag. If this is you, there's really nothing wrong with taking this class-based approach. Unfortunately, this wasn't the case for the Isaac redesigns; the "root" for a page needs to be subject-coloured to allow various iconography to appear correctly, but we often link to other subjects inside this (as the subjects are not entirely separate). The old approach allows certain nestings of subjects inside others (if they are in the correct relative order in the stylesheet), but not all combinations. This needed to change.
+
+There is also debatably a second issue with this approach, though whether this is important is a matter of opinion. *Classes* are used to apply a set of declarations to an element. The `.physics` *et al* classes do not provide any declarations themselves, only a set of nested class or element rules. As such, it doesn't *really* fit the model correctly to be using classes here. 
+
+So, what can we use instead? To me, it makes sense to consider the theme as an *attribute* of an element; like how an `<input/>` can be of type `text` or `date`, it seems logical that a regular `<div/>` can be of *theme* `physics` or `maths`. To achieve this, we can use custom *[data attributes](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Solve_HTML_problems/Use_data_attributes)*, selectable in CSS via the `[attr=val]` selector. In the following examples, we'll use the attribute `data-theme`.
+
+I do want to emphasise that this attribute approach offers no additional functionality over the class-based approach. It merely provides a distinct location in which to put our theme, importantly outside the `classList`; from experience, I've found this significantly improves code legibility, as the reason for its existence is justified by the name of the attribute.
+
+<hr/>
+
+### Solving the issues with the old approach
+
+Let's solve the stylistic point first:
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```tsx
+<div data-theme="maths">
+    <Question ...>
+        <h2>Maths question title</h2>
+        ...
+    </Question>
+
+    <RelatedContent ...>
+        <div data-theme="physics">
+            <h3>Related physics question</h3>
+        </div>
+    </RelatedContent>
+</div>
+```
+```scss
+[data-theme="physics"] {
+    h1, h2, h3, h4, h5 {
+        color: $physics-purple;
+    }
+}
+
+[data-theme="maths"] {
+    h1, h2, h3, h4, h5 {
+        color: $maths-blue;
+    }
+}
+...
+```
+</div>
+
+We just replace those instances of class with a new attribute and select for these in the CSS. Easy!
+
+On to the next. We needed a way of enforcing that the declaration inside whichever `data-theme` is closest to the element being targeted is used, regardless of where it's defined in the stylesheet. Specificity can't help us here.
+
+All we really need is a value we can set in a root element, that propagates down to its children. If these children decide to overwrite that value, the children of these elements will see the overridden value. And, wouldn't you know, that's precisely what [inheritance](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Inheritance) is! The values here need to be arbitrary as we want them to work for a whole range of declarations, and thankfully CSS variables both inherit and provide this customisability.
+
+So: we need a change of structure. Rather than the `data-theme` rules defining the `color`, they will instead define the value of a variable; the headers will *always* have their `color` defined by this variable. Something like:
+
+<div className="d-flex w-100 justify-content-center" style={{gap: "1rem", padding: "0 5%"}}>
+```scss
+h1, h2, h3, h4, h5 {
+    color: var(--header-color);
+}
+
+[data-theme="physics"] {
+    --header-color: $physics-purple;
+}
+
+[data-theme="maths"] {
+    --header-color: $maths-blue;
+}
+...
+```
+</div>
+
+And that's it! Nested themes work entirely as expected:
+
+<div className="callout px-4 pb-4 mb-3">
+    <style>
+    {`
+        h1, h2, h3, h4, h5 {
+            color: var(--header-color);
+        }
+
+        [data-theme="physics"] {
+            --header-color: #944cbe;
+        }
+
+        [data-theme="maths"] {
+            --header-color: #007fa9;
+        }
+    `}
+    </style>
+
+    <div data-theme="maths">
+        <h2>Maths question title</h2>
+        <div data-theme="physics">
+            <h3>Related physics question</h3>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+FWIW: as of Bootstrap v5.3, an out-the-box light and dark mode is supported via [BS colour modes](https://getbootstrap.com/docs/5.3/customize/color-modes/), which use the data attribute approach described here (with `data-bs-theme`). Even if you're not using their theming, I'd recommend the `color-mode` mixin they provide as a nice way of making the SCSS a little more readable.
