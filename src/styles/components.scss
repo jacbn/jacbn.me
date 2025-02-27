@@ -77,14 +77,3 @@
         padding-left: $toggle-span-reduced-x-padding;
     }
 }
-
-.invert-counter {
-    counter-reset: reversed(item);
-
-    li {
-        counter-increment: item -1;
-        &::marker {
-            content: counter(item) '. ';
-        }
-    }
-}
