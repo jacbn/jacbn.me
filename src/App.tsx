@@ -10,6 +10,7 @@ import JCompiler from './pages/projects/jcompiler';
 import Pandemic from './pages/projects/pandemic';
 import Sentiment from './pages/projects/sentiment';
 import GameDev from './pages/projects/gamedev';
+import Stitch from './pages/projects/stitch';
 import MathsArt from './pages/maths-art';
 import Apollo from './pages/maths-art/_apollo';
 import Lotfollah from './pages/maths-art/_lotfollah';
@@ -100,7 +101,11 @@ const router = createBrowserRouter([
           {
             path: '/projects/sentiment',
             element: <Sentiment />
-          }
+          },
+          {
+            path: '/projects/stitch',
+            element: <Stitch />
+          },
         ]
       },
       {
