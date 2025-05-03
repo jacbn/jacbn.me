@@ -1,0 +1,2 @@
+export const QUICK_COLOR_CLOSENESS_THRESHOLD = 10;
+export const QUICK_COUNT_THRESHOLD = 20;
