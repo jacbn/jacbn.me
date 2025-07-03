@@ -32,52 +32,67 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <>
-          <Title />
-          <NavBar showName={false} />
+          <header>
+            <Title />
+            <NavBar showName={false} />
+          </header>
           <Home />
         </>
       },
       {
         path: '/about',
         element: <>
-          <Title />
-          <NavBar showName={false} />
+          <header>
+            <Title />
+            <NavBar showName={false} />
+          </header>
           <About />
         </>
       },
       {
         path: '/contacts',
         element: <>
-          <Title />
-          <NavBar showName={false} />
+          <header>
+            <Title />
+            <NavBar showName={false} />
+          </header>
           <Contacts />
         </>
       },
       {
         path: '/cv',
         element: <>
-          <NavBar showName={true} />
+          <header>
+            <NavBar showName={true} />
+          </header>
           <CV />
         </>
       },
       {
         path: '/blog',
         element: <>
-          <NavBar showName={true} />
+          <header>
+            <Title />
+            <NavBar showName={false} />
+          </header>
           <BlogIntro />
         </>
       },
       {
         path: '/blog/:id',
         element: <>
-          <NavBar showName={true} />
+          <header>
+            <NavBar showName={true} />
+          </header>
           <BlogPost />
         </>
       },
       {
         path: '/projects',
         element: <>
-          <NavBar showName={true} />
+          <header>
+            <NavBar showName={true} />
+          </header>
           <Outlet />
         </>,
         children: [
@@ -106,14 +121,18 @@ const router = createBrowserRouter([
       {
         path: '/gamedev',
         element: <>
-          <NavBar showName={true} />
+          <header>
+            <NavBar showName={true} />
+          </header>
           <GameDev />
         </>
       },
       {
         path: '/maths-art',
         element: <>
-          <NavBar showName={true} />
+          <header>
+            <NavBar showName={true} />
+          </header>
           <MathsArt />
         </>,
         children: [
@@ -140,9 +159,7 @@ export const App = () => {
     return (
       <React.StrictMode>
         <ColorModeContextProvider>
-          <main>
-            <RouterProvider router={router} />
-          </main>
+          <RouterProvider router={router} />
         </ColorModeContextProvider>
       </React.StrictMode>
     );

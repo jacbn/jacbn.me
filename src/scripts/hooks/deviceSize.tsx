@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { useIsClient } from "./isClient";
 
 type ScreenSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 const screenSizeMap : Record<ScreenSize, number> = {
-    "xs": 375,
-    "sm": 576,
-    "md": 768,
-    "lg": 992,
-    "xl": 1200,
+    "xs": 576,
+    "sm": 768,
+    "md": 992,
+    "lg": 1200,
+    "xl": 1440,
 };
 
 
 export default function useDeviceSize() {
-    const isClient = useIsClient();
-    const getScreenSize = () => isClient && Object.keys(screenSizeMap).find(size => window.innerWidth < screenSizeMap[size as ScreenSize]) as ScreenSize || "xl";
+    const getScreenSize = () => Object.keys(screenSizeMap).find(size => window.innerWidth < screenSizeMap[size as ScreenSize]) as ScreenSize || "xl";
     const [screenSize, setScreenSize] = useState(getScreenSize());
 
     useEffect(() => {

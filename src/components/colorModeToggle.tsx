@@ -44,7 +44,7 @@ const ColorModeToggle = (props : React.HTMLProps<HTMLInputElement>) => {
 
     const {theme, setTheme} = useContext(ColorModeContext);
 
-    return <div className="bd-theme" id="bd-theme">
+    return <div className="bd-theme no-print" id="bd-theme">
         <label className="styled-toggle">
             <input type="checkbox" {...props} checked={theme === 'light'} onChange={(e) => {
                 if (e.target.checked) {

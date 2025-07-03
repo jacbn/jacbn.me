@@ -1,4 +1,13 @@
 @use "mixins";
+@use "fonts";
+
+.home-bg {
+  background: linear-gradient(
+    135deg,
+    var(--background-start-rgb),
+    var(--background-end-rgb)
+  );
+}
 
 .card {
   display: grid;
@@ -13,7 +22,7 @@
   cursor: pointer;
   -webkit-transition: all 0.5s ease; 
   transition: all 0.5s ease;
-  font-family: var(--font-sans-title);
+  font-family: var(--font-sans-heading);
   order: 5;
   flex: 0 0 30%;
   text-decoration: none;
@@ -99,37 +108,44 @@
 
 /* title properties */
 
-.titleContainer {
+.title-container {
   position: relative;
   width: 100%;
   height: calc(35vh + 40px); /* 40px bottom margin */
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 0;
-  cursor: pointer;
-  background: transparent;
-
-  font-family: var(--font-sans-title);
+  z-index: 0;
 
   transition: height 0.5s, width 0.5s;
 
-  .attribution {
-    position: absolute;
-    @include mixins.font-size(1rem);
-    bottom: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    color: #ffffff;
-  }
+  > button {
+    position: fixed;
+    width: 100%;
+    height: inherit;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
 
-  .titleShimmer, .titleSVG, .roller {
-    transition: opacity 0.3s;
+    font-family: var(--font-sans-heading);
+
+    .attribution {
+      position: absolute;
+      @include mixins.font-size(1rem);
+      bottom: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: #ffffff;
+    }
+
+    .titleShimmer, .titleSVG, .roller {
+      transition: opacity 0.3s;
+    }
   }
 }
 
-.titleContainer.expanded {
+.title-container.expanded {
   height: calc(min(50dvw, 640px));
 
   .titleBackground {
@@ -142,7 +158,7 @@
   }
 }
 
-.titleContainer:hover, .titleContainer.expanded {
+.title-container:hover, .title-container.expanded {
   .titleShimmer, .titleSVG, .roller {
     opacity: 0;
   }
@@ -154,6 +170,7 @@
   width: 100%;
   height: 100%;
   background-image: url("/assets/home/sorry-i-never-got-to-say-goodbye.gif");
+  // background-image: url("/assets/home/winged-strawb.png");
   background-size: cover;
   background-position: center 70%;
   image-rendering: pixelated;
@@ -199,38 +216,28 @@
   position: absolute;
 }
 
-.titleText {
+.title-text {
   @include mixins.font-size(calc(4vmin + 800%));
   font-weight: 500;
-  stroke-dasharray: 0px 110px;
   stroke-width: calc(0.2rem);
-  stroke-dashoffset: 0;
-}
-
-.titlePrimaryStroke {
+  font-family: 'fascinate';
   stroke: var(--title-primary);
   fill: none;
 }
 
-.titleSecondaryStroke {
-  stroke: var(--title-secondary);
+.title-text-small {
+  @include mixins.font-size(calc(1vmin + 200%));
+  font-weight: 500;
+  stroke-width: calc(0.1rem);
+  font-family: 'fascinate';
+  stroke: var(--title-primary);
   fill: none;
 }
 
-.titlePrimaryFill {
-  stroke: var(--title-primary);
-  fill: var(--title-primary);
-}
-
-.titleSecondaryFill {
-  stroke: var(--title-secondary);
-  fill: var(--title-secondary);
-}
-
-.titleStrokeAnimation {
-  animation:
-  dash 4s forwards ease-in-out,
-  fadeOutInstant 5s forwards ease-in-out;
+.title-draw-animation {
+  --title-line-length: 405px;
+  stroke-dasharray: var(--title-line-length) var(--title-line-length);
+  animation: draw-title 5s forwards ease-out;
 }
 
 .titleFillAnimation {
@@ -486,7 +493,7 @@
 @keyframes fadeOut {
   0%, 
   81% {
-    opacity: 1;
+    opacity: 0;
   }
   100% {
     opacity: 0;
@@ -503,14 +510,23 @@
   }
 }
 
-@keyframes fadeOutInstant {
-  0%, 
-  80% {
-    opacity: 1;
+@keyframes draw-title {
+  0% {
+    stroke-dashoffset: var(--title-line-length);
   }
-  80.01%, 100% {
-    opacity: 0;
+
+  50% {
+    fill: rgba(255, 255, 255, 0);
   }
+
+  90% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    fill: rgba(255, 255, 255, 0.2);
+  }
+
 }
 
 @keyframes slide {

@@ -1,26 +1,24 @@
 import React from 'react';
-import Blog from '../../components/blog';
 import { Link } from 'react-router-dom';
+import HomeText from '../../components/homeText';
 
 export default function BlogIntro() {
-  return <Blog
+  return <HomeText
     title="Blog"
-    colour="rebeccapurple"
-    className="w-100"
     text={
-        <div className="w-100">
-            Some fun thoughts and interesting code I've worked on.
-            <br/><br/>
-            <ol reversed>
-                <li>
-                    <Link to="/blog/2-css-theming">CSS Theming</Link>
-                </li>
-                <li>
-                    <Link to="/blog/1-tr-links"><code>&lt;tr/&gt;</code> links and <code>display: contents</code></Link>
-                </li>
-            </ol>
-            
-        </div>
+        <>
+            <p>Some fun thoughts and interesting code I've worked on.</p>
+            <p>
+                <ol reversed>
+                    <li>
+                        <Link to="/blog/2-css-theming">CSS Theming</Link>
+                    </li>
+                    <li>
+                        <Link to="/blog/1-tr-links"><code>&lt;tr/&gt;</code> links and <code>display: contents</code></Link>
+                    </li>
+                </ol>
+            </p>
+        </>
     }
     />;
 }

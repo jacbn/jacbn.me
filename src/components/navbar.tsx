@@ -48,27 +48,22 @@ export const NavBar = ({showName} : NavBarProps) => {
   const deviceSize = useDeviceSize();
   const location = useLocation();
 
-  const onMainPages = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/contacts';
   return (
     <nav>
-      <div className="myName">
-        {/* do not move conditional outside, empty div keeps the rest right-floating */}
-        {showName && (
-          <Link to="/">
-            <span className="titlePrimary">Jacob </span> 
-            <span className="titleSecondary"> Brown</span>
-          </Link>
-        )}
-      </div>
-      <div>
-        {((onMainPages && below["xs"](deviceSize)) || (!onMainPages && below["sm"](deviceSize))) ? (
+      {showName && (
+        <Link to="/" className="mx-3 nav-name">
+          jaycie
+        </Link>
+      )}
+      <div className="d-flex flex-row ms-auto">
+        {below["sm"](deviceSize) ? (
           <HamburgerBox />
         ) : (
           <>
-            <NavBox text="Contacts" href="/contacts" active={location.pathname === '/contacts'} />
-            <NavBox text="About Me" href="/about" active={location.pathname === '/about'} />
-            <NavBox text="Blog" href="/blog" active={location.pathname === '/blog'} />
             <NavBox text="Home" href="/" active={location.pathname === '/'} />
+            <NavBox text="Blog" href="/blog" active={location.pathname === '/blog'} />
+            <NavBox text="About Me" href="/about" active={location.pathname === '/about'} />
+            <NavBox text="Contacts" href="/contacts" active={location.pathname === '/contacts'} />
           </>
         )}
       </div>
