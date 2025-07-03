@@ -9,6 +9,15 @@
     }
 }
 
+main:has(.cv) {
+    padding: 0 1rem;
+    overflow: auto;
+
+    @media print {
+        padding: 0;
+    }
+}
+
 .cv {
     font-size: 0.88rem;
     line-height: 1.25rem;

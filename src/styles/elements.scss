@@ -1,15 +1,5 @@
 @use "mixins";
 
-@font-face {
-  font-family: 'Quicksand';
-  src: url('/assets/fonts/Quicksand-variable.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('/assets/fonts/Inter-variable.ttf') format('truetype');
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -25,12 +15,12 @@ body {
 
 body {
   color: var(--text-primary);
-  background: linear-gradient(
-      135deg,
-      var(--background-start-rgb),
-      var(--background-end-rgb)
-    );
   font-family: var(--font-sans-body);
+  background: linear-gradient(
+    135deg,
+    var(--background-start-rgb),
+    var(--background-end-rgb)
+  );
 }
 
 main {
@@ -40,6 +30,8 @@ main {
   flex-direction: column;
   align-items: center;
   @include mixins.font-size(1rem);
+  position: relative;
+  z-index: 1;
 }
 
 nav {
@@ -62,7 +54,7 @@ nav {
 
 h1 {
   @include mixins.font-size(2.2rem);
-  font-family: var(--font-sans-title);
+  font-family: var(--font-sans-heading);
   color: var(--subtitle-primary);
   margin: 1rem 0 0.5rem;
   font-weight: 300;
@@ -70,28 +62,28 @@ h1 {
 
 h2 {
   @include mixins.font-size(1.8rem);
-  font-family: var(--font-sans-title);
+  font-family: var(--font-sans-heading);
   color: var(--subtitle-primary);
   margin: 1rem 0;
 }
 
 h3 {
   @include mixins.font-size(1.5rem);
-  font-family: var(--font-sans-title);
+  font-family: var(--font-sans-heading);
   color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
 }
 
 h4 {
   @include mixins.font-size(1.2rem);
-  font-family: var(--font-sans-title);
+  font-family: var(--font-sans-heading);
   color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
 }
 
 h5 {
   @include mixins.font-size(1rem);
-  font-family: var(--font-sans-title);
+  font-family: var(--font-sans-heading);
   font-weight: 800;
   color: var(--subtitle-primary);
   margin-bottom: 0.4rem;

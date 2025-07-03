@@ -1,18 +1,15 @@
 
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import AppIcon from '../components/appIcon';
 import HomeGrid from '../components/homeGrid';
 import HomeText from '../components/homeText';
-import NavBar from '../components/navbar';
-import Title from '../components/title';
 
 export function Home() {
   return (
-    <>
+    <main className="home-bg">
       <h1>My Projects:</h1>
       <HomeGrid />
-    </>
+    </main>
   );
 }
 
@@ -21,11 +18,11 @@ export function About() {
     title="Hi!"
     text={
       <>
-        <p>I'm Jacob, an EdTech Software Engineer at (and 2023 graduate of) the University of Cambridge. I love to code, especially small projects — you can find a few of my favourites on the homepage.</p>
+        <p>I'm Jaycie, a Research Software Engineer at (and 2023 graduate of) the University of Cambridge. I specialise in frontend development with React, with nearly 2 years of professional experience and many more in education and working on personal projects.</p>
 
         <p className="qna">What are you up to at the moment?</p>
         <p className="inset">
-          I currently work for the <a href="https://isaacphysics.org">Isaac Platform</a>, including <a href="https://adacomputerscience.org">Ada CS</a> and others to come — I love it! I work mainly on the (<a href="https://github.com/isaacphysics/isaac-react-app">open source</a>!) frontend of the platform, building the site and the tools that teachers and students use on a daily basis. It's very fulfilling — I get to see the impact of my work on a daily basis, and I'm working with a great team of people who are all passionate about what they do.
+          I currently work for the <a href="https://isaacscience.org">Isaac</a> and <a href="https://adacomputerscience.org">Ada CS</a> platforms, a pair of online STEM learning platforms aimed at students in secondary school — I love it! I work mainly on the (<a href="https://github.com/isaacphysics/isaac-react-app">open source</a>!) frontend of the platform, building the site and the tools that teachers and students use on a daily basis. It's very fulfilling — I get to see the impact of my work on a daily basis, and I'm working with a great team of people who are all passionate about what they do.
           I also supervise the first-year Algorithms course (parts <a href="https://www.cl.cam.ac.uk/teaching/2425/Algorithm1/">1</a> and <a href="https://www.cl.cam.ac.uk/teaching/2425/Algorithm2/">2</a>) at the uni; a special hello if you're one of my students :)
         </p>
         <p className="qna">Where have you worked previously?</p>
@@ -58,39 +55,18 @@ export function Contacts() {
     text={
       <>
         <p style={{textAlign: 'center'}}>I'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
-          <div className="contactIconsContainer"> 
-            <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={"/assets/contacts/linkedin.svg"} />
-            <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} />
-            <AppIcon hoverText="jacob@jacbn.me" href="mailto:jacob@jacbn.me" image={"/assets/contacts/email.svg"} />
-            <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} />
-            <AppIcon href="https://twitter.com/jcbbn" image={"/assets/contacts/twitter.svg"} />
-            <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"/assets/contacts/spotify.svg"} />
-            <AppIcon hoverText="@jzabn" image={"/assets/contacts/discord.svg"} />
-            <AppIcon hoverText="SW-0524-5461-9909" image={"/assets/contacts/switch.svg"} />
-          </div>
+        <div className="contactIconsContainer"> 
+          <AppIcon href="https://www.linkedin.com/in/jacob-ea-brown/" image={"/assets/contacts/linkedin.svg"} />
+          <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} />
+          <AppIcon hoverText="jaycie@jacbn.me" href="mailto:jaycie@jacbn.me" image={"/assets/contacts/email.svg"} />
+          <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} />
+          <AppIcon href="https://twitter.com/jcbbn" image={"/assets/contacts/twitter.svg"} />
+          <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"/assets/contacts/spotify.svg"} />
+          <AppIcon hoverText="@jzabn" image={"/assets/contacts/discord.svg"} />
+          <AppIcon hoverText="SW-0524-5461-9909" image={"/assets/contacts/switch.svg"} />
+        </div>
+        <p className="small text-muted mt-5"><em>some of these links are still in my deadname. i'm working on it 😭 please use jaycie if you reach out :) thanks!</em></p>
       </>
     }
   />;
-}
-
-export function PageContent({pageName} : {pageName : string }) {
-  switch (pageName) {
-    case '/about':
-      return <About />;
-    case '/contacts':
-      return <Contacts />;
-    default:
-      return <Home />;
-  }
-}
-
-export default function Page() {
-  const location = useLocation();
-  return (
-    <main>
-      <Title />
-      <NavBar showName={false} />
-      <PageContent pageName={location.pathname} />
-    </main> 
-  );
 }

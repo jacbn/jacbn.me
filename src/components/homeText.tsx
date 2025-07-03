@@ -8,11 +8,11 @@ export interface HomeTextProps {
 
 export default function HomeText(props : HomeTextProps) {
     return (
-      <main className="wideTextContainer">
+      <main className="home-bg wideTextContainer">
         <h1>{props.title}</h1> 
         <div className="homeTextBody" style={{textAlign: (props.center) ? 'center' : 'justify'}}>
           {props.text}
         </div>
       </main>
-    )
+    );
 }
