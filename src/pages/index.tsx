@@ -3,12 +3,14 @@ import React from 'react';
 import AppIcon from '../components/appIcon';
 import HomeGrid from '../components/homeGrid';
 import HomeText from '../components/homeText';
+import { Linkbacks } from '../components/linkbacks';
 
 export function Home() {
   return (
     <main className="home-bg">
       <h1>My Projects:</h1>
       <HomeGrid />
+      <Linkbacks />
     </main>
   );
 }
