@@ -2,9 +2,10 @@ import MathsSquare from '../../components/mathsGrid/mathsSquare';
 import Apollo from './_apollo';
 import Radials from './_radials';
 import Lotfollah from './_lotfollah';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import CanvasScript from './canvasScript';
 import React from 'react';
+import { ReturnToParentPage } from '../../components/returnToParentPage';
 
 export function MathsArtDirectory() {
   return (
@@ -23,36 +24,26 @@ export function MathsArtDirectory() {
   );
 }
 
-export function BackToMathsDirectory() {
-  return (
-    <div className="backToMathsDirectory">
-      <Link to="/maths-art">
-        <span className="material-icons-round">arrow_back</span>
-      </Link>
-    </div>
-  );
-}
-
 export function MathsArtPageContent({pageName} : {pageName : string }) {
   switch (pageName) {
     case '/maths-art/apollo':
       return (
         <>
-          <BackToMathsDirectory />
+          <ReturnToParentPage isParent />
           <Apollo />
         </>
       );
     case '/maths-art/lotfollah':
       return (
         <>
-          <BackToMathsDirectory />
+          <ReturnToParentPage isParent />
           <Lotfollah />
         </>
       );
     case '/maths-art/radials':
       return (
         <>
-          <BackToMathsDirectory />
+          <ReturnToParentPage isParent />
           <Radials />
         </>
       );

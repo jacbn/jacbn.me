@@ -1,7 +1,4 @@
 :root:has(.cv) {
-    --text-primary: black;
-    --subtitle-primary: black;
-
     @media print {
         nav {
             display: none;
@@ -16,6 +13,11 @@ main:has(.cv) {
     @media print {
         padding: 0;
     }
+
+    --text-primary: black;
+    --subtitle-primary: black;
+
+    color: var(--text-primary);
 }
 
 .cv {
@@ -27,7 +29,7 @@ main:has(.cv) {
     h1 {
         font-size: 42pt;
         margin-top: 0;
-        margin-bottom: 0.1rem;
+        margin-bottom: 0.5rem;
     }
     
     h2 {
@@ -177,6 +179,13 @@ main:has(.cv) {
                 white-space: nowrap;
             }
         }
+    }
+
+    .profile-photo img {
+        width: 100%;
+        border-radius: 1rem;
+        outline: 2px solid #fff4;
+        outline-offset: 4px;
     }
 }
 

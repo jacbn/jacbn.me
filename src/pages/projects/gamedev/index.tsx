@@ -2,11 +2,10 @@ import React from 'react';
 import VerticalPane from "../../../components/verticalPane";
 
 export default function GameDev() {
-    return <>
+    return <div className="projectHomeContainer">
       <h1>Game Development</h1>
-      <div style={{textAlign: 'center'}}>
+      <div className="topText">
         <p>Gaming has always been a nice escape from reality for me, but there's something fascinating about being the one to design these experiences.</p>
-        <br/>
         <p>Here's a few projects I've had a go at!</p>
       </div>
       <VerticalPane
@@ -41,5 +40,5 @@ export default function GameDev() {
           }
         />
         <div style={{paddingBottom: '10vh'}}/>
-      </>;
+      </div>;
   }
