@@ -6,10 +6,13 @@ export default function ScrollTop(props: React.HTMLAttributes<HTMLDivElement>) {
   const location = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // this seems, sometimes, to fire before rendering, preventing scroll;
+    // useLayoutEffect doesn't seem to work either.
+    // just using a timeout for now.
+    window.setTimeout(() => {
+      window.scrollTo({top: 0, behavior: 'auto'});
+    }, 10);
   }, [location.pathname]);
 
-  return <div>
-    {props.children}
-  </div>;
+  return props.children;
 }
