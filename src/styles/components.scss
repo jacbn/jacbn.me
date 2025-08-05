@@ -1,3 +1,5 @@
+@use "mixins";
+
 .styled-toggle {
     $toggle-span-min-width: 1rem;
     $toggle-span-normal-x-padding: 8px;
@@ -83,4 +85,39 @@
   font-weight: 500;
   color: var(--nav-title);
   font-family: var(--font-sans-title);
+}
+
+.return-to-parent {
+  position: fixed;
+  left: 2rem;
+  top: 5.5rem;
+  padding: 0.5rem;
+  height: 24px;
+  width: 24px;
+  box-sizing: content-box;
+  background-color: var(--card-primary);
+  border-radius: 100%;
+  z-index: 20;
+  box-shadow: 0.2rem 0.2rem 0.2rem var(--shadow-primary);
+  color: var(--text-primary);
+}
+
+.cv-switcher {
+  a.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    justify-content: center;
+    @include mixins.font-size(1.2rem);
+
+    width: 20rem;
+    height: 20rem;
+
+    img {
+        width: 10rem;
+        height: 10rem;
+        filter: var(--icon-filter);
+    }
+  }
 }

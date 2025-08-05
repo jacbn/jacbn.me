@@ -4,7 +4,7 @@ import { Suspense } from "react";
 const privateComponent = (f : string) => {
     if (!import.meta.env.VITE_PRIVATE_COMPONENT) return null;
 
-    const Component = React.lazy(() => import(import.meta.env.VITE_PRIVATE_COMPONENT).then(m => ({default: m[f]})));
+    const Component = React.lazy(() => import(/* @vite-ignore */ import.meta.env.VITE_PRIVATE_COMPONENT).then(m => ({default: m[f]})));
 
     return <Suspense fallback={null}>
         <Component/>
