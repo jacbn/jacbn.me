@@ -54,11 +54,11 @@ const TechCVBody = () => {
         <div className="d-flex cv page">
             <div className="col-l contacts">
                 <h2>Contact</h2>
-                <ContactLink icon="/assets/contacts/linkedin.svg" href="https://www.linkedin.com/in/jacob-ea-brown/" text="jacob-ea-brown" />
+                <ContactLink icon="/assets/contacts/linkedin.svg" href="https://www.linkedin.com/in/jaycie-bn/" text="jaycie-bn" />
                 <ContactLink icon="/assets/contacts/github.svg" href="https://github.com/jacbn" text="jacbn" />
-                <ContactLink icon="/assets/contacts/web.svg" href="https://jacbn.me" text="jacbn.me" />
+                <ContactLink icon="/assets/contacts/web.svg" href="https://jaycie.me" text="jaycie.me" />
                 <MobileContact/>
-                <ContactLink icon="/assets/contacts/email.svg" href="mailto:jaycie@jacbn.me" text="jaycie@jacbn.me" />
+                <ContactLink icon="/assets/contacts/email.svg" href="mailto:hello@jaycie.me" text="hello@jaycie.me" />
 
                 <h2>Languages</h2>
                 <div className="dual-column">
@@ -184,9 +184,9 @@ const ServiceCVBody = () => {
                 <Photo />
 
                 <h2>Contact</h2>
-                <ContactLink icon="/assets/contacts/web.svg" href="https://jacbn.me" text="jacbn.me" />
+                <ContactLink icon="/assets/contacts/web.svg" href="https://jaycie.me" text="jaycie.me" />
                 <MobileContact/>
-                <ContactLink icon="/assets/contacts/email.svg" href="mailto:jaycie@jacbn.me" text="jaycie@jacbn.me" />
+                <ContactLink icon="/assets/contacts/email.svg" href="mailto:hello@jaycie.me" text="hello@jaycie.me" />
 
                 <div className="py-2" />
 
