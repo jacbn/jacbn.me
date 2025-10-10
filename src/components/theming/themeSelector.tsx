@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { JSX, useEffect, useLayoutEffect } from 'react';
 
 // This mess enables scoping global CSS files to a <ThemeSelector/> component.
 // Usually, once a CSS file is loaded it remains active globally until a hard refresh.
