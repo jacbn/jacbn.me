@@ -6,7 +6,6 @@ interface BallProps {
     value: number;
 }
 
-// @ts-expect-error in progress
 const Ball = (props : BallProps) => {
     return <div className="db-ball">
         <span>{props.value}</span>
