@@ -67,7 +67,10 @@ export const MdxBlogPost = () => {
     const postId = params.id;
     const Post = lazy(() => import(`../pages/blog/${postId}.mdx`));
     return <BlogErrorBoundary>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<>
+            <title>jaycie ⋅ blog</title>
+            <div>Loading...</div>
+        </>}>
             <main className="blog-container">
                 <Post components={{code, img}} />
             </main>
