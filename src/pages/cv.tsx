@@ -201,6 +201,8 @@ const ServiceCVBody = () => {
 
                 <div className="py-2" />
 
+                <References/>
+
 
             </div>
 
