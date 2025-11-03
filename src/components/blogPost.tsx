@@ -7,6 +7,7 @@ import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 import lightSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/one-light';
 import darkSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 import { ColorModeContext } from "./colorModeToggle";
+import classNames from "classnames";
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('scss', scss);
@@ -59,10 +60,9 @@ function img(props : ImgHTMLAttributes<HTMLImageElement>) {
         </div>
         <figcaption>{props.title}</figcaption>
     </figure>;
-  }
-  
+}
 
-export default function BlogPost() {
+export const MdxBlogPost = () => {
     const params = useParams();
     const postId = params.id;
     const Post = lazy(() => import(`../pages/blog/${postId}.mdx`));
@@ -73,4 +73,8 @@ export default function BlogPost() {
             </main>
         </Suspense>
     </BlogErrorBoundary>;
-}
+};
+
+export const TsxBlogPost = (props: React.HTMLAttributes<HTMLElement>) => {
+    return <main {...props} className={classNames("blog-container", props.className)} />;
+};

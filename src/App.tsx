@@ -15,10 +15,10 @@ import Apollo from './pages/maths-art/_apollo';
 import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
 import './styles.scss';
-import BlogPost from './components/blogPost';
 import BlogIntro from './pages/blog';
 import { CV, ServiceCV, TechCV } from './pages/cv';
 import ColorModeToggle, { ColorModeContextProvider } from './components/colorModeToggle';
+import { MdxBlogPost } from './components/blogPost';
 
 const router = createBrowserRouter([
   {
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
           <header>
             <NavBar showName={true} />
           </header>
-          <BlogPost />
+          <MdxBlogPost />
         </>
       },
       {
