@@ -1,10 +1,10 @@
 import React from 'react';
-import Blog from '../../../components/blog';
+import SimpleBlogLayout from '../../../components/blog';
 
 export default function YawNN() {
   return (
     <>
-      <Blog 
+      <SimpleBlogLayout 
         title="Yawning Detection"
         image={{
           src: "/assets/home/logo-yawnn-static.png",

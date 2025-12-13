@@ -15,16 +15,17 @@ import Apollo from './pages/maths-art/_apollo';
 import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
 import './styles.scss';
-import BlogPost from './components/blogPost';
 import BlogIntro from './pages/blog';
 import { CV, ServiceCV, TechCV } from './pages/cv';
 import ColorModeToggle, { ColorModeContextProvider } from './components/colorModeToggle';
+import { MdxBlogPost } from './components/blogPost';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <>
-      <ScrollTop /> 
+      <ScrollTop />
+      <title>jaycie brown</title>
       <ColorModeToggle />
       <Outlet />
     </>,
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <>
+          <title>jaycie ⋅ home</title>
           <header>
             <Title />
             <NavBar showName={false} />
@@ -42,6 +44,7 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <>
+          <title>jaycie ⋅ about</title>
           <header>
             <Title />
             <NavBar showName={false} />
@@ -52,6 +55,7 @@ const router = createBrowserRouter([
       {
         path: '/contacts',
         element: <>
+          <title>jaycie ⋅ contacts</title>
           <header>
             <Title />
             <NavBar showName={false} />
@@ -62,6 +66,7 @@ const router = createBrowserRouter([
       {
         path: '/cv',
         element: <>
+          <title>jaycie ⋅ cv</title>
           <header>
             <NavBar showName={true} />
           </header>
@@ -85,6 +90,7 @@ const router = createBrowserRouter([
       {
         path: '/blog',
         element: <>
+          <title>jaycie ⋅ blog</title>
           <header>
             <Title />
             <NavBar showName={false} />
@@ -98,12 +104,13 @@ const router = createBrowserRouter([
           <header>
             <NavBar showName={true} />
           </header>
-          <BlogPost />
+          <MdxBlogPost />
         </>
       },
       {
         path: '/projects',
         element: <>
+          <title>jaycie ⋅ projects</title>
           <header>
             <NavBar showName={true} />
           </header>
@@ -135,6 +142,7 @@ const router = createBrowserRouter([
       {
         path: '/gamedev',
         element: <>
+          <title>jaycie ⋅ game dev</title>
           <header>
             <NavBar showName={true} />
           </header>
@@ -144,6 +152,7 @@ const router = createBrowserRouter([
       {
         path: '/maths-art',
         element: <>
+          <title>jaycie ⋅ maths art</title>
           <header>
             <NavBar showName={true} />
           </header>

@@ -1,10 +1,10 @@
 import React from 'react';
-import Blog from '../../../components/blog';
+import SimpleBlogLayout from '../../../components/blog';
 
 export default function JCompiler() {
   return (
     <>
-      <Blog 
+      <SimpleBlogLayout 
         title="jCompiler"
         colour="lightcoral"
         text={

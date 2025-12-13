@@ -1,8 +1,8 @@
 import React from 'react';
-import Blog from '../../../components/blog';
+import SimpleBlogLayout from '../../../components/blog';
 
 export default function Pandemic() {
-  return <Blog 
+  return <SimpleBlogLayout 
     title="Pandemic Simulation and Real-World COVID-19 Data Analysis"
     colour="lightcoral"
     text={

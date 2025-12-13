@@ -1,4 +1,5 @@
 import React from 'react';
+import { TsxBlogPost } from './blogPost';
 
 export interface BlogProps extends React.HTMLAttributes<HTMLDivElement> { 
   title: string
@@ -10,10 +11,10 @@ export interface BlogProps extends React.HTMLAttributes<HTMLDivElement> {
   text: any
 }
 
-export default function Blog(props : BlogProps) {
+export default function SimpleBlogLayout(props : BlogProps) {
     const {title, image, colour, text, ...rest} = props;
 
-    return <main className="thinTextContainer">
+    return <TsxBlogPost>
       <h1>{title}</h1> 
       <div className="blogBody" {...rest}>
         {image !== undefined && (
@@ -25,5 +26,5 @@ export default function Blog(props : BlogProps) {
           {text}
         </div>
       </div>
-    </main>;
+    </TsxBlogPost>;
 }
