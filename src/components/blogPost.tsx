@@ -42,10 +42,10 @@ const BlogErrorBoundary = ({children} : {children: React.ReactNode}) => {
 function code({className, ...properties} : {className: string, children: React.ReactNode}) {
     const match = /language-(\w+)/.exec(className || '');
 
-    const {theme} = useContext(ColorModeContext);
+    const {themeLightness} = useContext(ColorModeContext);
 
     return match
-      ? <SyntaxHighlighter language={match[1]} style={theme === 'light' ? lightSyntax : darkSyntax} PreTag={"div"} {...properties}>
+      ? <SyntaxHighlighter language={match[1]} style={themeLightness === 'light' ? lightSyntax : darkSyntax} PreTag={"div"} {...properties}>
             {properties.children as string}
         </SyntaxHighlighter>
       : <code className={className} {...properties} />;
