@@ -6,9 +6,31 @@
   line-height: calc($size * 1.4);
 }
 
+@mixin dynamic-font-size($xs, $md, $xl) {
+  @include respond-below('md') {
+    font-size: $xs;
+    line-height: calc($xs * 1.4);
+  }
+
+  @include respond-above('md') {
+    font-size: $md;
+    line-height: calc($md * 1.4);
+  }
+
+  @include respond-above('xl') {
+    font-size: $xl;
+    line-height: calc($xl * 1.4);
+  }
+}
+
 @mixin respond-above($breakpoint) {
   @media (min-width: map.get(bootstrap.$grid-breakpoints, $breakpoint)) {
     @content;
   }
 }
 
+@mixin respond-below($breakpoint) {
+  @media (max-width: calc(map.get(bootstrap.$grid-breakpoints, $breakpoint) - 0.02px)) {
+    @content;
+  }
+}

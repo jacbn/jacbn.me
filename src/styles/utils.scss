@@ -3,3 +3,8 @@
     display: none !important;
   }
 }
+
+.row-cols-center-last > :last-child:nth-child(odd) {
+  margin-left: auto;
+  margin-right: auto;
+}

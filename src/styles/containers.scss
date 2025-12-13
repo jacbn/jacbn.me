@@ -1,0 +1,9 @@
+.home-container-thin {
+  width: 920px;
+  margin: auto;
+}
+
+.home-container-thin-override {
+  margin: 0 calc(-1 * (100vw - 920px) / 2);
+  padding: 0 calc((100vw - 920px) / 2);
+}

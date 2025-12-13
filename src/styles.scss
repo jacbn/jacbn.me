@@ -3,8 +3,11 @@
 @use "styles/mixins";
 @use "styles/utils";
 
+@use "styles/theme";
 @use "styles/elements";
+@use "styles/containers";
 @use "styles/components";
+@use "styles/images";
 @use "styles/blog";
 @use "styles/body";
 @use "styles/home";
