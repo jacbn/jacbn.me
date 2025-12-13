@@ -2,6 +2,8 @@ import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useRef, useEffect } from "react";
 import 'material-icons/iconfont/material-icons.css';
 import useDeviceSize, { below } from '../scripts/hooks/deviceSize';
+import { scrollIntoView } from '../utils/scroll';
+import classNames from 'classnames';
 
 export function NavBox({text, href, active}: {text: string, href: string, active?: boolean}) {
   return (
@@ -39,18 +41,28 @@ export function HamburgerBox() {
   );
 }
 
-interface NavBarProps {
-  showName: boolean;
+interface NavBarProps extends React.HTMLAttributes<HTMLElement> {
+  onHome: boolean;
 }
 
-export const NavBar = ({showName} : NavBarProps) => {
-
+export const NavBar = ({onHome, ...rest} : NavBarProps) => {
   const deviceSize = useDeviceSize();
   const location = useLocation();
 
+  return <nav {...rest} className={classNames("d-flex justify-content-center w-100 sticky-top home-nav home-links text-highlight py-4", rest.className, {"on-home": onHome})}>
+    <div className="d-flex justify-content-between w-100">
+      {onHome
+        ? <Link to="/#work" onClick={() => scrollIntoView('work')}>my work</Link>
+        : <Link to="/">home</Link>
+      }
+      <Link to="/blog"  className={classNames({"text-white": location.pathname === '/blog'})}>my blog</Link>
+      <Link to="/about" className={classNames({"text-white": location.pathname === '/about'})}>my profile</Link>
+    </div>
+  </nav>;
+
   return (
     <nav>
-      {showName && (
+      {onHome && (
         <Link to="/" className="mx-3 nav-name">
           jaycie
         </Link>

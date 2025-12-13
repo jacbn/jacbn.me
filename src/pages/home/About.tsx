@@ -1,24 +1,11 @@
 
 import React from 'react';
-import AppIcon from '../components/appIcon';
-import HomeGrid from '../components/homeGrid';
-import HomeText from '../components/homeText';
+import HomeText from '../../components/homeText';
 import { Link } from 'react-router-dom';
-import { Linkbacks } from '../components/linkbacks';
-
-export function Home() {
-  return (
-    <main className="home-bg">
-      <h1>My Projects:</h1>
-      <HomeGrid />
-      <Linkbacks />
-    </main>
-  );
-}
 
 export function About() {
   return <HomeText
-    title="Hi!"
+    title="About me"
     text={
       <>
         <p>I'm Jaycie, a Research Software Engineer at (and 2023 graduate of) the University of Cambridge. I specialise in frontend development with React, with nearly 2 years of professional experience and many more in education and working on personal projects.</p>
@@ -49,26 +36,4 @@ export function About() {
       </>
     }
     />;
-}
-
-export function Contacts() {
-  return <HomeText
-    title="Contacts"
-    center={true}
-    text={
-      <>
-        <p className="text-center">I'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
-        <div className="contactIconsContainer"> 
-          <AppIcon href="https://www.linkedin.com/in/jaycie-bn/" image={"/assets/contacts/linkedin.svg"} />
-          <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} />
-          <AppIcon hoverText="hello@jaycie.me" href="mailto:hello@jaycie.me" image={"/assets/contacts/email.svg"} />
-          <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} />
-          <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"/assets/contacts/spotify.svg"} />
-          <AppIcon hoverText="@jzabn" image={"/assets/contacts/discord.svg"} />
-          <AppIcon hoverText="SW-0524-5461-9909" image={"/assets/contacts/switch.svg"} />
-        </div>
-        <p className="small text-muted mt-5"><em>some of these links are still in my deadname. i'm working on it 😭 please use jaycie if you reach out :) thanks!</em></p>
-      </>
-    }
-  />;
 }

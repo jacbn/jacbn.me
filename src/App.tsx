@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { About, Contacts, Home } from './pages';
-import Title from './components/title';
+import { Contacts, Home } from './pages/home/Home';
+import { About } from './pages/home/About';
 import NavBar from './components/navbar';
 import GreenMaps from './pages/projects/greenmaps';
 import ScrollTop from './components/scrollTop';
@@ -19,6 +19,7 @@ import BlogIntro from './pages/blog';
 import { CV, ServiceCV, TechCV } from './pages/cv';
 import ColorModeToggle, { ColorModeContextProvider } from './components/colorModeToggle';
 import { MdxBlogPost } from './components/blogPost';
+import { Title } from './components/title';
 
 const router = createBrowserRouter([
   {
@@ -34,10 +35,6 @@ const router = createBrowserRouter([
         path: '/',
         element: <>
           <title>jaycie ⋅ home</title>
-          <header>
-            <Title />
-            <NavBar showName={false} />
-          </header>
           <Home />
         </>
       },
@@ -47,8 +44,8 @@ const router = createBrowserRouter([
           <title>jaycie ⋅ about</title>
           <header>
             <Title />
-            <NavBar showName={false} />
           </header>
+          <NavBar onHome={false} />
           <About />
         </>
       },
@@ -58,7 +55,7 @@ const router = createBrowserRouter([
           <title>jaycie ⋅ contacts</title>
           <header>
             <Title />
-            <NavBar showName={false} />
+            <NavBar onHome={false} />
           </header>
           <Contacts />
         </>
@@ -68,7 +65,7 @@ const router = createBrowserRouter([
         element: <>
           <title>jaycie ⋅ cv</title>
           <header>
-            <NavBar showName={true} />
+            <NavBar onHome={true} />
           </header>
           <Outlet />
         </>,
@@ -93,7 +90,7 @@ const router = createBrowserRouter([
           <title>jaycie ⋅ blog</title>
           <header>
             <Title />
-            <NavBar showName={false} />
+            <NavBar onHome={false} />
           </header>
           <BlogIntro />
         </>
@@ -102,7 +99,7 @@ const router = createBrowserRouter([
         path: '/blog/:id',
         element: <>
           <header>
-            <NavBar showName={true} />
+            <NavBar onHome={true} />
           </header>
           <MdxBlogPost />
         </>
@@ -112,7 +109,7 @@ const router = createBrowserRouter([
         element: <>
           <title>jaycie ⋅ projects</title>
           <header>
-            <NavBar showName={true} />
+            <NavBar onHome={true} />
           </header>
           <Outlet />
         </>,
@@ -144,7 +141,7 @@ const router = createBrowserRouter([
         element: <>
           <title>jaycie ⋅ game dev</title>
           <header>
-            <NavBar showName={true} />
+            <NavBar onHome={true} />
           </header>
           <GameDev />
         </>
@@ -154,7 +151,7 @@ const router = createBrowserRouter([
         element: <>
           <title>jaycie ⋅ maths art</title>
           <header>
-            <NavBar showName={true} />
+            <NavBar onHome={true} />
           </header>
           <MathsArt />
         </>,

@@ -1,12 +1,64 @@
 @use "mixins";
 @use "fonts";
+@use "containers";
 
 .home-bg {
-  background: linear-gradient(
-    135deg,
-    var(--background-start-rgb),
-    var(--background-end-rgb)
-  );
+  background: var(--theme-background-gradient);
+  align-items: start;
+}
+
+#projects, #work {
+  background: var(--theme-background-alternate);
+}
+
+#contacts {
+  @include mixins.font-size(1.2rem);
+  font-family: var(--font-title);
+}
+
+.intro-pg {
+  h1 {
+    @include mixins.font-size(4rem);
+  }
+
+  p {
+    @include mixins.font-size(1.8rem);
+    font-family: var(--font-title);
+  }
+}
+
+nav.home-nav {
+  background-color: color-mix(in srgb, var(--sunset-blue-tertiary) 50%, transparent);
+  backdrop-filter: blur(10px);
+
+  &.on-home {
+    @include mixins.font-size(2rem);
+  }
+
+  &:not(.on-home) {
+    @include mixins.font-size(1.5rem);
+    box-shadow: 5px 3px 4px var(--shadow-primary);
+  }
+
+  > div {
+    max-width: 1000px;
+  }
+}
+
+.home-links {
+  font-family: var(--font-title);
+
+  a {
+    display: inline-flex;
+    gap: 0.75rem;
+    text-decoration: none;
+
+    &::after {
+      content: '>';
+      display: block;
+      margin-left: 5px;
+    }
+  }
 }
 
 .card {
@@ -20,13 +72,42 @@
   border: 1px solid var(--card-border);
   border-radius: 20px;
   cursor: pointer;
-  -webkit-transition: all 0.5s ease; 
-  transition: all 0.5s ease;
-  font-family: var(--font-sans-heading);
+  transition: all 0.3s ease-out;
+  font-family: var(--font-title);
   order: 5;
   flex: 0 0 30%;
   text-decoration: none;
   box-shadow: 4px 4px 5px var(--shadow-primary);
+}
+
+.card-square {
+  @extend .card;
+  border-radius: 0;
+
+  > img {
+    width: 100%;
+    aspect-ratio: 1;
+    image-rendering: pixelated;
+    transition: border-radius 0.3s ease-out;
+    border-radius: inherit;
+  }
+
+  .card-base {
+    position: absolute;
+    bottom: 0;
+    background-color: color-mix(in srgb, var(--card-primary) 90%, transparent);
+    backdrop-filter: blur(7px);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    p {
+      color: var(--text-secondary);
+    }
+  }
+
+  &:hover {
+    border-radius: 2rem;
+  }
 }
 
 .cardTop {
@@ -39,151 +120,90 @@
   border-radius: 20px;
 }
 
-.cardDescription {
-  margin: 2% 0%;
-}
-
-.cardBase {
-  width: 95%;
-  /* margin: auto; */
-  margin: 2% 2% 9% 2%;
+.card-base {
   position: relative;
+  width: 100%;
   text-align: center;
   color: var(--text-primary);
   @include mixins.font-size(1.2rem);
-  border-radius: 10px;
 }
 
-.grid {
-  width: calc(min(100%, var(--max-width)));
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex: 0 0 20%;
-  flex-wrap: wrap;
-  gap: 50px;
-  padding: 2% 4% 15%;
-  list-style: none;
-}
-
-.gridImage {
-  margin: 1% 0%;
-  aspect-ratio: 1; /*square image*/
-  border-radius: 50%;
-}
-
-.podium1 {
-  margin-top: 0;
-}
-
-.podium1 > div > img {
-  width: 224px;
-}
-
-.podium2 {
-  margin-top: 14px;
-}
-
-.podium2 > div > img {
-  width: 210px;
-}
-
-.podium3 {
-  margin-top: 38px;
-}
-
-.podium3 > div > img {
-  width: 186px;
-}
-
-.projectInfoText {
-  position: absolute;
-  justify-self: right;
-  align-self: flex-end;
+.project-info-text {
   @include mixins.font-size(0.9rem);
-  text-align: right;
+  align-self: flex-end;
   color:#a0a0a0;
-  margin: 0 5% 3% 0;
 }
 
 /* title properties */
 
-.title-container {
+.title-wrapper {
+  width: 100%;
   position: relative;
-  width: 100%;
-  height: calc(35vh + 40px); /* 40px bottom margin */
-  z-index: 0;
+  text-align: center;
 
-  transition: height 0.5s, width 0.5s;
-
-  > button {
-    position: fixed;
+  img {
     width: 100%;
-    height: inherit;
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 0;
-    cursor: pointer;
-    background: transparent;
+    image-rendering: pixelated;
+  }
 
-    font-family: var(--font-sans-heading);
+  h1 {
+    --shadow-offset: 16px;
+      @include mixins.respond-below('md') {
+        --shadow-offset: 8px;
+      }
+  }
 
-    .attribution {
-      position: absolute;
-      @include mixins.font-size(1rem);
-      bottom: 1rem;
-      opacity: 0;
-      transition: opacity 0.3s;
-      color: #ffffff;
+  h2 {
+    --shadow-offset: 4px;
+  }
+
+  h1, h2 {
+    z-index: 2;
+    color: white;
+    
+    &:first-of-type {
+      text-shadow: var(--sunset-blue-tertiary) calc(-1 * var(--shadow-offset)) var(--shadow-offset) 0;
+      background-clip: text;
+      background-color: white;
+      pointer-events: none;
     }
 
-    .titleShimmer, .titleSVG, .roller {
-      transition: opacity 0.3s;
+    &:last-of-type {
+      background-clip: text;
+      background-image: var(--shimmer-gradient);
+      background-size: 400% 400%;
+      animation: titleShimmerEffect 10s infinite ease-in-out;
+      pointer-events: none;
     }
   }
-}
 
-.title-container.expanded {
-  height: calc(min(50dvw, 640px));
+  &.full {
+    img {
+      min-height: 500px;
+      max-height: 100vh;
+      object-fit: cover;
+      object-position: bottom;
+    }
 
-  .titleBackground {
-    width: calc(min(100dvw, 1280px));
-    min-height: unset;
+    h1 {
+      @include mixins.font-size(calc(min(196pt, 20vw)));
+    }
+
+    h2 {
+      @include mixins.font-size(calc(min(35pt, 3.5vw)));
+    }
   }
 
-  .attribution {
-    opacity: 1;
+  &:not(.full) {
+    img {
+      max-height: calc(max(400px, 30vh));
+      object-fit: cover;
+    }
+
+    h1 {
+      @include mixins.font-size(calc(min(128pt, 15vw)));
+    }
   }
-}
-
-.title-container:hover, .title-container.expanded {
-  .titleShimmer, .titleSVG, .roller {
-    opacity: 0;
-  }
-}
-
-.titleBackground {
-  /* this is a separate element because we need to be able to click outside it if too big */
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("/assets/home/sorry-i-never-got-to-say-goodbye.gif");
-  // background-image: url("/assets/home/winged-strawb.png");
-  background-size: cover;
-  background-position: center 70%;
-  image-rendering: pixelated;
-  transition: width 0.5s; /* *not* height, this is managed by the parent */
-}
-
-.titleShimmer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: var(--title-background-gradient);
-  background-size: 400% 400%;
-  animation: titleShimmerEffect 20s infinite ease-in-out;
 }
 
 @keyframes titleShimmerEffect {
@@ -196,81 +216,6 @@
   100% {
     background-position: 0% 0%;
   }
-}
-
-.titleSVG {
-  width: 100%;
-  height: 30vh;
-  min-height: 160px;
-  display: block;
-  margin-bottom: 20px;
-  z-index: 1;
-
-  > symbol:first-child {
-    margin-top: 20px;
-  }
-}
-
-.titleBackgroundSVG {
-  height: inherit;
-  position: absolute;
-}
-
-.title-text {
-  @include mixins.font-size(calc(4vmin + 800%));
-  font-weight: 500;
-  stroke-width: calc(0.2rem);
-  font-family: 'fascinate';
-  stroke: var(--title-primary);
-  fill: none;
-}
-
-.title-text-small {
-  @include mixins.font-size(calc(1vmin + 200%));
-  font-weight: 500;
-  stroke-width: calc(0.1rem);
-  font-family: 'fascinate';
-  stroke: var(--title-primary);
-  fill: none;
-}
-
-.title-draw-animation {
-  --title-line-length: 405px;
-  stroke-dasharray: var(--title-line-length) var(--title-line-length);
-  animation: draw-title 5s forwards ease-out;
-}
-
-.titleFillAnimation {
-  animation: fadeInInstant 5s forwards ease-in-out;
-  stroke-dashoffset: -22%;
-  stroke-dasharray: 300px 0;
-}
-
-.titleMask {
-  animation: fadeOut 5s forwards ease-in-out;
-}
-
-.roller {
-  width: 100%;
-  height: 2.4rem;
-  line-height: 2rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 2vh;
-  color: var(--title-primary);
-}
-
-.rollerText {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  animation: 
-  slide 7s infinite 4s ease-in-out,
-  fadeIn 6s forwards ease-in-out;
 }
 
 .homeTextBody {
@@ -301,28 +246,13 @@
   height: 40px;
 }
 
-.iconContainer {
-  padding: 2% 10px 1%;
-}
-
-.contactIconsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2%;
-}
-
-.iconTooltip {
+.icon-tooltip-container {
   position: relative;
   display: inline-block;
 }
 
-.iconTooltip .tooltipText {
-  
-  width: 200px;
-  /* todo: ^ would ideally be fit-content, but see below */
+.icon-tooltip-container span {
+  width: fit-content;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -332,21 +262,20 @@
   z-index: 1;
   bottom: 100%;
   left: 50%;
-  margin-left: -100px;
-  /* above needs to be half of the width */
+  transform: translateX(-50%);
   transition: opacity 0.3s;
+
+  &.hidden {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &:not(.hidden) {
+    opacity: 1;
+  }
 }
 
-.tooltipHidden {
-  pointer-events: none;
-  opacity: 0;
-}
-
-.tooltipVisible {
-  opacity: 1;
-}
-
-.iconTooltip .tooltipText::after {
+.icon-tooltip-container span::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -369,60 +298,8 @@
 
 /* media properties */
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    transform: scale(1.1);
-    /* background: rgba(var(--card-rgb), 0.1); */
-    /* border: 1px solid rgba(var(--card-border-rgb), 0.15); */
-  }
-}
-
-@media (prefers-reduced-motion) {
-  .card:hover span {
-    transform: none;
-  }
-}
-
 /* Mobile */
 @media (max-width: 720px) {
-  .grid {
-    gap: 40px 20px;
-    margin-bottom: 200px;
-  }
-  
-  .grid > .card:nth-child(1) {
-    order: 2;
-  }
-
-  .grid > .card:nth-child(2) {
-    order: 1;
-  }
-
-  .card {
-    flex: 0 0 80%;
-  }
-
-  .podium1 > div > img {
-    width: 140px;
-  }
-
-  .podium2 > div > img {
-    width: 140px;
-  }
-
-  .podium2 {
-    margin-top: 0;
-  }
-
-  .podium3 > div > img {
-    width: 140px;
-  }
-
-  .podium3 {
-    margin-top: 0;
-  }
-
   .homeTextBody {
     font-size: 1rem;
   }
@@ -431,47 +308,6 @@
     text-align: start;
   }
   
-}
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 721px) and (max-width: 1370px) {
-  .grid {
-    gap: 40px;
-    margin-bottom: 100px;
-  }
-
-  .grid > .card:nth-child(1) {
-    order: 2;
-  }
-
-  .grid > .card:nth-child(2) {
-    order: 1;
-  }
-
-  .card {
-    flex: 0 0 40%;
-  }
-
-  .podium1 > div > img {
-    width: 196px;
-  }
-
-  .podium2 > div > img {
-    width: 196px;
-  }
-
-  .podium2 {
-    margin-top: 0;
-  }
-
-  .podium3 {
-    margin-top: 0;
-  }
-
-  .podium3 > .cardTop {
-    display: none;
-  }
-
 }
 
 @keyframes dash {

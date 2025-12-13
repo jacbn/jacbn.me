@@ -9,18 +9,13 @@
 html,
 body {
   max-width: 100vw;
-  /* overflow-x: hidden; */
   min-height: 100vh;
 }
 
 body {
   color: var(--text-primary);
   font-family: var(--font-sans-body);
-  background: linear-gradient(
-    135deg,
-    var(--background-start-rgb),
-    var(--background-end-rgb)
-  );
+  background: var(--theme-background-gradient);
 }
 
 main {
@@ -34,7 +29,7 @@ main {
   z-index: 1;
 }
 
-nav {
+nav.main-nav {
   position: sticky;
   top: 0;
   width: 100%;
@@ -43,8 +38,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: max-content;
-  background-color: var(--card-primary);
-  background-color: color-mix(in srgb, var(--card-primary) 80%, transparent);
+  background-color: var(--nav-primary);
+  background-color: color-mix(in srgb, var(--nav-primary) 80%, transparent);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   transition: top 0.3s;
@@ -53,8 +48,8 @@ nav {
 }
 
 h1 {
-  @include mixins.font-size(2.2rem);
-  font-family: var(--font-sans-heading);
+  @include mixins.font-size(3rem);
+  font-family: var(--font-title);
   color: var(--subtitle-primary);
   margin: 1rem 0 0.5rem;
   font-weight: 300;
@@ -62,28 +57,28 @@ h1 {
 
 h2 {
   @include mixins.font-size(1.8rem);
-  font-family: var(--font-sans-heading);
+  font-family: var(--font-title);
   color: var(--subtitle-primary);
   margin: 1rem 0;
 }
 
 h3 {
   @include mixins.font-size(1.5rem);
-  font-family: var(--font-sans-heading);
+  font-family: var(--font-title);
   color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
 }
 
 h4 {
   @include mixins.font-size(1.2rem);
-  font-family: var(--font-sans-heading);
+  font-family: var(--font-title);
   color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
 }
 
 h5 {
   @include mixins.font-size(1rem);
-  font-family: var(--font-sans-heading);
+  font-family: var(--font-title);
   font-weight: 800;
   color: var(--subtitle-primary);
   margin-bottom: 0.4rem;
