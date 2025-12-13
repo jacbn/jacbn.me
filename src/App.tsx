@@ -45,7 +45,7 @@ const router = createBrowserRouter([
           <header>
             <Title />
           </header>
-          <NavBar onHome={false} />
+          <NavBar />
           <About />
         </>
       },
@@ -55,8 +55,8 @@ const router = createBrowserRouter([
           <title>jaycie ⋅ contacts</title>
           <header>
             <Title />
-            <NavBar onHome={false} />
           </header>
+          <NavBar />
           <Contacts />
         </>
       },
@@ -64,9 +64,7 @@ const router = createBrowserRouter([
         path: '/cv',
         element: <>
           <title>jaycie ⋅ cv</title>
-          <header>
-            <NavBar onHome={true} />
-          </header>
+          <NavBar />
           <Outlet />
         </>,
         children: [
@@ -90,17 +88,15 @@ const router = createBrowserRouter([
           <title>jaycie ⋅ blog</title>
           <header>
             <Title />
-            <NavBar onHome={false} />
           </header>
+          <NavBar />
           <BlogIntro />
         </>
       },
       {
         path: '/blog/:id',
         element: <>
-          <header>
-            <NavBar onHome={true} />
-          </header>
+          <NavBar />
           <MdxBlogPost />
         </>
       },
@@ -108,9 +104,7 @@ const router = createBrowserRouter([
         path: '/projects',
         element: <>
           <title>jaycie ⋅ projects</title>
-          <header>
-            <NavBar onHome={true} />
-          </header>
+          <NavBar />
           <Outlet />
         </>,
         children: [
@@ -140,9 +134,7 @@ const router = createBrowserRouter([
         path: '/gamedev',
         element: <>
           <title>jaycie ⋅ game dev</title>
-          <header>
-            <NavBar onHome={true} />
-          </header>
+          <NavBar />
           <GameDev />
         </>
       },
@@ -150,9 +142,7 @@ const router = createBrowserRouter([
         path: '/maths-art',
         element: <>
           <title>jaycie ⋅ maths art</title>
-          <header>
-            <NavBar onHome={true} />
-          </header>
+          <NavBar />
           <MathsArt />
         </>,
         children: [

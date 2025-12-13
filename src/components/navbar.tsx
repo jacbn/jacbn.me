@@ -42,7 +42,7 @@ export function HamburgerBox() {
 }
 
 interface NavBarProps extends React.HTMLAttributes<HTMLElement> {
-  onHome: boolean;
+  onHome?: boolean;
 }
 
 export const NavBar = ({onHome, ...rest} : NavBarProps) => {
