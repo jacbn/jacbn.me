@@ -124,8 +124,8 @@ blockquote {
 
 code:not(pre code) {
   color: var(--code-color);
-  background-color: var(--card-secondary);
-  border: solid 1px var(--card-border-highlight);
+  background-color: var(--code-background);
+  border: solid 1px var(--code-border);
   padding: 0 4px;
   border-radius: 4px;
 }

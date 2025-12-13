@@ -64,7 +64,10 @@
   --canvas-primary: #000000;
   --canvas-secondary: #aaaaaa;
   --canvas-background: #ffffff;
+  
   --code-color: #bd0e64;
+  --code-background: var(--card-secondary);
+  --code-border: var(--card-border-highlight);
 
   --icon-filter: none;
   --image-filter: none;
@@ -139,7 +142,10 @@
   --canvas-primary: #f0f0f0;
   --canvas-secondary: #666666;
   --canvas-background: #15181a;
+  
   --code-color: #ca3880;
+  --code-background: var(--card-secondary);
+  --code-border: var(--card-border-highlight);
 
   --icon-filter: invert(1);
   --image-filter: invert(95%) hue-rotate(180deg); 
@@ -186,6 +192,10 @@
 
   --theme-background-gradient: var(--sunset-blue-tertiary);
   --theme-background-alternate: var(--sunset-pink-primary);
+
+  --code-color: #ca3880;
+  --code-background:var(--sunset-blue-tertiary);
+  --code-border: var(--sunset-blue-secondary);
 
   --shadow-primary: #00000080;
 }
