@@ -14,7 +14,7 @@ const Ball = (props : BallProps) => {
 
 export const DoubleBack = () => {
     return <>
-        <NavBar showName={true} />
+        <NavBar onHome={true} />
         <Blog 
         title="Double Back"
         colour="lightcoral"
