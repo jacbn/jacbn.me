@@ -1,7 +1,7 @@
 import React from 'react';
 import TeX from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
-import SimpleBlogLayout from '../../../components/blog';
+import SimpleBlogLayout from '../../components/blog';
 
 export default function Sentiment() {
   return <SimpleBlogLayout 

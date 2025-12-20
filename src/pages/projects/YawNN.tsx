@@ -1,5 +1,5 @@
 import React from 'react';
-import SimpleBlogLayout from '../../../components/blog';
+import SimpleBlogLayout from '../../components/blog';
 
 export default function YawNN() {
   return (

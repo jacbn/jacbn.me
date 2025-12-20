@@ -1,5 +1,5 @@
 import React from 'react';
-import VerticalPane from "../../../components/verticalPane";
+import VerticalPane from "../../components/verticalPane";
 
 export default function GameDev() {
     return <div className="projectHomeContainer">
