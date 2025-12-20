@@ -38,10 +38,10 @@ export const Home = () => {
       </section>
 
       <section id="projects" className="container-fluid g-9 py-9">
-        <h1 className="mb-8 text-dark">⋅ projects ⋅</h1>
+        <h1 className="mb-8 text-dark">⋅ featured projects ⋅</h1>
         <FeaturedProjectsGrid />
         <div className="d-flex justify-content-center home-links text-dark mt-7 mb-9">
-          <Link to="/projects">See more</Link>
+          <Link to="/projects" className="font-size-title">See more</Link>
         </div>
       </section>
 

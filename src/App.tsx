@@ -20,6 +20,7 @@ import { CV, ServiceCV, TechCV } from './pages/cv';
 import ColorModeToggle, { ColorModeContextProvider } from './components/colorModeToggle';
 import { MdxBlogPost } from './components/blogPost';
 import { Title } from './components/title';
+import { ProjectsOverview } from './pages/projects/ProjectsOverview';
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
           <Outlet />
         </>,
         children: [
+          {
+            path: '/projects',
+            element: <ProjectsOverview />
+          },
           {
             path: '/projects/greenmaps',
             element: <GreenMaps />

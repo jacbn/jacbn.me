@@ -9,7 +9,7 @@ import { ReturnToParentPage } from '../../components/returnToParentPage';
 
 export function MathsArtDirectory() {
   return (
-    <div className="projectHomeContainer">
+    <div className="container-fluid container-projects">
       <CanvasScript startFunction={() => {}} /> {/* runs the colour scheme abort controller code */}
       <h1>Maths Art</h1> 
       <p className="topText">

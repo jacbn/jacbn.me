@@ -2,7 +2,7 @@ import React from 'react';
 import VerticalPane from "../../components/verticalPane";
 
 export default function GameDev() {
-    return <div className="projectHomeContainer">
+    return <div className="container-fluid container-projects">
       <h1>Game Development</h1>
       <div className="topText">
         <p>Gaming has always been a nice escape from reality for me, but there's something fascinating about being the one to design these experiences.</p>

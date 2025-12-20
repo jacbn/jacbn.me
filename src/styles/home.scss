@@ -71,7 +71,7 @@ nav.home-nav {
   box-shadow: 4px 4px 5px var(--shadow-primary);
 }
 
-.card-square {
+.card-image-square {
   @extend .card;
   border-radius: 0;
 
@@ -90,6 +90,21 @@ nav.home-nav {
     backdrop-filter: blur(7px);
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
+  }
+
+  &:hover {
+    border-radius: 2rem;
+  }
+}
+
+.card-no-image-square {
+  @extend .card;
+  border-radius: 0;
+
+  .card-base {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
   }
 
   &:hover {
