@@ -49,7 +49,12 @@ export const NavBar = ({onHome, ...rest} : NavBarProps) => {
   const deviceSize = useDeviceSize();
   const location = useLocation();
 
-  return <nav {...rest} className={classNames("d-flex justify-content-center w-100 sticky-top home-nav home-links text-highlight py-4", rest.className, {"on-home": onHome})}>
+  return <nav {...rest} className={classNames(
+    "d-flex justify-content-center w-100 sticky-top home-nav home-links text-highlight font-size-title py-4", 
+    rest.className, 
+    onHome ? "font-size-title" : "font-size-subtitle",
+    {"on-home": onHome}
+  )}>
     <div className="d-flex justify-content-between w-100">
       {onHome
         ? <Link to="/#work" onClick={() => scrollIntoView('work')}>my work</Link>

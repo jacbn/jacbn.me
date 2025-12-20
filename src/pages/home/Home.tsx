@@ -23,8 +23,8 @@ export const Home = () => {
     <main className="home-bg">
       <section id="intro" className="home-container-thin">
         <div className="intro-pg my-9 w-75">
-            <h1 className="text-highlight mb-3 ms-n6">⋅ hi! ⋅</h1>
-            <p>i&apos;m <span className="text-highlight">jaycie</span>, a frontend developer and aspiring designer with a passion for crafting meaningful experiences for real people.</p>
+            <h1 className="text-highlight font-size-display mb-3 ms-lg-n6">⋅ hi! ⋅</h1>
+            <p className="font-size-title">i&apos;m <span className="text-highlight">jaycie</span>, a frontend developer and aspiring designer with a passion for crafting meaningful experiences for real people.</p>
         </div>
       </section>
       

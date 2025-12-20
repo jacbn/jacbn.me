@@ -1,14 +1,10 @@
 :root {
   --max-width: 1600px;
   --border-radius: 12px;
-  --font-mono-body: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-  --font-title: 'Nerko One', var(--font-sans-fallback);
-  --font-sans-heading: 'Quicksand', var(--font-sans-fallback);
-  --font-sans-body: 'Inter', var(--font-sans-fallback);
-  --font-sans-fallback: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-  'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-title: 'Nerko One', var(--font-fallback);
+  --font-body: 'Figtree', var(--font-fallback);
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-fallback: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --project-body-padding: 7vw;
 
   --sunset-pink-primary: #fbbbad;
@@ -23,9 +19,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root[data-bs-theme='modern-light'] {
+:root[data-bs-theme='sunset-light'], :root[data-bs-theme='modern-light'] {
   --theme-base: #fff;
   --theme-inverse: #000;
+
+  --accent-greenmaps: #b39f7a;
+  --accent-yawning: #323558;
+  --accent-maths: #00a243;
+  --accent-compiler: #bf3aa9;
+  --accent-sentiment: #588fca;
+  --accent-pandemic: #d06f6f;
+  --accent-game-dev: #ceb40b;
+}
+
+:root[data-bs-theme='sunset-dark'], :root[data-bs-theme='modern-dark'] {
+  --theme-base: #000;
+  --theme-inverse: #fff;
+
+  --accent-greenmaps: wheat;
+  --accent-yawning: #9bfae7;
+  --accent-maths: lightgreen;
+  --accent-compiler: #f9d1da;
+  --accent-sentiment: #6eb5ff;
+  --accent-pandemic: lightcoral;
+  --accent-game-dev: #f0d83c;
+}
+
+:root[data-bs-theme='modern-light'] {
   --title-primary: #fff;
   --title-secondary: #5f353c;
   --subtitle-primary: #222222;
@@ -77,14 +97,6 @@
 
   --foreground-accent: #88bbee;
 
-  --accent-greenmaps: #b39f7a;
-  --accent-yawning: #323558;
-  --accent-maths: #00a243;
-  --accent-compiler: #bf3aa9;
-  --accent-sentiment: #588fca;
-  --accent-pandemic: #d06f6f;
-  --accent-game-dev: #ceb40b;
-
   --code-background-tsx: #648adb4b;
   --code-background-scss: #ff00001a;
 
@@ -102,8 +114,6 @@
 }
 
 :root[data-bs-theme='modern-dark'] {
-  --theme-base: #000;
-  --theme-inverse: #fff;
   --title-primary: #ffffff;
   --title-secondary: #5f353c;
   --subtitle-primary: #f0f0f0;
@@ -154,14 +164,6 @@
 
   --foreground-accent: #88bbee;
 
-  --accent-greenmaps: wheat;
-  --accent-yawning: #9bfae7;
-  --accent-maths: lightgreen;
-  --accent-compiler: #f9d1da;
-  --accent-sentiment: #6eb5ff;
-  --accent-pandemic: lightcoral;
-  --accent-game-dev: #f0d83c;
-
   --code-background-tsx: var(--card-primary);
   --code-background-scss: #211414;
 
@@ -186,9 +188,11 @@
 :root[data-bs-theme='sunset-light'], :root[data-bs-theme='sunset-dark'] {
   --text-primary: #fff;
   --text-secondary: var(--sunset-pink-primary);
+  --bs-secondary-color: var(--sunset-pink-primary);
   --text-tertiary: var(--sunset-blue-tertiary);
   --card-primary: var(--sunset-blue-secondary);
   --nav-primary: var(--sunset-blue-tertiary);
+  --foreground-accent: var(--sunset-pink-primary);
 
   --theme-background-gradient: var(--sunset-blue-tertiary);
   --theme-background-alternate: var(--sunset-pink-primary);
@@ -196,6 +200,9 @@
   --code-color: #ca3880;
   --code-background:var(--sunset-blue-tertiary);
   --code-border: var(--sunset-blue-secondary);
+
+  --code-background-tsx: #161421;
+  --code-background-scss: #211414;
 
   --shadow-primary: #00000080;
 }

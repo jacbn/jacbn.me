@@ -46,9 +46,8 @@
     border-radius: 50%;
     background: radial-gradient(circle at 60px 30px, #f00, #000);
     text-align: center;
-    line-height: 90px;
-    font-size: 2rem;
-    font-family: 'Quicksand';
+    @include mixins.font-size(2rem);
+    font-family: var(--font-title);
     font-weight: 800;
     margin-bottom: 1rem;
     &:hover {
