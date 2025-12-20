@@ -1,6 +1,10 @@
 .home-container-thin {
-  width: 920px;
+  max-width: 920px;
   margin: auto;
+
+  @media (max-width: 960px) {
+    margin: 0 20px;
+  }
 }
 
 .home-container-thin-override {
