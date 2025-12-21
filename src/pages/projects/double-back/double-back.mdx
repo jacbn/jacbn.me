@@ -1,4 +1,5 @@
 import { DBForceGraph } from "./db-graph";
+import { DoubleBackPlayer } from './db-sim';
 
 <title>jaycie ⋅ double back</title>
 # Double Back
@@ -13,5 +14,9 @@ Double back is a simple puzzle game with two rows of balls in ascending order. Y
 </figure>
 
 The number of balls in the rows is variable. The above shows N=5, which is decently challenging for newcomers. I've built a simulation of the game to enable tweaking of many more parameters than the original, so you can have a go here too:
+
+<DoubleBackPlayer 
+    gameState={[[1, 8], [2, 7], [3, 4], [4, 5], [5, 6], [6, 3], [1, 2], [7, 8]]}
+/>
 
 <DBForceGraph path="/data/double-back/spectral-4.json" />;

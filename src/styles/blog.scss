@@ -49,12 +49,14 @@
 }
 
 .db-ball {
-    display: block;
-    width: 100px;
-    height: 100px;
+    display: flex;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
     border-radius: 50%;
     background: radial-gradient(circle at 60px 30px, #f00, #000);
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     @include mixins.font-size(2rem);
     font-family: var(--font-title);
     font-weight: 800;
@@ -65,6 +67,13 @@
     &.db-target {
         background: radial-gradient(circle at 60px 30px, #f80, #000);
     }
+    &.highlight {
+        background: radial-gradient(circle at 60px 30px, #0f0, #000);
+    }
+
+    > span {
+        margin-top: -4px;
+    }
 }
 
 .db-col {
@@ -72,11 +81,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-grow: 1;
     padding: 2rem 1rem;
 }
 
 .db-row {
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
     user-select: none;
@@ -84,7 +95,7 @@
 
 .db-drop {
     position: absolute;
-    width: 125px;
-    height: 110px;
+    width: 100%;
+    height: 100%;
     /* background-color: pink; */
 }
