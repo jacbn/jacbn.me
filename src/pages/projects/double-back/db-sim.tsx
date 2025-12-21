@@ -5,10 +5,16 @@ import cloneDeep from "lodash/cloneDeep";
 
 const DoubleBackContext = React.createContext<{
     current?: BallProps;
+    gameOptions?: DoubleBackGameOptions;
 } | undefined>(undefined);
 
 type Target = "left top" | "left bottom" | "top" | "bottom" | "right top" | "right bottom" | undefined;
 const TARGET_OFFSET = 40;
+
+interface DoubleBackGameOptions {
+    enableFlips?: boolean;
+    hideUselessMoves?: boolean;
+}
 
 const getAdjacentCoords = (position: XYCoord, cols: number) => {
     return [
@@ -18,6 +24,14 @@ const getAdjacentCoords = (position: XYCoord, cols: number) => {
         position.x < cols - 1 ? { x: position.x + 1, y: (position.y + 1) % 2 } : undefined,
         { x: position.x, y: (position.y + 1) % 2 },
     ].filter((coord) => coord) as XYCoord[];
+};
+
+function isValidMove(a: BallProps, b: BallProps, gameOptions?: DoubleBackGameOptions): boolean {
+    if (gameOptions?.hideUselessMoves) {
+        return Math.abs(a.value - b.value) === 1 && Math.abs(a.position.x - b.position.x) <= 1;
+    } else {
+        return Math.abs(a.value - b.value) <= 1  && Math.abs(a.position.x - b.position.x) <= 1;
+    }
 }
 
 interface BallProps {
@@ -88,7 +102,7 @@ const Ball = (props : BallProps) => {
                 return null;
             }
             const dragged = context.current;
-            if (Math.abs(dragged.value - props.value) === 1 && Math.abs(dragged.position.x - props.position.x) <= 1) {
+            if (isValidMove(dragged, props, context.gameOptions)) {
                 props.swap?.(dragged.position, props.position);
             }
         },
@@ -109,12 +123,13 @@ const Ball = (props : BallProps) => {
 interface DoubleBackPlayerProps {
     cols?: number;
     gameState?: number[][];
+    gameOptions?: DoubleBackGameOptions;
 }
 
 export const DoubleBackPlayer = (props: DoubleBackPlayerProps) => {
 
     return <DndProvider backend={HTML5Backend}>
-        <DoubleBackContext.Provider value={{}}>
+        <DoubleBackContext.Provider value={{gameOptions: props.gameOptions}}>
             <DoubleBackManager {...props} />
         </DoubleBackContext.Provider>
     </DndProvider>;
@@ -163,7 +178,11 @@ const DoubleBackManager = (props: DoubleBackPlayerProps) => {
     useEffect(() => {
         if (gameState && dragged?.position) {
             const targets: XYCoord[] = getAdjacentCoords(dragged.position, numCols);
-            setAvailableTargets(targets.filter((target) => Math.abs(gameState[target.x][target.y] - dragged.value) === 1));
+            setAvailableTargets(
+                props.gameOptions?.hideUselessMoves
+                    ? targets.filter((target) => Math.abs(gameState[target.x][target.y] - dragged.value) === 1)
+                    : targets.filter((target) => Math.abs(gameState[target.x][target.y] - dragged.value) <= 1)
+            );
         } else {
             setAvailableTargets([]);
         }
@@ -174,7 +193,7 @@ const DoubleBackManager = (props: DoubleBackPlayerProps) => {
     }
 
     return <>
-        <div className="db-row">
+        <div className="db-container">
             {gameState.map((col, i) => {
                 return <div key={i} className="db-col">
                     {col.map((value, j) => {
@@ -182,7 +201,7 @@ const DoubleBackManager = (props: DoubleBackPlayerProps) => {
                             className={availableTargets.some((target) => target.x === i && target.y === j) ? 'db-target' : ''}
                         />;
                     })}
-                    <button onClick={() => flipCol(col)}>Flip</button>
+                    {props.gameOptions?.enableFlips && <button onClick={() => flipCol(col)}>Flip</button>}
                     {/* <span>
                         {col[0] > col[1] ? (col[0] * (col[0] + 1)) / 2 - col[0] + col[1] : (col[1] * (col[1] + 1)) / 2 - col[1] + col[0]}
                     </span> */}

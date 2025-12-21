@@ -85,12 +85,15 @@
     padding: 2rem 1rem;
 }
 
-.db-row {
+.db-container {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
     user-select: none;
+    background-color: var(--theme-background-gradient);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
 }
 
 .db-drop {
