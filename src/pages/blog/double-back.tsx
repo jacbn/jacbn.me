@@ -14,8 +14,7 @@ export const DoubleBack = () => {
             }
         />
         <DoubleBackPlayer 
-            cols={7} 
-            gameState={[[1, 7], [5, 6], [4, 5], [3, 4], [2, 3], [1, 2], [7, 6]]}
+            gameState={[[1, 8], [2, 7], [3, 4], [4, 5], [5, 6], [6, 3], [1, 2], [7, 8]]}
         
         />
     </>;

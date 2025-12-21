@@ -79,6 +79,8 @@ const Ball = (props : BallProps) => {
         console.log(target);
     }, [target]);
 
+    const [isHighlighted, setIsHighlighted] = useState(false);
+
     const [, dropRef] = useDrop({
         accept: "ball",
         drop: () => {
@@ -94,7 +96,12 @@ const Ball = (props : BallProps) => {
     });
 
     return <>
-        <div ref={dragRef} style={{visibility: isDragging ? 'hidden' : 'visible'}} className={"db-ball " + props.className}>
+        <div 
+            ref={dragRef} 
+            style={{visibility: isDragging ? 'hidden' : 'visible'}} 
+            className={"db-ball " + (isHighlighted ? "highlight " : "") + props.className}
+            onClick={() => setIsHighlighted(h => !h)}
+        >
             <div ref={dropRef} className="db-drop" />
             <span>{props.value}</span>
         </div>
@@ -102,7 +109,7 @@ const Ball = (props : BallProps) => {
 };
 
 interface DoubleBackPlayerProps {
-    cols: number;
+    cols?: number;
     gameState?: number[][];
 }
 
@@ -122,6 +129,14 @@ const DoubleBackManager = (props: DoubleBackPlayerProps) => {
     const [moves, setMoves] = useState(0);
     const [undoStack, setUndoStack] = useState<number[][][]>([]);
     const [redoStack, setRedoStack] = useState<number[][][]>([]);
+    const numCols = props.cols ?? gameState?.length;
+    if (!numCols) {
+        return <span>Invalid game. Either set the number of columns or a game state.</span>;
+    }
+
+    const flipCol = (col: number[]) => {
+        setGameState(gameState?.map((c) => c === col ? [c[1], c[0]] : c));
+    };
 
     const swap = (a: XYCoord, b: XYCoord) => {
         if (!gameState) {
@@ -140,7 +155,7 @@ const DoubleBackManager = (props: DoubleBackPlayerProps) => {
     useEffect(() => {
         if (!gameState) {
             const state: number[][] = [];
-            for (let i = 1; i < props.cols + 1; i++) {
+            for (let i = 1; i < numCols + 1; i++) {
                 state.push([i, i]);
             }
             setGameState(state);
@@ -149,7 +164,7 @@ const DoubleBackManager = (props: DoubleBackPlayerProps) => {
 
     useEffect(() => {
         if (gameState && dragged?.position) {
-            const targets: XYCoord[] = getAdjacentCoords(dragged.position, props.cols);
+            const targets: XYCoord[] = getAdjacentCoords(dragged.position, numCols);
             setAvailableTargets(targets.filter((target) => Math.abs(gameState[target.x][target.y] - dragged.value) === 1));
         } else {
             setAvailableTargets([]);
@@ -169,9 +184,10 @@ const DoubleBackManager = (props: DoubleBackPlayerProps) => {
                             className={availableTargets.some((target) => target.x === i && target.y === j) ? 'db-target' : ''}
                         />;
                     })}
-                    <span>
+                    <Button onClick={() => flipCol(col)}>Flip</Button>
+                    {/* <span>
                         {col[0] > col[1] ? (col[0] * (col[0] + 1)) / 2 - col[0] + col[1] : (col[1] * (col[1] + 1)) / 2 - col[1] + col[0]}
-                    </span>
+                    </span> */}
                 </div>;
             })}
         </div>

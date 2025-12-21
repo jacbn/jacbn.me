@@ -16,6 +16,9 @@
     &.db-target {
         background: radial-gradient(circle at 60px 30px, #f80, #000);
     }
+    &.highlight {
+        background: radial-gradient(circle at 60px 30px, #0f0, #000);
+    }
 }
 
 .db-col {
