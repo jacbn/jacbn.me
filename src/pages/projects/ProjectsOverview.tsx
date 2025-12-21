@@ -1,8 +1,11 @@
 import React from "react";
-import { ProjectsCardGameDev, ProjectsCardGreenMaps, ProjectsCardJCompiler, ProjectsCardMathsArt, ProjectsCardPandemic, ProjectsCardSentiment, ProjectsCardYawNN } from "./project-cards";
+import { ProjectsCardDoubleBack, ProjectsCardGameDev, ProjectsCardGreenMaps, ProjectsCardJCompiler, ProjectsCardMathsArt, ProjectsCardPandemic, ProjectsCardSentiment, ProjectsCardYawNN } from "./project-cards";
 
 export const AllProjectsGrid = () => {
   return <ol className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 list-unstyled">
+    <li>
+        <ProjectsCardDoubleBack />
+    </li>
     <li>
         <ProjectsCardYawNN />
     </li>

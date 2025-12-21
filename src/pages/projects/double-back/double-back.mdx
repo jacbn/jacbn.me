@@ -1,0 +1,17 @@
+import { DBForceGraph } from "./db-graph";
+
+<title>jaycie ⋅ double back</title>
+# Double Back
+
+<p className="text-muted">Well, this one's been a long time coming. You're welcome, @jps79.</p>
+
+Double back is a simple puzzle game with two rows of balls in ascending order. You can swap adjacent balls (horizontally, vertically or diagonally) whose values differ by at most one, with the goal of flipping the direction of the rows.
+
+<figure>
+    <img src="/assets/double-back/clp-double-back.png" />
+    <figcaption><a href="https://somethingorotherwhatever.com/double-back/">The original version</a>, via Christian Lawson-Perfect.</figcaption>
+</figure>
+
+The number of balls in the rows is variable. The above shows N=5, which is decently challenging for newcomers. I've built a simulation of the game to enable tweaking of many more parameters than the original, so you can have a go here too:
+
+<DBForceGraph path="/data/double-back/spectral-4.json" />;

@@ -120,6 +120,19 @@ export const ProjectsCardGameDev = () => {
     />;
 };
 
+export const ProjectsCardDoubleBack = () => {
+    return <FlatGridSquare
+        title="Double Back"
+        description="taking a puzzle game too far"
+        year="2023 onwards"
+        lang="Maths, JS"
+        imageProps={{
+            
+        }}
+        link="/projects/double-back/"
+    />;
+};
+
 {/* <GridSquare 
         title="Utilities"
         description="simplifying work with a collection of bespoke tools"

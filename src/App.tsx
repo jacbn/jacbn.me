@@ -21,6 +21,7 @@ import ColorModeToggle, { ColorModeContextProvider } from './components/colorMod
 import { MdxBlogPost } from './components/blogPost';
 import { Title } from './components/title';
 import { ProjectsOverview } from './pages/projects/ProjectsOverview';
+import { DoubleBack } from './pages/projects/double-back/DoubleBack';
 
 const router = createBrowserRouter([
   {
@@ -132,6 +133,10 @@ const router = createBrowserRouter([
           {
             path: '/projects/sentiment',
             element: <Sentiment />
+          },
+          {
+            path: '/projects/double-back',
+            element: <DoubleBack />
           }
         ]
       },

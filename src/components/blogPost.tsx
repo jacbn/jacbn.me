@@ -8,36 +8,10 @@ import lightSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/one-ligh
 import darkSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 import { ColorModeContext } from "./colorModeToggle";
 import classNames from "classnames";
+import { BlogErrorBoundary, ProjectErrorBoundary } from "./errorBoundary";
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('scss', scss);
-
-const BlogErrorBoundary = ({children} : {children: React.ReactNode}) => {
-    const [hasError, setHasError] = useState(false);
-
-    useEffect(() => {
-        const handleError = (error: ErrorEvent) => {
-            setHasError(true);
-            console.error("Error caught by ErrorBoundary: ", error);
-        };
-
-        window.addEventListener("error", handleError);
-
-        return () => {
-        window.removeEventListener("error", handleError);
-        };
-    }, []);
-
-    if (hasError) {
-        return <div className="mt-5 text-center">
-            Something went wrong. There's probably no blog at this URL.
-            <br/><br/>
-            Try searching through <a href="/blog">the list of blogs</a> instead!
-        </div>;
-    }
-
-  return <>{children}</>;
-};
 
 function code({className, ...properties} : {className: string, children: React.ReactNode}) {
     const match = /language-(\w+)/.exec(className || '');
@@ -62,19 +36,31 @@ function img(props : ImgHTMLAttributes<HTMLImageElement>) {
     </figure>;
 }
 
+const MdxContainer = ({Post}: {Post: React.LazyExoticComponent<React.ComponentType<any>>}) => {
+    // must be surrounded by an error boundary!
+    return <Suspense fallback={<>
+        <title>jaycie ⋅ blog</title>
+        <div>Loading...</div>
+    </>}>
+        <main className="blog-container">
+            <Post components={{code, img}} />
+        </main>
+    </Suspense>;
+};
+
+export const MdxProject = ({path}: {path: string}) => {
+    const Post = lazy(() => import(/* @vite-ignore */ path));
+    return <ProjectErrorBoundary>
+        <MdxContainer Post={Post} />
+    </ProjectErrorBoundary>;
+};
+
 export const MdxBlogPost = () => {
     const params = useParams();
     const postId = params.id;
     const Post = lazy(() => import(`../pages/blog/${postId}.mdx`));
     return <BlogErrorBoundary>
-        <Suspense fallback={<>
-            <title>jaycie ⋅ blog</title>
-            <div>Loading...</div>
-        </>}>
-            <main className="blog-container">
-                <Post components={{code, img}} />
-            </main>
-        </Suspense>
+        <MdxContainer Post={Post} />
     </BlogErrorBoundary>;
 };
 
