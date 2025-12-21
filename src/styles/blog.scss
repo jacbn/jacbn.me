@@ -15,6 +15,15 @@
         width: 100%;
     }
 
+    figure {
+        width: 100%;
+        
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+
     @include mixins.respond-above(md) {
         width: 80%;
     }
