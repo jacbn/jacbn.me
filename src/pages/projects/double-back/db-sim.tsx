@@ -18,6 +18,8 @@ const TARGET_OFFSET = 80;
 
 interface DoubleBackGameOptions {
     enableFlips?: boolean;
+    showMoveCount?: boolean;
+    interactive?: boolean;
     hideUselessMoves?: boolean;
 }
 
@@ -32,6 +34,7 @@ const getAdjacentCoords = (position: XYCoord, cols: number) => {
 };
 
 function isValidMove(a: BallProps, b: BallProps, gameOptions?: DoubleBackGameOptions): boolean {
+    if (a.id === b.id) return false;
     if (gameOptions?.hideUselessMoves) {
         return Math.abs(a.value - b.value) === 1 && Math.abs(a.position.x - b.position.x) <= 1;
     } else {
@@ -63,6 +66,9 @@ const Ball = (props : BallProps) => {
         () => ({
             type: "ball",
             item: item,
+            canDrag() {
+                return context.gameOptions?.interactive ?? true;
+            },
             collect: (monitor) => ({
                 isDragging: monitor.isDragging(),
                 offset: {
@@ -131,6 +137,9 @@ const Ball = (props : BallProps) => {
 
     const [, drop] = useDrop({
         accept: "ball",
+        canDrop() {
+            return context.gameOptions?.interactive ?? true;
+        },
         drop: (ball: BallProps) => {
             props.setDragged?.(undefined);
             if (!context || !ball) {
@@ -168,7 +177,7 @@ const Ball = (props : BallProps) => {
                             transition: "none",
                         } : undefined
                 } 
-                className={classNames("db-ball", { "highlight": isHighlighted, "hidden": isDragging }, props.className)}
+                className={classNames("db-ball", { "highlight": isHighlighted, "hidden": isDragging, "inactive": !(context.gameOptions?.interactive ?? true) }, props.className)}
                 onClick={() => setIsHighlighted(h => !h)}
             >
                 <span>{props.value}</span>
@@ -285,7 +294,7 @@ const DoubleBackManager = ({ gameState: initialGameState }: { gameState?: BallSt
 
     const flatGameState = augmentGameState(gameState);
 
-    return <>
+    return <div className="w-100 d-flex flex-column align-items-center gap-2 pb-3">
         <DBContainer cols={context.cols}>
             {flatGameState.map((ball, i) => {
                 return <Ball key={i} id={i} value={ball.value} position={ball.position} swap={swap} 
@@ -296,15 +305,21 @@ const DoubleBackManager = ({ gameState: initialGameState }: { gameState?: BallSt
                     })}
                 />;
             })}
-            {gameState.map((col) => {
-                return context.gameOptions?.enableFlips && <button onClick={() => flipCol(col)}>Flip</button>;
-            })}
         </DBContainer>
-
-        <span>
+        {context.gameOptions?.enableFlips && <div className="w-100 d-flex justify-content-around z-2" style={{minWidth: `${(context.cols ?? 1) * 50}px`, maxWidth: `${(context.cols ?? 1) * 150}px`,}}>
+            {gameState.map((col, i) => {
+                return <button key={i} onClick={() => {
+                    flipCol(col);
+                    setLastDragged(undefined);
+                }}>
+                    Flip
+                </button>;
+            })}
+        </div>}
+        {(context.gameOptions?.interactive ?? true) && context.gameOptions?.showMoveCount && <span>
             Moves: {moves}
-        </span>
-        <div>
+        </span>}
+        {(context.gameOptions?.interactive ?? true) && <div>
             <button
                 className="undo-button" 
                 onClick={() => {
@@ -335,8 +350,8 @@ const DoubleBackManager = ({ gameState: initialGameState }: { gameState?: BallSt
             >
                 Redo
             </button>
-        </div>
-    </>;
+        </div>}
+    </div>;
 };
 
 interface DBContainerProps extends React.HTMLAttributes<HTMLElement> {
@@ -367,7 +382,11 @@ const DBContainer = ({cols, ...rest}: DBContainerProps) => {
         };
     }, []);
 
-    return <div className="db-container" ref={divRef} style={{maxWidth: `${(cols ?? 1) * 150}px`}} {...rest}>
+    return <div className="db-container" ref={divRef} style={{
+        minWidth: `${(cols ?? 1) * 50}px`, 
+        maxWidth: `${(cols ?? 1) * 150}px`,
+        height: `${2 * (divRef.current?.clientWidth ?? 0) / (cols ?? 1)}px`,
+    }} {...rest}>
         <MouseOffsetContext.Provider value={mouseOffset}>
             {rest.children}
         </MouseOffsetContext.Provider>
