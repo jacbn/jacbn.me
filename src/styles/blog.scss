@@ -1,20 +1,7 @@
 @use "mixins";
 @use "fonts";
 
-.blog-container {
-    width: 100%;
-    row-gap: 0.5rem;
-    margin: auto;
-    align-items: start;
-    padding: 1rem 3% 15vh;
-
-    background-color: color-mix(in srgb, var(--card-primary) 40%, transparent);
-    box-shadow: 0 2px 5px var(--shadow-primary);
-
-    > div {
-        margin: auto;
-    }
-
+%blog-components {
     figure {
         width: 100%;
         
@@ -23,6 +10,27 @@
             border-radius: 10px;
         }
     }
+}
+
+%blog-theme {
+    background-color: color-mix(in srgb, var(--card-primary) 40%, transparent);
+    box-shadow: 0 2px 5px var(--shadow-primary);
+}
+
+.blog-container {
+    width: 100%;
+    row-gap: 0.5rem;
+    margin: auto;
+    align-items: start;
+    padding: 1rem 3% 15vh;
+
+    > div {
+        margin: auto;
+    }
+
+    @extend %blog-theme;
+
+    @extend %blog-components;
 
     @include mixins.respond-above(md) {
         width: 80%;
@@ -35,6 +43,21 @@
     @include mixins.respond-above(xl) {
         width: 920px;
     }
+}
+
+.blog-container-with-demo:first-child {
+    flex: 6 6 0;
+    overflow: clip;
+    margin: 0 5%;
+    padding: 2rem;
+
+    @extend %blog-theme;
+    @extend %blog-components;
+}
+
+.blog-container-with-demo:last-child {
+    flex: 4 4 0;
+    overflow: clip;
 }
 
 .callout {
@@ -58,33 +81,36 @@
 .db-ball {
     display: flex;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    padding: 10%;
+    inset: 10%;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
     @include mixins.font-size(2rem);
     font-family: var(--font-title);
     font-weight: 800;
-    margin-bottom: 1rem;
-    background: radial-gradient(circle at 60px 30px, #f00, #000);
+    background: radial-gradient(circle at 60% 25%, #f00, #000);
     background-clip: content-box !important;
+    border: 2px solid color-mix(in srgb, #f00 35%, #bbb8);
+    box-shadow: 2px 2px 5px #000a;
 
     transform: translate(0%, 0%);
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, transform 0.2s ease-out;
 
     &:hover {
-        background: radial-gradient(circle at 60px 30px, #f40, #000);
+        background: radial-gradient(circle at 60% 25%, #f40, #000);
+        border: 2px solid color-mix(in srgb, #f40 35%, #bbbb);
     }
     &.db-target {
-        background: radial-gradient(circle at 60px 30px, #f80, #000);
+        background: radial-gradient(circle at 60% 25%, #f80, #000);
+        border: 2px solid color-mix(in srgb, #f80 35%, #bbbb);
     }
     &.highlight {
-        background: radial-gradient(circle at 60px 30px, #0f0, #000);
+        background: radial-gradient(circle at 60% 25%, #0f0, #000);
+        border: 2px solid color-mix(in srgb, #0f0 35%, #bbbb);
     }
     &.inactive {
-        background: radial-gradient(circle at 60px 30px, #c00, #000);
+        background: radial-gradient(circle at 60% 25%, #c00, #000);
+        border: 2px solid color-mix(in srgb, #c00 35%, #bbbb);
     }
 
     > span {
@@ -115,4 +141,8 @@
     width: 100%;
     height: 100%;
     z-index: 10;
+
+    &:not(.inactive) {
+        cursor: grab;
+    }
 }

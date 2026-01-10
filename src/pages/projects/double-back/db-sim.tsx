@@ -4,6 +4,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import cloneDeep from "lodash/cloneDeep";
 import classNames from "classnames";
 import { clamp, throttle } from "lodash";
+import { DragDropSimulationContext } from "./components";
 
 const DoubleBackContext = React.createContext<{
     cols: number;
@@ -159,7 +160,7 @@ const Ball = (props : BallProps) => {
             top: props.position.y === 0 ? '0%' : '50%',
             transition: props.lastDragged ? "none" : undefined,
         }}>
-            {drop(<div className="db-drop" />)}
+            {drop(<div className={classNames("db-drop", {"inactive": !(context.gameOptions?.interactive ?? true)})} />)}
             <div 
                 style={isDragging
                     ? {
@@ -209,24 +210,30 @@ interface DoubleBackPlayerProps {
 }
 
 export const DoubleBackPlayer = (props: DoubleBackPlayerProps) => {
-    return <DndProvider backend={HTML5Backend}>
-        <DoubleBackProvider {...props} />
+    const ref = useRef<HTMLDivElement>(null);
+    
+    const dndContext = useContext(DragDropSimulationContext);
+    if (!dndContext.backend) return <div>Drag and drop backend not provided.</div>;
+
+    return <DndProvider backend={dndContext.backend} context={window}>
+        <DoubleBackContextProvider gameRef={ref} {...props} />
     </DndProvider>;
 };
 
-const DoubleBackProvider = (props: DoubleBackPlayerProps) => {
+const DoubleBackContextProvider = ({gameRef, ...props}: DoubleBackPlayerProps & {gameRef?: React.RefObject<HTMLDivElement | null>}) => {
     const [potentialTarget, setPotentialTarget] = useState<XYCoord | undefined>(undefined);
+
     return <DoubleBackContext.Provider value={{
         cols: props.cols ?? props.gameState?.length ?? 0, 
         gameOptions: props.gameOptions,
         potentialTarget,
         setPotentialTarget,
     }}>
-        <DoubleBackManager gameState={props.gameState} />
+        <DoubleBackManager gameState={props.gameState} gameRef={gameRef} />
     </DoubleBackContext.Provider>;
 };
 
-const DoubleBackManager = ({ gameState: initialGameState }: { gameState?: BallState[][] | number[][] }) => {
+const DoubleBackManager = ({ gameState: initialGameState, gameRef }: { gameState?: BallState[][] | number[][], gameRef?: React.RefObject<HTMLDivElement | null> }) => {
     const context = useContext(DoubleBackContext);
     if (!context) return null;
 
@@ -294,7 +301,7 @@ const DoubleBackManager = ({ gameState: initialGameState }: { gameState?: BallSt
 
     const flatGameState = augmentGameState(gameState);
 
-    return <div className="w-100 d-flex flex-column align-items-center gap-2 pb-3">
+    return <div className="w-100 d-flex flex-column align-items-center gap-2 pb-3" ref={gameRef}>
         <DBContainer cols={context.cols}>
             {flatGameState.map((ball, i) => {
                 return <Ball key={i} id={i} value={ball.value} position={ball.position} swap={swap} 

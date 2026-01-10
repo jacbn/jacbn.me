@@ -137,6 +137,10 @@ const router = createBrowserRouter([
           {
             path: '/projects/double-back',
             element: <DoubleBack />
+          },
+          {
+            path: '/projects/double-back/:page',
+            element: <DoubleBack />
           }
         ]
       },

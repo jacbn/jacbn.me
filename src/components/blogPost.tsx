@@ -1,4 +1,4 @@
-import React, { ImgHTMLAttributes, lazy, Suspense, useContext, useEffect, useState } from "react";
+import React, { ImgHTMLAttributes, lazy, Suspense, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -36,31 +36,35 @@ function img(props : ImgHTMLAttributes<HTMLImageElement>) {
     </figure>;
 }
 
-const MdxContainer = ({Post}: {Post: React.LazyExoticComponent<React.ComponentType<any>>}) => {
+interface BlogContainerProps {
+    containerClassName?: string;
+}
+
+const MdxContainer = ({Post, containerClassName}: BlogContainerProps & {Post: React.LazyExoticComponent<React.ComponentType<any>>}) => {
     // must be surrounded by an error boundary!
     return <Suspense fallback={<>
         <title>jaycie ⋅ blog</title>
         <div>Loading...</div>
     </>}>
-        <main className="blog-container">
+        <main className={containerClassName ?? "blog-container"}>
             <Post components={{code, img}} />
         </main>
     </Suspense>;
 };
 
-export const MdxProject = ({path}: {path: string}) => {
+export const MdxProject = ({path, containerClassName}: BlogContainerProps & {path: string}) => {
     const Post = lazy(() => import(/* @vite-ignore */ path));
     return <ProjectErrorBoundary>
-        <MdxContainer Post={Post} />
+        <MdxContainer Post={Post} containerClassName={containerClassName} />
     </ProjectErrorBoundary>;
 };
 
-export const MdxBlogPost = () => {
+export const MdxBlogPost = ({containerClassName}: BlogContainerProps) => {
     const params = useParams();
     const postId = params.id;
     const Post = lazy(() => import(`../pages/blog/${postId}.mdx`));
     return <BlogErrorBoundary>
-        <MdxContainer Post={Post} />
+        <MdxContainer Post={Post} containerClassName={containerClassName} />
     </BlogErrorBoundary>;
 };
 

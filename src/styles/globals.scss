@@ -197,6 +197,8 @@
   --theme-background-gradient: var(--sunset-blue-tertiary);
   --theme-background-alternate: var(--sunset-pink-primary);
 
+  --card-border: color-mix(in srgb, var(--theme-background-gradient) 80%, #fff);
+
   --code-color: #ca3880;
   --code-background:var(--sunset-blue-tertiary);
   --code-border: var(--sunset-blue-secondary);
