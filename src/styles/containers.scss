@@ -11,3 +11,7 @@
   margin: 0 calc(-1 * (100vw - 920px) / 2);
   padding: 0 calc((100vw - 920px) / 2);
 }
+
+.container-fluid-override {
+  margin: 0 calc(var(--bs-gutter-x) * -0.5);
+}

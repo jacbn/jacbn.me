@@ -8,8 +8,8 @@ export default function AppIcon({image, href, hoverText} : {image: string, href?
 
   return (
     <>
-      <a className={classNames({"icon-tooltip-container": hoverText})} href={href} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-        <img className={`icon contactIconFilter`} src={image} onClick={() => setActive(a => !a)} />
+      <a className={classNames({"contact-icon-tooltip-container": hoverText})} href={href} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        <img className={`contact-icon contactIconFilter`} src={image} onClick={() => setActive(a => !a)} />
         {(hoverText) && <span className={classNames({"hidden": !(hover || active)})}>{hoverText}</span>}
       </a>
     </>

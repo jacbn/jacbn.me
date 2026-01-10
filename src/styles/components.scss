@@ -114,3 +114,60 @@
     }
   }
 }
+
+.carousel {
+    .next-button, .prev-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        width: 3rem;
+        height: 3rem;
+        background: none;
+        border: none;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 10;
+
+        i {
+            background-color: var(--sunset-blue-tertiary);
+            &:hover {
+                background-color: var(--sunset-blue-primary);
+            }
+        }
+    }
+
+    .next-button {
+        right: -2.7rem;
+    }
+
+    .prev-button {
+        left: -2.7rem;
+    }
+
+    .progress-indicator {
+        bottom: -0.8rem;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: max-content;
+
+        > button {
+            width: 0.5rem;
+            height: 0.5rem;
+            border: none;
+            border-radius: 100%;
+            padding: 0;
+            cursor: pointer;
+
+            &.active {
+                background-color: white;
+            }
+
+            &:not(.active) {
+                background-color: var(--sunset-blue-secondary);
+            }
+        }
+    }
+}

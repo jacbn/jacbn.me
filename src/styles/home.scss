@@ -73,7 +73,9 @@ nav.home-nav {
 
 .card-image-square {
   @extend .card;
-  border-radius: 0;
+  border-radius: 2rem;
+  aspect-ratio: 1;
+  box-shadow: 8px 8px 15px var(--shadow-primary);
 
   > img {
     width: 100%;
@@ -90,10 +92,6 @@ nav.home-nav {
     backdrop-filter: blur(7px);
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
-  }
-
-  &:hover {
-    border-radius: 2rem;
   }
 }
 
@@ -146,6 +144,10 @@ nav.home-nav {
   img {
     width: 100%;
     image-rendering: pixelated;
+
+    @include mixins.respond-above('lg') {
+      aspect-ratio: 0.617;
+    }
   }
 
   h1 {
@@ -237,17 +239,17 @@ nav.home-nav {
   border-left: 0.25rem solid var(--foreground-accent);
 }
 
-.icon {
+.contact-icon {
   width: 40px;
   height: 40px;
 }
 
-.icon-tooltip-container {
+.contact-icon-tooltip-container {
   position: relative;
   display: inline-block;
 }
 
-.icon-tooltip-container span {
+.contact-icon-tooltip-container span {
   width: fit-content;
   background-color: #555;
   color: #fff;
@@ -271,7 +273,7 @@ nav.home-nav {
   }
 }
 
-.icon-tooltip-container span::after {
+.contact-icon-tooltip-container span::after {
   content: "";
   position: absolute;
   top: 100%;

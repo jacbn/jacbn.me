@@ -2855,6 +2855,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framer-motion@npm:^12.25.0":
+  version: 12.25.0
+  resolution: "framer-motion@npm:12.25.0"
+  dependencies:
+    motion-dom: "npm:^12.24.11"
+    motion-utils: "npm:^12.24.10"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/d07b629bf2f1e0a33da15da47f851ab6e0bcdf37ef01f3edf309880ad20c6c776f5d2eebc74d989665e58a8bae261b6ceec3ba48674800857079d26a032b254a
+  languageName: node
+  linkType: hard
+
 "fs-minipass@npm:^3.0.0":
   version: 3.0.3
   resolution: "fs-minipass@npm:3.0.3"
@@ -3758,6 +3780,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-hooks: "npm:^7.0.0"
     eslint-plugin-react-refresh: "npm:^0.4.23"
+    framer-motion: "npm:^12.25.0"
     globals: "npm:^16.4.0"
     jquery: "npm:^3.7.1"
     katex: "npm:^0.16.23"
@@ -3768,6 +3791,7 @@ __metadata:
     react-dnd-html5-backend: "npm:^16.0.1"
     react-dom: "npm:19.2.0"
     react-force-graph-3d: "npm:^1.29.0"
+    react-intersection-observer: "npm:^10.0.0"
     react-router-dom: "npm:^7.0.1"
     react-syntax-highlighter: "npm:^15.6.6"
     rehype-katex: "npm:^7.0.1"
@@ -4641,6 +4665,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"motion-dom@npm:^12.24.11":
+  version: 12.24.11
+  resolution: "motion-dom@npm:12.24.11"
+  dependencies:
+    motion-utils: "npm:^12.24.10"
+  checksum: 10c0/7389f646e99cf40baed1b9bfe50feb6de13e1851a1fabe2578e526ab5730dedc6a13077e66fcbad8b8b25e1006a10a9d62bbf39e4cf44ad18bb2a4325fbcd8de
+  languageName: node
+  linkType: hard
+
+"motion-utils@npm:^12.24.10":
+  version: 12.24.10
+  resolution: "motion-utils@npm:12.24.10"
+  checksum: 10c0/b73e2e414480b0b162a5cbc9195856d113b5e7c23a055b1613143176694fdfabe87a6a41c3c2f205549e368ca541b609455344bd774d7d836f09a551562042e2
+  languageName: node
+  linkType: hard
+
 "ms@npm:^2.1.3":
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
@@ -5157,6 +5197,19 @@ __metadata:
   peerDependencies:
     react: "*"
   checksum: 10c0/c6ba6828486da968325b78be50a6da3cea8c69ff34f647a1917e85014fc1b6233de5e5e966079bce514532452a7848ee5f6a99d4883313774b29d042be8c3a3b
+  languageName: node
+  linkType: hard
+
+"react-intersection-observer@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "react-intersection-observer@npm:10.0.0"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+  checksum: 10c0/ab2d9316adaab401cfff657ced221c12665434dfa0846d8d22b6871c053916550c541e5835969399ae292ee8b68b5cfc5cc3047bfd69b09efc605dc95aef532f
   languageName: node
   linkType: hard
 
@@ -6040,6 +6093,13 @@ __metadata:
   peerDependencies:
     typescript: ">=4.8.4"
   checksum: 10c0/ed185861aef4e7124366a3f6561113557a57504267d4d452a51e0ba516a9b6e713b56b4aeaab9fa13de9db9ab755c65c8c13a777dba9133c214632cb7b65c083
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.4.0":
+  version: 2.8.1
+  resolution: "tslib@npm:2.8.1"
+  checksum: 10c0/9c4759110a19c53f992d9aae23aac5ced636e99887b51b9e61def52611732872ff7668757d4e4c61f19691e36f4da981cd9485e869b4a7408d689f6bf1f14e62
   languageName: node
   linkType: hard
 
