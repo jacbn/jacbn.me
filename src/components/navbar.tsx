@@ -57,11 +57,11 @@ export const NavBar = ({onHome, ...rest} : NavBarProps) => {
   )}>
     <div className="d-flex justify-content-between w-100">
       {onHome
-        ? <Link to="/#work" onClick={() => scrollIntoView('work')}>my work</Link>
-        : <Link to="/">home</Link>
+        ? <Link to="/#work" onClick={() => scrollIntoView('work')} className={"styled-hover"}>my work</Link>
+        : <Link to="/" className={"styled-hover"}>home</Link>
       }
-      <Link to="/blog"  className={classNames({"text-white": location.pathname === '/blog'})}>my blog</Link>
-      <Link to="/about" className={classNames({"text-white": location.pathname === '/about'})}>my profile</Link>
+      <Link to="/blog"  className={classNames("styled-hover", {"text-white": location.pathname === '/blog'})}>my blog</Link>
+      <Link to="/about" className={classNames("styled-hover", {"text-white": location.pathname === '/about'})}>my profile</Link>
     </div>
   </nav>;
 

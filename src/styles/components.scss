@@ -171,3 +171,36 @@
         }
     }
 }
+
+.styled-hover {
+  display: inline-block;
+  position: relative;
+  color: var(--sunset-pink-primary);
+  transition: all 0.25s ease-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    border-radius: 3px;
+    background-color: var(--sunset-pink-primary);
+    transition: transform 0.25s ease-out;
+    transform-origin: bottom center;
+    box-sizing: content-box;
+    margin-left: -2px;
+    padding: 0 4px;
+  }
+
+  &:hover {
+    color: var(--sunset-pink-secondary);
+    margin-left: 0px;
+    padding: 0 0px;
+    &::after {
+        transform: scaleX(1);
+    }
+  }
+}

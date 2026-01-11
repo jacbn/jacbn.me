@@ -43,12 +43,6 @@ nav.home-nav {
     display: inline-flex;
     gap: 0.75rem;
     text-decoration: none;
-
-    &::after {
-      content: '>';
-      display: block;
-      margin-left: 5px;
-    }
   }
 }
 

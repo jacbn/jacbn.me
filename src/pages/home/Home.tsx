@@ -35,14 +35,14 @@ export const Home = () => {
 
       <img src="/assets/home/sunset-base.gif" className="w-100 pixelated-image mt-9" alt="" />
 
-      <section id="work" className="container-fluid g-9 py-9">
+      <section id="work" className="container-fluid g-9 pt-9">
           <h1 className="mb-8 text-dark">⋅ work ⋅</h1>
           <FadeInWhenVisible>
             <WorkGrid />
           </FadeInWhenVisible>
       </section>
 
-      <section id="projects" className="container-fluid g-9 py-9">
+      <section id="projects" className="container-fluid g-9 pt-7 pb-9">
         <h1 className="mb-4 text-dark">⋅ featured projects ⋅</h1>
         <FadeInWhenVisible>
           <FeaturedProjectsGrid />
