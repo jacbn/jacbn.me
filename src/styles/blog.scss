@@ -50,6 +50,7 @@
     overflow: clip;
     margin: 0 5%;
     padding: 2rem;
+    align-items: start;
 
     @extend %blog-theme;
     @extend %blog-components;

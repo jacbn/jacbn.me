@@ -1,10 +1,9 @@
 import { DoubleBackPlayer } from './db-sim';
-import { BlogNavigation } from './components';
+import { BlogNavigation, DBGraphConnect } from './components';
+import { DBForceGraph } from "./db-graph";
 
 <title>jaycie ⋅ double back</title>
 # Double Back: Part 1
-
-<p className="text-muted">Well, this one's been a long time coming. You're welcome, @jps79.</p>
 
 Double back is a simple puzzle game with two rows of balls in ascending order. You can swap adjacent balls (horizontally, vertically or diagonally) whose values differ by at most one, with the goal of flipping the direction of the rows.
 
@@ -25,5 +24,14 @@ After you get the hang of it, some questions naturally start to arise:
 - If winnable, what is the minimum number of moves for a given $N$?
 
 Try it! See if you can build up any intuition, at least for the first question.
+
+---
+
+In this project, I'll go over some discoveries I have sporadically made about this game. I don't have a formal answer for either question (...yet), but have made a few fun things along the way. Like this:
+
+<DBGraphConnect
+    simulation={<DoubleBackPlayer cols={3} />}
+    graph={<DBForceGraph path="/data/double-back/spectral-3-full.json" N={3} />}
+/>
 
 <BlogNavigation page={1} />

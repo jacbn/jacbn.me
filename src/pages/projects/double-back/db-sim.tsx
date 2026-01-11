@@ -1,21 +1,18 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { DndProvider, XYCoord, useDrag, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import cloneDeep from "lodash/cloneDeep";
 import classNames from "classnames";
 import { clamp, throttle } from "lodash";
-import { DragDropSimulationContext } from "./components";
+import { BallState, DBGraphConnectionContext, DragDropSimulationContext } from "./components";
 
-const DoubleBackContext = React.createContext<{
+const DoubleBackContext = createContext<{
     cols: number;
     potentialTarget?: XYCoord;
     setPotentialTarget?: React.Dispatch<React.SetStateAction<XYCoord | undefined>>;
     gameOptions?: DoubleBackGameOptions;
 } | undefined>(undefined);
 
-const MouseOffsetContext = React.createContext<XYCoord | undefined>(undefined);
-
-const TARGET_OFFSET = 80;
+const MouseOffsetContext = createContext<XYCoord | undefined>(undefined);
 
 interface DoubleBackGameOptions {
     enableFlips?: boolean;
@@ -62,6 +59,7 @@ const Ball = (props : BallProps) => {
     const item = props;
     const ballRef = useRef<HTMLDivElement>(null);
     const ballWidth = ballRef.current?.clientWidth ?? 0;
+    const TARGET_OFFSET = ballWidth / 2;
 
     const [{ isDragging, offset, draggedBall }, drag] = useDrag(
         () => ({
@@ -187,11 +185,6 @@ const Ball = (props : BallProps) => {
     );
 };
 
-interface BallState {
-    index: number;
-    value: number;
-}
-
 interface PositionedBallState extends BallState {
     // used exclusively for rendering. should not be used for game logic
     position: XYCoord;
@@ -250,6 +243,8 @@ const DoubleBackManager = ({ gameState: initialGameState, gameRef }: { gameState
     const [moves, setMoves] = useState(0);
     const [undoStack, setUndoStack] = useState<BallState[][][]>([]);
     const [redoStack, setRedoStack] = useState<BallState[][][]>([]);
+    const graphConnectionContext = useContext(DBGraphConnectionContext);
+
     if (!context.cols) {
         return <span>Invalid game. Either set the number of columns or a game state.</span>;
     }
@@ -295,13 +290,17 @@ const DoubleBackManager = ({ gameState: initialGameState, gameRef }: { gameState
         }
     }, [dragged]);
 
+    useEffect(() => {
+        graphConnectionContext?.setGameState?.(gameState);
+    }, [gameState]);
+
     if (!gameState) {
         return null;
     }
 
     const flatGameState = augmentGameState(gameState);
 
-    return <div className="w-100 d-flex flex-column align-items-center gap-2 pb-3" ref={gameRef}>
+    return <div className="w-100 d-flex flex-column align-items-center justify-content-center gap-2 pb-3" ref={gameRef}>
         <DBContainer cols={context.cols}>
             {flatGameState.map((ball, i) => {
                 return <Ball key={i} id={i} value={ball.value} position={ball.position} swap={swap} 

@@ -17,14 +17,18 @@ export const DoubleBack = () => {
             </DragDropSimulationContext.Provider>;
         case "2":
             return <DragDropSimulationContext.Provider value={{backend}}>
-                <div className="d-flex gap-3">
-                    <MdxProject path="/src/pages/projects/double-back/double-back-2.mdx" containerClassName="blog-container-with-demo" />
-                    <div className="blog-container-with-demo d-flex flex-column">
-                        <h2>demo</h2>
-                        <DoubleBackPlayer cols={4} />
-                    </div>
-                </div>
+                <MdxProject path="/src/pages/projects/double-back/double-back-2.mdx" />
             </DragDropSimulationContext.Provider>;
+        // case "3":
+        //     return <DragDropSimulationContext.Provider value={{backend}}>
+        //         <div className="d-flex gap-3">
+        //             <MdxProject path="/src/pages/projects/double-back/double-back-3.mdx" containerClassName="blog-container-with-demo" />
+        //             <div className="blog-container-with-demo d-flex flex-column">
+        //                 <h2>demo</h2>
+        //                 <DoubleBackPlayer cols={4} />
+        //             </div>
+        //         </div>
+        //     </DragDropSimulationContext.Provider>;
     }
 
     return null;

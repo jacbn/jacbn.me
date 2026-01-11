@@ -194,6 +194,7 @@
 :root[data-bs-theme='sunset-light'], :root[data-bs-theme='sunset-dark'] {
   --text-primary: #fff;
   --text-secondary: var(--sunset-pink-primary);
+  --text-disabled: var(--sunset-blue-primary);
   --bs-secondary-color: var(--sunset-pink-primary);
   --text-tertiary: var(--sunset-blue-tertiary);
   --card-primary: var(--sunset-blue-secondary);

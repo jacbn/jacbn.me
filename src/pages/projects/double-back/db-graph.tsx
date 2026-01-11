@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ForceGraph, { type GraphData } from 'react-force-graph-3d';
 import { useEffect, useRef, useState } from 'react';
+import { DBGraphConnectionContext, gameStateToNodeId } from './components';
 
 interface NodeType {
     id: string | number;
@@ -13,10 +14,19 @@ interface LinkType {
     value?: number;
 }
 
-export const DBForceGraph = ({path}: {path: string}) => {
+interface DBForceGraphProps {
+    path: string;
+    N: number;
+    nodeBaseSize?: number;
+}
+
+export const DBForceGraph = ({path, N, nodeBaseSize = 3}: DBForceGraphProps) => {
     const fgRef = useRef<any>(null);
     const [data, setData] = useState<GraphData<NodeType, LinkType> | undefined>(undefined);
     const [hoverNode, setHoverNode] = useState<NodeType | null>(null);
+
+    const { gameState } = useContext(DBGraphConnectionContext);
+    const activeNode = gameStateToNodeId(gameState);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,7 +42,7 @@ export const DBForceGraph = ({path}: {path: string}) => {
         if (!fg) return;
 
         fg.d3Force('link').distance(15).strength(2);
-        fg.d3Force('charge').strength(-100);
+        fg.d3Force('charge').strength(N === 3 ? -300 : -100);
         fg.d3Force('collision', null);
     }, [fgRef]);
 
@@ -40,10 +50,22 @@ export const DBForceGraph = ({path}: {path: string}) => {
         <ForceGraph
             ref={fgRef}
             graphData={data}
-            nodeAutoColorBy="group"
-            nodeRelSize={3}
+            nodeRelSize={nodeBaseSize}
             nodeVal={
-                (node: any) => (node.group !== 1 ? 20 : 1)
+                (node: any) => (
+                    node.id === activeNode 
+                        ? 10 
+                        : 1
+                )
+            }
+            nodeColor={
+                (node: any) => (
+                    node.id === activeNode
+                        ? "lightgreen"
+                        : node.group === 2
+                            ? "white"
+                            : "#668"
+                )
             }
             nodeLabel={
                 (node: any) => {
@@ -65,8 +87,8 @@ export const DBForceGraph = ({path}: {path: string}) => {
                     setHoverNode(node);
                 }
             }}
-            width={1200}
-            height={600}
+            width={840}
+            height={560}
         />
     );
 };

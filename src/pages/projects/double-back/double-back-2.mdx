@@ -1,5 +1,5 @@
-import { DBForceGraph } from "./db-graph";
 import { DoubleBackPlayer } from './db-sim';
+import { BlogNavigation } from './components';
 
 <title>jaycie ⋅ double back</title>
 # Double Back: Part 2
@@ -49,7 +49,7 @@ With this in mind, we're able to add "flip column" buttons to our simulation, th
 
 <DoubleBackPlayer 
     gameState={[[1, 1], [2, 2], [3, 3], [4, 4]]}
-    gameOptions={{enableFlips: true}}
+    gameOptions={{enableFlips: true, showMoveCount: true}}
 />
 
 # Questions
@@ -61,43 +61,18 @@ If we can prove that there *is* a minimum number of moves for all $N$, it must a
 
 Assume, for a given N, that there exists an optimal sequence of moves from the starting state $S_0$ to the end state $S_K$, where K is the number of moves required to reach that state. By symmetry, the reverse of our sequence of moves must also be an optimal sequence from $S_K$ to $S_0$. Thus, the first move in this sequence must be the reverse of an optimal last move. This follows for all moves. Note that, for each state $S_m$, the 'equivalent' state in the reverse sequence $S_{K-m}$ is its mirror.
 
-<DoubleBackPlayer 
-    gameState={[[1, 1], [2, 2], [3, 3], [4, 4]]}
-/>
-
-<DoubleBackPlayer 
-    gameState={[[4, 4], [3, 3], [2, 2], [1, 1]]}
-/>
-
 Now, consider the central state of this sequence, say $S_C$. It is the mirror to the state made by applying the same moves to the end state. Since both states are central in their sequences, and these sequences are opposites, they must be isomorphic -- or, stronger, every column will be flipped. It follows that such an $S_C$ is the 'flip' of its own mirror. 
 
 In reverse, consider an $S_C$ that is the flip of its own mirror $S_C'$. We wish to prove that it is the central state of a path between two mirror states, say $S_0$ and $S_K$. 
 <details>
 <summary>Proof:</summary>
-<p>Consider the path between $S_C$ and $S_0$. For each move, apply the same move to $S_C'$. Since $S_C$ and $S_C'$ have the same pattern of moves available, this is always possible -- furthermore, this is always maintained as being possible since the new states also share the same pattern of moves. On reaching $S_0$, the mirror states' path will have reached $S_K$. Thus we have two paths, one from $S_C \rightarrow S_0$ and one from $S_C' \rightarrow S_K$. Flip the former to obtain a sequence from $S_0$ to $S_C$. Next, consider that, under isomorphism, $S_C$ and $S_C'$ are identical; similarly, there will exist an isomorphic state $S_{C+1}$ reachable from $S_C$. This follows all the way until $S_K$. Thus, there exists a route $S_0 \rightarrow S_K$ in the same number of steps as the two disjointed sequences.</p>
+<p className="inset">Consider the path between $S_C$ and $S_0$. For each move, apply the same move to $S_C'$. Since $S_C$ and $S_C'$ have the same pattern of moves available, this is always possible -- furthermore, this is always maintained as being possible since the new states also share the same pattern of moves. On reaching $S_0$, the mirror states' path will have reached $S_K$. Thus we have two paths, one from $S_C \rightarrow S_0$ and one from $S_C' \rightarrow S_K$. Flip the former to obtain a sequence from $S_0$ to $S_C$. Next, consider that, under isomorphism, $S_C$ and $S_C'$ are identical; similarly, there will exist an isomorphic state $S_{C+1}$ reachable from $S_C$. This follows all the way until $S_K$. Thus, there exists a route $S_0 \rightarrow S_K$ in the same number of steps as the two disjointed sequences.</p>
 </details>
 
+With this bi-implication, we have proven that any two mirror states must have (at least one) central state that is the flip of its own mirror, and indeed that if any state that is the flip of its own mirror can be reached by some state $S_0$ it can also be reached by $S_K$ -- implying that there exists a path between $S_0$ and $S_K$.
 
-<DoubleBackPlayer 
-    gameState={[[4, 1], [3, 2], [2, 3], [1, 4]]}
-/>
+Thus, in our goal to find a path between the initial board state and the final state, it is sufficient to find only a path between the initial board state and any state that is the flip of its own mirror. This gives us some more targets to work towards, and proves a natural symmetry in the problem.
 
-<DoubleBackPlayer 
-    gameState={[[4, 1], [3, 2], [4, 1], [3, 2]]}
-/>
+<BlogNavigation page={2} nextComingSoon />
 
-
-{/* If we could hypothesise that all board states are reachable, we might make some progress towards this question. Unfortunately, a simple counter-example disproves this:
-
-<DoubleBackPlayer 
-    gameState={[[2, 2], [4, 4], [1, 1], [3, 3]]}
-/> */}
-
-
-
-<DoubleBackPlayer 
-    gameState={[[1, 8], [2, 7], [3, 4], [4, 5], [5, 6], [6, 3], [1, 2], [7, 8]]}
-    gameOptions={{hideUselessMoves: true}}
-/>
-
-<DBForceGraph path="/data/double-back/spectral-4.json" />;
+{/* If we could hypothesise that all board states are reachable, we might make some progress towards this question. Unfortunately, a simple counter-example disproves this: */}
