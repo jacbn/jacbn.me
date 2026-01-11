@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, animate, useTransform } from "framer-motion";
 import classNames from "classnames";
 
@@ -8,12 +8,12 @@ interface DraggableCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const CarouselItem = (props: { children: React.ReactNode; carouselX: any; centredOffset: number; rotDist: number }) => {
   const { children, carouselX, centredOffset, rotDist } = props;
-  const rotateY = useTransform(carouselX, [centredOffset - rotDist, centredOffset, centredOffset + rotDist], [30, 0, -30]);
+  // const rotateY = useTransform(carouselX, [centredOffset - rotDist, centredOffset, centredOffset + rotDist], [10, 0, -10]);
   const opacity = useTransform(carouselX, [centredOffset - 2 * rotDist, centredOffset - rotDist, centredOffset, centredOffset + rotDist, centredOffset + 2 * rotDist], [0, 0.8, 1, 0.8, 0]);
-  const scale = useTransform(rotateY, [-30, 0, 30], [0.7, 1, 0.7]);
-  const pointerEvents = useTransform(opacity, (o) => (o < 0.5 ? "none" : "auto"));
+  const scale = useTransform(carouselX, [centredOffset - rotDist, centredOffset, centredOffset + rotDist], [0.7, 1, 0.7]);
+  const pointerEvents = useTransform(opacity, (o) => (o < 0.9 ? "none" : "auto"));
 
-  return <motion.li className="w-100 flex-shrink-0 px-5" style={{ rotateY, scale, opacity, pointerEvents }}>
+  return <motion.li className="w-100 flex-shrink-0 px-5" style={{ scale, opacity, pointerEvents }}>
     {children}
   </motion.li>;
 };

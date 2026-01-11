@@ -10,6 +10,7 @@ export const ProjectsCardIsaacRedesign = () => {
           src: "/assets/home/isaac-launch.png",
           alt: "The Isaac Science logo with balloons attached over a starry sky."
         }}
+        colour={"var(--accent-isaac)"}
         lang="React, SCSS"
     />;
 };
@@ -21,8 +22,10 @@ export const ProjectsCardComponentisation = () => {
         year="2025-present"
         lang="Figma, React"
         imageProps={{
-            // todo
+            src: "/assets/home/coming-soon.png",
+            alt: "Coming soon!"
         }}
+        colour={"var(--accent-component)"}
     />;
 };
 
@@ -127,8 +130,10 @@ export const ProjectsCardDoubleBack = () => {
         year="2023 onwards"
         lang="Maths, JS"
         imageProps={{
-            
+            src: "/assets/home/logo-double-back.png",
+            alt: "A drawing of the double back grid."
         }}
+        colour="var(--accent-double-back)"
         link="/projects/double-back/"
     />;
 };

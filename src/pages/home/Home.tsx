@@ -33,7 +33,7 @@ export const Home = () => {
       
       <NavBar onHome={true} className="my-5" />
 
-      <img src="/assets/home/hills-base.png" className="w-100 pixelated-image mt-9" alt="" />
+      <img src="/assets/home/sunset-base.gif" className="w-100 pixelated-image mt-9" alt="" />
 
       <section id="work" className="container-fluid g-9 py-9">
           <h1 className="mb-8 text-dark">⋅ work ⋅</h1>

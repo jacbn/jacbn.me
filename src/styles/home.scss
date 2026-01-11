@@ -52,6 +52,13 @@ nav.home-nav {
   }
 }
 
+.work-grid {
+  .card-image-square {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
 .card {
   display: grid;
   position: relative;
@@ -88,7 +95,7 @@ nav.home-nav {
   .card-base {
     position: absolute;
     bottom: 0;
-    background-color: color-mix(in srgb, var(--card-primary) 90%, transparent);
+    background-color: color-mix(in srgb, var(--card-primary) 80%, transparent);
     backdrop-filter: blur(7px);
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;

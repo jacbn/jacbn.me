@@ -5,7 +5,7 @@ import { DraggableCarousel } from '../Carousel';
 // todo: fill alt text of svgs
 
 export const WorkGrid = () => {
-  return <ol className="row row-cols-1 row-cols-md-2 g-4 list-unstyled">
+  return <ol className="work-grid row row-cols-1 row-cols-md-2 g-4 list-unstyled">
     <li>
       <ProjectsCardIsaacRedesign />
     </li>
