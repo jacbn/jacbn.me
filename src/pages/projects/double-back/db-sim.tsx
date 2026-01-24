@@ -368,6 +368,7 @@ const DBContainer = ({cols, ...rest}: DBContainerProps) => {
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseOffset, setMouseOffset] = useState<XYCoord | undefined>(undefined);
     const throttleUpdate = useMemo(() => throttle(setMouseOffset, 16), []);
+    const [height, setHeight] = useState(0);
 
     useEffect(() => {
         const handleDrag = (event: MouseEvent) => {
@@ -388,10 +389,23 @@ const DBContainer = ({cols, ...rest}: DBContainerProps) => {
         };
     }, []);
 
+    const recalculateHeight = () => setHeight(2 * (divRef.current?.clientWidth ?? 0) / (cols ?? 1));
+
+    useEffect(() => {
+        const resizeObserver = new ResizeObserver(recalculateHeight);
+
+        if (divRef.current) {
+            resizeObserver.observe(divRef.current);
+        }
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [divRef]);
+
     return <div className="db-container" ref={divRef} style={{
         minWidth: `${(cols ?? 1) * 50}px`, 
         maxWidth: `${(cols ?? 1) * 150}px`,
-        height: `${2 * (divRef.current?.clientWidth ?? 0) / (cols ?? 1)}px`,
+        height: `${height}px`,
     }} {...rest}>
         <MouseOffsetContext.Provider value={mouseOffset}>
             {rest.children}

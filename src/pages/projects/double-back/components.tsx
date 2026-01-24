@@ -13,7 +13,7 @@ export const DBGraphConnectionContext = createContext<{gameState: BallState[][] 
 
 export const DBGraphConnect = ({simulation, graph}: {simulation: ReactNode, graph: ReactNode}) => {
     const [gameState, setGameState] = useState<BallState[][] | undefined>(undefined);
-    return <div className="position-relative d-flex flex-column align-items-center gap-3">
+    return <div className="position-relative d-flex flex-column align-items-center gap-3 w-100">
         <DBGraphConnectionContext.Provider value={{gameState, setGameState}}>
             {graph}
             <div className="w-25 position-absolute end-0 bottom-0 pe-3">

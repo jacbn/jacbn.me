@@ -46,7 +46,7 @@ export const DBForceGraph = ({path, N, nodeBaseSize = 3}: DBForceGraphProps) => 
         fg.d3Force('collision', null);
     }, [fgRef]);
 
-    return (
+    return <div className="db-force-graph-container w-100">
         <ForceGraph
             ref={fgRef}
             graphData={data}
@@ -90,5 +90,5 @@ export const DBForceGraph = ({path, N, nodeBaseSize = 3}: DBForceGraphProps) => 
             width={840}
             height={560}
         />
-    );
+    </div>;
 };

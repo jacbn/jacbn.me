@@ -3,7 +3,10 @@ import { motion, useMotionValue, animate, useTransform } from "framer-motion";
 import classNames from "classnames";
 
 interface DraggableCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
-  elementWidth: string;
+  element: {
+    className?: string;
+    maxWidth: string;
+  };
 }
 
 const CarouselItem = (props: { children: React.ReactNode; carouselX: any; centredOffset: number; rotDist: number }) => {
@@ -19,7 +22,7 @@ const CarouselItem = (props: { children: React.ReactNode; carouselX: any; centre
 };
 
 export const DraggableCarousel = (props: DraggableCarouselProps) => {
-  const { children, className } = props;
+  const { children, className, element: internalElement } = props;
 
   const items = React.Children.toArray(children);
   const base = items.length;
@@ -110,7 +113,7 @@ export const DraggableCarousel = (props: DraggableCarouselProps) => {
   return (
     <div className={classNames("carousel", className)}>
       <div className="d-flex flex-column gap-3 overflow-hidden pb-5">
-        <div className="position-relative m-auto" style={{width: props.elementWidth || "50%"}} ref={setContainerRef}>
+        <div className={classNames("position-relative m-auto", internalElement?.className)} style={{maxWidth: internalElement.maxWidth}} ref={setContainerRef}>
           <motion.ol
             className="d-flex list-unstyled"
             drag="x"

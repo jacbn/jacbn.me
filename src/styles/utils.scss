@@ -1,3 +1,5 @@
+@use "mixins";
+
 .no-print {
   @media print {
     display: none !important;
@@ -7,4 +9,16 @@
 .row-cols-center-last > :last-child:nth-child(odd) {
   margin-left: auto;
   margin-right: auto;
+}
+
+.w-sm-75 {
+  @include mixins.respond-above(sm) {
+    width: 75% !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .w-#{$i}0 {
+    width: #{$i * 10%} !important;
+  }
 }

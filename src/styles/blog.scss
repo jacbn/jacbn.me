@@ -147,3 +147,13 @@
         cursor: grab;
     }
 }
+
+@include mixins.respond-below(xl) {
+    .db-force-graph-container {
+        .scene-container, canvas {
+            width: 100% !important;
+            height: unset !important;
+            aspect-ratio: 4/3;
+        }
+    }
+}

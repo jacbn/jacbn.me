@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     element: <>
       <ScrollTop />
       <title>jaycie brown</title>
-      <ColorModeToggle />
+      {/* <ColorModeToggle /> */}
       <Outlet />
     </>,
     children: [

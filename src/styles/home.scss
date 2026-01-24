@@ -154,7 +154,12 @@ nav.home-nav {
   h1 {
     --shadow-offset: 16px;
       @include mixins.respond-below('md') {
+        margin-top: 50px;
         --shadow-offset: 8px;
+      }
+
+      @include mixins.respond-below('sm') {
+        --shadow-offset: 6px;
       }
   }
 
@@ -191,11 +196,11 @@ nav.home-nav {
     }
 
     h1 {
-      @include mixins.font-size(calc(min(196pt, 20vw)));
+      @include mixins.font-size(calc(min(196pt, 26vw)));
     }
 
     h2 {
-      @include mixins.font-size(calc(min(35pt, 3.5vw)));
+      @include mixins.font-size(calc(min(35pt, 8vw)));
     }
   }
 
