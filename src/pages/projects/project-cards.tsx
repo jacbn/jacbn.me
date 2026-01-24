@@ -6,6 +6,7 @@ export const ProjectsCardIsaacRedesign = () => {
         title="Isaac Redesign"
         description="revamping the isaac physics learning platform"
         year="2024-2025"
+        link="/work/isaac-redesign/"
         imageProps={{
           src: "/assets/home/isaac-launch.png",
           alt: "The Isaac Science logo with balloons attached over a starry sky."

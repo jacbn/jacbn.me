@@ -1,0 +1,129 @@
+.isaac-redesign {
+  font-family: var(--font-isaac-body);
+  font-size: 1.1rem;
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-isaac-title);
+    line-height: 120%;
+    letter-spacing: -2%;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: color-mix(in srgb, #ffff, transparent 20%)
+  }
+
+  .text-black p {
+    color: color-mix(in srgb, #000f, transparent 30%)
+  }
+
+  section {
+    width: 100%;
+    position: relative;
+  }
+
+  h1 {
+    max-width: 1200px;
+    text-align: center;
+    line-height: 0.9;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  img#hero-text {
+    max-height: 400px;
+  }
+
+  img#phone {
+    height: 700px;
+    z-index: 1;       
+  }
+
+  img#phone-decor {
+    bottom: 20px;
+  }
+
+  .isaac-green {
+    color: #4e9934;
+  }
+
+  .bento-card {
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    > img {
+      border-radius: 32px;
+    }
+    margin-bottom: 0.5rem;
+  }
+
+  #need-for-change {
+    background: conic-gradient(from -85deg at 30% 20%, #4E9934 0deg, #4E9934 1deg, #2F5B20 359deg, #4E9934 360deg); // fixes unaliased edge
+  }
+
+  #nav-overview {
+    .bento-card {
+      background-color: #faf9f5;
+    }
+  }
+
+  #showcase {
+    #showcase-bg {
+      $inner-width: calc(1320px + 2rem);
+      position: absolute;
+      inset: 0;
+      background: url('/assets/isaac-redesign/dots-bg.svg') repeat center center;
+      clip-path: polygon(0% 0%, 0% 100%, calc(50% - $inner-width / 2) 100%, calc(50% - $inner-width / 2) 0, calc(50% + $inner-width / 2) 0, calc(50% + $inner-width / 2) 100%, calc(50% - $inner-width / 2) 100%, calc(50% - $inner-width / 2) 100%, 100% 100%, 100% 0%);
+    }
+
+    #demo-sidebar {
+      height: 580px;
+    }
+
+    #isaac-figma {
+      background-color: #1e1e1e;
+      height: 580px;
+    }
+
+    #isaac-book {
+      height: 670px;
+    }
+
+    #inline-questions {
+      height: 670px;
+    }
+
+    #markbook {
+      height: 316px;
+      background-color: #f9f8f4;
+      img {
+        border-radius: 16px;
+      }
+    }
+
+    #accessibility {
+      height: 316px;
+    }
+  }
+
+  #outro-bg {
+    position: absolute;
+    inset: 0;
+    background: url('/assets/isaac-redesign/spill-bg.svg') repeat center center;
+  }
+
+  #outro-bg-bottom {
+    background-color: #404040;
+  }
+}

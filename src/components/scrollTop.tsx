@@ -9,9 +9,10 @@ export default function ScrollTop(props: React.HTMLAttributes<HTMLDivElement>) {
     // this seems, sometimes, to fire before rendering, preventing scroll;
     // useLayoutEffect doesn't seem to work either.
     // just using a timeout for now.
+    window.scrollTo({top: 0, behavior: 'instant'});
     window.setTimeout(() => {
       if (location.hash) return; // let hash scrolling happen
-      window.scrollTo({top: 0, behavior: 'auto'});
+      window.scrollTo({top: 0, behavior: 'instant'});
     }, 10);
   }, [location.pathname]);
 

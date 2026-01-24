@@ -10,6 +10,9 @@ $spacers: map-merge($spacers, (
     7: ($spacer * 3),
     8: ($spacer * 3.5),
     9: ($spacer * 4),
+    10: ($spacer * 5),
+    11: ($spacer * 6),
+    12: ($spacer * 7)
 ));
 
 $enable-negative-margins: true;

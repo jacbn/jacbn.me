@@ -22,6 +22,7 @@ import { MdxBlogPost } from './components/blogPost';
 import { Title } from './components/title';
 import { ProjectsOverview } from './pages/projects/ProjectsOverview';
 import { DoubleBack } from './pages/projects/double-back/DoubleBack';
+import { IsaacRedesign } from './pages/work/IsaacRedesign';
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,20 @@ const router = createBrowserRouter([
           <NavBar />
           <MdxBlogPost />
         </>
+      },
+      {
+        path: '/work',
+        element: <>
+          <title>jaycie ⋅ work</title>
+          <NavBar />
+          <Outlet />
+        </>,
+        children: [
+          {
+            path: '/work/isaac-redesign',
+            element: <IsaacRedesign />
+          }
+        ]
       },
       {
         path: '/projects',
