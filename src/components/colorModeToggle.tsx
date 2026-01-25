@@ -1,56 +1,65 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
-export const useTheme = (initial?: string) : [string, (theme: string) => void] => {
-    const [theme, setThemeState] = useState(initial ?? 'dark');
+type ThemeLightness = 'light' | 'dark';
+type ThemeStyle = 'modern' | 'sunset';
 
-    const setTheme = useCallback((theme : string) => {
-        setThemeState(theme);
-        document.documentElement.setAttribute('data-bs-theme', theme);
-        localStorage.setItem('theme', theme);
+export const useTheme = (initialStyle?: ThemeStyle, initialLightness?: ThemeLightness) : [ThemeStyle, ThemeLightness, (themeStyle: ThemeStyle, themeLightness: ThemeLightness) => void] => {
+    const [themeStyle, setThemeStyleState] = useState<ThemeStyle>(initialStyle ?? 'modern');
+    const [themeLightness, setThemeLightnessState] = useState<ThemeLightness>(initialLightness ?? 'dark');
+
+    const setTheme = useCallback((themeStyle : ThemeStyle, themeLightness : ThemeLightness) => {
+        setThemeLightnessState(themeLightness);
+        setThemeStyleState(themeStyle);
+        document.documentElement.setAttribute('data-bs-theme', `${themeStyle}-${themeLightness}`);
+        localStorage.setItem('themeLightness', themeLightness);
+        localStorage.setItem('themeStyle', themeStyle);
     }, []);
 
     useEffect(() => {
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme) {
-            setTheme(storedTheme);
+        const storedThemeStyle = localStorage.getItem('themeStyle') as ThemeStyle | null;
+        const storedThemeLightness = localStorage.getItem('themeLightness') as ThemeLightness | null;
+        if (storedThemeStyle && storedThemeLightness) {
+            setTheme(storedThemeStyle, storedThemeLightness);
         } else {
-            setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            setTheme('sunset', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         }
 
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-            if (theme !== 'light' && theme !== 'dark') {
-                setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            if (themeLightness !== 'light' && themeLightness !== 'dark') {
+                setTheme('sunset', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             }
         });
     }, []);
 
-    return [theme, setTheme];
+    return [themeStyle, themeLightness, setTheme];
 };
 
 export const ColorModeContext = React.createContext<{
-    theme: string;
-    setTheme: (theme: string) => void;
+    themeStyle: ThemeStyle;
+    themeLightness: ThemeLightness;
+    setTheme: (themeStyle: ThemeStyle, themeLightness: ThemeLightness) => void;
 }>({
-    theme: 'light', 
+    themeStyle: 'sunset',
+    themeLightness: 'light',
     setTheme: () => {}
 });
 
 export const ColorModeContextProvider = (props: React.HTMLAttributes<HTMLElement>) => {
-    const [theme, setTheme] = useTheme();
-    return <ColorModeContext.Provider value={{theme, setTheme}} {...props}/>;
+    const [themeStyle, themeLightness, setTheme] = useTheme();
+    return <ColorModeContext.Provider value={{themeStyle, themeLightness, setTheme}} {...props}/>;
 };
 
 const ColorModeToggle = (props : React.HTMLProps<HTMLInputElement>) => {
 
-    const {theme, setTheme} = useContext(ColorModeContext);
+    const {themeStyle, themeLightness, setTheme} = useContext(ColorModeContext);
 
     return <div className="bd-theme no-print" id="bd-theme">
         <label className="styled-toggle">
-            <input type="checkbox" {...props} checked={theme === 'light'} onChange={(e) => {
+            <input type="checkbox" {...props} checked={themeLightness === 'light'} onChange={(e) => {
                 if (e.target.checked) {
-                    setTheme('light');
+                    setTheme(themeStyle, 'light');
                 } else {
-                    setTheme('dark');
+                    setTheme(themeStyle, 'dark');
                 }
             }}/>
             <span><img src="/assets/components/moon.svg"/></span>

@@ -1,0 +1,78 @@
+import { DoubleBackPlayer } from './db-sim';
+import { BlogNavigation } from './components';
+
+<title>jaycie ⋅ double back</title>
+# Double Back: Part 2
+
+Before we can begin to answer these, there are some patterns we can spot that will help us along the way.
+
+### Symmetry
+
+First, the game is symmetric. If there is a series of moves we can use to get us from some state $S_A$ to some other state $S_B$, we can reverse the order of those moves to obtain a new sequence that will get us from state $S_B$ back to state $S_A$. 
+
+### State Mirroring
+
+Next, notice that the lowest and highest balls (1 and $N$) can only be swapped with 2 and $N-1$ respectively. Similarly, 2 and $N-1$ share the same pattern of which balls they can be swapped with. This is true for all 'pairs' $k$ and $N+1-k$. (with the central ball not having a pair for odd $N$). Since the numbers don't represent anything beyond which balls can swap with which others, and pairs $k$ and $N+1-k$ share the same swapping patterns, if we replace each ball with its partner ($1 \leftrightarrow N, 2 \leftrightarrow N-1, ...$) we will generate a new game with the same **pattern** - i.e. a given ball will be able to swap with exactly the same partners when flipped. We will call this process **mirroring**. Importantly, note that the mirror of the starting game is the state we wish to end up in:
+
+
+<div className="d-flex w-100 gap-3">
+    <DoubleBackPlayer 
+        gameState={[[1, 1], [2, 2], [3, 3], [4, 4]]}
+    />
+
+    <DoubleBackPlayer 
+        gameState={[[4, 4], [3, 3], [2, 2], [1, 1]]}
+    />
+</div>
+
+### State Isomorphism
+
+This is the most subtle, but also most powerful pattern. Compare these two board states:
+
+<div className="d-flex w-100 gap-3">
+    <DoubleBackPlayer 
+        gameState={[[1, 1], [2, 2], [4, 3], [3, 4]]}
+        gameOptions={{interactive: false}}
+    />
+
+    <DoubleBackPlayer 
+        gameState={[[1, 1], [2, 2], [3, 4], [3, 4]]}
+        gameOptions={{interactive: false}}
+    />
+</div>
+
+Is there any meaningful difference between these states? There exists *a* move from a 3 in column 3 to a 2 in column 2 in both, as for all other moves. *Versions* of the same moves are possible, but applying moves of the same 'version' to both board states will maintain at least one column being flipped relative to the other state. (try moving a 4 to a 3, for example).
+
+It is of course possible to convert one isomorphic board state to another, by flipping column(s) vertically -- but any such flip is surely a wasted move, since we could have reached that state without flipping the column by adjusting whether we moved balls into the top or bottom slot when we started. Indeed, this generalises to any column and any number of columns; the order that the top and bottom balls are in is irrelevant, since there exists an alternate, isomorphic board that was reachable in the same number of moves in which the top and bottom for a given column was flipped.
+
+With this in mind, we're able to add "flip column" buttons to our simulation, that don't cost any moves.
+
+<DoubleBackPlayer 
+    gameState={[[1, 1], [2, 2], [3, 3], [4, 4]]}
+    gameOptions={{enableFlips: true, showMoveCount: true}}
+/>
+
+# Questions
+We were trying to answer:
+- Is it always winnable for all $N$?
+- What is the minimum number of moves for a given $N$?
+
+If we can prove that there *is* a minimum number of moves for all $N$, it must always be winnable.
+
+Assume, for a given N, that there exists an optimal sequence of moves from the starting state $S_0$ to the end state $S_K$, where K is the number of moves required to reach that state. By symmetry, the reverse of our sequence of moves must also be an optimal sequence from $S_K$ to $S_0$. Thus, the first move in this sequence must be the reverse of an optimal last move. This follows for all moves. Note that, for each state $S_m$, the 'equivalent' state in the reverse sequence $S_{K-m}$ is its mirror.
+
+Now, consider the central state of this sequence, say $S_C$. It is the mirror to the state made by applying the same moves to the end state. Since both states are central in their sequences, and these sequences are opposites, they must be isomorphic -- or, stronger, every column will be flipped. It follows that such an $S_C$ is the 'flip' of its own mirror. 
+
+In reverse, consider an $S_C$ that is the flip of its own mirror $S_C'$. We wish to prove that it is the central state of a path between two mirror states, say $S_0$ and $S_K$. 
+<details>
+<summary>Proof:</summary>
+<p className="inset">Consider the path between $S_C$ and $S_0$. For each move, apply the same move to $S_C'$. Since $S_C$ and $S_C'$ have the same pattern of moves available, this is always possible -- furthermore, this is always maintained as being possible since the new states also share the same pattern of moves. On reaching $S_0$, the mirror states' path will have reached $S_K$. Thus we have two paths, one from $S_C \rightarrow S_0$ and one from $S_C' \rightarrow S_K$. Flip the former to obtain a sequence from $S_0$ to $S_C$. Next, consider that, under isomorphism, $S_C$ and $S_C'$ are identical; similarly, there will exist an isomorphic state $S_{C+1}$ reachable from $S_C$. This follows all the way until $S_K$. Thus, there exists a route $S_0 \rightarrow S_K$ in the same number of steps as the two disjointed sequences.</p>
+</details>
+
+With this bi-implication, we have proven that any two mirror states must have (at least one) central state that is the flip of its own mirror, and indeed that if any state that is the flip of its own mirror can be reached by some state $S_0$ it can also be reached by $S_K$ -- implying that there exists a path between $S_0$ and $S_K$.
+
+Thus, in our goal to find a path between the initial board state and the final state, it is sufficient to find only a path between the initial board state and any state that is the flip of its own mirror. This gives us some more targets to work towards, and proves a natural symmetry in the problem.
+
+<BlogNavigation page={2} nextComingSoon />
+
+{/* If we could hypothesise that all board states are reachable, we might make some progress towards this question. Unfortunately, a simple counter-example disproves this: */}

@@ -1,14 +1,4 @@
-
-.blog h1 {
-  margin-top: 1%;
-  margin-bottom: 3%;
-}
-
-.blog h2 {
-  margin-top: 0;
-  margin-bottom: 3%;
-  font-size: 2.2rem;
-}
+@use "mixins";
 
 .blogBody {
   display: block;
@@ -16,7 +6,6 @@
 
 .blogText {
   width: 100%;
-  text-align: justify;
 
   h2 {
     margin: 2rem 0 1.5rem;
@@ -103,10 +92,9 @@ nav .navBox:hover {
 }
 
 .footnote {
-  font-size: 0.8rem;
+  @include mixins.font-size(0.8rem);
   color: #a0a0a0;
-  line-height: 1rem;
-  margin: 0 0 0.8rem;
+  margin-bottom: 0.5rem;
 }
 
 /* game-dev */
@@ -238,9 +226,6 @@ nav .navBox:hover {
 
 .verticalPaneDescription {
   padding: 20px 40px;
-  text-align: justify;
-  font-size: 1.1rem;
-  line-height: 1.5rem;
   transition: all 0.3s ease-in-out;
   background-color: var(--card-primary);
   min-height: 300px;
@@ -248,10 +233,6 @@ nav .navBox:hover {
 }
 
 @media (max-width: 1680px) {
-  .blog {
-    padding: 1rem 15%;
-  }
-
   .verticalPane {
     width: 80%;
   }
@@ -259,8 +240,6 @@ nav .navBox:hover {
   .verticalPaneDescription {
     padding: 15px 25px;
     text-align: justify;
-    font-size: 1rem;
-    line-height: 1.3rem;
   }
 }
 
@@ -294,10 +273,6 @@ nav .navBox:hover {
 
   .verticalPaneDescriptionHide {
     transform: translateY(-100%);
-  }
-
-  .blog {
-    padding: 1rem 10%;
   }
 
   .blogBody {

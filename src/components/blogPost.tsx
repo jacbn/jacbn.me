@@ -1,4 +1,4 @@
-import React, { ImgHTMLAttributes, lazy, Suspense, useContext, useEffect, useState } from "react";
+import React, { ImgHTMLAttributes, lazy, Suspense, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -8,44 +8,18 @@ import lightSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/one-ligh
 import darkSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 import { ColorModeContext } from "./colorModeToggle";
 import classNames from "classnames";
+import { BlogErrorBoundary, ProjectErrorBoundary } from "./errorBoundary";
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('scss', scss);
 
-const BlogErrorBoundary = ({children} : {children: React.ReactNode}) => {
-    const [hasError, setHasError] = useState(false);
-
-    useEffect(() => {
-        const handleError = (error: ErrorEvent) => {
-            setHasError(true);
-            console.error("Error caught by ErrorBoundary: ", error);
-        };
-
-        window.addEventListener("error", handleError);
-
-        return () => {
-        window.removeEventListener("error", handleError);
-        };
-    }, []);
-
-    if (hasError) {
-        return <div className="mt-5 text-center">
-            Something went wrong. There's probably no blog at this URL.
-            <br/><br/>
-            Try searching through <a href="/blog">the list of blogs</a> instead!
-        </div>;
-    }
-
-  return <>{children}</>;
-};
-
 function code({className, ...properties} : {className: string, children: React.ReactNode}) {
     const match = /language-(\w+)/.exec(className || '');
 
-    const {theme} = useContext(ColorModeContext);
+    const {themeLightness} = useContext(ColorModeContext);
 
     return match
-      ? <SyntaxHighlighter language={match[1]} style={theme === 'light' ? lightSyntax : darkSyntax} PreTag={"div"} {...properties}>
+      ? <SyntaxHighlighter language={match[1]} style={themeLightness === 'light' ? lightSyntax : darkSyntax} PreTag={"div"} {...properties}>
             {properties.children as string}
         </SyntaxHighlighter>
       : <code className={className} {...properties} />;
@@ -62,19 +36,35 @@ function img(props : ImgHTMLAttributes<HTMLImageElement>) {
     </figure>;
 }
 
-export const MdxBlogPost = () => {
+interface BlogContainerProps {
+    containerClassName?: string;
+}
+
+const MdxContainer = ({Post, containerClassName}: BlogContainerProps & {Post: React.LazyExoticComponent<React.ComponentType<any>>}) => {
+    // must be surrounded by an error boundary!
+    return <Suspense fallback={<>
+        <title>jaycie ⋅ blog</title>
+        <div>Loading...</div>
+    </>}>
+        <main className={containerClassName ?? "blog-container"}>
+            <Post components={{code, img}} />
+        </main>
+    </Suspense>;
+};
+
+export const MdxProject = ({path, containerClassName}: BlogContainerProps & {path: string}) => {
+    const Post = lazy(() => import(/* @vite-ignore */ path));
+    return <ProjectErrorBoundary>
+        <MdxContainer Post={Post} containerClassName={containerClassName} />
+    </ProjectErrorBoundary>;
+};
+
+export const MdxBlogPost = ({containerClassName}: BlogContainerProps) => {
     const params = useParams();
     const postId = params.id;
     const Post = lazy(() => import(`../pages/blog/${postId}.mdx`));
     return <BlogErrorBoundary>
-        <Suspense fallback={<>
-            <title>jaycie ⋅ blog</title>
-            <div>Loading...</div>
-        </>}>
-            <main className="blog-container">
-                <Post components={{code, img}} />
-            </main>
-        </Suspense>
+        <MdxContainer Post={Post} containerClassName={containerClassName} />
     </BlogErrorBoundary>;
 };
 

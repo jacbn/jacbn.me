@@ -1,0 +1,10 @@
+import { DoubleBackPlayer } from './db-sim';
+import { BlogNavigation, DBGraphConnect } from './components';
+import { DBForceGraph } from "./db-graph";
+
+<DBGraphConnect
+    simulation={<DoubleBackPlayer cols={4} gameOptions={{showMoveCount: true}} />}
+    graph={<DBForceGraph path="/data/double-back/spectral-4-full.json" N={4} />}
+/>
+
+<BlogNavigation />

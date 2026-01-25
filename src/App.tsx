@@ -1,24 +1,28 @@
 import React from 'react';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { About, Contacts, Home } from './pages';
-import Title from './components/title';
+import { Contacts, Home } from './pages/home/Home';
+import { About } from './pages/home/About';
 import NavBar from './components/navbar';
-import GreenMaps from './pages/projects/greenmaps';
+import GreenMaps from './pages/projects/GreenMaps';
 import ScrollTop from './components/scrollTop';
-import YawNN from './pages/projects/yawnn';
-import JCompiler from './pages/projects/jcompiler';
-import Pandemic from './pages/projects/pandemic';
-import Sentiment from './pages/projects/sentiment';
-import GameDev from './pages/projects/gamedev';
-import MathsArt from './pages/maths-art';
+import YawNN from './pages/projects/YawNN';
+import JCompiler from './pages/projects/JCompiler';
+import Pandemic from './pages/projects/Pandemic';
+import Sentiment from './pages/projects/Sentiment';
+import GameDev from './pages/projects/GameDev';
+import MathsArt from './pages/maths-art/MathsArtListing';
 import Apollo from './pages/maths-art/_apollo';
 import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
 import './styles.scss';
-import BlogIntro from './pages/blog';
+import BlogIntro from './pages/blog/BlogListing';
 import { CV, ServiceCV, TechCV } from './pages/cv';
 import ColorModeToggle, { ColorModeContextProvider } from './components/colorModeToggle';
 import { MdxBlogPost } from './components/blogPost';
+import { Title } from './components/title';
+import { ProjectsOverview } from './pages/projects/ProjectsOverview';
+import { DoubleBack } from './pages/projects/double-back/DoubleBack';
+import { IsaacRedesign } from './pages/work/IsaacRedesign';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +30,7 @@ const router = createBrowserRouter([
     element: <>
       <ScrollTop />
       <title>jaycie brown</title>
-      <ColorModeToggle />
+      {/* <ColorModeToggle /> */}
       <Outlet />
     </>,
     children: [
@@ -34,10 +38,6 @@ const router = createBrowserRouter([
         path: '/',
         element: <>
           <title>jaycie ⋅ home</title>
-          <header>
-            <Title />
-            <NavBar showName={false} />
-          </header>
           <Home />
         </>
       },
@@ -47,8 +47,8 @@ const router = createBrowserRouter([
           <title>jaycie ⋅ about</title>
           <header>
             <Title />
-            <NavBar showName={false} />
           </header>
+          <NavBar />
           <About />
         </>
       },
@@ -58,8 +58,8 @@ const router = createBrowserRouter([
           <title>jaycie ⋅ contacts</title>
           <header>
             <Title />
-            <NavBar showName={false} />
           </header>
+          <NavBar />
           <Contacts />
         </>
       },
@@ -67,9 +67,7 @@ const router = createBrowserRouter([
         path: '/cv',
         element: <>
           <title>jaycie ⋅ cv</title>
-          <header>
-            <NavBar showName={true} />
-          </header>
+          <NavBar />
           <Outlet />
         </>,
         children: [
@@ -93,30 +91,44 @@ const router = createBrowserRouter([
           <title>jaycie ⋅ blog</title>
           <header>
             <Title />
-            <NavBar showName={false} />
           </header>
+          <NavBar />
           <BlogIntro />
         </>
       },
       {
         path: '/blog/:id',
         element: <>
-          <header>
-            <NavBar showName={true} />
-          </header>
+          <NavBar />
           <MdxBlogPost />
         </>
+      },
+      {
+        path: '/work',
+        element: <>
+          <title>jaycie ⋅ work</title>
+          <NavBar />
+          <Outlet />
+        </>,
+        children: [
+          {
+            path: '/work/isaac-redesign',
+            element: <IsaacRedesign />
+          }
+        ]
       },
       {
         path: '/projects',
         element: <>
           <title>jaycie ⋅ projects</title>
-          <header>
-            <NavBar showName={true} />
-          </header>
+          <NavBar />
           <Outlet />
         </>,
         children: [
+          {
+            path: '/projects',
+            element: <ProjectsOverview />
+          },
           {
             path: '/projects/greenmaps',
             element: <GreenMaps />
@@ -136,6 +148,14 @@ const router = createBrowserRouter([
           {
             path: '/projects/sentiment',
             element: <Sentiment />
+          },
+          {
+            path: '/projects/double-back',
+            element: <DoubleBack />
+          },
+          {
+            path: '/projects/double-back/:page',
+            element: <DoubleBack />
           }
         ]
       },
@@ -143,9 +163,7 @@ const router = createBrowserRouter([
         path: '/gamedev',
         element: <>
           <title>jaycie ⋅ game dev</title>
-          <header>
-            <NavBar showName={true} />
-          </header>
+          <NavBar />
           <GameDev />
         </>
       },
@@ -153,9 +171,7 @@ const router = createBrowserRouter([
         path: '/maths-art',
         element: <>
           <title>jaycie ⋅ maths art</title>
-          <header>
-            <NavBar showName={true} />
-          </header>
+          <NavBar />
           <MathsArt />
         </>,
         children: [

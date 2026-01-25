@@ -3,10 +3,17 @@
 @use "styles/mixins";
 @use "styles/utils";
 
+@use "styles/theme";
+@use "styles/typography";
+@use "styles/icons";
 @use "styles/elements";
+@use "styles/containers";
 @use "styles/components";
+@use "styles/images";
 @use "styles/blog";
 @use "styles/body";
 @use "styles/home";
 @use "styles/mathsart";
 @use "styles/projects";
+
+@use "styles/pages/isaac-redesign";

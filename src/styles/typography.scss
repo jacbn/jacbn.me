@@ -1,0 +1,20 @@
+@use "mixins";
+
+$font-size-bases: (
+  display:  3rem   3.25rem 4rem,
+  headline: 2rem   2.25rem 2.5rem,
+  title:    1.3rem 1.6rem 1.8rem,
+  subtitle: 1.2rem 1.4rem 1.5rem,
+  label:    1.1rem 1.2rem 1.2rem,
+  body:     1rem   1rem 1rem,
+);
+
+@each $font-size-name, $base-sizes in $font-size-bases {
+  .font-size-#{$font-size-name} {
+    @include mixins.dynamic-font-size(
+      nth($base-sizes, 1),
+      nth($base-sizes, 2),
+      nth($base-sizes, 3)
+    );
+  }
+}

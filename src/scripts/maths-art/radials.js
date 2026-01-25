@@ -66,9 +66,9 @@ function initialiseDOMElements() {
     ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 
-    pathColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-primary');
-    constructionColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-secondary');
-    canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background');
+    pathColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-primary') || "#ccc";
+    constructionColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-secondary') || "#666";
+    canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background') || "#15181a";
 
     speedSlider = document.getElementById("speedSlider");
     speedSlider.oninput = function(event) {

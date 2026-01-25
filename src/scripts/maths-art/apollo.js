@@ -70,8 +70,8 @@ function initialiseDOMElements() {
     ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 
-    pathColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-primary');
-    canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background');
+    pathColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-primary') || "#ccc";
+    canvasColour = getComputedStyle(document.documentElement).getPropertyValue('--canvas-background') || "#15181a";
 
     document.getElementById("ratioSlider").oninput = function() {render();};
     document.getElementById("offsetSlider").oninput = function() {render();};

@@ -1,0 +1,17 @@
+.home-container-thin {
+  max-width: 920px;
+  margin: auto;
+
+  @media (max-width: 960px) {
+    margin: 0 20px;
+  }
+}
+
+.home-container-thin-override {
+  margin: 0 calc(-1 * (100vw - 920px) / 2);
+  padding: 0 calc((100vw - 920px) / 2);
+}
+
+.container-fluid-override {
+  margin: 0 calc(var(--bs-gutter-x) * -0.5);
+}

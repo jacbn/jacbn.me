@@ -1,19 +1,36 @@
 @use "mixins";
 @use "fonts";
 
+%blog-components {
+    figure {
+        width: 100%;
+        
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+}
+
+%blog-theme {
+    background-color: color-mix(in srgb, var(--card-primary) 40%, transparent);
+    box-shadow: 0 2px 5px var(--shadow-primary);
+}
+
 .blog-container {
     width: 100%;
     row-gap: 0.5rem;
     margin: auto;
-    align-items: center;
+    align-items: start;
     padding: 1rem 3% 15vh;
 
-    background-color: color-mix(in srgb, var(--card-primary) 40%, transparent);
-    box-shadow: 0 2px 5px var(--shadow-primary);
-
-    p {
-        width: 100%;
+    > div {
+        margin: auto;
     }
+
+    @extend %blog-theme;
+
+    @extend %blog-components;
 
     @include mixins.respond-above(md) {
         width: 80%;
@@ -28,6 +45,22 @@
     }
 }
 
+.blog-container-with-demo:first-child {
+    flex: 6 6 0;
+    overflow: clip;
+    margin: 0 5%;
+    padding: 2rem;
+    align-items: start;
+
+    @extend %blog-theme;
+    @extend %blog-components;
+}
+
+.blog-container-with-demo:last-child {
+    flex: 4 4 0;
+    overflow: clip;
+}
+
 .callout {
     background-color: var(--card-primary);
     background-color: color-mix(in srgb, var(--card-primary) 50%, transparent);
@@ -39,44 +72,88 @@
     width: max-content;
 }
 
-.db-ball {
-    display: block;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 60px 30px, #f00, #000);
-    text-align: center;
-    line-height: 90px;
-    font-size: 2rem;
-    font-family: 'Quicksand';
-    font-weight: 800;
-    margin-bottom: 1rem;
-    &:hover {
-        background: radial-gradient(circle at 60px 30px, #f40, #000);
-    }
-    &.db-target {
-        background: radial-gradient(circle at 60px 30px, #f80, #000);
-    }
+.db-ball-container {
+    position: absolute;
+    aspect-ratio: 1;
+
+    transition: top 0.2s ease, left 0.2s ease;
 }
 
-.db-col {
+.db-ball {
     display: flex;
-    flex-direction: column;
+    position: absolute;
+    inset: 10%;
+    border-radius: 50%;
     justify-content: center;
     align-items: center;
-    padding: 2rem 1rem;
+    @include mixins.font-size(2rem);
+    font-family: var(--font-title);
+    font-weight: 800;
+    background: radial-gradient(circle at 60% 25%, #f00, #000);
+    background-clip: content-box !important;
+    border: 2px solid color-mix(in srgb, #f00 35%, #bbb8);
+    box-shadow: 2px 2px 5px #000a;
+
+    transform: translate(0%, 0%);
+    transition: background 0.2s ease, transform 0.2s ease-out;
+
+    &:hover {
+        background: radial-gradient(circle at 60% 25%, #f40, #000);
+        border: 2px solid color-mix(in srgb, #f40 35%, #bbbb);
+    }
+    &.db-target {
+        background: radial-gradient(circle at 60% 25%, #f80, #000);
+        border: 2px solid color-mix(in srgb, #f80 35%, #bbbb);
+    }
+    &.highlight {
+        background: radial-gradient(circle at 60% 25%, #0f0, #000);
+        border: 2px solid color-mix(in srgb, #0f0 35%, #bbbb);
+    }
+    &.inactive {
+        background: radial-gradient(circle at 60% 25%, #c00, #000);
+        border: 2px solid color-mix(in srgb, #c00 35%, #bbbb);
+    }
+
+    > span {
+        margin-top: -4px;
+        z-index: 1;
+    }
+
+    &.hidden {
+        visibility: hidden;
+        transition: none;
+    }
 }
 
-.db-row {
+.db-container {
     display: flex;
+    position: relative;
+    width: 100%;
     justify-content: center;
     align-items: center;
     user-select: none;
+    background-color: var(--theme-background-gradient);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
 }
 
 .db-drop {
     position: absolute;
-    width: 125px;
-    height: 110px;
-    /* background-color: pink; */
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+
+    &:not(.inactive) {
+        cursor: grab;
+    }
+}
+
+@include mixins.respond-below(xl) {
+    .db-force-graph-container {
+        .scene-container, canvas {
+            width: 100% !important;
+            height: unset !important;
+            aspect-ratio: 4/3;
+        }
+    }
 }

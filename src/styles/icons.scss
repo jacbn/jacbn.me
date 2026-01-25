@@ -1,0 +1,44 @@
+@use "mixins";
+
+.icon-chevron-right {
+  @include mixins.svg-icon('/assets/components/chevron-right.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 57% 50%);
+}
+
+.icon-chevron-left {
+  @include mixins.svg-icon('/assets/components/chevron-right.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 57% 50%);
+  rotate: 180deg;
+}
+
+.icon {
+  --icon-size: 16px;
+  --mask-size: 100%;
+}
+
+.icon-md {
+  --icon-size: 24px;
+  --mask-size: 100%;
+}
+
+.icon-lg {
+  --icon-size: 32px;
+  --mask-size: initial;
+}
+
+.icon-xl {
+  --icon-size: 48px;
+  --mask-size: initial;
+}
+
+.icon-xxl {
+  --icon-size: 64px;
+  --mask-size: initial;
+}
+
+i.icon {
+  &[color="white"] {
+    background-color: white;
+    &::after {
+      background-color: white;
+    }
+  }
+}

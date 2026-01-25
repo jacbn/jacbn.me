@@ -2,4 +2,25 @@
 
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
+
+$spacer: 1rem !default;
+$spacers: map-merge($spacers, (
+    5: ($spacer * 2),
+    6: ($spacer * 2.5),
+    7: ($spacer * 3),
+    8: ($spacer * 3.5),
+    9: ($spacer * 4),
+    10: ($spacer * 5),
+    11: ($spacer * 6),
+    12: ($spacer * 7)
+));
+
+$enable-negative-margins: true;
+
+@import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+@import "./bootstrap-components";
+
+@import "bootstrap/scss/utilities/api";

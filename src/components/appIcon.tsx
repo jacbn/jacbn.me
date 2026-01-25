@@ -1,16 +1,16 @@
+import classNames from 'classnames';
 import React from 'react';
 import { useState } from "react";
 
 export default function AppIcon({image, href, hoverText} : {image: string, href?: string, hoverText?: string}) {
-  const containerStyle = `iconContainer ${(hoverText) ? "iconTooltip" : ''}`;
   const [active, setActive] = useState(false);
   const [hover, setHover] = useState(false);
+
   return (
     <>
-      <a className={containerStyle} href={href}>
-        <img className={`icon contactIconFilter`} src={image} onClick={() => setActive(a => !a)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
-        />
-        {(hoverText) && <span className={`tooltipText ${(hover || active) ? "tooltipVisible" : "tooltipHidden"}`}>{hoverText}</span>}
+      <a className={classNames({"contact-icon-tooltip-container": hoverText})} href={href} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        <img className={`contact-icon contactIconFilter`} src={image} onClick={() => setActive(a => !a)} />
+        {(hoverText) && <span className={classNames({"hidden": !(hover || active)})}>{hoverText}</span>}
       </a>
     </>
   );

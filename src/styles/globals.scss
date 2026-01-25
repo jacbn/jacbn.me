@@ -1,15 +1,19 @@
 :root {
   --max-width: 1600px;
   --border-radius: 12px;
-  --font-mono-body: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-  --font-sans-title: 'fascinate', var(--font-sans-fallback);
-  --font-sans-heading: 'Quicksand', var(--font-sans-fallback);
-  --font-sans-body: 'Inter', var(--font-sans-fallback);;
-  --font-sans-fallback: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-  'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-title: 'Nerko One', var(--font-fallback);
+  --font-body: 'Figtree', var(--font-fallback);
+  --font-isaac-title: 'Exo 2', var(--font-fallback);
+  --font-isaac-body: 'Hanken Grotesk', var(--font-fallback);
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-fallback: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --project-body-padding: 7vw;
+
+  --sunset-pink-primary: #fbbbad;
+  --sunset-pink-secondary: #ee8695;
+  --sunset-blue-primary: #4a7a96;
+  --sunset-blue-secondary: #333f58;
+  --sunset-blue-tertiary: #292831;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,49 +21,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root[data-bs-theme='light'] {
+:root[data-bs-theme='sunset-light'], :root[data-bs-theme='modern-light'] {
   --theme-base: #fff;
   --theme-inverse: #000;
-  --title-primary: #fff;
-  --title-secondary: #5f353c;
-  --subtitle-primary: #222222;
-  --nav-title: #000;
-  --text-primary: #0a0a0a;
-  --text-secondary: #7a7a7a;
-  --text-active: #0a0a0a;
-  
-  --title-background-gradient: linear-gradient(
-    to bottom right,
-    #0141ff40,
-    #00c2c240,
-    #ff41ff40,
-    #0141ff40
-  );
-  --title-background-filter: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-
-  --background-start-rgb: #fac1ec;
-  --background-end-rgb: #d0f7ff;
-  --card-primary: #ffffff;
-  --card-secondary: #fff9;
-  --card-border: none;
-  --card-border-highlight: #aaa;
-  --background-alt-dark: #e0e0e0;
-  --background-alt-dark-accent: #cecece;
-  --menu-primary: var(--card-primary);
-  --menu-active: #dadada;
-  --menu-hover: #c0c0c0;
-  --canvas-primary: #000000;
-  --canvas-secondary: #aaaaaa;
-  --canvas-background: #ffffff;
-  --code-color: #bd0e64;
-
-  --icon-filter: none;
-  --image-filter: none;
-
-  --shadow-primary: #68686880;
-  --shadow-light: #00000033;
-
-  --foreground-accent: #88bbee;
 
   --accent-greenmaps: #b39f7a;
   --accent-yawning: #323558;
@@ -68,6 +32,78 @@
   --accent-sentiment: #588fca;
   --accent-pandemic: #d06f6f;
   --accent-game-dev: #ceb40b;
+  --accent-double-back: #ff5733;
+  --accent-isaac: #ac38ae;
+  --accent-component: #228c28;
+}
+
+:root[data-bs-theme='sunset-dark'], :root[data-bs-theme='modern-dark'] {
+  --theme-base: #000;
+  --theme-inverse: #fff;
+
+  --accent-greenmaps: wheat;
+  --accent-yawning: #9bfae7;
+  --accent-maths: lightgreen;
+  --accent-compiler: #f9d1da;
+  --accent-sentiment: #6eb5ff;
+  --accent-pandemic: lightcoral;
+  --accent-game-dev: #f0d83c;
+  --accent-double-back: #ff8a70;
+  --accent-isaac: #e3afe3;
+  --accent-component: #6ab26b;
+}
+
+:root[data-bs-theme='modern-light'] {
+  --title-primary: #fff;
+  --title-secondary: #5f353c;
+  --subtitle-primary: #222222;
+  --nav-title: #000;
+  --text-primary: #0a0a0a;
+  --text-secondary: #7a7a7a;
+  --text-active: #0a0a0a;
+  
+  --shimmer-gradient: linear-gradient(
+    to bottom right,
+    #0141ff40,
+    #00c2c240,
+    #ff41ff40,
+    #0141ff40
+  );
+  --title-background-filter: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+
+  --theme-background-gradient: linear-gradient(
+    135deg,
+    var(--background-start-rgb),
+    var(--background-end-rgb)
+  );
+
+  --background-start-rgb: #fac1ec;
+  --background-end-rgb: #d0f7ff;
+  --card-primary: #ffffff;
+  --card-secondary: #fff9;
+  --card-border: none;
+  --card-border-highlight: #aaa;
+  --nav-primary: #ffffff;
+  --background-alt-dark: #e0e0e0;
+  --background-alt-dark-accent: #cecece;
+  --menu-primary: var(--card-primary);
+  --menu-active: #dadada;
+  --menu-hover: #c0c0c0;
+  --canvas-primary: #000000;
+  --canvas-secondary: #aaaaaa;
+  --canvas-background: #ffffff;
+  
+  --code-color: #bd0e64;
+  --code-background: var(--card-secondary);
+  --code-border: var(--card-border-highlight);
+
+  --icon-filter: none;
+  --image-filter: none;
+
+  --shadow-primary: #68686880;
+  --shadow-light: #00000033;
+
+  --foreground-accent: #88bbee;
 
   --code-background-tsx: #648adb4b;
   --code-background-scss: #ff00001a;
@@ -85,9 +121,7 @@
   );
 }
 
-:root[data-bs-theme='dark'] {
-  --theme-base: #000;
-  --theme-inverse: #fff;
+:root[data-bs-theme='modern-dark'] {
   --title-primary: #ffffff;
   --title-secondary: #5f353c;
   --subtitle-primary: #f0f0f0;
@@ -96,7 +130,7 @@
   --text-secondary: #c0c0c0;
   --text-active: #ffffff;
 
-  --title-background-gradient: linear-gradient(
+  --shimmer-gradient: linear-gradient(
     to bottom right,
     #0141ff1a,
     #01ffff1a,
@@ -105,12 +139,19 @@
   );
   --title-background-filter: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   
+  --theme-background-gradient: linear-gradient(
+    135deg,
+    var(--background-start-rgb),
+    var(--background-end-rgb)
+  );
+  
   --background-start-rgb: #1d071a;
   --background-end-rgb: #010d1a;
   --card-primary: #161421;
   --card-secondary: #181724a0;
   --card-border: #2e353a;
   --card-border-highlight: #3e454a;
+  --nav-primary: #161421;
   --background-alt-dark: #0e1114;
   --background-alt-dark-accent: #090b0e;
   --menu-primary: var(--card-primary);
@@ -119,7 +160,10 @@
   --canvas-primary: #f0f0f0;
   --canvas-secondary: #666666;
   --canvas-background: #15181a;
+  
   --code-color: #ca3880;
+  --code-background: var(--card-secondary);
+  --code-border: var(--card-border-highlight);
 
   --icon-filter: invert(1);
   --image-filter: invert(95%) hue-rotate(180deg); 
@@ -127,14 +171,6 @@
   --shadow-primary: #00000080;
 
   --foreground-accent: #88bbee;
-
-  --accent-greenmaps: wheat;
-  --accent-yawning: #9bfae7;
-  --accent-maths: lightgreen;
-  --accent-compiler: #f9d1da;
-  --accent-sentiment: #6eb5ff;
-  --accent-pandemic: lightcoral;
-  --accent-game-dev: #f0d83c;
 
   --code-background-tsx: var(--card-primary);
   --code-background-scss: #211414;
@@ -155,4 +191,33 @@
   --callout-border-rgb: 108, 108, 108;
   --card-rgb: 100, 100, 100;
   --card-border-rgb: 200, 200, 200;
+}
+
+:root[data-bs-theme='sunset-light'], :root[data-bs-theme='sunset-dark'] {
+  --text-primary: #fff;
+  --text-secondary: var(--sunset-pink-primary);
+  --text-disabled: var(--sunset-blue-primary);
+  --bs-secondary-color: var(--sunset-pink-primary);
+  --text-tertiary: var(--sunset-blue-tertiary);
+  --card-primary: var(--sunset-blue-secondary);
+  --nav-primary: var(--sunset-blue-tertiary);
+  --foreground-accent: var(--sunset-pink-primary);
+
+  --theme-background-gradient: var(--sunset-blue-tertiary);
+  --theme-background-alternate: var(--sunset-pink-primary);
+
+  --card-border: color-mix(in srgb, var(--theme-background-gradient) 80%, #fff);
+
+  --code-color: #ca3880;
+  --code-background: var(--sunset-blue-tertiary);
+  --code-border: var(--sunset-blue-secondary);
+
+  --code-background-tsx: #161421;
+  --code-background-scss: #211414;
+
+  --shadow-primary: #00000080;
+
+  --canvas-primary: #f0f0f0;
+  --canvas-secondary: #666666;
+  --canvas-background: #15181a;
 }

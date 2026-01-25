@@ -1,0 +1,37 @@
+import { DoubleBackPlayer } from './db-sim';
+import { BlogNavigation, DBGraphConnect } from './components';
+import { DBForceGraph } from "./db-graph";
+
+<title>jaycie ⋅ double back</title>
+# Double Back: Part 1
+
+Double back is a simple puzzle game with two rows of balls in ascending order. You can swap adjacent balls (horizontally, vertically or diagonally) whose values differ by at most one, with the goal of flipping the direction of the rows.
+
+<figure>
+    <img src="/assets/double-back/clp-double-back.png" />
+    <figcaption><a href="https://somethingorotherwhatever.com/double-back/">The original version</a>, via Christian Lawson-Perfect.</figcaption>
+</figure>
+
+The number of balls in the rows is variable. The above shows $N=5$, which is decently challenging for newcomers. I've built a simulation of the game to enable tweaking of many more parameters than the original, so you can have a go here too:
+
+<DoubleBackPlayer 
+    gameState={[[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]}
+    gameOptions={{showMoveCount: true}}
+/>
+
+After you get the hang of it, some questions naturally start to arise:
+- Is it always winnable for all $N$?
+- If winnable, what is the minimum number of moves for a given $N$?
+
+Try it! See if you can build up any intuition, at least for the first question.
+
+---
+
+In this project, I'll go over some discoveries I have sporadically made about this game. I don't have a formal answer for either question (...yet), but have made a few fun things along the way. Like this:
+
+<DBGraphConnect
+    simulation={<DoubleBackPlayer cols={3} />}
+    graph={<DBForceGraph path="/data/double-back/spectral-3-full.json" N={3} />}
+/>
+
+<BlogNavigation page={1} />

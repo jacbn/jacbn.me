@@ -6,9 +6,83 @@
   line-height: calc($size * 1.4);
 }
 
+@mixin dynamic-font-size($xs, $md, $xl) {
+  @include respond-below('md') {
+    font-size: $xs;
+    line-height: calc($xs * 1.4);
+  }
+
+  @include respond-above('md') {
+    font-size: $md;
+    line-height: calc($md * 1.4);
+  }
+
+  @include respond-above('xl') {
+    font-size: $xl;
+    line-height: calc($xl * 1.4);
+  }
+}
+
 @mixin respond-above($breakpoint) {
   @media (min-width: map.get(bootstrap.$grid-breakpoints, $breakpoint)) {
     @content;
   }
 }
 
+@mixin respond-below($breakpoint) {
+  @media (max-width: calc(map.get(bootstrap.$grid-breakpoints, $breakpoint) - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin svg-icon-raw($path, $width, $height, $background-size: none, $background-position: none) {
+  // use this only for SVG icons that should not be recoloured; prefer @svg-icon in general
+  display: inline-block;
+  background: url($path) center center no-repeat;
+  width: $width;
+  height: $height;
+  min-width: $width;
+  min-height: $height;
+  @if $background-size != none {
+    background-size: $background-size;
+  }
+  @if $background-position != none {
+    background-position: $background-position;
+  }
+}
+
+@mixin svg-icon($path, $width: 16px, $height: 16px, $mask-size: none, $mask-position: none) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  min-width: $width;
+  min-height: $height;
+  background-color: black; // this has to be here, not inside the @supports, as that raises the specificity beyond that of background colours specified alongside @include svg-icon
+
+  @supports (mask: url($path) center center no-repeat) {
+    mask: url($path) center center no-repeat;
+    @if $mask-size != none {
+      mask-size: $mask-size;
+    }
+    @if $mask-position != none {
+      mask-position: $mask-position;
+    }
+  }
+
+  @supports not (mask: url($path) center center no-repeat) {
+    // TODO this had to be shorthand format to correctly override all background props, surely can simplify though
+    @if $mask-size != none {
+      @if $mask-position != none {
+        background: url($path) $mask-position/$mask-size no-repeat !important;
+      } @else {
+        background: url($path) center center/$mask-size no-repeat !important;
+      }
+    } @else {
+      @if $mask-position != none {
+        background: url($path) $mask-position no-repeat !important;
+      } @else {
+        background: url($path) center center no-repeat !important;
+      }
+    }
+  }
+}

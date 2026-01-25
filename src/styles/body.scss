@@ -21,13 +21,11 @@
   }
 }
 
-.projectHomeContainer {
-  width: 100%;
-  padding: 0 var(--project-body-padding);
+.container-projects {
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100%;
 }
 
 .bd-theme {
@@ -52,9 +50,5 @@
   .wideTextContainer p {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-  }
-
-  .projectHomeContainer {
-    padding: 0 5%;
   }
 }
