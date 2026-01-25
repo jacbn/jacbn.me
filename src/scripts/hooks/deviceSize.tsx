@@ -31,17 +31,17 @@ export default function useDeviceSize() {
 }
 
 export const below = {
-    xs: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["xs"],
-    sm: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["sm"],
-    md: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["md"],
-    lg: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["lg"],
-    xl: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["xl"],
-};
-
-export const above = {
     xs: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["xs"],
     sm: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["sm"],
     md: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["md"],
     lg: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["lg"],
     xl: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] <= screenSizeMap["xl"],
+};
+
+export const above = {
+    xs: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["xs"],
+    sm: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["sm"],
+    md: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["md"],
+    lg: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["lg"],
+    xl: (size: ScreenSize | string) => screenSizeMap[size as ScreenSize] >= screenSizeMap["xl"],
 };

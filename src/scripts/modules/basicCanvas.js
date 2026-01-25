@@ -10,6 +10,7 @@ export function drawCircle(ctx, x, y, r, col='#fff', fill=false) {
     ctx.arc(x, y, Math.abs(r), 0, 2 * Math.PI, true);
     ctx.strokeStyle = col;
     if (fill) {
+        ctx.closePath();
         ctx.fillStyle = col;
         ctx.fill();
     } else {

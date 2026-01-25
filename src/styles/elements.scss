@@ -1,4 +1,5 @@
 @use "mixins";
+@use "typography";
 
 * {
   box-sizing: border-box;
@@ -48,7 +49,8 @@ nav.main-nav {
 }
 
 h1 {
-  @include mixins.font-size(3rem);
+  // @include mixins.font-size(3rem);
+  @extend .font-size-display;
   font-family: var(--font-title);
   color: var(--subtitle-primary);
   margin: 1rem 0 0.5rem;
@@ -56,28 +58,32 @@ h1 {
 }
 
 h2 {
-  @include mixins.font-size(1.8rem);
+  // @include mixins.font-size(1.8rem);
+  @extend .font-size-headline;
   font-family: var(--font-title);
   color: var(--subtitle-primary);
   margin: 1rem 0;
 }
 
 h3 {
-  @include mixins.font-size(1.5rem);
+  // @include mixins.font-size(1.5rem);
+  @extend .font-size-title;
   font-family: var(--font-title);
   color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
 }
 
 h4 {
-  @include mixins.font-size(1.2rem);
+  // @include mixins.font-size(1.2rem);
+  @extend .font-size-subtitle;
   font-family: var(--font-title);
   color: var(--subtitle-primary);
   margin-bottom: 0.5rem;
 }
 
 h5 {
-  @include mixins.font-size(1rem);
+  // @include mixins.font-size(1rem);
+  @extend .font-size-label;
   font-family: var(--font-title);
   font-weight: 800;
   color: var(--subtitle-primary);

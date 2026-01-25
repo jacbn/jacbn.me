@@ -33,6 +33,10 @@ nav.home-nav {
   > div {
     max-width: 1000px;
     margin: 0 40px;
+
+    @include mixins.respond-below('sm') {
+      margin: 0 30px;
+    }
   }
 }
 
@@ -126,11 +130,17 @@ nav.home-nav {
   width: 100%;
   text-align: center;
   color: var(--text-primary);
-  @include mixins.font-size(1.2rem);
+  @include mixins.dynamic-font-size(1rem, 1.2rem, 1.2rem);
+
+  h2 {
+    @include mixins.respond-below('sm') {
+      margin: 0.5rem 0;
+    }
+  }
 }
 
 .project-info-text {
-  @include mixins.font-size(0.9rem);
+  @include mixins.dynamic-font-size(0.8rem, 0.9rem, 0.9rem);
   align-self: flex-end;
   color:#a0a0a0;
 }
@@ -213,6 +223,15 @@ nav.home-nav {
     h1 {
       @include mixins.font-size(calc(min(128pt, 15vw)));
     }
+  }
+}
+
+.title-base-wrapper img {
+  @media (max-width: 520px) { // this isn't quite a breakpoint as the image isn't big enough :/
+    min-height: 500px;
+    max-height: 100vh;
+    object-fit: cover;
+    object-position: bottom 0 left -120px;
   }
 }
 

@@ -24,26 +24,28 @@ export const Home = () => {
     <main className="home-bg">
       <section id="intro" className="home-container-thin">
         <FadeInWhenVisible>
-          <div className="intro-pg my-9 w-100 w-sm-75">
+          <div className="intro-pg mt-9 mb-0 mb-md-9 w-100 w-sm-75">
             <h1 className="text-highlight font-size-display mb-3 ms-lg-n6">⋅ hi! ⋅</h1>
             <p className="font-size-title">i&apos;m <span className="text-highlight">jaycie</span>, a frontend developer and aspiring designer with a passion for crafting meaningful experiences for real people.</p>
           </div>
         </FadeInWhenVisible>
       </section>
       
-      <NavBar onHome={true} className="my-5" />
+      <NavBar onHome={true} className="mt-5 mb-2 mb-sm-5" />
 
-      <img src="/assets/home/sunset-base.gif" className="w-100 pixelated-image mt-9" alt="" />
+      <div className="title-base-wrapper w-100">
+        <img src="/assets/home/sunset-base.gif" className="w-100 pixelated-image mt-md-9" alt="" />
+      </div>
 
       <section id="work" className="container-fluid g-9 pt-9">
-          <h1 className="mb-8 text-dark">⋅ work ⋅</h1>
+          <h2 className="mb-4 mb-md-6 text-dark">⋅ work ⋅</h2>
           <FadeInWhenVisible>
             <WorkGrid />
           </FadeInWhenVisible>
       </section>
 
       <section id="projects" className="container-fluid g-9 pt-7 pb-9">
-        <h1 className="mb-4 text-dark">⋅ featured projects ⋅</h1>
+        <h2 className="mb-4 mb-md-6 text-dark">⋅ featured projects ⋅</h2>
         <FadeInWhenVisible>
           <FeaturedProjectsGrid />
         </FadeInWhenVisible>

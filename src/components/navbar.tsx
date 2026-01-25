@@ -48,6 +48,7 @@ interface NavBarProps extends React.HTMLAttributes<HTMLElement> {
 export const NavBar = ({onHome, ...rest} : NavBarProps) => {
   const deviceSize = useDeviceSize();
   const location = useLocation();
+  const isMobile = below["xs"](deviceSize);
 
   return <nav {...rest} className={classNames(
     "d-flex justify-content-center w-100 sticky-top home-nav home-links text-highlight font-size-title py-4", 
@@ -57,35 +58,35 @@ export const NavBar = ({onHome, ...rest} : NavBarProps) => {
   )}>
     <div className="d-flex justify-content-between w-100">
       {onHome
-        ? <Link to="/#work" onClick={() => scrollIntoView('work')} className={"styled-hover"}>my work</Link>
+        ? <Link to="/#work" onClick={() => scrollIntoView('work')} className={"styled-hover"}>{isMobile ? "work" : "my work"}</Link>
         : <Link to="/" className={"styled-hover"}>home</Link>
       }
-      <Link to="/blog"  className={classNames("styled-hover", {"text-white": location.pathname === '/blog'})}>my blog</Link>
-      <Link to="/about" className={classNames("styled-hover", {"text-white": location.pathname === '/about'})}>my profile</Link>
+      <Link to="/blog"  className={classNames("styled-hover", {"text-white": location.pathname === '/blog'})}>{isMobile ? "blog" : "my blog"}</Link>
+      <Link to="/about" className={classNames("styled-hover", {"text-white": location.pathname === '/about'})}>{isMobile ? "profile" : "my profile"}</Link>
     </div>
   </nav>;
 
-  return (
-    <nav>
-      {onHome && (
-        <Link to="/" className="mx-3 nav-name">
-          jaycie
-        </Link>
-      )}
-      <div className="d-flex flex-row ms-auto">
-        {below["sm"](deviceSize) ? (
-          <HamburgerBox />
-        ) : (
-          <>
-            <NavBox text="Home" href="/" active={location.pathname === '/'} />
-            <NavBox text="Blog" href="/blog" active={location.pathname === '/blog'} />
-            <NavBox text="About Me" href="/about" active={location.pathname === '/about'} />
-            <NavBox text="Contacts" href="/contacts" active={location.pathname === '/contacts'} />
-          </>
-        )}
-      </div>
-    </nav>
-  );
+  // return (
+  //   <nav>
+  //     {onHome && (
+  //       <Link to="/" className="mx-3 nav-name">
+  //         jaycie
+  //       </Link>
+  //     )}
+  //     <div className="d-flex flex-row ms-auto">
+  //       {below["sm"](deviceSize) ? (
+  //         <HamburgerBox />
+  //       ) : (
+  //         <>
+  //           <NavBox text="Home" href="/" active={location.pathname === '/'} />
+  //           <NavBox text="Blog" href="/blog" active={location.pathname === '/blog'} />
+  //           <NavBox text="About Me" href="/about" active={location.pathname === '/about'} />
+  //           <NavBox text="Contacts" href="/contacts" active={location.pathname === '/contacts'} />
+  //         </>
+  //       )}
+  //     </div>
+  //   </nav>
+  // );
 };
 
 export default NavBar;

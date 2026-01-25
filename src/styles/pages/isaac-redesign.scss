@@ -1,3 +1,5 @@
+@use "../mixins";
+
 .isaac-redesign {
   font-family: var(--font-isaac-body);
   font-size: 1.1rem;
@@ -55,6 +57,15 @@
     bottom: 20px;
   }
 
+  img#phone-decor-md {
+    bottom: 20px;
+    object-fit: contain;
+
+    @media (max-width: 400px) {
+      object-fit: cover;
+    }
+  }
+
   .isaac-green {
     color: #4e9934;
   }
@@ -87,43 +98,45 @@
       clip-path: polygon(0% 0%, 0% 100%, calc(50% - $inner-width / 2) 100%, calc(50% - $inner-width / 2) 0, calc(50% + $inner-width / 2) 0, calc(50% + $inner-width / 2) 100%, calc(50% - $inner-width / 2) 100%, calc(50% - $inner-width / 2) 100%, 100% 100%, 100% 0%);
     }
 
-    #demo-sidebar {
-      height: 580px;
-    }
-
     #isaac-figma {
       background-color: #1e1e1e;
-      height: 580px;
-    }
-
-    #isaac-book {
-      height: 670px;
-    }
-
-    #inline-questions {
-      height: 670px;
     }
 
     #markbook {
-      height: 316px;
       background-color: #f9f8f4;
       img {
         border-radius: 16px;
       }
     }
 
-    #accessibility {
-      height: 316px;
+    @include mixins.respond-above(lg) {
+      #demo-sidebar {
+        height: 580px;
+      }
+
+      #isaac-figma {
+        height: 580px;
+      }
+
+      #isaac-book {
+        height: 670px;
+      }
+
+      #inline-questions {
+        height: 670px;
+      }
+
+      #markbook {
+        height: 316px;
+      }
+
+      #accessibility {
+        height: 316px;
+      }
     }
   }
 
-  #outro-bg {
-    position: absolute;
-    inset: 0;
-    background: url('/assets/isaac-redesign/spill-bg.svg') repeat center center;
-  }
-
-  #outro-bg-bottom {
-    background-color: #404040;
+  #outro {
+    background-color: #4e9934;
   }
 }

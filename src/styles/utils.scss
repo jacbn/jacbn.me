@@ -22,3 +22,36 @@
     width: #{$i * 10%} !important;
   }
 }
+
+// creating these in different loops prevents higher w-## classes overriding w-{bp}-## etc
+@for $i from 1 through 9 {
+  .w-sm-#{$i}0 {
+    @include mixins.respond-above(sm) {
+      width: #{$i * 10%} !important;
+    }
+  }
+}
+
+@for $i from 1 through 9 {
+  .w-md-#{$i}0 {
+    @include mixins.respond-above(md) {
+      width: #{$i * 10%} !important;
+    }
+  }
+}
+
+@for $i from 1 through 9 {
+  .w-lg-#{$i}0 {
+    @include mixins.respond-above(lg) {
+      width: #{$i * 10%} !important;
+    }
+  }
+}
+
+@for $i from 1 through 9 {
+  .w-xl-#{$i}0 {
+    @include mixins.respond-above(xl) {
+      width: #{$i * 10%} !important;
+    }
+  }
+}
