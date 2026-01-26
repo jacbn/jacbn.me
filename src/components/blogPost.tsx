@@ -52,8 +52,8 @@ const MdxContainer = ({Post, containerClassName}: BlogContainerProps & {Post: Re
     </Suspense>;
 };
 
-export const MdxProject = ({path, containerClassName}: BlogContainerProps & {path: string}) => {
-    const Post = lazy(() => import(/* @vite-ignore */ path));
+export const MdxProject = ({project, page, containerClassName}: BlogContainerProps & {project: string, page: string}) => {
+    const Post = lazy(() => import(`../pages/projects/${project}/${page}.mdx`));
     return <ProjectErrorBoundary>
         <MdxContainer Post={Post} containerClassName={containerClassName} />
     </ProjectErrorBoundary>;

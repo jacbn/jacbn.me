@@ -13,16 +13,16 @@ export const DoubleBack = () => {
         case undefined:
         case "1":
             return <DragDropSimulationContext.Provider value={{backend}}>
-                <MdxProject path="/src/pages/projects/double-back/double-back-1.mdx" />
+                <MdxProject key={1} project="double-back" page="double-back-1" />
             </DragDropSimulationContext.Provider>;
         case "2":
             return <DragDropSimulationContext.Provider value={{backend}}>
-                <MdxProject path="/src/pages/projects/double-back/double-back-2.mdx" />
+                <MdxProject key={2} project="double-back" page="double-back-2" />
             </DragDropSimulationContext.Provider>;
         // case "3":
         //     return <DragDropSimulationContext.Provider value={{backend}}>
         //         <div className="d-flex gap-3">
-        //             <MdxProject path="/src/pages/projects/double-back/double-back-3.mdx" containerClassName="blog-container-with-demo" />
+        //             <MdxProject key={3} project="double-back" page="double-back-3" containerClassName="blog-container-with-demo" />
         //             <div className="blog-container-with-demo d-flex flex-column">
         //                 <h2>demo</h2>
         //                 <DoubleBackPlayer cols={4} />
