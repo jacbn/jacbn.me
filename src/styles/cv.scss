@@ -23,7 +23,7 @@ main:has(.cv) {
 
 .cv {
     font-size: 0.88rem;
-    line-height: 1.25rem;
+    line-height: 1.2;
 
     font-family: "Inter", "Roboto", -apple-system, "San Francisco", "Segoe UI", "Helvetica Neue", sans-serif;
 
@@ -31,6 +31,7 @@ main:has(.cv) {
         font-size: 42pt;
         margin-top: 0;
         margin-bottom: 0.5rem;
+        line-height: 0.7;
     }
     
     h2 {

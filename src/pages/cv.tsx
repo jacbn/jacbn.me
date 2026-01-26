@@ -60,6 +60,14 @@ const TechCVBody = () => {
                 <MobileContact/>
                 <ContactLink icon="/assets/contacts/email.svg" href="mailto:hello@jaycie.me" text="hello@jaycie.me" />
 
+                <h2>Tooling</h2>
+                <div className="dual-column">
+                    <span>Figma</span>
+                    <span>Framer</span>
+                    <span>Git</span>
+                    <span>Docker</span>
+                </div>
+
                 <h2>Languages</h2>
                 <div className="dual-column">
                     <span>JS/TS</span>
@@ -82,11 +90,11 @@ const TechCVBody = () => {
 
                 <h2>Soft Skills</h2>
                 <div className="d-flex flex-column">
-                    <span>Teamwork</span>
-                    <span>Time management</span>
-                    <span>Adaptability</span>
-                    <span>Detail-oriented</span>
                     <span>Creativity</span>
+                    <span>Teamwork</span>
+                    <span>Detail-oriented</span>
+                    <span>Adaptability</span>
+                    <span>Time management</span>
                 </div>
 
                 <References/>
@@ -96,7 +104,7 @@ const TechCVBody = () => {
                 <h4>EdTech Software Engineer</h4>
 
                 <p>
-                    An experienced software engineer with an extensive history developing projects and skills across the breadth of computer science. Driven by wanting to make a meaningful difference to the world, I am keen to employ my skills in a role that both benefits the wider community while also challenging me to grow. I am demonstrably willing to learn from and adapt to new challenges, and would be keen to form part of a dynamic team that can both support my growth and benefit from my contributions.
+                    An experienced software engineer with an extensive history designing, developing, and expanding a variety of projects. Driven by a desire to provide memorable, authentic experiences for real people, I am keen to employ my skills in a role that benefits a wide community while also challenging me to grow. I am demonstrably willing to learn from and adapt to new challenges, and am keen to form part of a dynamic team that can both support my growth and benefit from my contributions.
                 </p>
 
                 <Section title="Employment">
