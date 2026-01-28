@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import React, { createContext, ReactNode, useState } from "react";
 import { Link } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 
 export interface BallState {
     index: number;
@@ -11,15 +11,25 @@ export const DragDropSimulationContext = createContext<{backend: any | undefined
 
 export const DBGraphConnectionContext = createContext<{gameState: BallState[][] | undefined, setGameState?: React.Dispatch<React.SetStateAction<BallState[][] | undefined>>}>({gameState: undefined});
 
+const DBErrorBoundary = ({children} : {children: React.ReactNode}) => {
+    return <ErrorBoundary fallback={<div className="db-container p-4 mt-5">
+        Something went wrong. Your browser might not support this simulation. Try viewing this page on a different device or browser!
+    </div>}>
+        {children}
+    </ErrorBoundary>;
+};
+
 export const DBGraphConnect = ({simulation, graph}: {simulation: ReactNode, graph: ReactNode}) => {
     const [gameState, setGameState] = useState<BallState[][] | undefined>(undefined);
     return <div className="position-relative d-flex flex-column align-items-center gap-3 w-100">
-        <DBGraphConnectionContext.Provider value={{gameState, setGameState}}>
-            {graph}
-            <div className="w-25 position-absolute end-0 bottom-0 pe-3">
-                {simulation}
-            </div>
-        </DBGraphConnectionContext.Provider>
+        <DBErrorBoundary>
+            <DBGraphConnectionContext.Provider value={{gameState, setGameState}}>
+                {graph}
+                <div className="w-25 position-absolute end-0 bottom-0 pe-3">
+                    {simulation}
+                </div>
+            </DBGraphConnectionContext.Provider>
+        </DBErrorBoundary>
     </div>;
 };
 

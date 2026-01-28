@@ -15,7 +15,7 @@ First, the game is symmetric. If there is a series of moves we can use to get us
 Next, notice that the lowest and highest balls (1 and $N$) can only be swapped with 2 and $N-1$ respectively. Similarly, 2 and $N-1$ share the same pattern of which balls they can be swapped with. This is true for all 'pairs' $k$ and $N+1-k$. (with the central ball not having a pair for odd $N$). Since the numbers don't represent anything beyond which balls can swap with which others, and pairs $k$ and $N+1-k$ share the same swapping patterns, if we replace each ball with its partner ($1 \leftrightarrow N, 2 \leftrightarrow N-1, ...$) we will generate a new game with the same **pattern** - i.e. a given ball will be able to swap with exactly the same partners when flipped. We will call this process **mirroring**. Importantly, note that the mirror of the starting game is the state we wish to end up in:
 
 
-<div className="d-flex w-100 gap-3">
+<div className="d-flex flex-column flex-sm-row w-100 gap-3">
     <DoubleBackPlayer 
         gameState={[[1, 1], [2, 2], [3, 3], [4, 4]]}
     />
@@ -29,7 +29,7 @@ Next, notice that the lowest and highest balls (1 and $N$) can only be swapped w
 
 This is the most subtle, but also most powerful pattern. Compare these two board states:
 
-<div className="d-flex w-100 gap-3">
+<div className="d-flex flex-column flex-sm-row w-100 gap-3">
     <DoubleBackPlayer 
         gameState={[[1, 1], [2, 2], [4, 3], [3, 4]]}
         gameOptions={{interactive: false}}
