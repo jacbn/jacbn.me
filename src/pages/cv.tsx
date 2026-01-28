@@ -1,7 +1,7 @@
 import React from 'react';
 import { MobileContact, References } from '../components/privateComponents';
 import ThemeSelector from '../components/theming/themeSelector';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ReturnToParentPage } from '../components/returnToParentPage';
 
 interface ContactLinkProps {

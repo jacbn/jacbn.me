@@ -1,7 +1,7 @@
 
 import React from 'react';
 import HomeText from '../../components/homeText';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 export function About() {
   return <HomeText

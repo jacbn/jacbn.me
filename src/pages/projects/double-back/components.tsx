@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { ErrorBoundary } from "react-error-boundary";
 
 export interface BallState {

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import React from 'react';
 
 export default class MathsSquare extends React.Component<{href: string, title: string, image: {src: string, srcLight?: string, alt: string}}, { lightMode : boolean }> {

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { MdxProject } from "../../../components/blogPost";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DoubleBackPlayer } from "./db-sim";
 import { DragDropSimulationContext } from "./components";

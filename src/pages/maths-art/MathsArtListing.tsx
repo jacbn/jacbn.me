@@ -2,7 +2,7 @@ import MathsSquare from '../../components/mathsGrid/mathsSquare';
 import Apollo from './_apollo';
 import Radials from './_radials';
 import Lotfollah from './_lotfollah';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import CanvasScript from './canvasScript';
 import React from 'react';
 import { ReturnToParentPage } from '../../components/returnToParentPage';

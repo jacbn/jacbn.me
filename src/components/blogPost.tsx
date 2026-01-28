@@ -1,5 +1,5 @@
 import React, { ImgHTMLAttributes, lazy, Suspense, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';

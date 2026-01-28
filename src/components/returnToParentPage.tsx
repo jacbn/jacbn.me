@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 export function ReturnToParentPage({isParent}: {isParent?: boolean}) {
     // This component may be managed by the parent page you wish to return to; if so, use isParent.

@@ -4,7 +4,7 @@ import AppIcon from '../../components/appIcon';
 import { FeaturedProjectsGrid, WorkGrid } from '../../components/homeGrid/homeGrids';
 import { Linkbacks } from '../../components/linkbacks';
 import { Title } from '../../components/title';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import { scrollIntoView } from '../../utils/scroll';
 import NavBar from '../../components/navbar';
 import { FadeInWhenVisible } from '../../components/animation/fadeInWhenVisible';
