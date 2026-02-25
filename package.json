@@ -57,5 +57,8 @@
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.56.0"
   },
+  "resolutions": {
+    "three": "^0.183.1"
+  },
   "packageManager": "yarn@4.12.0"
 }
