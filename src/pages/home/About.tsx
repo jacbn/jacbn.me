@@ -24,7 +24,7 @@ export function About() {
         <h3 className="text-highlight">Where have you worked previously?</h3>
         <div className="inset">
           <p>In the summer of 2022 I undertook an internship at <a href="https://umbrella.cisco.com/">Cisco Umbrella</a>, working on their <a href="https://umbrella.cisco.com/products/data-loss-prevention-dlp">Data Loss Prevention solution</a> (in short, a cloud-based network traffic analysis engine that prevents data leaks by scanning data sent through a secure web gateway). I coded in Java, mainly developing a user-facing application for encrypting customer data, though there were several instances where I branched out to other areas of the product, both to suggest and implement improvements, and to learn — one such example being how I saved almost 80% of program runtime in the worst scenario after finding a subtle problem in a library I was working with.</p>
-          <p>(<Link to="/cv">Looking for a CV?</Link> &ndash; last updated 05/08/25)</p>
+          <p>(<Link to="/cv">Looking for a CV?</Link> &ndash; last updated 26/02/26)</p>
         </div>
 
         {/* <p className="qna">What's an ideal job for you?</p>

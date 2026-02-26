@@ -111,13 +111,16 @@ const TechCVBody = () => {
                     <Subsection title="Isaac Science, 2023-present">
                         <ul>
                             <li>
-                                Working cross-stack on the Isaac platform, with a focus on the front-end. Major accomplishments include a new, extensively-used question type, various new pages from marketing to question finding, and a continuous effort to tidy and increase maintainability of the codebase.
+                                Developing the Isaac platform, with a heavy focus on the front-end. Recently led a major redesign of the user-facing portion of the platform, comprising of a complete overhaul of the UI/UX across the website.
                             </li>
                             <li>
-                                Currently leading a major redesign of the front-end of the platform, comprising of a complete overhaul of the UI/UX across the website. 
+                                Began and now oversee a design system and Figma component library, with an aim to keep new features consistent in style.
                             </li>
                             <li>
-                                Helped to onboard three new developers to the team, and recently gave a technical talk on CSS and best practices to the wider team.
+                                Other major accomplishments include a new, extensively-used question type, various new pages from marketing to question finding, and a continuous effort to tidy and increase maintainability of the codebase.
+                            </li>
+                            <li>
+                                Helped to onboard three new developers to the team, and have given multiple talks on WCAG / accessibility, CSS best practices, and more.
                             </li>
                             <li>
                                 Taken on responsibilities for the wider university outside of the direct job description, including supervising undergraduates, assisting a PhD project using a fork of one of our components, and running admissions interviews.
@@ -167,9 +170,9 @@ const TechCVBody = () => {
                             <li>
                                 A-levels: A* A* A* A* <span className="tag">(CS, Physics, Maths, F. Maths)</span>
                             </li>
-                            <li>
+                            {/* <li>
                                 AS-levels: A A A B <span className="tag">(CS, Physics, Geology, F. Maths)</span>
-                            </li>
+                            </li> */}
                         </ul>
                     </Subsection>
                 </Section>

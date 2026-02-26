@@ -102,10 +102,15 @@
     align-items: center;
     padding: 1rem;
     justify-content: center;
+    color: white;
     @include mixins.font-size(1.2rem);
 
     width: 20rem;
     height: 20rem;
+
+    &:hover {
+        color: var(--sunset-blue-primary);
+    }
 
     img {
         width: 10rem;
