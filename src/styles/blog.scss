@@ -79,6 +79,17 @@
     transition: top 0.2s ease, left 0.2s ease;
 }
 
+.db-settings-btn {
+    z-index: 20;
+    padding: 0.5rem 1rem;
+    background-color: var(--card-primary);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px var(--shadow-primary);
+    cursor: pointer;
+    margin: 0 0.5rem;
+}
+
 .db-ball {
     display: flex;
     position: absolute;
@@ -86,32 +97,38 @@
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    @include mixins.font-size(2rem);
+    font-size: 2rem;
     font-family: var(--font-title);
     font-weight: 800;
-    background: radial-gradient(circle at 60% 25%, #f00, #000);
+    background: radial-gradient(circle at 60% 25%, var(--db-ball-primary), #000);
     background-clip: content-box !important;
-    border: 2px solid color-mix(in srgb, #f00 35%, #bbb8);
+    border: 2px solid color-mix(in srgb, var(--db-ball-primary) 35%, #bbb8);
     box-shadow: 2px 2px 5px #000a;
 
     transform: translate(0%, 0%);
     transition: background 0.2s ease, transform 0.2s ease-out;
 
     &:hover {
-        background: radial-gradient(circle at 60% 25%, #f40, #000);
-        border: 2px solid color-mix(in srgb, #f40 35%, #bbbb);
+        background: radial-gradient(circle at 60% 25%, var(--db-ball-hover), #000);
+        border: 2px solid color-mix(in srgb, var(--db-ball-hover) 35%, #bbbb);
     }
     &.db-target {
-        background: radial-gradient(circle at 60% 25%, #f80, #000);
-        border: 2px solid color-mix(in srgb, #f80 35%, #bbbb);
+        background: radial-gradient(circle at 60% 25%, var(--db-ball-target), #000);
+        border: 2px solid color-mix(in srgb, var(--db-ball-target) 35%, #bbbb);
+        animation: target-rock 0.5s ease infinite;
     }
     &.highlight {
-        background: radial-gradient(circle at 60% 25%, #0f0, #000);
-        border: 2px solid color-mix(in srgb, #0f0 35%, #bbbb);
+        background: radial-gradient(circle at 60% 25%, var(--db-ball-highlight), #000);
+        border: 2px solid color-mix(in srgb, var(--db-ball-highlight) 35%, #bbbb);
     }
     &.inactive {
-        background: radial-gradient(circle at 60% 25%, #c00, #000);
-        border: 2px solid color-mix(in srgb, #c00 35%, #bbbb);
+        background: radial-gradient(circle at 60% 25%, var(--db-ball-inactive), #000);
+        border: 2px solid color-mix(in srgb, var(--db-ball-inactive) 35%, #bbbb);
+    }
+    &.db-won {
+        background: radial-gradient(circle at 60% 25%, var(--db-ball-primary), #000);
+        border: 2px solid color-mix(in srgb, var(--db-ball-primary) 35%, #bbbb);
+        animation: db-won 1s ease infinite, target-rock 0.5s ease infinite;
     }
 
     > span {
@@ -125,14 +142,54 @@
     }
 }
 
+.fullscreen-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d1d1f;
+}
+
+@keyframes target-rock {
+    0% {
+        scale: 1;
+    }
+    50% {
+        scale: 1.01;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
+@keyframes db-won {
+    0% {
+        filter: drop-shadow(0 0 5px var(--db-ball-primary)) hue-rotate(0deg);
+    }
+    50% {
+        filter: drop-shadow(0 0 10px var(--db-ball-primary)) hue-rotate(180deg);
+    }
+    100% {
+        filter: drop-shadow(0 0 5px var(--db-ball-primary)) hue-rotate(360deg);
+    }
+}
+
 .db-container {
+    --db-ball-primary: #f00;
+    --db-ball-hover: color-mix(in srgb, var(--db-ball-primary) 80%, #fff);
+    --db-ball-target: #f80;
+    --db-ball-highlight: #0f0;
+    --db-ball-inactive: #c00;
+    --db-background: var(--theme-background-gradient);
+
     display: flex;
     position: relative;
     width: 100%;
     justify-content: center;
     align-items: center;
     user-select: none;
-    background-color: var(--theme-background-gradient);
+    background-color: var(--db-background);
     border: 1px solid var(--card-border);
     border-radius: 20px;
 }
