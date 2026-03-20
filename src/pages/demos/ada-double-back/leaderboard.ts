@@ -23,7 +23,7 @@ export const useLeaderboard = () => {
             const nameTag = window.prompt("New high score! Enter a name tag (max 3 characters):", "AAA")?.toUpperCase().slice(0, 3) || "AAA";
 
             setLeaderboard(prev => ({ ...prev, [N]: { score, nameTag } }));
-            localStorage.setItem(LEADERBOARD_KEY, JSON.stringify({ ...leaderboard, [N]: score, nameTag }));
+            localStorage.setItem(LEADERBOARD_KEY, JSON.stringify({ ...leaderboard, [N]: { score, nameTag }}));
         }
     };
 
