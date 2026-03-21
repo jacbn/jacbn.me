@@ -18,9 +18,11 @@ interface DBForceGraphProps {
     path: string;
     N: number;
     nodeBaseSize?: number;
+    width?: number;
+    height?: number;
 }
 
-export const DBForceGraph = ({path, N, nodeBaseSize = 3}: DBForceGraphProps) => {
+export const DBForceGraph = ({path, N, nodeBaseSize = 3, width = 840, height = 560}: DBForceGraphProps) => {
     const fgRef = useRef<any>(null);
     const [data, setData] = useState<GraphData<NodeType, LinkType> | undefined>(undefined);
     const [hoverNode, setHoverNode] = useState<NodeType | null>(null);
@@ -87,8 +89,8 @@ export const DBForceGraph = ({path, N, nodeBaseSize = 3}: DBForceGraphProps) => 
                     setHoverNode(node);
                 }
             }}
-            width={840}
-            height={560}
+            width={width}
+            height={height}
         />
     </div>;
 };

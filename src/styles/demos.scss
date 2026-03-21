@@ -1,0 +1,19 @@
+.ada-demo .db-container {
+    --db-ball-primary: #0ff;
+    --db-background: #12292c;
+
+    .db-ball {
+        font-size: 4rem;
+    }
+}
+
+.db-force-graph-container ~ div .ada-demo .db-ball {
+    font-size: 3rem;
+}
+
+.db-leaderboard {
+    padding: 1rem 2rem;
+    backdrop-filter: blur(3px);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+}

@@ -17,12 +17,13 @@ import Radials from './pages/maths-art/_radials';
 import './styles.scss';
 import BlogIntro from './pages/blog/BlogListing';
 import { CV, ServiceCV, TechCV } from './pages/cv';
-import ColorModeToggle, { ColorModeContextProvider } from './components/colorModeToggle';
+import { ColorModeContextProvider } from './components/colorModeToggle';
 import { MdxBlogPost } from './components/blogPost';
 import { Title } from './components/title';
 import { ProjectsOverview } from './pages/projects/ProjectsOverview';
 import { DoubleBack } from './pages/projects/double-back/DoubleBack';
 import { IsaacRedesign } from './pages/work/IsaacRedesign';
+import { AdaDoubleBack } from './pages/demos/ada-double-back/AdaDoubleBack';
 
 const router = createBrowserRouter([
   {
@@ -189,6 +190,26 @@ const router = createBrowserRouter([
           }
         ]
       },
+      {
+        path: '/demos',
+        element: <Outlet />,
+        children: [
+          {
+            path: '/demos/ada-double-back',
+            element: <>
+              <title>jaycie ⋅ Ada CS x double back</title>
+              <AdaDoubleBack />
+            </>
+          },
+          {
+            path: '/demos/ada-double-back/:page',
+            element: <>
+              <title>jaycie ⋅ Ada CS x double back</title>
+              <AdaDoubleBack />
+            </>,
+          }
+        ]
+      }
     ]
   },
   

@@ -63,7 +63,9 @@ export const Home = () => {
         </FadeInWhenVisible>
       </section>
     </main>
-    <footer className="mt-9">
+    <footer className="mt-9 d-flex align-items-center justify-content-end gap-2 font-title text-highlight">
+      <Link to="/demos/ada-double-back" className="nav-link px-3 py-1 text-decoration-underline">play a game</Link>
+      <div className="flex-grow-1" />
       <Linkbacks />
     </footer>
   </>;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Linkbacks = () => {
-  return <div className="d-flex align-items-center justify-content-end gap-2 font-title text-highlight">
+  return <>
     Cool people:
     <a href="/">
       <img src="/assets/home/linkbacks/jaycie.png" />
@@ -9,5 +9,5 @@ export const Linkbacks = () => {
     <a href="https://atp45.user.srcf.net/">
       <img src="/assets/home/linkbacks/skye.png" />
     </a>
-  </div>;
+  </>;
 };

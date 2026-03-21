@@ -19,6 +19,7 @@ interface DoubleBackGameOptions {
     showMoveCount?: boolean;
     interactive?: boolean;
     hideUselessMoves?: boolean;
+    showWinAnimation?: boolean;
 }
 
 const getAdjacentCoords = (position: XYCoord, cols: number) => {
@@ -200,6 +201,8 @@ interface DoubleBackPlayerProps {
     cols?: number;
     gameState?: BallState[][] | number[][];
     gameOptions?: DoubleBackGameOptions;
+    className?: string;
+    onWin?: (N: number, moves: number) => void;
 }
 
 export const DoubleBackPlayer = (props: DoubleBackPlayerProps) => {
@@ -222,11 +225,11 @@ const DoubleBackContextProvider = ({gameRef, ...props}: DoubleBackPlayerProps & 
         potentialTarget,
         setPotentialTarget,
     }}>
-        <DoubleBackManager gameState={props.gameState} gameRef={gameRef} />
+        <DoubleBackManager key={props.cols} className={props.className} gameState={props.gameState} gameRef={gameRef} onWin={props.onWin} />
     </DoubleBackContext.Provider>;
 };
 
-const DoubleBackManager = ({ gameState: initialGameState, gameRef }: { gameState?: BallState[][] | number[][], gameRef?: React.RefObject<HTMLDivElement | null> }) => {
+const DoubleBackManager = ({ gameState: initialGameState, gameRef, className, onWin }: { gameState?: BallState[][] | number[][], gameRef?: React.RefObject<HTMLDivElement | null>, className?: string, onWin?: (N: number, moves: number) => void }) => {
     const context = useContext(DoubleBackContext);
     if (!context) return null;
 
@@ -294,13 +297,20 @@ const DoubleBackManager = ({ gameState: initialGameState, gameRef }: { gameState
         graphConnectionContext?.setGameState?.(gameState);
     }, [gameState]);
 
+    const hasWon = useMemo(() => gameState?.every((col, i) => col[0].value === col[1].value && col[0].value === context.cols - i), [gameState, context.cols]);
+    useEffect(() => {
+        if (hasWon && onWin) {
+            onWin(context.cols, moves);
+        }
+    }, [hasWon, onWin]);
+
     if (!gameState) {
         return null;
     }
 
     const flatGameState = augmentGameState(gameState);
 
-    return <div className="w-100 d-flex flex-column align-items-center justify-content-center gap-2 pb-3" ref={gameRef}>
+    return <div className={classNames("w-100 d-flex flex-column align-items-center justify-content-center gap-2 pb-3", className)} ref={gameRef}>
         <DBContainer cols={context.cols}>
             {flatGameState.map((ball, i) => {
                 return <Ball key={i} id={i} value={ball.value} position={ball.position} swap={swap} 
@@ -308,6 +318,7 @@ const DoubleBackManager = ({ gameState: initialGameState, gameRef }: { gameState
                     isDragTarget={context.potentialTarget?.x === ball.position.x && context.potentialTarget?.y === ball.position.y}
                     className={classNames({
                         "db-target": availableTargets.some((target) => target.x === ball.position.x && target.y === ball.position.y),
+                        "db-won": context.gameOptions?.showWinAnimation && hasWon,
                     })}
                 />;
             })}
@@ -327,7 +338,7 @@ const DoubleBackManager = ({ gameState: initialGameState, gameRef }: { gameState
         </span>}
         {(context.gameOptions?.interactive ?? true) && <div>
             <button
-                className="undo-button" 
+                className="db-settings-btn" 
                 onClick={() => {
                     if (undoStack.length > 0) {
                         const newState = undoStack[undoStack.length - 1];
@@ -342,7 +353,7 @@ const DoubleBackManager = ({ gameState: initialGameState, gameRef }: { gameState
                 Undo
             </button>
             <button 
-                className="redo-button"
+                className="db-settings-btn"
                 onClick={() => {
                     if (redoStack.length > 0) {
                         const newState = redoStack[redoStack.length - 1];
@@ -404,7 +415,7 @@ const DBContainer = ({cols, ...rest}: DBContainerProps) => {
 
     return <div className="db-container" ref={divRef} style={{
         minWidth: `${(cols ?? 1) * 50}px`, 
-        maxWidth: `${(cols ?? 1) * 150}px`,
+        maxWidth: `${(cols ?? 1) * 200}px`,
         height: `${height}px`,
     }} {...rest}>
         <MouseOffsetContext.Provider value={mouseOffset}>
