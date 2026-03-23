@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { isMobile } from 'react-device-detect';
 import { DoubleBackPlayer } from "../../projects/double-back/db-sim";
 import { DBForceGraph } from "../../projects/double-back/db-graph";
 import { DBGraphConnect, DragDropSimulationContext } from "../../projects/double-back/components";
@@ -82,7 +84,7 @@ const AdaDoubleBackMain = ({ backend }: AdaDoubleBackProps) => {
 
 export const AdaDoubleBack = () => {
     const { page } = useParams<{page: string}>();
-    const backend = useMemo(() => HTML5Backend, []);
+    const backend = useMemo(() => isMobile ? TouchBackend : HTML5Backend, [isMobile]);
 
     switch (page) {
         case "graph":
