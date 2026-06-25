@@ -1,0 +1,91 @@
+@scope (.dfa-builder-wrapper) {
+  --body-color: white;
+  --background-color-alt: #101010;
+  --background-color: #050505;
+
+  .dfa-builder-wrapper {
+    width: min(1100px, 96vw);
+  }
+
+  .dfa-helper-text {
+    color: var(--bs-secondary-color);
+    font-size: 0.95rem;
+  }
+
+  .dfa-canvas {
+    position: relative;
+    width: min(1100px, 96vw);
+    height: min(72vh, 720px);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 20% 20%, rgb(23 38 69 / 28%), transparent 38%),
+      radial-gradient(circle at 85% 80%, rgb(50 84 64 / 20%), transparent 40%),
+      linear-gradient(180deg, var(--background-color-alt, #101010), var(--background-color, #050505));
+  }
+
+  .dfa-transition-layer,
+  .dfa-label-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dfa-transition-layer {
+    color: var(--body-color);
+  }
+
+  .dfa-transition-path,
+  .dfa-start-path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  .dfa-label-layer {
+    pointer-events: none;
+  }
+
+  .dfa-transition-label {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    border-radius: 999px;
+    border: 1px solid var(--card-border);
+    background: var(--background-color);
+    color: var(--body-color);
+    pointer-events: all;
+  }
+
+  .dfa-node {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--body-color);
+    background: color-mix(in srgb, var(--background-color) 84%, var(--body-color));
+    color: var(--body-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+
+  .dfa-node-selected {
+    box-shadow: 0 0 0 3px rgb(13 110 253 / 45%);
+  }
+
+  .dfa-node-start-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid var(--body-color);
+    background: color-mix(in srgb, var(--body-color) 70%, transparent);
+    right: 4px;
+    bottom: 3px;
+  }
+}

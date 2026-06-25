@@ -24,6 +24,7 @@ import { ProjectsOverview } from './pages/projects/ProjectsOverview';
 import { DoubleBack } from './pages/projects/double-back/DoubleBack';
 import { IsaacRedesign } from './pages/work/IsaacRedesign';
 import { AdaDoubleBack } from './pages/demos/ada-double-back/AdaDoubleBack';
+import { DFABuilder } from './pages/demos/dfa-builder/DfaBuilder';
 
 const router = createBrowserRouter([
   {
@@ -207,6 +208,13 @@ const router = createBrowserRouter([
               <title>jaycie ⋅ Ada CS x double back</title>
               <AdaDoubleBack />
             </>,
+          },
+          {
+            path: '/demos/dfa-builder',
+            element: <>
+              <title>jaycie ⋅ DFA Builder</title>
+              <DFABuilder />
+            </>
           }
         ]
       }
