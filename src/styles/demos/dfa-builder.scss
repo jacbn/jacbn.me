@@ -1,9 +1,11 @@
-@scope (.dfa-builder-wrapper) {
+// @scope (.dfa-builder-wrapper) {
+// this is too new for vercel :rolling-eyes:
+.dfa-builder-wrapper {
   --body-color: white;
   --background-color-alt: #101010;
   --background-color: #050505;
 
-  .dfa-builder-wrapper {
+  &, .dfa-builder-wrapper {
     width: min(1100px, 96vw);
   }
 
