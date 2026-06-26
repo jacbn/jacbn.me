@@ -6,7 +6,7 @@ import { isMobile } from "react-device-detect";
 import { calculateStateTransitionVisualPath, getStateCenter } from "./svg-calcs";
 import { DfaNodeProps, DragStateItem, DfaState, StateTransition, StateTransitionDisplay, clamp, ITEM_TYPE, BuilderMode, STATE_DIAMETER, STATE_RADIUS } from "./dfa-consts";
 
-const DfaNode = ({ state, mode, isPendingSource, onClick }: DfaNodeProps) => {
+const DfaNode = ({ state, mode, isPendingSource, onClick, onRightClick, onDoubleClick }: DfaNodeProps) => {
     const [{ isDragging }, dragRef] = useDrag(() => ({
         type: ITEM_TYPE,
         item: {
@@ -34,7 +34,16 @@ const DfaNode = ({ state, mode, isPendingSource, onClick }: DfaNodeProps) => {
             }}
             onClick={(event) => {
                 event.stopPropagation();
-                onClick(state.id);
+                onClick?.(state.id);
+            }}
+            onAuxClick={(event) => {
+                console.log(event);
+                event.stopPropagation();
+                onRightClick?.(state.id);
+            }}
+            onDoubleClick={(event) => {
+                event.stopPropagation();
+                onDoubleClick?.(state.id);
             }}
         >
             {state.id}
@@ -65,7 +74,6 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
     const [stateIndex, setStateIndex] = useState(1);
     const [transitionIndex, setTransitionIndex] = useState(0);
     const boardRef = useRef<HTMLDivElement | null>(null);
-
 
     const moveState = useCallback((stateId: string, x: number, y: number) => {
         const boardBounds = boardRef.current?.getBoundingClientRect();
@@ -111,28 +119,26 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
         const normalizedX = clamp(x - STATE_RADIUS, 0, boardBounds.width - STATE_DIAMETER);
         const normalizedY = clamp(y - STATE_RADIUS, 0, boardBounds.height - STATE_DIAMETER);
 
-        setStateIndex((currentIndex) => {
-            setStates((currentStates) => [...currentStates, {
-                id: `q${currentIndex}`,
-                x: normalizedX,
-                y: normalizedY,
-                isStart: false,
-            }]);
-            return currentIndex + 1;
-        });
-    }, []);
+        setStates((currentStates) => [...currentStates, {
+            id: `q${stateIndex}`,
+            x: normalizedX,
+            y: normalizedY,
+            isStart: false,
+        }]);
+
+        setStateIndex(i => i + 1);
+    }, [stateIndex]);
 
     const addTransition = useCallback((fromStateId: string, toStateId: string) => {
-        setTransitionIndex((currentIndex) => {
-            setTransitions((currentTransitions) => [...currentTransitions, {
-                id: `t${currentIndex}`,
-                from: fromStateId,
-                to: toStateId,
-                symbol: "A",
-            }]);
-            return currentIndex + 1;
-        });
-    }, []);
+        setTransitions((currentTransitions) => [...currentTransitions, {
+            id: `t${transitionIndex}`,
+            from: fromStateId,
+            to: toStateId,
+            symbol: "A",
+        }]);
+
+        setTransitionIndex(i => i + 1);
+    }, [transitionIndex]);
 
     const onBoardClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         if (mode !== "add") {
@@ -148,18 +154,30 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
     }, [addStateAt, mode]);
 
     const onNodeClick = useCallback((stateId: string) => {
-        if (mode !== "edit") {
+        if (mode === "add") {
             return;
         }
 
-        if (!pendingSourceStateId) {
-            setPendingSourceStateId(stateId);
+        if (mode === "edit") {
+            if (!pendingSourceStateId) {
+                setPendingSourceStateId(stateId);
+                return;
+            }
+
+            addTransition(pendingSourceStateId, stateId);
+            setPendingSourceStateId(null);
             return;
         }
 
-        addTransition(pendingSourceStateId, stateId);
-        setPendingSourceStateId(null);
-    }, [addTransition, mode, pendingSourceStateId]);
+        if (mode === "delete") {
+            setStates((currentStates) => currentStates.filter((state) => state.id !== stateId));
+            setTransitions((currentTransitions) => currentTransitions.filter((transition) => transition.from !== stateId && transition.to !== stateId));
+
+            // if (stateIndex === parseInt(stateId.split('q')[1]) + 1) {
+            //     setStateIndex(i => i - 1);
+            // }
+        }
+    }, [addTransition, mode, pendingSourceStateId, setPendingSourceStateId]);
 
     const onTransitionSymbolChange = useCallback((transitionId: string, symbol: string) => {
         const normalizedSymbol = symbol.toUpperCase().slice(0, 1);
@@ -239,22 +257,27 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
                     maxLength={1}
                     className="dfa-transition-label"
                     style={{ left: `${labelX}px`, top: `${labelY}px` }}
-                    onClick={(event) => event.stopPropagation()}
+                    onClick={(event) => {
+                        if (mode === "delete") {
+                            setTransitions((currentTransitions) => currentTransitions.filter((t) => t.id !== transition.id));
+                        }
+                        event.stopPropagation()
+                    }}
                     onChange={(event) => onTransitionSymbolChange(transition.id, event.target.value)}
                     aria-label={`Transition ${transition.from} to ${transition.to}`}
                 />
             ))}
         </div>
 
-        {states.map((state) => (
-            <DfaNode
-                key={state.id}
-                state={state}
-                mode={mode}
-                isPendingSource={pendingSourceStateId === state.id}
-                onClick={onNodeClick}
-            />
-        ))}
+        {states.map((state) => <DfaNode
+            key={state.id}
+            state={state}
+            mode={mode}
+            isPendingSource={pendingSourceStateId === state.id}
+            onClick={onNodeClick}
+            // onRightClick={onNodeRightClick}
+            // onDoubleClick={onNodeDoubleClick}
+        />)}
     </div>;
 };
 
@@ -275,7 +298,7 @@ const DFABuilderToolbar = (props: DFABuilderToolbarProps) => {
                     setPendingSourceStateId(null);
                 }}
             >
-                Add State Mode
+                Edit States
             </button>
             <button
                 className={`btn btn-sm ${mode === "edit" ? "btn-primary" : "btn-outline-primary"}`}
@@ -283,13 +306,24 @@ const DFABuilderToolbar = (props: DFABuilderToolbarProps) => {
                     setMode("edit");
                 }}
             >
-                Edit State Mode
+                Edit Transitions
+            </button>
+            <button
+                className={`btn btn-sm ${mode === "delete" ? "btn-danger" : "btn-outline-danger"}`}
+                onClick={() => {
+                    setMode("delete");
+                    setPendingSourceStateId(null);
+                }}
+            >
+                Delete
             </button>
         </div>
         <span className="dfa-helper-text">
             {mode === "add"
                 ? "Click anywhere on the canvas to add a state. Drag states to reposition."
-                : "Click one state, then another, to add a transition. Labels are editable."}
+                : mode === "edit"
+                ? "Click one state, then another, to add a transition. Labels are editable."
+                : "Select a state or transition to delete it."}
         </span>
     </div>;
 };
@@ -300,7 +334,7 @@ export const DFABuilder = () => {
     const [pendingSourceStateId, setPendingSourceStateId] = useState<string | null>(null);
 
     return (
-        <div className="dfa-builder-wrapper d-flex flex-column gap-3 pt-5">
+        <div className="dfa-builder-wrapper w-100 d-flex flex-column gap-3 pt-5">
             <DndProvider backend={backend} options={isMobile ? { enableMouseEvents: true } : undefined}>
                 <DFABuilderMain
                     mode={mode}
