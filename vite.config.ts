@@ -30,7 +30,8 @@ export default defineConfig({
           ],
         },
       },
-    }
+    },
+    cssMinify: "esbuild", // allows @scope at-rule
   },
   css: {
     preprocessorOptions: {
