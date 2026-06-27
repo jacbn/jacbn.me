@@ -4,9 +4,9 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import { calculateStateTransitionVisualPath, getStateCenter } from "./svg-calcs";
-import { DfaNodeProps, DragStateItem, DfaState, StateTransition, StateTransitionDisplay, clamp, ITEM_TYPE, BuilderMode, STATE_DIAMETER, STATE_RADIUS } from "./dfa-consts";
+import { DfaNodeProps, DragStateItem, DfaState, StateTransition, StateTransitionDisplay, clamp, ITEM_TYPE, BuilderMode, STATE_DIAMETER, STATE_RADIUS, generateRegex } from "./dfa-utils";
 
-const DfaNode = ({ state, mode, isPendingSource, onClick, onRightClick, onDoubleClick }: DfaNodeProps) => {
+const DfaNode = ({ state, mode, isPendingSource, onClick, onDoubleClick }: DfaNodeProps) => {
     const [{ isDragging }, dragRef] = useDrag(() => ({
         type: ITEM_TYPE,
         item: {
@@ -14,7 +14,7 @@ const DfaNode = ({ state, mode, isPendingSource, onClick, onRightClick, onDouble
             x: state.x,
             y: state.y,
         } as DragStateItem,
-        canDrag: mode === "add",
+        canDrag: mode === "states",
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
@@ -30,16 +30,13 @@ const DfaNode = ({ state, mode, isPendingSource, onClick, onRightClick, onDouble
                 left: `${state.x}px`,
                 top: `${state.y}px`,
                 opacity: isDragging ? 0.45 : 1,
-                cursor: mode === "add" ? "grab" : "pointer",
+                cursor: mode === "states" ? "grab" : "pointer",
+                outline: state.isAccepting ? "2px solid var(--body-color)" : "none",
+                outlineOffset: "-8px",
             }}
             onClick={(event) => {
                 event.stopPropagation();
                 onClick?.(state.id);
-            }}
-            onAuxClick={(event) => {
-                console.log(event);
-                event.stopPropagation();
-                onRightClick?.(state.id);
             }}
             onDoubleClick={(event) => {
                 event.stopPropagation();
@@ -54,23 +51,18 @@ const DfaNode = ({ state, mode, isPendingSource, onClick, onRightClick, onDouble
 
 interface DFABuilderMainProps {
     mode: BuilderMode;
+    states: DfaState[];
+    setStates: React.Dispatch<React.SetStateAction<DfaState[]>>;
+    transitions: StateTransition[];
+    setTransitions: React.Dispatch<React.SetStateAction<StateTransition[]>>;
     pendingSourceStateId: string | null;
     setPendingSourceStateId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const DFABuilderMain = (props: DFABuilderMainProps) => {
 
-    const { mode, pendingSourceStateId, setPendingSourceStateId } = props;
+    const { mode, states, setStates, transitions, setTransitions, pendingSourceStateId, setPendingSourceStateId } = props;
 
-    const [states, setStates] = useState<DfaState[]>([
-        {
-            id: "q0",
-            x: 120,
-            y: 180,
-            isStart: true,
-        },
-    ]);
-    const [transitions, setTransitions] = useState<StateTransition[]>([]);
     const [stateIndex, setStateIndex] = useState(1);
     const [transitionIndex, setTransitionIndex] = useState(0);
     const boardRef = useRef<HTMLDivElement | null>(null);
@@ -123,7 +115,6 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
             id: `q${stateIndex}`,
             x: normalizedX,
             y: normalizedY,
-            isStart: false,
         }]);
 
         setStateIndex(i => i + 1);
@@ -141,7 +132,7 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
     }, [transitionIndex]);
 
     const onBoardClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
-        if (mode !== "add") {
+        if (mode !== "states") {
             return;
         }
 
@@ -154,11 +145,11 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
     }, [addStateAt, mode]);
 
     const onNodeClick = useCallback((stateId: string) => {
-        if (mode === "add") {
+        if (mode === "states") {
             return;
         }
 
-        if (mode === "edit") {
+        if (mode === "transitions") {
             if (!pendingSourceStateId) {
                 setPendingSourceStateId(stateId);
                 return;
@@ -170,14 +161,33 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
         }
 
         if (mode === "delete") {
-            setStates((currentStates) => currentStates.filter((state) => state.id !== stateId));
-            setTransitions((currentTransitions) => currentTransitions.filter((transition) => transition.from !== stateId && transition.to !== stateId));
+            if (stateId !== 'q0') {
+                setStates((currentStates) => currentStates.filter((state) => state.id !== stateId));
+                setTransitions((currentTransitions) => currentTransitions.filter((transition) => transition.from !== stateId && transition.to !== stateId));
+            }
 
             // if (stateIndex === parseInt(stateId.split('q')[1]) + 1) {
             //     setStateIndex(i => i - 1);
             // }
         }
     }, [addTransition, mode, pendingSourceStateId, setPendingSourceStateId]);
+
+    const onNodeDoubleClick = useCallback((stateId: string) => {
+        if (mode === "states") {
+            const newStates = states.map((state) => {
+                if (state.id !== stateId) {
+                    return state;
+                } else {
+                    return {
+                        ...state,
+                        isAccepting: !state.isAccepting,
+                    };
+                }
+            });
+
+            setStates(newStates);
+        }
+    }, [mode, states, setStates]);
 
     const onTransitionSymbolChange = useCallback((transitionId: string, symbol: string) => {
         const normalizedSymbol = symbol.toUpperCase().slice(0, 1);
@@ -276,7 +286,7 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
             isPendingSource={pendingSourceStateId === state.id}
             onClick={onNodeClick}
             // onRightClick={onNodeRightClick}
-            // onDoubleClick={onNodeDoubleClick}
+            onDoubleClick={onNodeDoubleClick}
         />)}
     </div>;
 };
@@ -292,18 +302,18 @@ const DFABuilderToolbar = (props: DFABuilderToolbarProps) => {
     return <div className="d-flex flex-column align-items-center gap-2">
         <div className="d-flex gap-2">
             <button
-                className={`btn btn-sm ${mode === "add" ? "btn-primary" : "btn-outline-primary"}`}
+                className={`btn btn-sm ${mode === "states" ? "btn-primary" : "btn-outline-primary"}`}
                 onClick={() => {
-                    setMode("add");
+                    setMode("states");
                     setPendingSourceStateId(null);
                 }}
             >
                 Edit States
             </button>
             <button
-                className={`btn btn-sm ${mode === "edit" ? "btn-primary" : "btn-outline-primary"}`}
+                className={`btn btn-sm ${mode === "transitions" ? "btn-primary" : "btn-outline-primary"}`}
                 onClick={() => {
-                    setMode("edit");
+                    setMode("transitions");
                 }}
             >
                 Edit Transitions
@@ -319,9 +329,9 @@ const DFABuilderToolbar = (props: DFABuilderToolbarProps) => {
             </button>
         </div>
         <span className="dfa-helper-text">
-            {mode === "add"
+            {mode === "states"
                 ? "Click anywhere on the canvas to add a state. Drag states to reposition."
-                : mode === "edit"
+                : mode === "transitions"
                 ? "Click one state, then another, to add a transition. Labels are editable."
                 : "Select a state or transition to delete it."}
         </span>
@@ -330,18 +340,41 @@ const DFABuilderToolbar = (props: DFABuilderToolbarProps) => {
 
 export const DFABuilder = () => {
     const backend = useMemo(() => (isMobile ? TouchBackend : HTML5Backend), []);
-    const [mode, setMode] = useState<BuilderMode>("add");
+    const [mode, setMode] = useState<BuilderMode>("states");
     const [pendingSourceStateId, setPendingSourceStateId] = useState<string | null>(null);
+    const [states, setStates] = useState<DfaState[]>([
+        {
+            id: "q0",
+            x: 120,
+            y: 180,
+            isStart: true,
+        },
+    ]);
+    const [transitions, setTransitions] = useState<StateTransition[]>([]);
+
+    const x = generateRegex(states, transitions);
+    console.log("out:", x);
 
     return (
-        <div className="dfa-builder-wrapper w-100 d-flex flex-column gap-3 pt-5">
+        <div className="dfa-builder-wrapper d-flex m-auto flex-column gap-3 pt-5">
             <DndProvider backend={backend} options={isMobile ? { enableMouseEvents: true } : undefined}>
                 <DFABuilderMain
                     mode={mode}
+                    states={states}
+                    setStates={setStates}
+                    transitions={transitions}
+                    setTransitions={setTransitions}
                     pendingSourceStateId={pendingSourceStateId}
                     setPendingSourceStateId={setPendingSourceStateId}
                 />
             </DndProvider>
+
+            <textarea
+                value={generateRegex(states, transitions)}
+                readOnly
+                rows={3}
+                aria-label="Generated regular expression"
+            />
 
             <DFABuilderToolbar 
                 mode={mode}

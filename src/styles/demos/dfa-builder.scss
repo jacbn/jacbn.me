@@ -4,10 +4,7 @@
   --body-color: white;
   --background-color-alt: #101010;
   --background-color: #050505;
-
-  &, .dfa-builder-wrapper {
-    width: min(1100px, 96vw);
-  }
+  width: min(1100px, 96vw);
 
   .dfa-helper-text {
     color: var(--bs-secondary-color);
@@ -16,7 +13,7 @@
 
   .dfa-canvas {
     position: relative;
-    width: min(1100px, 96vw);
+    width: 100%;
     height: min(72vh, 720px);
     border: 1px solid var(--card-border);
     border-radius: 18px;
@@ -89,5 +86,16 @@
     background: color-mix(in srgb, var(--body-color) 70%, transparent);
     right: 4px;
     bottom: 3px;
+  }
+
+  textarea {
+    background: var(--background-color-alt);
+    color: var(--body-color);
+    font-family: monospace;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    padding: 0.5rem;
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
   }
 }

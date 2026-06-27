@@ -1,4 +1,4 @@
-import { DfaState, STATE_RADIUS, StateTransition, StateTransitionDisplay } from "./dfa-consts";
+import { DfaState, STATE_RADIUS, StateTransition, StateTransitionDisplay } from "./dfa-utils";
     
 
 export const getStateCenter = (state: DfaState) => ({
