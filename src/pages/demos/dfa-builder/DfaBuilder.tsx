@@ -4,7 +4,8 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { isMobile } from "react-device-detect";
 import { calculateStateTransitionVisualPath, getStateCenter } from "./svg-calcs";
-import { DfaNodeProps, DragStateItem, DfaState, StateTransition, StateTransitionDisplay, clamp, ITEM_TYPE, BuilderMode, STATE_DIAMETER, STATE_RADIUS, generateRegex } from "./dfa-utils";
+import { DfaNodeProps, DragStateItem, DfaState, StateTransition, StateTransitionDisplay, clamp, ITEM_TYPE, BuilderMode, STATE_DIAMETER, STATE_RADIUS, generateRegexTree, stringifyKleeneTree, simplifyKleeneTree } from "./dfa-utils";
+import './dfa-utils-test';
 
 const DfaNode = ({ state, mode, isPendingSource, onClick, onDoubleClick }: DfaNodeProps) => {
     const [{ isDragging }, dragRef] = useDrag(() => ({
@@ -352,8 +353,10 @@ export const DFABuilder = () => {
     ]);
     const [transitions, setTransitions] = useState<StateTransition[]>([]);
 
-    const x = generateRegex(states, transitions);
-    console.log("out:", x);
+    const tree = generateRegexTree(states, transitions);
+    console.log("starting simplification of kleene tree", stringifyKleeneTree(tree));
+    const kt = simplifyKleeneTree(tree);
+    console.log("Kleene Tree:", kt);
 
     return (
         <div className="dfa-builder-wrapper d-flex m-auto flex-column gap-3 pt-5">
@@ -370,7 +373,7 @@ export const DFABuilder = () => {
             </DndProvider>
 
             <textarea
-                value={generateRegex(states, transitions)}
+                value={stringifyKleeneTree(kt)}
                 readOnly
                 rows={3}
                 aria-label="Generated regular expression"
