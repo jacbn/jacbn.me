@@ -142,6 +142,10 @@ const commonPrefixSubtree = <T>(a: KleeneTree<T>, b: KleeneTree<T>): KleeneTree<
             }
             acc.children.push(prefix);
         }
+
+        if (acc.children.length === 0) {
+            return null;
+        }
         return acc;
     }
 };
