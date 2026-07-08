@@ -361,8 +361,8 @@ export const DFABuilder = () => {
     const kt = simplifyKleeneTree(tree);
     console.log("Kleene Tree:", kt);
 
-    return (
-        <div className="dfa-builder-wrapper d-flex m-auto flex-column gap-3 pt-5">
+    return <div className="dfa-builder-wrapper d-flex gap-3 justify-content-center">
+        <div className="d-flex flex-column gap-3 pt-5">
             <DndProvider backend={backend} options={isMobile ? { enableMouseEvents: true } : undefined}>
                 <DFABuilderMain
                     mode={mode}
@@ -376,6 +376,7 @@ export const DFABuilder = () => {
             </DndProvider>
 
             <textarea
+                className="dfa-textarea"
                 value={stringifyKleeneTree(kt)}
                 readOnly
                 rows={3}
@@ -388,5 +389,13 @@ export const DFABuilder = () => {
                 setPendingSourceStateId={setPendingSourceStateId}
             />
         </div>
-    );
+        <textarea className="dfa-textarea my-5" readOnly value={
+            "Try to make... \r\n\r\n" +
+            "- 4 A's in a row.\r\n\r\n" +
+            "- At least 2 B's in a row.\r\n\r\n" +
+            "- An alternating sequence of A's and B's.\r\n\r\n" +
+            "- Any number of A's, B's and C's, alphabetically ordered.\r\n\r\n" +
+            "- A string that does not contain the substring 'ABBA'.\r\n\r\n"
+        } />
+    </div>;
 };

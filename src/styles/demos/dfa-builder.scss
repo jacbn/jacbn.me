@@ -4,7 +4,17 @@
   --body-color: white;
   --background-color-alt: #101010;
   --background-color: #050505;
-  width: min(1100px, 96vw);
+  
+  > :first-child {
+    width: min(1100px, 80vw);
+  }
+
+  > :nth-child(2) {
+    width: min(250px, 15vw);
+    height: min(72vh, 720px);
+    font-size: 1.25rem;
+    resize: none;
+  }
 
   .dfa-helper-text {
     color: var(--bs-secondary-color);
@@ -87,15 +97,15 @@
     right: 4px;
     bottom: 3px;
   }
+}
 
-  textarea {
-    background: var(--background-color-alt);
-    color: var(--body-color);
-    font-family: monospace;
-    font-size: 1.5rem;
-    line-height: 1.75rem;
-    padding: 0.5rem;
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-  }
+.dfa-textarea {
+  background: var(--background-color-alt);
+  color: var(--body-color);
+  font-family: monospace;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  padding: 0.5rem;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
 }
