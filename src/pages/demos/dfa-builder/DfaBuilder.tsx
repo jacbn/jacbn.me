@@ -192,7 +192,7 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
 
     const onTransitionSymbolChange = useCallback((transitionId: string, symbol: string) => {
         let normalizedSymbol = symbol.toUpperCase();
-        if (!/^[A-Z](,[A-Z])*,?$/.test(normalizedSymbol)) {
+        if (!/^[A-Z](,[A-Z])*,?$/.test(normalizedSymbol) && normalizedSymbol.length !== 0) {
             return;
         }
 
