@@ -10,7 +10,7 @@ export const FlatGridSquare = ({title, description, year, lang, colour, imagePro
             <h2 style={{color: colour}}>{title}</h2>
             <p>{description}</p>
             <span className="project-info-text">
-                {year} &#183; {lang}
+                {year} {year && lang && <>&#183;</>} {lang}
             </span>
         </div>
     </Link>;

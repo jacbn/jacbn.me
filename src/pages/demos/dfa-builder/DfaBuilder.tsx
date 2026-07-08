@@ -361,7 +361,7 @@ export const DFABuilder = () => {
     const kt = simplifyKleeneTree(tree);
     console.log("Kleene Tree:", kt);
 
-    return <div className="dfa-builder-wrapper d-flex gap-3 justify-content-center">
+    return <div className="dfa-builder-wrapper d-flex flex-column flex-md-row gap-3 align-items-center align-items-md-start justify-content-center">
         <div className="d-flex flex-column gap-3 pt-5">
             <DndProvider backend={backend} options={isMobile ? { enableMouseEvents: true } : undefined}>
                 <DFABuilderMain
