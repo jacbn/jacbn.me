@@ -191,7 +191,11 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
     }, [mode, states, setStates]);
 
     const onTransitionSymbolChange = useCallback((transitionId: string, symbol: string) => {
-        const normalizedSymbol = symbol.toUpperCase().slice(0, 1);
+        let normalizedSymbol = symbol.toUpperCase();
+        if (!/^[A-Z](,[A-Z])*,?$/.test(normalizedSymbol)) {
+            return;
+        }
+
         setTransitions((currentTransitions) => currentTransitions.map((transition) => {
             if (transition.id !== transitionId) {
                 return transition;
@@ -265,7 +269,6 @@ export const DFABuilderMain = (props: DFABuilderMainProps) => {
                 <input
                     key={`${transition.id}-label`}
                     value={transition.symbol}
-                    maxLength={1}
                     className="dfa-transition-label"
                     style={{ left: `${labelX}px`, top: `${labelY}px` }}
                     onClick={(event) => {

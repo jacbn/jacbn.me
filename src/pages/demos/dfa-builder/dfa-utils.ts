@@ -59,10 +59,26 @@ export type KleeneTree<T> = {
     children: KleeneTree<T>[];
 } | {
     op: KleeneTreeNode.STAR;
-    children: KleeneTree<T>;
+    child: KleeneTree<T>;
 } | {
     op: KleeneTreeNode.NODE;
     value: T | "ε" | "∅";
+}
+
+const isOrTree = <T>(tree: KleeneTree<T>): tree is { op: KleeneTreeNode.OR; children: KleeneTree<T>[] } => {
+    return tree.op === KleeneTreeNode.OR;
+}
+
+const isConcatTree = <T>(tree: KleeneTree<T>): tree is { op: KleeneTreeNode.CONCAT; children: KleeneTree<T>[] } => {
+    return tree.op === KleeneTreeNode.CONCAT;
+}
+
+const isStarTree = <T>(tree: KleeneTree<T>): tree is { op: KleeneTreeNode.STAR; child: KleeneTree<T> } => {
+    return tree.op === KleeneTreeNode.STAR;
+}
+
+const isNodeTree = <T>(tree: KleeneTree<T>): tree is { op: KleeneTreeNode.NODE; value: T | "ε" | "∅" } => {
+    return tree.op === KleeneTreeNode.NODE;
 }
 
 const isEqualKleeneTree = <T>(a: KleeneTree<T>, b: KleeneTree<T>): boolean => {
@@ -72,7 +88,7 @@ const isEqualKleeneTree = <T>(a: KleeneTree<T>, b: KleeneTree<T>): boolean => {
         return a.value === b.value;
     }
     if (a.op === KleeneTreeNode.STAR && b.op === KleeneTreeNode.STAR) {
-        return isEqualKleeneTree(a.children, b.children);
+        return isEqualKleeneTree(a.child, b.child);
     }
     if (a.op === KleeneTreeNode.CONCAT && b.op === KleeneTreeNode.CONCAT) {
         if (a.children.length !== b.children.length) return false;
@@ -97,32 +113,37 @@ const isEqualKleeneTree = <T>(a: KleeneTree<T>, b: KleeneTree<T>): boolean => {
 
 const commonPrefixSubtree = <T>(a: KleeneTree<T>, b: KleeneTree<T>): KleeneTree<T> | null => {
     if (a.op !== b.op) {
-        if (a.op === KleeneTreeNode.NODE && b.op === KleeneTreeNode.CONCAT) {
+        if ((a.op === KleeneTreeNode.NODE || a.op === KleeneTreeNode.STAR) && b.op === KleeneTreeNode.CONCAT) {
             return commonPrefixSubtree(a, b.children[0]);
-        } else if (a.op === KleeneTreeNode.CONCAT && b.op === KleeneTreeNode.NODE) {
+        } else if (a.op === KleeneTreeNode.CONCAT && (b.op === KleeneTreeNode.NODE || b.op === KleeneTreeNode.STAR)) {
             return commonPrefixSubtree(a.children[0], b);
         }
         return null;
     }
     if (a.op === KleeneTreeNode.NODE && b.op === KleeneTreeNode.NODE) {
-        return a.value === b.value ? a : null;
+        return isEqualKleeneTree(a, b) ? a : null;
     } else if (a.op === KleeneTreeNode.STAR && b.op === KleeneTreeNode.STAR) {
-        return commonPrefixSubtree(a.children, b.children);
+        return isEqualKleeneTree(a, b) ? a : null;
     } else {
         const typedA = a as (KleeneTree<T> & { children: KleeneTree<T>[] });
         const typedB = b as (KleeneTree<T> & { children: KleeneTree<T>[] });
-        const acc = { op: typedA.op, children: [] as KleeneTree<T>[]};
-        for (const childA of typedA.children) {
-            for (const childB of typedB.children) {
-                if (isEqualKleeneTree(childA, childB)) {
-                    acc.children.push(childA);
-                } else {
-                    return (acc.children.length > 0 ? acc as KleeneTree<T> : null);
-                }
-            }
+        const acc = { op: typedA.op, children: [] as KleeneTree<T>[]} as KleeneTree<T> & { children: KleeneTree<T>[] };
+
+        if (typedA.children.length === 0 || typedB.children.length === 0) {
+            return null;
         }
+
+        for (let i = 0; i < Math.min(typedA.children.length, typedB.children.length); i++) {
+            // under the assumption that a and b are originally both maximally simplified trees,
+            // we can assume there is never overlap between children of different indices
+            const prefix = commonPrefixSubtree(typedA.children[i], typedB.children[i]);
+            if (!prefix || !isEqualKleeneTree(prefix, typedA.children[i]) || !isEqualKleeneTree(prefix, typedB.children[i])) {
+                break;
+            }
+            acc.children.push(prefix);
+        }
+        return acc;
     }
-    return null;
 };
 
 const removePrefix = <T>(tree: KleeneTree<T>, prefix: KleeneTree<T>): KleeneTree<T> => {
@@ -148,9 +169,14 @@ const removePrefix = <T>(tree: KleeneTree<T>, prefix: KleeneTree<T>): KleeneTree
     return tree;
 }
 
+const isEpsilon = <T>(tree: KleeneTree<T>): boolean => {
+    return tree.op === KleeneTreeNode.NODE && tree.value === "ε";
+}
+
 const isEpsilonLike = <T>(tree: KleeneTree<T>): boolean => {
-    return tree.op === KleeneTreeNode.STAR || tree.op === KleeneTreeNode.NODE && tree.value === "ε";
+    return tree.op === KleeneTreeNode.STAR || isEpsilon(tree);
 };
+
 
 export const simplifyKleeneTree = <T>(tree: KleeneTree<T> | null): KleeneTree<T> => {
     if (tree === null) return { op: KleeneTreeNode.NODE, value: "∅" };
@@ -216,7 +242,7 @@ export const simplifyKleeneTree = <T>(tree: KleeneTree<T> | null): KleeneTree<T>
                 child => child.op === KleeneTreeNode.CONCAT 
                       && child.children.filter(gc => gc.op === KleeneTreeNode.STAR).length === 1
                       && isEqualKleeneTree(
-                            simplifyKleeneTree(child.children.find(gc => gc.op === KleeneTreeNode.STAR)!.children),
+                            simplifyKleeneTree(child.children.find(gc => gc.op === KleeneTreeNode.STAR)!.child),
                             simplifyKleeneTree({ op: KleeneTreeNode.CONCAT, children: child.children.filter(gc => gc.op !== KleeneTreeNode.STAR) })
                       )
             ));
@@ -234,11 +260,11 @@ export const simplifyKleeneTree = <T>(tree: KleeneTree<T> | null): KleeneTree<T>
             }
 
             // rule OR-6 (star or epsilon). x*|ε => x*
-            if (treeChildren.some(child => child.op === KleeneTreeNode.NODE && child.value === "ε") && treeChildren.some(child => child.op === KleeneTreeNode.STAR)) {
+            if (treeChildren.some(isEpsilon) && treeChildren.some(child => child.op === KleeneTreeNode.STAR)) {
                 console.log("(OR-6) simplifying OR with star and epsilon:", stringifyKleeneTree(tree));
                 return simplifyKleeneTree({
                     op: KleeneTreeNode.OR,
-                    children: treeChildren.filter(child => child.op !== KleeneTreeNode.NODE || child.value !== "ε")
+                    children: treeChildren.filter(child => !isEpsilon(child))
                 });
             }
 
@@ -264,7 +290,7 @@ export const simplifyKleeneTree = <T>(tree: KleeneTree<T> | null): KleeneTree<T>
             }
 
             // rule CONCAT-3 (epsilon-1). xε => x
-            const concatChildren = treeChildren.filter(child => !(child.op === KleeneTreeNode.NODE && child.value === "ε"));
+            const concatChildren = treeChildren.filter(child => !isEpsilon(child));
             if (concatChildren.length === 0) {
                 return { op: KleeneTreeNode.NODE, value: "ε" };
             }
@@ -280,8 +306,11 @@ export const simplifyKleeneTree = <T>(tree: KleeneTree<T> | null): KleeneTree<T>
                 return !!(
                     starChild 
                     && orChild
-                    && orChild.children.some(child => child.op === KleeneTreeNode.NODE && child.value === "ε") 
-                    && orChild.children.some(child => isEqualKleeneTree(child, starChild.children))
+                    && orChild.children.some(child => isEpsilon(child)) 
+                    && (
+                        orChild.children.some(child => isEqualKleeneTree(child, starChild.child))
+                        || isEqualKleeneTree(starChild.child, { op: KleeneTreeNode.OR, children: orChild.children.filter(c => !isEpsilon(c)) })
+                    )
                 );
             };
 
@@ -298,10 +327,25 @@ export const simplifyKleeneTree = <T>(tree: KleeneTree<T> | null): KleeneTree<T>
                 }
             }
 
+            // rule CONCAT-5 (star combination). x*x* => x*
+            for (let i = 0; i < treeChildren.length - 1; i++) {
+                const child1 = treeChildren[i];
+                const child2 = treeChildren[i + 1];
+                if (isStarTree(child1) && isStarTree(child2) && isEqualKleeneTree(child1.child, child2.child)) {
+                    console.log("(CONCAT-5) simplifying x*x* to x*", stringifyKleeneTree(tree));
+                    const newChildren = treeChildren;
+                    newChildren.splice(i, 2, treeChildren[i]);
+                    return simplifyKleeneTree({
+                        op: tree.op,
+                        children: newChildren.map(simplifyKleeneTree)
+                    });
+                }
+            }
+
             return { op: KleeneTreeNode.CONCAT, children: treeChildren };
         }
         case KleeneTreeNode.STAR: {
-            const treeChildren = simplifyKleeneTree(tree.children);
+            const treeChildren = simplifyKleeneTree(tree.child);
 
             // rule STAR-1 (epsilon). ε* => ε
             if (treeChildren.op === KleeneTreeNode.NODE && treeChildren.value === "ε") {
@@ -310,16 +354,16 @@ export const simplifyKleeneTree = <T>(tree: KleeneTree<T> | null): KleeneTree<T>
             }
 
             // rule STAR-2 (epsilon-or). (x|ε)* => x* 
-            if (treeChildren.op === KleeneTreeNode.OR && treeChildren.children.some(child => child.op === KleeneTreeNode.NODE && child.value === "ε")) {
-                const newChildren = treeChildren.children.filter(child => !(child.op === KleeneTreeNode.NODE && child.value === "ε"));
+            if (treeChildren.op === KleeneTreeNode.OR && treeChildren.children.some(isEpsilon)) {
+                const newChildren = treeChildren.children.filter(child => !isEpsilon(child));
                 console.log("(STAR-2) simplifying (x|ε)* to x*", stringifyKleeneTree(tree));
                 if (newChildren.length === 0) {
                     return { op: KleeneTreeNode.NODE, value: "ε" };
                 }
-                return simplifyKleeneTree({ op: KleeneTreeNode.STAR, children: { op: KleeneTreeNode.OR, children: newChildren } });
+                return simplifyKleeneTree({ op: KleeneTreeNode.STAR, child: { op: KleeneTreeNode.OR, children: newChildren } });
             }
 
-            return { op: KleeneTreeNode.STAR, children: treeChildren };
+            return { op: KleeneTreeNode.STAR, child: treeChildren };
         }
         case KleeneTreeNode.NODE:
             return tree;
@@ -375,11 +419,15 @@ const CONCAT = (...trees: (KleeneTree<string> | null)[]): KleeneTree<string> | n
 
 const STAR = (a: KleeneTree<string> | null): KleeneTree<string> | null => {
     if (a === null) return null;
-    return { op: KleeneTreeNode.STAR, children: a };
+    return { op: KleeneTreeNode.STAR, child: a };
 };
 
 const NODE = (value: string): KleeneTree<string> => ({ op: KleeneTreeNode.NODE, value });
 const FROM_STR = (value: string): KleeneTree<string> | null => {
+    if (value.endsWith(',')) {
+        value = value.slice(0, -1);
+    }
+
     if (value.includes(',')) {
         return OR(...value.split(',').map(v => NODE(v)));
     }
@@ -392,7 +440,11 @@ export const stringifyKleeneTree = <T>(tree: KleeneTree<T> | null): string => {
         case KleeneTreeNode.NODE:
             return `${tree.value}`;
         case KleeneTreeNode.STAR:
-            return `(${stringifyKleeneTree(tree.children)})*`;
+            if (tree.child.op === KleeneTreeNode.OR) {
+                return `${stringifyKleeneTree(tree.child)}*`;
+            } else {
+                return `(${stringifyKleeneTree(tree.child)})*`;
+            }
         case KleeneTreeNode.CONCAT:
             return tree.children.map(stringifyKleeneTree).join("");
         case KleeneTreeNode.OR:

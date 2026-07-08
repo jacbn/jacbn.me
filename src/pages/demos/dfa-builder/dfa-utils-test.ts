@@ -15,7 +15,7 @@ testKleeneTree(
         op: KleeneTreeNode.OR, 
         children: [
             { op: KleeneTreeNode.CONCAT, children: [{ op: KleeneTreeNode.NODE, value: "A" }, { op: KleeneTreeNode.NODE, value: "A" }] },
-            { op: KleeneTreeNode.CONCAT, children: [{ op: KleeneTreeNode.NODE, value: "A" }, { op: KleeneTreeNode.NODE, value: "A" }, { op: KleeneTreeNode.STAR, children: { op: KleeneTreeNode.NODE, value: "A" } }] }
+            { op: KleeneTreeNode.CONCAT, children: [{ op: KleeneTreeNode.NODE, value: "A" }, { op: KleeneTreeNode.NODE, value: "A" }, { op: KleeneTreeNode.STAR, child: { op: KleeneTreeNode.NODE, value: "A" } }] }
         ]
     },
     "AA(A)*"
@@ -35,7 +35,7 @@ testKleeneTree(
                             { op: KleeneTreeNode.NODE, value: "A" },
                             {
                                 op: KleeneTreeNode.STAR,
-                                children: {
+                                child: {
                                     op: KleeneTreeNode.CONCAT,
                                     children: [
                                         { op: KleeneTreeNode.NODE, value: "A" },
@@ -52,3 +52,4 @@ testKleeneTree(
         ]
     }, "A(AA)*"
 )
+
