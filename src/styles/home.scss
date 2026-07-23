@@ -313,6 +313,10 @@ nav.home-nav {
   filter: invert(10%);
 }
 
+.img-pixelated {
+  image-rendering: pixelated;
+}
+
 @media (prefers-color-scheme: dark) {
   .contactIconFilter {
     filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(6deg) brightness(107%) contrast(108%);
