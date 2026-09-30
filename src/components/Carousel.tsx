@@ -16,7 +16,12 @@ const CarouselItem = (props: { children: React.ReactNode; carouselX: any; centre
   const scale = useTransform(carouselX, [centredOffset - rotDist, centredOffset, centredOffset + rotDist], [0.7, 1, 0.7]);
   const pointerEvents = useTransform(opacity, (o) => (o < 0.9 ? "none" : "auto"));
 
-  return <motion.li className="w-100 flex-shrink-0 px-5" style={{ scale, opacity, pointerEvents }}>
+  return <motion.li 
+    className="w-100 flex-shrink-0 px-5" 
+    style={{ scale, opacity, pointerEvents }}
+    role="group"
+    aria-roledescription="slide"
+  >
     {children}
   </motion.li>;
 };
@@ -116,6 +121,8 @@ export const DraggableCarousel = (props: DraggableCarouselProps) => {
         <div className={classNames("position-relative m-auto", internalElement?.className)} style={{maxWidth: internalElement.maxWidth}} ref={setContainerRef}>
           <motion.ol
             className="d-flex list-unstyled"
+            role="region"
+            aria-label="Carousel of featured projects"
             drag="x"
             dragElastic={0.2}
             onDragStart={() => setIsDragging(true)}
@@ -134,6 +141,7 @@ export const DraggableCarousel = (props: DraggableCarouselProps) => {
           <motion.button
             onClick={() => setIndex((i) => i - 1)}
             className={`prev-button`}
+            aria-label="Previous slide"
           >
             <i className="icon icon-xxl icon-chevron-left" />
           </motion.button>
@@ -142,6 +150,7 @@ export const DraggableCarousel = (props: DraggableCarouselProps) => {
           <motion.button
             onClick={() => setIndex((i) => i + 1)}
             className={`next-button`}
+            aria-label="Next slide"
           >
             <i className="icon icon-xxl icon-chevron-right" />
           </motion.button>
@@ -153,6 +162,7 @@ export const DraggableCarousel = (props: DraggableCarouselProps) => {
                 key={i}
                 onClick={() => setIndex(base + i)} // jump to middle batch
                 className={classNames({ "active": i === activeDot })}
+                aria-label={`Go to slide ${i + 1}`}
               />
             ))}
           </div>

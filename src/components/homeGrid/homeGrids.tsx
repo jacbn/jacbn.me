@@ -17,10 +17,10 @@ export const WorkGrid = () => {
 
 export const FeaturedProjectsGrid = () => {
   return <DraggableCarousel className="container-fluid-override" element={{className: "w-100 w-sm-50 w-lg-25", maxWidth: "600px"}}>
-    <ProjectsCardDoubleBack />
-    <ProjectsCardYawNN />
-    <ProjectsCardGreenMaps />
-    <ProjectsCardMathsArt />
+    <ProjectsCardDoubleBack tabIndex={-1} />
+    <ProjectsCardYawNN tabIndex={-1} />
+    <ProjectsCardGreenMaps tabIndex={-1} />
+    <ProjectsCardMathsArt tabIndex={-1} />
   </DraggableCarousel>;
 };
 
