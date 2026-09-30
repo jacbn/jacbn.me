@@ -16,7 +16,7 @@ import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
 import './styles.scss';
 import BlogIntro from './pages/blog/BlogListing';
-import { CV, ServiceCV, TechCV } from './pages/cv';
+import { CV } from './pages/cv';
 import { ColorModeContextProvider } from './components/colorModeToggle';
 import { MdxBlogPost } from './components/blogPost';
 import { Title } from './components/title';
@@ -78,14 +78,6 @@ const router = createBrowserRouter([
             path: '/cv',
             element: <CV />
           },
-          {
-            path: '/cv/tech',
-            element: <TechCV />
-          },
-          {
-            path: '/cv/service',
-            element: <ServiceCV />
-          }
         ]
       },
       {

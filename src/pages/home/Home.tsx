@@ -26,7 +26,7 @@ export const Home = () => {
         <FadeInWhenVisible>
           <div className="intro-pg mt-9 mb-0 mb-md-9 w-100 w-sm-75">
             <h1 className="text-highlight font-size-display mb-3 ms-lg-n6">⋅ hi! ⋅</h1>
-            <p className="font-size-title">i&apos;m <span className="text-highlight">jaycie</span>, a frontend developer and aspiring designer with a passion for crafting meaningful experiences for real people.</p>
+            <p className="font-size-title font-title">i&apos;m <span className="text-highlight">jaycie</span>, a frontend developer and aspiring designer with a passion for crafting meaningful experiences for real people.</p>
           </div>
         </FadeInWhenVisible>
       </section>
@@ -54,11 +54,25 @@ export const Home = () => {
         </FadeInWhenVisible>
       </section>
 
+      <section id="looking-for-work" className="container-fluid text-dark text-center g-9 py-9">
+        <FadeInWhenVisible>
+          <h2>i'm currently looking for work!</h2>
+        </FadeInWhenVisible>
+        <FadeInWhenVisible>
+          <p className="font-size-label">
+            Like what you see and want to talk? I'm open to full-time, part-time and contract work!
+          </p>
+          <p className="font-size-label">
+            You can find a full CV <a href="/assets/cv/tech.pdf" target="_blank" rel="noopener noreferrer" className="text-decoration-underline">here</a>, or get in touch with the links below.
+          </p>
+        </FadeInWhenVisible>
+      </section>
+
       <img src="/assets/home/sunset-sep.png" className="w-100 pixelated-image mb-9" alt="" />
 
       <section id="contacts" className="home-container-thin pb-9 mb-9">
         <FadeInWhenVisible>
-          <p className="text-center mb-5">i'm happy to have a chat about anything, work-related or not — just drop me a message!</p>
+          {/* <p className="text-center mb-5">i'm happy to have a chat about anything, work-related or not — just drop me a message!</p> */}
           <Contacts />
         </FadeInWhenVisible>
       </section>
