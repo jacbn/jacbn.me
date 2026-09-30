@@ -25,7 +25,7 @@ export const Home = () => {
       <section id="intro" className="home-container-thin">
         <FadeInWhenVisible>
           <div className="intro-pg mt-9 mb-0 mb-md-9 w-100 w-sm-75">
-            <h1 className="text-highlight font-size-display mb-3 ms-lg-n6">⋅ hi! ⋅</h1>
+            <div className="text-highlight font-title font-size-display mb-3 ms-lg-n6">⋅ hi! ⋅</div>
             <p className="font-size-title font-title">i&apos;m <span className="text-highlight">jaycie</span>, a frontend developer and aspiring designer with a passion for crafting meaningful experiences for real people.</p>
           </div>
         </FadeInWhenVisible>
@@ -87,12 +87,12 @@ export const Home = () => {
 
 export const Contacts = () => {
   return <div className="d-flex justify-content-center flex-wrap gap-3"> 
-    <AppIcon href="https://www.linkedin.com/in/jaycie-bn/" image={"/assets/contacts/linkedin.svg"} />
-    <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} />
-    <AppIcon hoverText="hello@jaycie.me" href="mailto:hello@jaycie.me" image={"/assets/contacts/email.svg"} />
-    <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} />
-    <AppIcon hoverText="@jzabn" image={"/assets/contacts/discord.svg"} />
-    <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"/assets/contacts/spotify.svg"} />
-    <AppIcon hoverText="SW-0524-5461-9909" image={"/assets/contacts/switch.svg"} />
+    <AppIcon href="https://www.linkedin.com/in/jaycie-bn/" image={"/assets/contacts/linkedin.svg"} aria-label="LinkedIn" />
+    <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} aria-label="GitHub" />
+    <AppIcon hoverText="hello@jaycie.me" href="mailto:hello@jaycie.me" image={"/assets/contacts/email.svg"} aria-label="Email" />
+    <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} aria-label="Messenger" />
+    <AppIcon hoverText="@jzabn" image={"/assets/contacts/discord.svg"} aria-label="Discord" />
+    <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"/assets/contacts/spotify.svg"} aria-label="Spotify" />
+    <AppIcon hoverText="SW-0524-5461-9909" image={"/assets/contacts/switch.svg"} aria-label="Nintendo Switch" />
   </div>;
 };
