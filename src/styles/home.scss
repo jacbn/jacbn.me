@@ -7,19 +7,13 @@
   align-items: start;
 }
 
-#projects, #work {
+#projects, #work, #looking-for-work {
   background: var(--theme-background-alternate);
 }
 
 #contacts {
   @include mixins.font-size(1.2rem);
   font-family: var(--font-title);
-}
-
-.intro-pg {
-  p {
-    font-family: var(--font-title);
-  }
 }
 
 nav.home-nav {

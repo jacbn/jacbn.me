@@ -16,7 +16,7 @@ import Lotfollah from './pages/maths-art/_lotfollah';
 import Radials from './pages/maths-art/_radials';
 import './styles.scss';
 import BlogIntro from './pages/blog/BlogListing';
-import { CV, ServiceCV, TechCV } from './pages/cv';
+import { CV } from './pages/cv';
 import { ColorModeContextProvider } from './components/colorModeToggle';
 import { MdxBlogPost } from './components/blogPost';
 import { Title } from './components/title';
@@ -26,6 +26,7 @@ import { IsaacRedesign } from './pages/work/IsaacRedesign';
 import { AdaDoubleBack } from './pages/demos/ada-double-back/AdaDoubleBack';
 import { DFABuilder } from './pages/demos/dfa-builder/DfaBuilder';
 import { Demos } from './pages/demos/Demos';
+import { AdaCyberTransition } from './pages/work/AdaCyberTransition';
 
 const router = createBrowserRouter([
   {
@@ -78,14 +79,6 @@ const router = createBrowserRouter([
             path: '/cv',
             element: <CV />
           },
-          {
-            path: '/cv/tech',
-            element: <TechCV />
-          },
-          {
-            path: '/cv/service',
-            element: <ServiceCV />
-          }
         ]
       },
       {
@@ -117,6 +110,10 @@ const router = createBrowserRouter([
           {
             path: '/work/isaac-redesign',
             element: <IsaacRedesign />
+          },
+          {
+            path: '/work/ada-cyber-transition',
+            element: <AdaCyberTransition />
           }
         ]
       },

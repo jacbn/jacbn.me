@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { FlatGridSquare } from "../../components/homeGrid/flatGridSquare";
+import { GridSquareProps } from "../../components/homeGrid/gridSquareTypes";
 
-export const ProjectsCardIsaacRedesign = () => {
+type RestProps = Omit<GridSquareProps, "title" | "description" | "year" | "lang" | "colour" | "imageProps" | "link">;
+
+export const ProjectsCardIsaacRedesign = (rest?: RestProps) => {
     return <FlatGridSquare
         title="Isaac Redesign"
         description="revamping the isaac physics learning platform"
@@ -13,24 +16,42 @@ export const ProjectsCardIsaacRedesign = () => {
         }}
         colour={"var(--accent-isaac)"}
         lang="React, SCSS"
+        {...rest}
     />;
 };
 
-export const ProjectsCardComponentisation = () => {
+export const ProjectsCardAdaCyberTransition = (rest?: RestProps) => {
+    return <FlatGridSquare
+        title="Cyber Transition for Ada CS"
+        description="launching 11-14 cybersecurity content on Ada CS"
+        year="2026"
+        link="/work/ada-cyber-transition/"
+        imageProps={{
+          src: "/assets/home/ada-explore.png",
+          alt: ""
+        }}
+        colour={"var(--accent-ada)"}
+        lang="Figma, React"
+        {...rest}
+    />;
+};
+
+export const ProjectsCardComponentisation = (rest?: RestProps) => {
     return <FlatGridSquare
         title="Componentisation"
         description="designing & implementing a reusable component library"
-        year="2025-present"
+        year="2025-2026"
         lang="Figma, React"
         imageProps={{
             src: "/assets/home/coming-soon.png",
             alt: "Coming soon!"
         }}
         colour={"var(--accent-component)"}
+        {...rest}
     />;
 };
 
-export const ProjectsCardGreenMaps = () => {
+export const ProjectsCardGreenMaps = (rest?: RestProps) => {
     return <FlatGridSquare 
         title="Green Maps"
         description="reducing vehicle emissions through&nbsp;smarter navigation"
@@ -42,10 +63,11 @@ export const ProjectsCardGreenMaps = () => {
           alt: "A leaf on a wheat background, the logo of the Green Maps project."
         }}
         link="/projects/greenmaps"
+        {...rest}
     />;
 };
 
-export const ProjectsCardYawNN = () => {
+export const ProjectsCardYawNN = (rest?: RestProps) => {
     const [isAnimated, setIsAnimated] = useState(false);
     return <FlatGridSquare 
         title="Yawning Detection"
@@ -62,10 +84,11 @@ export const ProjectsCardYawNN = () => {
         link="/projects/yawnn/"
         onMouseOver={() => setIsAnimated(true)}
         onMouseLeave={() => setIsAnimated(false)}
+        {...rest}
     />;
 };
 
-export const ProjectsCardMathsArt = () => {
+export const ProjectsCardMathsArt = (rest?: RestProps) => {
     return <FlatGridSquare 
         title="Maths Art"
         description="exploring geometry at its finest"
@@ -77,10 +100,11 @@ export const ProjectsCardMathsArt = () => {
           alt: "An Apollonian Gasket, one of the projects in the Maths Art collection."
         }}
         link="/maths-art/"
+        {...rest}
     />;
 };
 
-export const ProjectsCardJCompiler = () => {
+export const ProjectsCardJCompiler = (rest?: RestProps) => {
     return <FlatGridSquare
         title="jCompiler"
         description="lexing and parsing an arbitrary input given a grammar"
@@ -88,10 +112,11 @@ export const ProjectsCardJCompiler = () => {
         lang="OCaml, Java"
         colour="var(--accent-compiler)"
         link="/projects/jcompiler/"
+        {...rest}
     />;
 };
 
-export const ProjectsCardSentiment = () => {
+export const ProjectsCardSentiment = (rest?: RestProps) => {
     return <FlatGridSquare 
         title="Sentiment Classifier"
         description="interpreting the emotion of reviews using various models"
@@ -99,10 +124,11 @@ export const ProjectsCardSentiment = () => {
         lang="Java"
         colour="var(--accent-sentiment)"
         link="/projects/sentiment/"
+        {...rest}
     />;
 };
 
-export const ProjectsCardPandemic = () => {
+export const ProjectsCardPandemic = (rest?: RestProps) => {
     return <FlatGridSquare 
         title="Pandemic Analysis"
         description="simulating a pandemic and analysing real Covid data"
@@ -110,10 +136,11 @@ export const ProjectsCardPandemic = () => {
         lang="Python"
         colour="var(--accent-pandemic)"
         link="/projects/pandemic/"
+        {...rest}
     />;
 };
 
-export const ProjectsCardGameDev = () => {
+export const ProjectsCardGameDev = (rest?: RestProps) => {
     return <FlatGridSquare 
         title="Game Development"
         description="designing unique experiences in reaching for high scores"
@@ -121,10 +148,11 @@ export const ProjectsCardGameDev = () => {
         lang="C#"
         colour="var(--accent-game-dev)"
         link="/gamedev/"
+        {...rest}
     />;
 };
 
-export const ProjectsCardDoubleBack = () => {
+export const ProjectsCardDoubleBack = (rest?: RestProps) => {
     return <FlatGridSquare
         title="Double Back"
         description="taking a puzzle game too far"
@@ -136,6 +164,7 @@ export const ProjectsCardDoubleBack = () => {
         }}
         colour="var(--accent-double-back)"
         link="/projects/double-back/"
+        {...rest}
     />;
 };
 
