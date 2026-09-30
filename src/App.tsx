@@ -26,6 +26,7 @@ import { IsaacRedesign } from './pages/work/IsaacRedesign';
 import { AdaDoubleBack } from './pages/demos/ada-double-back/AdaDoubleBack';
 import { DFABuilder } from './pages/demos/dfa-builder/DfaBuilder';
 import { Demos } from './pages/demos/Demos';
+import { AdaCyberTransition } from './pages/work/AdaCyberTransition';
 
 const router = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
           {
             path: '/work/isaac-redesign',
             element: <IsaacRedesign />
+          },
+          {
+            path: '/work/ada-cyber-transition',
+            element: <AdaCyberTransition />
           }
         ]
       },

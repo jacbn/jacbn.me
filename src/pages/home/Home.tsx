@@ -45,7 +45,7 @@ export const Home = () => {
       </section>
 
       <section id="projects" className="container-fluid g-9 pt-7 pb-9">
-        <h2 className="mb-4 mb-md-6 text-dark">⋅ featured projects ⋅</h2>
+        <h2 className="mb-4 mb-md-6 text-dark">⋅ featured personal projects ⋅</h2>
         <FadeInWhenVisible>
           <FeaturedProjectsGrid />
         </FadeInWhenVisible>
@@ -54,16 +54,17 @@ export const Home = () => {
         </FadeInWhenVisible>
       </section>
 
-      <section id="looking-for-work" className="container-fluid text-dark text-center g-9 py-9">
+      <section id="looking-for-work" className="container-fluid text-dark text-center g-9 pb-9">
         <FadeInWhenVisible>
           <h2>i'm currently looking for work!</h2>
         </FadeInWhenVisible>
         <FadeInWhenVisible>
           <p className="font-size-label">
-            Like what you see and want to talk? I'm open to full-time, part-time and contract work!
+            Like what you see and want to talk? I'm open to both full-time and contract work.
           </p>
           <p className="font-size-label">
             You can find a full CV <a href="/assets/cv/tech.pdf" target="_blank" rel="noopener noreferrer" className="text-decoration-underline">here</a>, or get in touch with the links below.
+            Formal and informal queries are equally welcome!
           </p>
         </FadeInWhenVisible>
       </section>

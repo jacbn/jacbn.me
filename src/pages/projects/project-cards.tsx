@@ -20,11 +20,27 @@ export const ProjectsCardIsaacRedesign = (rest?: RestProps) => {
     />;
 };
 
+export const ProjectsCardAdaCyberTransition = (rest?: RestProps) => {
+    return <FlatGridSquare
+        title="Cyber Transition for Ada CS"
+        description="launching 11-14 cybersecurity content on Ada CS"
+        year="2026"
+        link="/work/ada-cyber-transition/"
+        imageProps={{
+          src: "/assets/home/ada-explore.png",
+          alt: ""
+        }}
+        colour={"var(--accent-ada)"}
+        lang="Figma, React"
+        {...rest}
+    />;
+};
+
 export const ProjectsCardComponentisation = (rest?: RestProps) => {
     return <FlatGridSquare
         title="Componentisation"
         description="designing & implementing a reusable component library"
-        year="2025-present"
+        year="2025-2026"
         lang="Figma, React"
         imageProps={{
             src: "/assets/home/coming-soon.png",
