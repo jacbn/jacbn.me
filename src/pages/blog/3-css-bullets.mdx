@@ -1,0 +1,20 @@
+<title>jaycie ⋅ css bullets</title>
+# The impossibility of dynamic CSS bullets
+
+Ah, bullet points. A little dot on the left of an item in a list. What could possibly be difficult about these?
+
+HTML lists are structured as `<li>` (list item) elements inside either `<ol>` (ordered list) or `<ul>` (unordered list) elements. `<ol>`s tend to have numeric identifiers to the left of each element, useful for referencing – take Isaac's [terms of use](https://isaacscience.org/terms) for a nice nested example of this. For the most part, these aren't too customised and don't tend to cause problems.
+
+`<ul>`s, on the other hand, are the opposite. Each item is given a bullet to its left, usually the same for each element (though this can be customised). You can pick from a ready-made list of bullet styles via the `list-style-type` prop (applied to the `<ul>`). If these don't suit, you can give it a *fixed* image via `list-style-image`.
+
+What about if we want a dynamic image? That is, one that responds to a [theme-defined CSS variable](/blog/2-css-theming) to determine its colour, say?
+
+Well, modern CSS added support to edit the `::marker` pseudo element directly via CSS. You can set its colour, for instance, via
+
+```css
+&::marker {
+    color: var(--bullet-colour);
+}
+```
+
+`::marker`, however, is incredibly limited. It exists as an inline, statically-positioned element, and no useful positioning properties cannot be applied. 
