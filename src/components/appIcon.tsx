@@ -2,23 +2,33 @@ import classNames from 'classnames';
 import React from 'react';
 import { useState } from "react";
 
-interface AppIconProps extends React.HTMLAttributes<HTMLAnchorElement> {
-  image: string;
+type AppIconProps = React.HTMLAttributes<HTMLElement> & {
+  icon: string;
   href?: string;
   hoverText?: string;
-}
+};
 
-export default function AppIcon({image, href, hoverText, ...rest} : AppIconProps) {
+export default function AppIcon({icon, href, hoverText, ...rest} : AppIconProps) {
   const [active, setActive] = useState(false);
   const [hover, setHover] = useState(false);
 
-  return <a href={href} 
-    className={classNames({"contact-icon-tooltip-container": hoverText})} 
-    onMouseEnter={() => setHover(true)} 
-    onMouseLeave={() => setHover(false)}
-    {...rest}
-  >
-    <img className={`contact-icon contactIconFilter`} src={image} onClick={() => setActive(a => !a)} />
-    {hoverText && <span className={classNames({"hidden": !(hover || active)})}>{hoverText}</span>}
-  </a>;
+  const hoverProps = {
+    onMouseEnter: () => setHover(true),
+    onMouseLeave: () => setHover(false),
+    onClick: () => setActive(!active)
+  };
+
+  if (href) {
+    return <a href={href} className={classNames({"contact-icon-tooltip-container": hoverText})} {...hoverProps} {...rest}>
+      <i className={`icon icon-xxl icon-contact-${icon} position-absolute`} color="blue-secondary" style={{marginTop: "4px", marginLeft: "-4px"}} />
+      <i className={`icon icon-xxl icon-contact-${icon}`} color={hover || active ? "pink-primary" : "white"} />
+      {hoverText && <span className={classNames({"hidden": !(hover || active)})}>{hoverText}</span>}
+    </a>;
+  } else {
+    return <div className={classNames({"contact-icon-tooltip-container": hoverText})} {...hoverProps} {...rest}>
+      <i className={`icon icon-xxl icon-contact-${icon} position-absolute`} color="blue-secondary" style={{marginTop: "4px", marginLeft: "-4px"}} />
+      <i className={`icon icon-xxl icon-contact-${icon}`} color={hover || active ? "pink-primary" : "white"} />
+      {hoverText && <span className={classNames({"hidden": !(hover || active)})}>{hoverText}</span>}
+    </div>;
+  }
 }

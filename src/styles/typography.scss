@@ -18,3 +18,32 @@ $font-size-bases: (
     );
   }
 }
+
+%text-shadow-sizing {
+  --shadow-offset: 2px;
+
+  &:is(h1), &.h1 {
+    --shadow-offset: 16px;
+      @include mixins.respond-below('md') {
+        --shadow-offset: 8px;
+      }
+
+      @include mixins.respond-below('sm') {
+        --shadow-offset: 6px;
+      }
+  }
+}
+
+.shadow-offset-md {
+  --shadow-offset: 4px;
+}
+
+.text-shadow-light {
+  @extend %text-shadow-sizing;
+  text-shadow: var(--sunset-pink-secondary) calc(-1 * var(--shadow-offset)) var(--shadow-offset) 0;
+}
+
+.text-shadow-dark {
+  @extend %text-shadow-sizing;
+  text-shadow: var(--sunset-blue-tertiary) calc(-1 * var(--shadow-offset)) var(--shadow-offset) 0;
+}

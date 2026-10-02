@@ -34,18 +34,18 @@ export const Home = () => {
       <NavBar onHome={true} className="mt-5 mb-2 mb-sm-5" />
 
       <div className="title-base-wrapper w-100">
-        <img src="/assets/home/sunset-base.gif" className="w-100 pixelated-image mt-md-9" alt="" />
+        <img src="/assets/home/sunset-base.gif" className="w-100 pixelated-icon mt-md-9" alt="" />
       </div>
 
       <section id="work" className="container-fluid g-9 pt-9">
-          <h2 className="mb-4 mb-md-6 text-dark">⋅ work ⋅</h2>
+          <h2 className="mb-4 mb-md-6 text-dark text-shadow-light">⋅ work ⋅</h2>
           <FadeInWhenVisible>
             <WorkGrid />
           </FadeInWhenVisible>
       </section>
 
       <section id="projects" className="container-fluid g-9 pt-7 pb-9">
-        <h2 className="mb-4 mb-md-6 text-dark">⋅ featured personal projects ⋅</h2>
+        <h2 className="mb-4 mb-md-6 text-dark text-shadow-light">⋅ featured personal projects ⋅</h2>
         <FadeInWhenVisible>
           <FeaturedProjectsGrid />
         </FadeInWhenVisible>
@@ -60,20 +60,26 @@ export const Home = () => {
         </FadeInWhenVisible>
         <FadeInWhenVisible>
           <p className="font-size-label">
-            Like what you see and want to talk? I'm open to both full-time and contract work.
+            Like what you see and want to talk? I'm particularly interested in contract work, but will consider all opportunities.
           </p>
           <p className="font-size-label">
-            You can find a full CV <a href="/assets/cv/tech.pdf" target="_blank" rel="noopener noreferrer" className="text-decoration-underline">here</a>, or get in touch with the links below.
+            You can find my full CV or get in touch with the links below.
             Formal and informal queries are equally welcome!
           </p>
+          <div className="d-flex justify-content-center mt-3">
+            <a href="/assets/cv/tech.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline-secondary shadow-light border-4 rounded-5">
+              View my CV
+            </a>
+          </div>
         </FadeInWhenVisible>
       </section>
 
       <img src="/assets/home/sunset-sep.png" className="w-100 pixelated-image mb-9" alt="" />
 
-      <section id="contacts" className="home-container-thin pb-9 mb-9">
+      <section id="contacts" className="container-fluid g-9 pb-9 mb-9">
         <FadeInWhenVisible>
           {/* <p className="text-center mb-5">i'm happy to have a chat about anything, work-related or not — just drop me a message!</p> */}
+          <p className="text-center mb-5">my links:</p>
           <Contacts />
         </FadeInWhenVisible>
       </section>
@@ -87,13 +93,13 @@ export const Home = () => {
 };
 
 export const Contacts = () => {
-  return <div className="d-flex justify-content-center flex-wrap gap-3"> 
-    <AppIcon href="https://www.linkedin.com/in/jaycie-bn/" image={"/assets/contacts/linkedin.svg"} aria-label="LinkedIn" />
-    <AppIcon href="https://github.com/jacbn" image={"/assets/contacts/github.svg"} aria-label="GitHub" />
-    <AppIcon hoverText="hello@jaycie.me" href="mailto:hello@jaycie.me" image={"/assets/contacts/email.svg"} aria-label="Email" />
-    <AppIcon href="https://m.me/100054856335934" image={"/assets/contacts/messenger.svg"} aria-label="Messenger" />
-    <AppIcon hoverText="@jzabn" image={"/assets/contacts/discord.svg"} aria-label="Discord" />
-    <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" image={"/assets/contacts/spotify.svg"} aria-label="Spotify" />
-    <AppIcon hoverText="SW-0524-5461-9909" image={"/assets/contacts/switch.svg"} aria-label="Nintendo Switch" />
+  return <div className="d-flex justify-content-center flex-wrap"> 
+    <AppIcon href="https://www.linkedin.com/in/jaycie-bn/" icon="linkedin" aria-label="LinkedIn" />
+    <AppIcon href="https://github.com/jacbn" icon="github" aria-label="GitHub" />
+    <AppIcon hoverText="hello@jaycie.me" href="mailto:hello@jaycie.me" icon="email" aria-label="Email" />
+    <AppIcon href="https://m.me/100054856335934" icon="messenger" aria-label="Messenger" />
+    <AppIcon hoverText="@jzabn" icon="discord" aria-label="Discord" />
+    <AppIcon href="https://open.spotify.com/user/h8eggwh6qh1yei8m3dopgyek0" icon="spotify" aria-label="Spotify" />
+    <AppIcon hoverText="SW-0524-5461-9909" icon="switch" aria-label="Nintendo Switch" />
   </div>;
 };

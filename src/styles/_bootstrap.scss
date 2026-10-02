@@ -21,6 +21,14 @@ $enable-negative-margins: true;
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
 
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": #fbbbad,
+    "secondary": #292831,
+  )
+);
+
 @import "./bootstrap-components";
 
 @import "bootstrap/scss/utilities/api";

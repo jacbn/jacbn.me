@@ -9,6 +9,36 @@
   rotate: 180deg;
 }
 
+.icon-contact-linkedin {
+  @include mixins.svg-icon('/assets/contacts/linkedin.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 50% 50%);
+}
+
+.icon-contact-github {
+  @include mixins.svg-icon('/assets/contacts/github.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 50% 50%);
+}
+
+.icon-contact-email {
+  @include mixins.svg-icon('/assets/contacts/email.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 50% 50%);
+}
+
+.icon-contact-messenger {
+  @include mixins.svg-icon('/assets/contacts/messenger.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 50% 50%);
+}
+
+.icon-contact-discord {
+  @include mixins.svg-icon('/assets/contacts/discord.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 50% 50%);
+}
+
+.icon-contact-spotify {
+  @include mixins.svg-icon('/assets/contacts/spotify.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 50% 50%);
+}
+
+.icon-contact-switch {
+  @include mixins.svg-icon('/assets/contacts/switch.svg', var(--icon-size), var(--icon-size), var(--mask-size, 60%), 50% 50%);
+}
+
+// sizing
+
 .icon {
   --icon-size: 16px;
   --mask-size: 100%;
@@ -34,11 +64,46 @@
   --mask-size: initial;
 }
 
+// colours
+
 i.icon {
+  &, &::after {
+    transition: background-color 0.2s ease-out, -webkit-mask-image 0.2s ease-out, mask-image 0.2s ease-out;
+  }
+
   &[color="white"] {
-    background-color: white;
-    &::after {
+    &, &::after {
       background-color: white;
+    }
+  }
+
+  &[color="pink-primary"] {
+    &, &::after {
+      background-color: var(--sunset-pink-primary);
+    }
+  }
+
+  &[color="pink-secondary"] {
+    &, &::after {
+      background-color: var(--sunset-pink-secondary);
+    }
+  }
+
+  &[color="blue-primary"] {
+    &, &::after {
+      background-color: var(--sunset-blue-primary);
+    }
+  }
+
+  &[color="blue-secondary"] {
+    &, &::after {
+      background-color: var(--sunset-blue-secondary);
+    }
+  }
+
+  &[color="blue-tertiary"] {
+    &, &::after {
+      background-color: var(--sunset-blue-tertiary);
     }
   }
 }

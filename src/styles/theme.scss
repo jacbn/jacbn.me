@@ -32,3 +32,13 @@
 .theme-light {
   background-color: var(--theme-background-alternate);
 }
+
+.shadow-light {
+  --shadow-offset: 3px;
+  box-shadow: var(--sunset-pink-secondary) calc(-1 * var(--shadow-offset)) var(--shadow-offset) 0;
+}
+
+.shadow-dark {
+  --shadow-offset: 3px;
+  box-shadow: var(--sunset-blue-tertiary) calc(-1 * var(--shadow-offset)) var(--shadow-offset) 0;
+}
