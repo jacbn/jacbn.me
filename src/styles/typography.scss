@@ -7,6 +7,7 @@ $font-size-bases: (
   subtitle: 1.2rem 1.4rem 1.5rem,
   label:    1.1rem 1.2rem 1.2rem,
   body:     1rem   1rem 1rem,
+  small:    0.8rem 0.9rem 0.9rem
 );
 
 @each $font-size-name, $base-sizes in $font-size-bases {
