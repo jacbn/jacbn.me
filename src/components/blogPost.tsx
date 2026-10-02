@@ -9,6 +9,7 @@ import darkSyntax from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-
 import { ColorModeContext } from "./colorModeToggle";
 import classNames from "classnames";
 import { BlogErrorBoundary, ProjectErrorBoundary } from "./errorBoundary";
+import { ReturnToParentPage } from "./returnToParentPage";
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('scss', scss);
@@ -47,6 +48,7 @@ const MdxContainer = ({Post, containerClassName}: BlogContainerProps & {Post: Re
         <div>Loading...</div>
     </>}>
         <main className={containerClassName ?? "blog-container"}>
+            <ReturnToParentPage />
             <Post components={{code, img}} />
         </main>
     </Suspense>;

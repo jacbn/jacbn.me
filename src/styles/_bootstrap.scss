@@ -17,17 +17,25 @@ $spacers: map-merge($spacers, (
 
 $enable-negative-margins: true;
 
-@import "bootstrap/scss/maps";
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/utilities";
-
 $theme-colors: map-merge(
   $theme-colors,
   (
+    // bs overrides
     "primary": #fbbbad,
-    "secondary": #292831,
-  )
+    "secondary": #333f58,
+
+    // custom
+    "pink-primary": #fbbbad,
+    "pink-secondary": #ee8695,
+    "blue-primary": #4a7a96,
+    "blue-secondary": #333f58,
+    "blue-tertiary": #292831,
+  ),
 );
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
 
 @import "./bootstrap-components";
 
