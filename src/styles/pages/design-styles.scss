@@ -1,0 +1,89 @@
+@use "../mixins";
+
+#ds-brutalism {
+    --font-title: "Inter", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --subtitle-primary: black;
+    --text-primary: black;
+    font-family: var(--font-body);
+
+    h1, .h1 {
+        font-weight: 900;
+
+        @include mixins.respond-above('md') {
+            --font-scale: 1.5;
+        }
+    }
+
+    h2, .h2 {
+        font-weight: 800;
+        --font-scale: 2;
+
+        @include mixins.respond-below('md') {
+            --font-scale: 1.5;
+        }
+    }
+
+    h3, .h3 {
+        font-weight: 800;
+    }
+
+    h3 {
+        border-bottom: 2px solid var(--subtitle-primary);
+        @include mixins.respond-below('md') {
+            --font-scale: 1.5;
+        }
+    }
+    
+    #hero {
+        background: url("/assets/design-styles/brutalism/limestone.jpg") repeat, white;
+        background-size: 500px 500px;
+        background-blend-mode: difference;
+        color: var(--text-primary);
+
+        & > div:first-of-type {
+            height: min(max(40vh, 250px), 500px);
+        }
+    }
+
+    #title-box {
+        height: 2.3rem;
+
+        @include mixins.respond-above('md') {
+            height: 3.5rem;
+        }
+
+        @include mixins.respond-above('xl') {
+            height: 4.4rem;
+        }
+    }
+
+    #sep {
+        height: 4px;
+        background-color: black;
+        width: 100%;
+        margin-top: -0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    #when-to-use {
+        --text-primary: white;
+        --subtitle-primary: white;
+    }
+
+    .bg-red {
+        background-color: #BF1212;
+    }
+
+    .bg-black {
+        background-color: black;
+    }
+
+    .text-red {
+        color: #BF1212;
+    }
+}
+
+#ds-neobrutalism {
+    font-family: "Inter", sans-serif;
+}
