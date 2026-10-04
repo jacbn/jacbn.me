@@ -62,3 +62,19 @@
     transform: scale(1.02);
   }
 }
+
+.w-max-content {
+  width: max-content;
+}
+
+.w-md-50 {
+  @include mixins.respond-above(md) {
+    width: 50% !important;
+  }
+}
+
+.w-md-75 {
+  @include mixins.respond-above(md) {
+    width: 75% !important;
+  }
+}

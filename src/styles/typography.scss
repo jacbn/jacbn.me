@@ -13,9 +13,9 @@ $font-size-bases: (
 @each $font-size-name, $base-sizes in $font-size-bases {
   .font-size-#{$font-size-name} {
     @include mixins.dynamic-font-size(
-      nth($base-sizes, 1),
-      nth($base-sizes, 2),
-      nth($base-sizes, 3)
+      calc(nth($base-sizes, 1) * var(--font-scale, 1)),
+      calc(nth($base-sizes, 2) * var(--font-scale, 1)),
+      calc(nth($base-sizes, 3) * var(--font-scale, 1))
     );
   }
 }
