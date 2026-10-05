@@ -29,6 +29,7 @@ import { Demos } from './pages/demos/Demos';
 import { AdaCyberTransition } from './pages/work/AdaCyberTransition';
 import { Brutalism } from './pages/design-styles/Brutalism';
 import { DesignStylesListing } from './pages/design-styles/DesignStyles';
+import { ClientError } from './pages/ClientError';
 
 const router = createBrowserRouter([
   {
@@ -246,7 +247,14 @@ const router = createBrowserRouter([
       }
     ]
   },
-  
+
+  {
+    path: '*',
+    element: <>
+      <title>jaycie ⋅ 404</title>
+      <ClientError />
+    </>,
+  }
 ]);
 
 export const App = () => {
