@@ -28,7 +28,12 @@ export const DesignStylesListing = () => {
                 <p>Explore my research into different web design styles.</p>
                 <ol reversed className="list-unstyled">
                     <DesignStyle
-                        image="/assets/design-styles/brutalism/hero.png"
+                        image="/assets/design-styles/neobrutalism/_listing_hero.png"
+                        link="/design-styles/neobrutalism"
+                        text="october 2026"
+                    />
+                    <DesignStyle
+                        image="/assets/design-styles/brutalism/_listing_hero.png"
                         link="/design-styles/brutalism"
                         text="october 2026"
                     />
