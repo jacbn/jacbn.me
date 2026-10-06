@@ -29,6 +29,7 @@ import { AdaCyberTransition } from './pages/work/AdaCyberTransition';
 import { Brutalism } from './pages/design-styles/Brutalism';
 import { DesignStylesListing } from './pages/design-styles/DesignStyles';
 import { Neobrutalism } from './pages/design-styles/Neobrutalism';
+import { ClientError } from './pages/ClientError';
 
 const DFABuilder = React.lazy(() => import('./pages/demos/dfa-builder/DfaBuilder').then(module => ({ default: module.DFABuilder })));
 
@@ -252,7 +253,14 @@ const router = createBrowserRouter([
       }
     ]
   },
-  
+
+  {
+    path: '*',
+    element: <>
+      <title>jaycie ⋅ 404</title>
+      <ClientError />
+    </>,
+  }
 ]);
 
 export const App = () => {
