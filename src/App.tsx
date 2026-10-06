@@ -24,12 +24,14 @@ import { ProjectsOverview } from './pages/projects/ProjectsOverview';
 import { DoubleBack } from './pages/projects/double-back/DoubleBack';
 import { IsaacRedesign } from './pages/work/IsaacRedesign';
 import { AdaDoubleBack } from './pages/demos/ada-double-back/AdaDoubleBack';
-import { DFABuilder } from './pages/demos/dfa-builder/DfaBuilder';
 import { Demos } from './pages/demos/Demos';
 import { AdaCyberTransition } from './pages/work/AdaCyberTransition';
 import { Brutalism } from './pages/design-styles/Brutalism';
 import { DesignStylesListing } from './pages/design-styles/DesignStyles';
+import { Neobrutalism } from './pages/design-styles/Neobrutalism';
 import { ClientError } from './pages/ClientError';
+
+const DFABuilder = React.lazy(() => import('./pages/demos/dfa-builder/DfaBuilder').then(module => ({ default: module.DFABuilder })));
 
 const router = createBrowserRouter([
   {
@@ -177,6 +179,10 @@ const router = createBrowserRouter([
           {
             path: '/design-styles/brutalism',
             element: <Brutalism />
+          },
+          {
+            path: '/design-styles/neobrutalism',
+            element: <Neobrutalism />
           }
         ]
       },

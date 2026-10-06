@@ -1,4 +1,5 @@
 @use "../mixins";
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 
 #ds-brutalism {
     --font-title: "Inter", sans-serif;
@@ -85,5 +86,88 @@
 }
 
 #ds-neobrutalism {
-    font-family: "Inter", sans-serif;
+    --font-title: "Titan One", sans-serif;
+    font-weight: 500;
+
+    .bg-blue {
+        background-color: #B0FEFF;
+    }
+
+    .bg-green {
+        background-color: #8EFF7A;
+    }
+
+    .bg-pink {
+        background-color: #FF8EF6;
+    }
+
+    .bg-yellow {
+        background-color: #FCFF60;
+    }
+
+    .neo-border {
+        border: 4px solid black;
+        box-shadow: -8px 8px 0px 0px black;
+    }
+
+    .neo-info-top:first-of-type {
+        border: 4px solid black;
+        box-shadow: -8px 8px 0px 0px black;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: white;
+        }
+    }
+
+    .neo-info-top:not(:first-of-type) {
+        border: 4px solid black;
+        margin-left: -4px;
+    }
+
+    .tab:not(.active) {
+        padding: 0.5rem 0;
+        color: #0006
+    }
+
+    .tab.active {
+        padding: 1rem 0;
+        color: black;
+    }
+
+    .hero-1 {
+        height: min(max(25vh, 200px), 500px);
+
+        > div {
+            flex: 1 1 0;
+            overflow: hidden;
+        }
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    .hero-2 {
+        background: url("/assets/design-styles/neobrutalism/grid.svg") repeat, #B0FEFF;
+        padding: 0 10vw;
+
+        @include mixins.respond-below('md') {
+            padding: 0;
+            margin: 0 -10vw;
+        }
+    }
+
+    #examples {
+        img {
+            
+        }
+    }
 }
