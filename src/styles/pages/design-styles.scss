@@ -171,3 +171,80 @@
         }
     }
 }
+
+#ds-bento {
+    --font-title: "Titan One", sans-serif;
+    font-weight: 500;
+
+    p {
+        --font-scale: 0.8;
+    }
+
+    .bg-light-lime, & {
+        background-color: #E4FFCF;
+    }
+
+    .bg-green {
+        background-color: #69D4AD;
+    }
+
+    .bg-blue {
+        background-color: #B9EAF4;
+    }
+
+    .bg-purple {
+        background-color: #653E80;
+    }
+
+    .text-light-lime {
+        color: #E4FFCF;
+    }
+
+    .text-purple {
+        color: #653E80;
+    }
+
+    #hero > img {
+        @include mixins.respond-above('lg') {
+            object-fit: contain;
+            max-height: 75vh;
+        }
+
+        @include mixins.respond-below('lg') {
+            object-fit: cover;
+            min-height: 30vh;
+        }
+    }
+
+    #about {
+        > :nth-child(1) {
+            > div {
+                flex: 2 1 0;
+            }
+
+            > :nth-child(1) {
+                flex: 3 1 0;
+            }
+        }
+
+        > :nth-child(2) {
+            > div {
+                flex: 1 1 0;
+            }
+
+            > :nth-child(2) {
+                flex: 3 1 0;
+            }
+        }
+
+        > :nth-child(3) {
+            > div {
+                flex: 2 1 0;
+            }
+
+            > :nth-child(2) {
+                flex: 3 1 0;
+            }
+        }
+    }
+}

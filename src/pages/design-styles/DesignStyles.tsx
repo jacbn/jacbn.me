@@ -10,7 +10,7 @@ interface DesignStyleProps {
 }
 
 const DesignStyle = ({ image, link, text }: DesignStyleProps) => {
-    return <li className="mt-3">
+    return <li className="mt-5">
         <Link to={link} className={classNames("w-100 d-flex flex-column border border-2 border-primary shadow-light text-decoration-none scale-hover")}>
             <img src={image} alt={text} className="img-fluid border-bottom rounded-top-2 border-2 border-primary" />
             <div className="p-5 bg-black text-end">
@@ -27,6 +27,11 @@ export const DesignStylesListing = () => {
             <>
                 <p>Explore my research into different web design styles.</p>
                 <ol reversed className="list-unstyled">
+                    <DesignStyle
+                        image="/assets/design-styles/bento/hero.png"
+                        link="/design-styles/bento"
+                        text="october 2026"
+                    />
                     <DesignStyle
                         image="/assets/design-styles/neobrutalism/_listing_hero.png"
                         link="/design-styles/neobrutalism"
