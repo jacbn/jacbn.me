@@ -10,7 +10,7 @@ export const Bento = (props: React.HTMLAttributes<HTMLDivElement>) => {
         <section id="hero" className="w-100 d-flex flex-column align-items-center">
             <img src="/assets/design-styles/bento/hero.png" alt="Bento design style hero" className="img-fluid my-4" />
         </section>
-        <section id="about" className="text-dark py-10 d-flex flex-column gap-3">
+        <section id="about" className="text-dark py-4 py-md-10 d-flex flex-column gap-3">
             <FadeInWhenVisible className="container-lg d-flex gap-3">
                 <div className="px-5 py-3">
                     <h2 className="mt-0 text-purple">About</h2>
@@ -55,7 +55,9 @@ export const Bento = (props: React.HTMLAttributes<HTMLDivElement>) => {
             </FadeInWhenVisible>
         </section>
         <section id="examples" className="text-black mb-10">
-            <h2 className="text-purple">Examples</h2>
+            <FadeInWhenVisible className="container-lg">
+                <h2 className="text-purple">Examples</h2>
+            </FadeInWhenVisible>
             <FadeInWhenVisible className="container-lg">
                 <div className="d-flex flex-column">
                     <a href="https://everytailvets.co.uk" target="_blank" rel="noopener noreferrer">
