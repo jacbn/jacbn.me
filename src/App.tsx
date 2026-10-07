@@ -30,6 +30,7 @@ import { Brutalism } from './pages/design-styles/Brutalism';
 import { DesignStylesListing } from './pages/design-styles/DesignStyles';
 import { Neobrutalism } from './pages/design-styles/Neobrutalism';
 import { ClientError } from './pages/ClientError';
+import { Bento } from './pages/design-styles/Bento';
 
 const DFABuilder = React.lazy(() => import('./pages/demos/dfa-builder/DfaBuilder').then(module => ({ default: module.DFABuilder })));
 
@@ -183,6 +184,10 @@ const router = createBrowserRouter([
           {
             path: '/design-styles/neobrutalism',
             element: <Neobrutalism />
+          },
+          {
+            path: '/design-styles/bento',
+            element: <Bento />
           }
         ]
       },
