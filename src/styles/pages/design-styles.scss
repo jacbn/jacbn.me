@@ -1,5 +1,6 @@
 @use "../mixins";
 @import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
 
 #ds-brutalism {
     --font-title: "Inter", sans-serif;
@@ -246,5 +247,51 @@
                 flex: 3 1 0;
             }
         }
+    }
+}
+
+#ds-editorial {
+    --font-title: "Bodoni Moda SC", serif;
+    --font-body: "Inter", sans-serif;
+    --text-primary: black;
+
+    font-family: var(--font-body);
+
+    h1 {
+        --font-scale: 3;
+        letter-spacing: -2%;
+    }
+
+    h3 {
+        --font-scale: 0.8;
+        font-weight: 800;
+        font-family: var(--font-body);
+    }
+
+    #about-content {
+        > :nth-child(1) {
+            flex: 2 1 0;
+        }
+
+        > :nth-child(2) {
+            flex: 5 1 0;
+        }
+
+        > :nth-child(3) {
+            flex: 3 1 0;
+        }
+    }
+
+    .drop-cap::first-letter {
+        float: left;
+        font-size: 3.5rem;
+        font-weight: 600;
+        padding-right: 0.1em;
+    }
+
+    .left-col-item img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: top left;
     }
 }
