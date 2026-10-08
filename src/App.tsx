@@ -31,6 +31,7 @@ import { DesignStylesListing } from './pages/design-styles/DesignStyles';
 import { Neobrutalism } from './pages/design-styles/Neobrutalism';
 import { ClientError } from './pages/ClientError';
 import { Bento } from './pages/design-styles/Bento';
+import { Editorial } from './pages/design-styles/Editorial';
 
 const DFABuilder = React.lazy(() => import('./pages/demos/dfa-builder/DfaBuilder').then(module => ({ default: module.DFABuilder })));
 
@@ -188,6 +189,10 @@ const router = createBrowserRouter([
           {
             path: '/design-styles/bento',
             element: <Bento />
+          },
+          {
+            path: '/design-styles/editorial',
+            element: <Editorial />
           }
         ]
       },

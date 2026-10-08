@@ -28,19 +28,24 @@ export const DesignStylesListing = () => {
                 <p>Explore my research into different web design styles.</p>
                 <ol reversed className="list-unstyled">
                     <DesignStyle
+                        image="/assets/design-styles/editorial/hero.webp"
+                        link="/design-styles/editorial"
+                        text="october 8 2026"
+                    />
+                    <DesignStyle
                         image="/assets/design-styles/bento/hero.png"
                         link="/design-styles/bento"
-                        text="october 2026"
+                        text="october 7 2026"
                     />
                     <DesignStyle
                         image="/assets/design-styles/neobrutalism/_listing_hero.png"
                         link="/design-styles/neobrutalism"
-                        text="october 2026"
+                        text="october 6 2026"
                     />
                     <DesignStyle
                         image="/assets/design-styles/brutalism/_listing_hero.png"
                         link="/design-styles/brutalism"
-                        text="october 2026"
+                        text="october 5 2026"
                     />
                 </ol>
             </>
