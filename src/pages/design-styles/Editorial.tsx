@@ -66,7 +66,7 @@ export const Editorial = (props: React.HTMLAttributes<HTMLDivElement>) => {
         <section id="hero" className="w-100 d-flex flex-column align-items-center">
             <img src="/assets/design-styles/editorial/hero.webp" alt="Editorial design style hero" className="img-fluid mt-0 mt-lg-n7" />
             <h1 className="visually-hidden">Editorial</h1>
-            <div className="w-100 mt-n5 px-3 py-1 text-end text-white">
+            <div className={classNames("w-100 mt-lg-n5 px-3 py-1 font-size-small text-end", above["lg"](deviceSize) ? "text-white" : "text-black")}>
                 <span>Photo modified from <a href="https://unsplash.com/@m_sajur?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcin Sajur</a> on <a href="https://unsplash.com/photos/woman-in-futuristic-attire-with-blindfold-and-jewelry-3lDd9XPFDc4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>
             </div>
         </section>
