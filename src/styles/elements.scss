@@ -148,11 +148,10 @@ pre {
   flex-grow: 1;
   max-width: 100%;
   overflow: scroll;
-  padding: 1rem;
-  margin: $pre-header-height 0 $pre-margin 0;
+  padding: calc(1rem + $pre-header-height) 1rem 1rem 1rem !important;
+  margin: 0 0 $pre-margin 0 !important;
   border-radius: 0 0 0.5rem 0.5rem;
   box-shadow: 2px 2px 5px var(--shadow-primary);
-  overflow: visible !important;
   
   @include code-color(var(--card-primary));
 
@@ -170,8 +169,8 @@ pre {
     position: absolute;
     top: 0;
     left: 0;
-    margin-top: -$pre-header-height;
-    width: 100%;
+    right: 0;
+    margin-top: 0;
     height: $pre-header-height;
     border-radius: 0.5rem 0.5rem 0 0;
   }
@@ -182,7 +181,7 @@ pre {
     position: absolute;
     top: 0;
     left: calc(($pre-header-height - $pre-button-height) / 2);
-    margin-top: calc(($pre-header-height + $pre-button-height) / -2);
+    margin-top: calc($pre-header-height / 2 - $pre-button-height / 2);
     width: calc(4 * $pre-button-height);
     height: $pre-button-height;
     background-image: url('/assets/components/window-buttons.svg');
