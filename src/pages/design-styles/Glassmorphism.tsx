@@ -97,9 +97,11 @@ export const Glassmorphism = (props: React.HTMLAttributes<HTMLDivElement>) => {
             </FadeInWhenVisible>
         </section>
         <section id="further-reading" className="text-center w-100 pt-8 mb-10">
-            <FadeInWhenVisible className="container-lg glass-light py-8">
-                <h2>Like this and want more?</h2>
-                <Link to="/design-styles"><b>Check out my other design style pages!</b></Link>
+            <FadeInWhenVisible className="container-lg">
+                <div className="glass-light py-8 scale-hover">
+                    <h2>Like this and want more?</h2>
+                    <Link to="/design-styles"><b>Check out my other design style pages!</b></Link>
+                </div>
             </FadeInWhenVisible>
         </section>
     </UnstyledPageContainer>;
