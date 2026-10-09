@@ -22,11 +22,17 @@ const DesignStyle = ({ image, link, text }: DesignStyleProps) => {
 
 export const DesignStylesListing = () => {
     return <HomeText
-        title="design styles"
+        title="web design styles"
         text={
             <>
                 <p>Explore my research into different web design styles.</p>
+                <p>Each page is a hand-coded, custom React implementation in the relevant design style. Ideation and most graphics were created or modified in Figma.</p>
                 <ol reversed className="list-unstyled">
+                    <DesignStyle
+                        image="/assets/design-styles/glassmorphism/_listing_hero.png"
+                        link="/design-styles/glassmorphism"
+                        text="october 9 2026"
+                    />
                     <DesignStyle
                         image="/assets/design-styles/editorial/hero.webp"
                         link="/design-styles/editorial"

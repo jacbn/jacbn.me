@@ -32,6 +32,7 @@ import { Neobrutalism } from './pages/design-styles/Neobrutalism';
 import { ClientError } from './pages/ClientError';
 import { Bento } from './pages/design-styles/Bento';
 import { Editorial } from './pages/design-styles/Editorial';
+import { Glassmorphism } from './pages/design-styles/Glassmorphism';
 
 const DFABuilder = React.lazy(() => import('./pages/demos/dfa-builder/DfaBuilder').then(module => ({ default: module.DFABuilder })));
 
@@ -193,6 +194,10 @@ const router = createBrowserRouter([
           {
             path: '/design-styles/editorial',
             element: <Editorial />
+          },
+          {
+            path: '/design-styles/glassmorphism',
+            element: <Glassmorphism />
           }
         ]
       },
