@@ -38,11 +38,11 @@ const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
 
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            const radius = 250;
+            const radius = 400;
             if (distance < radius) {
                 const force = (radius - distance) / radius;
-                magnetDx.set(dx * force * 0.2);
-                magnetDy.set(dy * force * 0.2);
+                magnetDx.set(dx * force * 0.3);
+                magnetDy.set(dy * force * 0.3);
             } else {
                 magnetDx.set(0);
                 magnetDy.set(0);
