@@ -3,7 +3,7 @@ import { useInView } from "react-intersection-observer";
 import React, { useEffect } from "react";
 
 interface BounceInWhenVisibleProps extends HTMLMotionProps<keyof HTMLElements> {
-    Tag?: any;
+    Tag?: React.ElementType;
     delay?: number;
 }
 

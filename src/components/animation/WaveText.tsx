@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import React from "react";
 
-export const WaveText = ({children, className}: {children: string, className?: string}) => {
-    return <span className={classNames(className, "wave-text")}>
+export const WaveText = ({Tag="span", children, className, delay = 0.1}: {Tag?: React.ElementType, children: string, className?: string, delay?: number}) => {
+    return <Tag className={classNames(className, "wave-text")}>
         {children.split("").map((char, index) => {
-            return <span key={index} style={{animationDelay: `${index * 0.1}s`}}>{char}</span>;
+            return <span key={index} style={{animationDelay: `${index * delay}s`}}>{char}</span>;
         })}
-    </span>;
+    </Tag>;
 };
