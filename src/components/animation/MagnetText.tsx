@@ -24,6 +24,12 @@ const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
             const rect = selfRef.current?.getBoundingClientRect();
             if (!rect) return;
 
+            if (mouseX.get() === Infinity || mouseY.get() === Infinity) {
+                magnetDx.set(0);
+                magnetDy.set(0);
+                return;
+            }
+
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
 
@@ -42,6 +48,7 @@ const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
                 magnetDy.set(0);
             }
         };
+        
         updateMagnet();
 
         const unsubscribeX = mouseX.on("change", updateMagnet);
@@ -62,8 +69,8 @@ const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
 };
 
 export const MagnetText = ({Tag = motion.div, className, children, ...rest}: WiggleTextProps) => {
-    const mouseX = useMotionValue(-9999);
-    const mouseY = useMotionValue(-9999);
+    const mouseX = useMotionValue(Infinity);
+    const mouseY = useMotionValue(Infinity);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         mouseX.set(e.clientX);
@@ -71,8 +78,8 @@ export const MagnetText = ({Tag = motion.div, className, children, ...rest}: Wig
     };
 
     const handleMouseLeave = () => {
-        mouseX.set(-9999);
-        mouseY.set(-9999);
+        mouseX.set(Infinity);
+        mouseY.set(Infinity);
     };
 
     return <Tag
