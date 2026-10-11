@@ -328,10 +328,12 @@
         width: 100%;
         aspect-ratio: 2/1;
         min-height: 400px;
-        max-height: 80vh;
+        max-height: min(80vh, 900px);
         background-image: url('/assets/design-styles/glassmorphism/hero-bg.webp');
         box-shadow: 10px 10px 30px rgba(0, 0, 0, 1);
         background-position: bottom;
+        // background-repeat: no-repeat;
+        background-size: cover;
         z-index: 2;
 
         &::after {
@@ -343,6 +345,8 @@
             max-height: 80vh;
             transform: rotateX(0.5turn); 
             background-image: url('/assets/design-styles/glassmorphism/hero-bg.webp');
+            // background-repeat: no-repeat;
+            background-size: cover;
             background-position: bottom;
             filter: blur(4px);
             --gradient: linear-gradient(transparent 85%, white 100%);

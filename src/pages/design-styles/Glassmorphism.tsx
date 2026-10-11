@@ -12,7 +12,7 @@ SyntaxHighlighter.registerLanguage('scss', scss);
 export const Glassmorphism = (props: React.HTMLAttributes<HTMLDivElement>) => {
     return <UnstyledPageContainer {...props} id="ds-glassmorphism" className="text-black">
         <section id="hero" className="d-flex flex-column align-items-center justify-content-center position-relative">
-            <div id="hero-text" className="glass-light mac-icons position-absolute text-center d-flex flex-column justify-content-center">
+            <div id="hero-text" className="glass-light mac-icons container-lg position-absolute text-center d-flex flex-column justify-content-center">
                 <h1>Glassmorphism</h1>
                 <h2>The "frosted glass" aesthetic</h2>
             </div>
@@ -74,7 +74,26 @@ export const Glassmorphism = (props: React.HTMLAttributes<HTMLDivElement>) => {
                     </SyntaxHighlighter>
                 </div>
                 <p>This can be extended in a number of ways. Adding a box shadow enhances the depth and realism of the glass; replacing the background with a subtle gradient helps sell the "sheen"; and similarly replacing the border with a gradient* can recreate a feeling of refraction without custom code.</p>
-                <p>*gradient borders that respect <code>border-radius</code> are not easy! <code>border-image</code> does not support border-radius, so my solution used for the cards above was to use a pseudo-element with a background gradient and a composite exclusion mask that only "selects" the border area.</p>
+                <p>*gradient borders that respect <code>border-radius</code> are not easy! <code>border-image</code> does not support border-radius, so my solution used for the cards above was to use a pseudo-element with a background gradient and a composite exclusion mask that only "selects" the border area:</p>
+                <SyntaxHighlighter language={"scss"} style={darkSyntax}>
+{`.glass::before {
+  // position the element to cover the card
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  // define the border
+  border: 2px solid transparent;
+  border-radius: 32px;
+  // define the gradient, and clip it to the border-box
+  background: var(--gradient);
+  background-origin: border-box;
+  background-clip: border-box;
+  // define a composite mask that excludes the content area
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}`}
+                </SyntaxHighlighter>
             </FadeInWhenVisible>
         </section>
         <section id="examples" className="my-8">
