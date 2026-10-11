@@ -8,6 +8,7 @@ import { Link, useLocation } from 'react-router';
 import { scrollIntoView } from '../../utils/scroll';
 import NavBar from '../../components/navbar';
 import { FadeInWhenVisible } from '../../components/animation/fadeInWhenVisible';
+import { WaveText } from '../../components/animation/WaveText';
 
 export const Home = () => {
   const location = useLocation();
@@ -26,7 +27,7 @@ export const Home = () => {
         <FadeInWhenVisible>
           <div className="intro-pg mt-9 mb-0 mb-md-9 w-100 w-sm-75">
             <div className="text-highlight font-title font-size-display mb-3 ms-lg-n6">⋅ hi! ⋅</div>
-            <p className="font-size-title font-title">i&apos;m <span className="text-highlight">jaycie</span>, a frontend developer and aspiring designer with a passion for crafting meaningful experiences for real people.</p>
+            <p className="font-size-title font-title">i&apos;m <WaveText className="text-highlight">jaycie</WaveText>, a frontend developer and aspiring designer with a passion for crafting meaningful experiences for real people.</p>
           </div>
         </FadeInWhenVisible>
       </section>

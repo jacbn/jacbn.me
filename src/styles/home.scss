@@ -161,24 +161,22 @@ nav.home-nav {
     }
   }
 
-  h1, h2 {
-    z-index: 2;
-    color: white;
+  // h1, h2 {
+  //   z-index: 2;
+  //   color: white;
     
-    &:first-of-type {
-      background-clip: text;
-      background-color: white;
-      pointer-events: none;
-    }
+  //   &:first-of-type {
+  //     background-clip: text;
+  //     background-color: white;
+  //   }
 
-    &:last-of-type {
-      background-clip: text;
-      background-image: var(--shimmer-gradient);
-      background-size: 400% 400%;
-      animation: titleShimmerEffect 10s infinite ease-in-out;
-      pointer-events: none;
-    }
-  }
+  //   &:last-of-type {
+  //     background-clip: text;
+  //     background-image: var(--shimmer-gradient);
+  //     background-size: 400% 400%;
+  //     animation: titleShimmerEffect 10s infinite ease-in-out;
+  //   }
+  // }
 
   &.full {
     img {

@@ -1,0 +1,32 @@
+.wave-text > span {
+    display: inline-block;
+    animation: wave-text 2s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+@keyframes wave-text {
+    0% {
+        transform: translateY(3px);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform: translateY(3px);
+    }
+}
+
+.anim-pulse {
+    animation: pulse 5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
