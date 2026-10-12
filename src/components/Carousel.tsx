@@ -117,7 +117,7 @@ export const DraggableCarousel = (props: DraggableCarouselProps) => {
 
   return (
     <div className={classNames("carousel", className)}>
-      <div className="d-flex flex-column gap-3 overflow-hidden pb-5">
+      <div className="d-flex flex-column gap-3 pb-5">
         <div className={classNames("position-relative m-auto", internalElement?.className)} style={{maxWidth: internalElement.maxWidth}} ref={setContainerRef}>
           <motion.ol
             className="d-flex list-unstyled"

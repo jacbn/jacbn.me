@@ -18,6 +18,7 @@ const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
     const magnetDx = useSpring(0, {stiffness: 200, damping: 25, mass: 2});
     const magnetDy = useSpring(0, {stiffness: 200, damping: 25, mass: 2});
     const selfRef = useRef<HTMLDivElement>(null);
+    const scale = useMotionValue(1);
 
     useEffect(() => {
         const updateMagnet = () => {
@@ -43,9 +44,11 @@ const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
                 const force = (radius - distance) / radius;
                 magnetDx.set(dx * force * 0.3);
                 magnetDy.set(dy * force * 0.3);
+                scale.set(1 + force * 0.1);
             } else {
                 magnetDx.set(0);
                 magnetDy.set(0);
+                scale.set(1);
             }
         };
         
@@ -57,13 +60,13 @@ const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
             unsubscribeX();
             unsubscribeY();
         };
-    }, [mouseX, mouseY, magnetDx, magnetDy]);
+    }, [mouseX, mouseY, magnetDx, magnetDy, scale]);
 
 
     return <motion.div
         className="d-inline-block"
         ref={selfRef}
-        style={{x: magnetDx, y: magnetDy}}
+        style={{x: magnetDx, y: magnetDy, scale: scale}}
         {...rest}
     />;
 };
