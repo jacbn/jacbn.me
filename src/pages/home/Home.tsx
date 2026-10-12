@@ -38,41 +38,47 @@ export const Home = () => {
         <img src="/assets/home/sunset-base.gif" className="w-100 pixelated-icon mt-md-9" alt="" />
       </div>
 
-      <section id="work" className="container-fluid g-9 pt-9">
+      <section id="work" className="w-100 pt-9">
+        <div className="container-xl g-9">
           <h2 className="mb-4 mb-md-6 text-dark text-shadow-light">⋅ work ⋅</h2>
           <FadeInWhenVisible>
             <WorkGrid />
           </FadeInWhenVisible>
+        </div>
       </section>
 
-      <section id="projects" className="container-fluid g-9 pt-7 pb-9">
-        <h2 className="mb-4 mb-md-6 text-dark text-shadow-light">⋅ featured personal projects ⋅</h2>
-        <FadeInWhenVisible>
-          <FeaturedProjectsGrid />
-        </FadeInWhenVisible>
-        <FadeInWhenVisible className="d-flex justify-content-center home-links text-dark mt-7 mb-9">
-          <Link to="/projects" className="font-size-title">See more</Link>
-        </FadeInWhenVisible>
+      <section id="projects" className="w-100 pt-7 pb-9 overflow-hidden">
+        <div className="container-xl g-9">
+          <h2 className="mb-4 mb-md-6 text-dark text-shadow-light">⋅ featured personal projects ⋅</h2>
+          <FadeInWhenVisible>
+            <FeaturedProjectsGrid />
+          </FadeInWhenVisible>
+          <FadeInWhenVisible className="d-flex justify-content-center home-links text-dark mt-7 mb-9">
+            <Link to="/projects" className="font-size-title">See more</Link>
+          </FadeInWhenVisible>
+        </div>
       </section>
 
-      <section id="looking-for-work" className="container-fluid text-dark text-center g-9 pb-9">
-        <FadeInWhenVisible>
-          <h2>i'm currently looking for work!</h2>
-        </FadeInWhenVisible>
-        <FadeInWhenVisible>
-          <p className="font-size-label">
-            Like what you see and want to talk? I'm particularly interested in contract work, but will consider all opportunities.
-          </p>
-          <p className="font-size-label">
-            You can find my full CV or get in touch with the links below.
-            Formal and informal queries are equally welcome!
-          </p>
-          <div className="d-flex justify-content-center mt-3">
-            <a href="/assets/cv/tech.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline-secondary shadow-light border-4 rounded-5">
-              View my CV
-            </a>
-          </div>
-        </FadeInWhenVisible>
+      <section id="looking-for-work" className="w-100 text-dark text-center pb-9">
+        <div className="container-xl g-9">
+          <FadeInWhenVisible>
+            <h2 className="text-shadow-light">i'm currently looking for work!</h2>
+          </FadeInWhenVisible>
+          <FadeInWhenVisible>
+            <p className="font-size-label">
+              Like what you see and want to talk? I'm particularly interested in full-time or contract work, but will consider all opportunities.
+            </p>
+            <p className="font-size-label">
+              You can find my full CV or get in touch with the links below.
+              Formal and informal queries are equally welcome!
+            </p>
+            <div className="d-flex justify-content-center mt-3">
+              <a href="/assets/cv/tech.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline-secondary shadow-light border-4 rounded-5">
+                View my CV
+              </a>
+            </div>
+          </FadeInWhenVisible>
+        </div>
       </section>
 
       <img src="/assets/home/sunset-sep.png" className="w-100 pixelated-image mb-9" alt="" />
