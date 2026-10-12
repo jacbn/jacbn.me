@@ -1,21 +1,30 @@
 import React from 'react';
-import { ProjectsCardAdaCyberTransition, ProjectsCardComponentisation, ProjectsCardDoubleBack, ProjectsCardGreenMaps, ProjectsCardIsaacRedesign, ProjectsCardMathsArt, ProjectsCardYawNN } from '../../pages/projects/project-cards';
+import { ProjectsCardAdaCyberTransition, ProjectsCardComponentisation, ProjectsCardDoubleBack, ProjectsCardGreenMaps, ProjectsCardIsaacRedesign, ProjectsCardMathsArt, ProjectsCardWebDesignStyles, ProjectsCardYawNN } from '../../pages/projects/project-cards';
 import { DraggableCarousel } from '../Carousel';
+import { FadeInWhenVisible } from '../animation/fadeInWhenVisible';
+import { motion } from 'framer-motion';
+import useDeviceSize, { above } from '../../scripts/hooks/deviceSize';
 
 // todo: fill alt text of svgs
 
 export const WorkGrid = () => {
-  return <ol className="work-grid row row-cols-1 row-cols-lg-3 g-4 list-unstyled">
-    <li>
-      <ProjectsCardIsaacRedesign />
-    </li>
-    <li>
-      <ProjectsCardAdaCyberTransition />
-    </li>
-    <li>
-      <ProjectsCardComponentisation />
-    </li>
-  </ol>;
+  const deviceSize = useDeviceSize();
+  return <>
+    <ol className="work-grid list-unstyled">
+      <FadeInWhenVisible Tag={motion.li}>
+        <ProjectsCardIsaacRedesign />
+      </FadeInWhenVisible>
+      <FadeInWhenVisible Tag={motion.li}>
+        <ProjectsCardAdaCyberTransition />
+      </FadeInWhenVisible>
+      <FadeInWhenVisible Tag={motion.li}>
+        <ProjectsCardComponentisation />
+      </FadeInWhenVisible>
+      <FadeInWhenVisible Tag={motion.li} className={above['lg'](deviceSize) ? "col-span-2" : ""}>
+        <ProjectsCardWebDesignStyles />
+      </FadeInWhenVisible>
+    </ol>
+  </>;
 };
 
 export const FeaturedProjectsGrid = () => {

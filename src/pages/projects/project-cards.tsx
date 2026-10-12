@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FlatGridSquare } from "../../components/homeGrid/flatGridSquare";
 import { GridSquareProps } from "../../components/homeGrid/gridSquareTypes";
+import { FlatGridItem } from "../../components/homeGrid/FlatGridItem";
 import useDeviceSize, { above } from "../../scripts/hooks/deviceSize";
 
 type RestProps = Omit<GridSquareProps, "title" | "description" | "year" | "lang" | "colour" | "imageProps" | "link">;
@@ -54,6 +55,25 @@ export const ProjectsCardComponentisation = (rest?: RestProps) => {
         {...rest}
     />;
 };
+
+export const ProjectsCardWebDesignStyles = (rest?: RestProps) => {
+    const deviceSize = useDeviceSize();
+    const Tag = above['lg'](deviceSize) ? FlatGridItem : FlatGridSquare;
+    return <Tag
+        title="Web Design Styles"
+        description="exploring different aesthetics in web design"
+        year="2026"
+        lang="Figma, React"
+        imageProps={{
+            src: "/assets/home/logo-web-design-styles.png",
+            alt: "",
+            className: "pixel-image"
+        }}
+        colour={"var(--accent-design-styles)"}
+        link="/design-styles"
+        {...rest}
+    />;
+}
 
 export const ProjectsCardGreenMaps = (rest?: RestProps) => {
     return <FlatGridSquare 
