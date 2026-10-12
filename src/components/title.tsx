@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 
 export const Title = ({full}: {full?: boolean}) => {
     return <div className={classNames("title-wrapper", {"full": full})}>
-        <div className="position-absolute w-100 h-100">
+        <div className="position-absolute w-100 h-100 overflow-hidden">
             <BounceInWhenVisible>
                 <MagnetText className="text-shadow-dark w-100" Tag={motion.h1}>jaycie</MagnetText>
             </BounceInWhenVisible>
-            {full && <BounceInWhenVisible delay={0.2} className='d-flex justify-content-center'>
-                <h2 className="text-shadow-dark shadow-offset-md mt-8 anim-pulse w-max-content">UI ⋅ UX ⋅ frontend</h2>
+            {full && <BounceInWhenVisible delay={0.2}>
+                <h2 className="text-shadow-dark shadow-offset-md mt-8 anim-pulse">UI ⋅ UX ⋅ frontend</h2>
             </BounceInWhenVisible>}
         </div>
         <img src="/assets/home/71 hills-extended.gif" />
