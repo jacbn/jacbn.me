@@ -64,7 +64,7 @@
 }
 
 .w-max-content {
-  width: max-content;
+  width: max-content !important;
 }
 
 .w-md-50 {
@@ -76,5 +76,19 @@
 .w-md-75 {
   @include mixins.respond-above(md) {
     width: 75% !important;
+  }
+}
+
+.flex-equal {
+  flex: 1 1 0 !important;
+}
+
+@for $i from 1 through 9 {
+  .col-span-#{$i} {
+    grid-column-end: span #{$i};
+  }
+
+  .row-span-#{$i} {
+    grid-row-end: span #{$i};
   }
 }

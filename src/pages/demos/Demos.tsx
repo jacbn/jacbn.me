@@ -14,7 +14,8 @@ export const Demos = () => {
                     link="/demos/ada-double-back"
                     imageProps={{
                         src: "/assets/home/logo-double-back.png",
-                        alt: "A drawing of the double back grid."
+                        alt: "A drawing of the double back grid.",
+                        className: "pixel-image"
                     }}
                 />
             </li>
@@ -26,7 +27,8 @@ export const Demos = () => {
                     link="/demos/dfa-builder"
                     imageProps={{
                         src: "/assets/demos/dfa.png",
-                        alt: "A DFA with a number of states and transitions."
+                        alt: "A DFA with a number of states and transitions.",
+                        className: "pixel-image"
                     }}
                 />
             </li>

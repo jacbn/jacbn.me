@@ -45,6 +45,11 @@ nav.home-nav {
 }
 
 .work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+
   .card-image-square {
     max-width: 800px;
     margin: 0 auto;
@@ -54,6 +59,8 @@ nav.home-nav {
 .card {
   display: grid;
   position: relative;
+  width: 100%;
+  height: 100%;
   align-content: flex-start; /* put the extra space at bottom of card */
   background-color: var(--card-primary);
   background-color: color-mix(in srgb, var(--card-primary) 50%, transparent);
@@ -65,7 +72,6 @@ nav.home-nav {
   transition: all 0.3s ease-out;
   font-family: var(--font-title);
   order: 5;
-  flex: 0 0 30%;
   text-decoration: none;
   box-shadow: 4px 4px 5px var(--shadow-primary);
 }
@@ -77,9 +83,6 @@ nav.home-nav {
   box-shadow: 8px 8px 15px var(--shadow-primary);
 
   > img {
-    width: 100%;
-    aspect-ratio: 1;
-    image-rendering: pixelated;
     transition: border-radius 0.3s ease-out;
     border-radius: inherit;
   }
@@ -107,6 +110,35 @@ nav.home-nav {
   &:hover {
     border-radius: 2rem;
   }
+}
+
+.card-image-rect {
+  @extend .card;
+  border-radius: 2rem;
+  // aspect-ratio: 1;
+  box-shadow: 8px 8px 15px var(--shadow-primary);
+
+  > img {
+    transition: border-radius 0.3s ease-out;
+    border-radius: inherit;
+  }
+
+  .card-base {
+    position: absolute;
+    bottom: 0;
+    background-color: color-mix(in srgb, var(--card-primary) 80%, transparent);
+    backdrop-filter: blur(7px);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+}
+
+.pixel-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
 }
 
 .cardTop {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FlatGridSquare } from "../../components/homeGrid/flatGridSquare";
 import { GridSquareProps } from "../../components/homeGrid/gridSquareTypes";
+import useDeviceSize, { above } from "../../scripts/hooks/deviceSize";
 
 type RestProps = Omit<GridSquareProps, "title" | "description" | "year" | "lang" | "colour" | "imageProps" | "link">;
 
@@ -12,7 +13,8 @@ export const ProjectsCardIsaacRedesign = (rest?: RestProps) => {
         link="/work/isaac-redesign/"
         imageProps={{
           src: "/assets/home/isaac-launch.png",
-          alt: "The Isaac Science logo with balloons attached over a starry sky."
+          alt: "The Isaac Science logo with balloons attached over a starry sky.",
+          className: "pixel-image"
         }}
         colour={"var(--accent-isaac)"}
         lang="React, SCSS"
@@ -22,13 +24,14 @@ export const ProjectsCardIsaacRedesign = (rest?: RestProps) => {
 
 export const ProjectsCardAdaCyberTransition = (rest?: RestProps) => {
     return <FlatGridSquare
-        title="Cyber Transition for Ada CS"
+        title="Ada CS: Cyber"
         description="launching 11-14 cybersecurity content on Ada CS"
         year="2026"
         link="/work/ada-cyber-transition/"
         imageProps={{
           src: "/assets/home/ada-explore.png",
-          alt: ""
+          alt: "",
+          className: "pixel-image"
         }}
         colour={"var(--accent-ada)"}
         lang="Figma, React"
@@ -44,7 +47,8 @@ export const ProjectsCardComponentisation = (rest?: RestProps) => {
         lang="Figma, React"
         imageProps={{
             src: "/assets/home/coming-soon.png",
-            alt: "Coming soon!"
+            alt: "Coming soon!",
+            className: "pixel-image"
         }}
         colour={"var(--accent-component)"}
         {...rest}
@@ -59,8 +63,9 @@ export const ProjectsCardGreenMaps = (rest?: RestProps) => {
         lang="Dart"
         colour="var(--accent-greenmaps)"
         imageProps={{
-          src: "/assets/home/logo-green-maps.png",
-          alt: "A leaf on a wheat background, the logo of the Green Maps project."
+            src: "/assets/home/logo-green-maps.png",
+            alt: "A leaf on a wheat background, the logo of the Green Maps project.",
+            className: "pixel-image"
         }}
         link="/projects/greenmaps"
         {...rest}
@@ -79,6 +84,7 @@ export const ProjectsCardYawNN = (rest?: RestProps) => {
           src: "/assets/home/logo-yawnn-static.png",
           srcAnimated: "/assets/home/logo-yawnn.gif",
           animated: isAnimated,
+          className: "pixel-image",
           alt: "An animation of a headphone, a key component of the Yawnn project."
         }}
         link="/projects/yawnn/"
@@ -97,7 +103,8 @@ export const ProjectsCardMathsArt = (rest?: RestProps) => {
         colour="var(--accent-maths)"
         imageProps={{
           src: "/assets/home/logo-maths-art.png",
-          alt: "An Apollonian Gasket, one of the projects in the Maths Art collection."
+          alt: "An Apollonian Gasket, one of the projects in the Maths Art collection.",
+          className: "pixel-image"
         }}
         link="/maths-art/"
         {...rest}
@@ -160,7 +167,8 @@ export const ProjectsCardDoubleBack = (rest?: RestProps) => {
         lang="Maths, JS"
         imageProps={{
             src: "/assets/home/logo-double-back.png",
-            alt: "A drawing of the double back grid."
+            alt: "A drawing of the double back grid.",
+            className: "pixel-image"
         }}
         colour="var(--accent-double-back)"
         link="/projects/double-back/"
