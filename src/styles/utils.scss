@@ -92,3 +92,7 @@
     grid-row-end: span #{$i};
   }
 }
+
+.pointer-none {
+  pointer-events: none !important;
+}

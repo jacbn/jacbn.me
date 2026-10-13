@@ -30,3 +30,22 @@
         transform: scale(1);
     }
 }
+
+.typed-text-cursor {
+    display: inline-block;
+    position: absolute;
+    margin-top: 4px;
+
+    &.blinking {
+        animation: blink 1s infinite step-end;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0;
+    }
+}
