@@ -59,16 +59,16 @@ export const IsaacSignup = (props: React.HTMLAttributes<HTMLDivElement>) => {
                 </div>
             </FadeInWhenVisible>
         </section>
-        <section id="redesign" className="w-100 py-6 py-md-10">
+        <section id="start-of-flow" className="w-100 py-6 py-md-10">
             <FadeInWhenVisible className="container-xl g-9">
-                <h2>Prototyping</h2>
+                <h2>Prototyping the start of the flow</h2>
                 <p>With these requirements locked in, I set out to prototype a new flow that better supported all users.</p>
                 <p>A first point of note was that the old designs had two separate pages; <i>log in</i> (left) and <i>sign up</i> (right). All "sign up / log in" buttons around the site actually point to the log in page, from which there is a redirect to the sign up page.</p>
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <figure>
                             <img src="/assets/isaac-signup/old-isaac-1.webp" className="img-fluid" alt="" />
-                            <figcaption className="text-dark font-size-small mt-2">The old login page. Note the "Sign up" option (which redirects to the registration page, right) is visually <b>after</b> the email and password fields, which can only be used to log in. This can create an infuriating experience where the user types their information to sign up, only to have it discarded when they are redirected to the registration page – and bare in mind, this is the first screen a trial user may see.</figcaption>
+                            <figcaption className="text-dark font-size-small mt-2">The old login page. Note the "Sign up" option (which redirects to the registration page, right) is visually <b>after</b> the email and password fields, which can only be used to log in. This can create an infuriating experience where the user types their information to sign up, only to have it discarded when they are redirected to the registration page – and bear in mind, this is the first screen a trial user may see. Not a great look!</figcaption>
                         </figure>
                     </div>
                     <div className="col-12 col-md-6">
@@ -79,17 +79,62 @@ export const IsaacSignup = (props: React.HTMLAttributes<HTMLDivElement>) => {
                     </div>
                 </div>
             </FadeInWhenVisible>
-            <FadeInWhenVisible className="container-xl g-9 mt-5">
+            <FadeInWhenVisible className="container-xl g-9 mt-8">
                 <p>I always found this split approach entirely unnecessary and frustrating. To start improving, I broke the pages down into the core 4 distinct actions that are actually available between them: two SSO options, log in with a known email and password, and register with a new email. These are then the only options available on a reworked, single page for both registration and logging in.</p>
                 <figure className="mt-4 px-10">
                     <img src="/assets/isaac-signup/new-signup-1.webp" className="img-fluid" alt="" />
                     <figcaption className="text-dark font-size-small mt-2">Owing to under-13 users being required to use SSO (for GDPR compliance purposes), these options are higher up and thus more prominent. The two email-based options are together, under an "or use an email" separator to visually move them apart from the SSO options. You'll also notice the addition of Newt, a site mascot I created to create a friendlier and more welcoming experience. Newt's appeal within the team was far greater than I had anticipated, and has already become part of the 11-14 content.</figcaption>
                 </figure>
             </FadeInWhenVisible>
+            <FadeInWhenVisible className="container-xl g-9 mt-8">
+                <div className="row">
+                    <div className="col-12 col-md-8">
+                        <p>Logging in with email and password brings up the details form. Compared to the old flow, this is one additional step in the process – but given the push towards SSO and an improved user experience, it is a tradeoff that improves all the other flows.</p>
+                        <p>The SSO options work by either signing a known user in if one exists, or creating a new account if not; this takes users to the same page as the email-based registration flows. Before, the SSO flow was entirely separate from the email-based flow, which meant key user details were not obtained (as SSO does not collect all the same information). We were previously solving this via a popup modal when signed in, that appeared if any account information is missing – but this feels messy from a user perspective owing to a disjoint flow.</p>
+                    </div>
+                    <div className="col-12 col-md-4">
+                        <figure className="px-10 px-md-0">
+                            <img src="/assets/isaac-signup/new-signup-2.webp" className="img-fluid" alt="" />
+                            <figcaption className="text-dark font-size-small mt-2">The email and password fields, displayed only when email login is selected.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </FadeInWhenVisible>
         </section>
-        <section id="solution" className="w-100 py-6 py-md-10 bg-light">
+        <section id="distinguishing-users" className="w-100 py-6 py-md-10 bg-light">
             <FadeInWhenVisible className="container-xl g-9">
-
+                <h2>Distinguishing users</h2>
+                <p>To link back to the requirements, it is important to keep flows minimal and simple. A student doesn't need to see teacher-specific content, so that section of the flow can be hidden. And when duplicated information can come from different sources (e.g. SSO), this should be made use of, rather than requiring the same information multiple times.</p>
+                <div className="row mt-5">
+                    <div className="col-12 col-md-6">
+                        <figure className="px-10 px-md-0">
+                            <img src="/assets/isaac-signup/new-signup-3.webp" className="img-fluid" alt="" />
+                            <figcaption className="text-dark font-size-small mt-2">Selecting an account type. The parent/tutor and teacher options extend the flow at the end with additional information and verification steps.</figcaption>
+                        </figure>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <figure className="px-10 px-md-0">
+                            <img src="/assets/isaac-signup/new-signup-4.webp" className="img-fluid" alt="" />
+                            <figcaption className="text-dark font-size-small mt-2">The age verification step. Used only for student accounts, and skipped for those creating an account with SSO as age verification is handled by the SSO provider.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </FadeInWhenVisible>
+            <FadeInWhenVisible className="container-xl g-9 mt-8">
+                <p>After this, gathering information about the user is mostly the same across all account types. Minor differences appear in:</p>
+                <ul>
+                    <li>SSO users can have their name pre-filled, and do not need an email/password input (unless they want one);</li>
+                    <li>Teachers need to be reminded to use their institutional email address, as this is used in the verification process.</li>
+                </ul>
+                <figure className="mt-6 px-10">
+                    <img src="/assets/isaac-signup/new-signup-5.webp" className="img-fluid" alt="" />
+                    <figcaption className="text-dark font-size-small mt-2">An email-based student signup.</figcaption>
+                </figure>
+            </FadeInWhenVisible>
+        </section>
+        <section id="error-states" className="w-100 py-6 py-md-10">
+            <FadeInWhenVisible className="container-xl g-9">
+                <h2>Error states</h2>
             </FadeInWhenVisible>
         </section>
     </UnstyledPageContainer>;
