@@ -35,28 +35,18 @@ export const IsaacSignup = (props: React.HTMLAttributes<HTMLDivElement>) => {
         </section>
         <section id="teachers" className="w-100 py-6 py-md-10 bg-light">
             <FadeInWhenVisible className="container-xl g-9">
-                <div className="row">
-                    <div className="col-12 col-md-4">
-                        <figure>
-                            <img src="/assets/isaac-signup/teacher-signup.webp" className="w-100" alt="" />
-                            <figcaption className="text-dark font-size-small mt-2">The original signup flow for teachers, which was not optimized for their needs.</figcaption>
-                        </figure>
-                    </div>
-                    <div className="col-12 col-md-8">
-                        <h2>The needs of teachers</h2>
-                        <p>Aside from the younger audience, there were unaddressed needs from teachers that I sought to address too. Most students come to the site because their teacher has assigned homework on the platform, so they are <i>required</i> to sign up; metrics such as time-to-value (TTV) for students mean little from a "business" perspective. However, for new teachers or for schools investigating whether Isaac is right for them, the signup flow is a critical first impression.</p>
-                        <p>To become a teacher on Isaac, the process was:</p>
-                        <ul>
-                            <li>Sign up for a student account</li>
-                            <li>Verify the provided email address</li>
-                            <li>Log in</li>
-                            <li>Find the form to manually request a teacher account</li>
-                            <li>Fill out the form and submit it</li>
-                            <li>Await a response</li>
-                        </ul>
-                        <p>It made sense to streamline this process, in an ideal world keeping it all in one flow.</p>
-                    </div>
-                </div>
+                <h2>The needs of teachers</h2>
+                <p>Aside from the younger audience, there were unaddressed needs from teachers that I sought to address too. Most students come to the site because their teacher has assigned homework on the platform, so they are <i>required</i> to sign up; metrics such as time-to-value (TTV) for students mean little from a "business" perspective. However, for new teachers or for schools investigating whether Isaac is right for them, the signup flow is a critical first impression.</p>
+                <p>To become a teacher on Isaac, the process was:</p>
+                <ul>
+                    <li>Sign up for a student account</li>
+                    <li>Verify the provided email address</li>
+                    <li>Log in</li>
+                    <li>Find the form to manually request a teacher account</li>
+                    <li>Fill out the form and submit it</li>
+                    <li>Await a response</li>
+                </ul>
+                <p>It made sense to streamline this process, in an ideal world keeping it all in one flow.</p>
             </FadeInWhenVisible>
         </section>
         <section id="start-of-flow" className="w-100 py-6 py-md-10">
@@ -132,9 +122,50 @@ export const IsaacSignup = (props: React.HTMLAttributes<HTMLDivElement>) => {
                 </figure>
             </FadeInWhenVisible>
         </section>
-        <section id="error-states" className="w-100 py-6 py-md-10">
+        <section id="concluding-the-flow" className="w-100 py-6 py-md-10">
+            <FadeInWhenVisible className="container-xl g-9">
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <h2>Concluding the student flow</h2>
+                        <p>Depending on the method of signup, the old flow may not have had any confirmation (e.g. with SSO), leading to an incomplete user experience. To resolve this, the new flow includes a completion step with options to check over the submitted account information, or to go straight to the learning side of the platform.</p>
+                        <p>To avoid this completion becoming just an extra step in the flow, however, the design includes a group code entry box that allows students to connect to teachers. This may not be needed in all cases, but exists as a shortcut to avoid navigating through other parts of the site – as this is known to be the first interaction a user makes once they have their account, and my aim is to make it as smooth as possible.</p>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <figure className="mt-4 px-10">
+                            <img src="/assets/isaac-signup/new-signup-6.webp" className="img-fluid" alt="" />
+                            <figcaption className="text-dark font-size-small mt-2">The signup completion page.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div className="row mt-7">
+                    <div className="col-12 col-md-6">
+                        <figure className="mt-4 px-10">
+                            <img src="/assets/isaac-signup/new-signup-7.webp" className="img-fluid" alt="" />
+                            <figcaption className="text-dark font-size-small mt-2">The signup completion page.</figcaption>
+                        </figure>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h2>Incorporating teacher information</h2>
+                        <p>As we require additional information from teachers, this is the point where the flows diverge more significantly such that more info can be gathered. The most important distinction for users in this category to know is the difference between the available account types; they may have selected "teacher" while our definition of this (works at a contactable school) may not be valid for them. To this end, we first show an information screen detailing the differences, before proceeding to the info gathering step for confirmed teachers.</p>
+                    </div>
+                </div>
+            </FadeInWhenVisible>
+        </section>
+        <section id="error-states" className="w-100 py-6 py-md-10 bg-light">
             <FadeInWhenVisible className="container-xl g-9">
                 <h2>Error states</h2>
+                <p>Despite being a fundamental part of the user experience, error states are often overlooked in the design process. Ensuring users recover from mistakes is critical to maintaining a positive user experience. By far our most common complaint email from users was the difficulty in understanding the difference between SSO and traditional login. Many, many users believed that they could log in with SSO because they previously used an e.g. Microsoft email... to create an account with a password. From a technical perspective, this distinction is clear – but from a non-technical user, it certainly is not. As such, this was the first error state I considered, and I wanted to be as careful and precise as possible in the message conveyed such that a correct recovery path was understood.</p>
+                <p>To do this, I made better use of our API's response when attempting to sign in such that a distinction could be made between different failure modes. If the database's response after creating an account via SSO was that the account already exists, then the user must have an account with us, but not an SSO one. From a security standpoint, it is safe to tell them that we can locate an account with that email as they have verifiably logged in to their SSO account with that email address.</p>
+                <figure className="mt-4 px-10">
+                    <img src="/assets/isaac-signup/new-signup-8.webp" className="img-fluid" alt="" />
+                    <figcaption className="text-dark font-size-small mt-2">The error state created by attempting to sign in with SSO, when the account is not set up to use it.</figcaption>
+                </figure>
+            </FadeInWhenVisible>
+        </section>
+        <section id="conclusion" className="w-100 py-6 py-md-10">
+            <FadeInWhenVisible className="container-xl g-9">
+                <h2>Conclusion</h2>
+                <p>It was universally agreed within the team that the new signup flow was a significant improvement over the old one. After some iteration on the teacher flow having conversed with our teacher advisor, the flow was signed off on and ready for implementation. I unfortunately left before this was complete, but two things I would have loved to compare would be drop-off rates and error rates between the old and new flows; this would provide valuable insight into the effectiveness of the new design.</p>
             </FadeInWhenVisible>
         </section>
     </UnstyledPageContainer>;
