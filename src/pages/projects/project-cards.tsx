@@ -82,16 +82,17 @@ export const ProjectsCardWebDesignStyles = (rest?: RestProps) => {
 export const ProjectsCardIsaacSignup = (rest?: RestProps) => {
     return <FlatGridSquare
         title="Isaac Signup"
-        description="rethinking isaac's signup flow"
+        description="rethinking isaac's signup flow for a new audience"
         year="2026"
         lang="Figma"
         imageProps={{
-            src: "/assets/home/isaac-signup.png",
+            src: "/assets/home/logo-isaac-signup.png",
             alt: "",
             className: "pixel-image"
         }}
         colour={"var(--accent-signup)"}
         className="scale-hover"
+        link="/work/isaac-signup/"
         {...rest}
     />;
 };
