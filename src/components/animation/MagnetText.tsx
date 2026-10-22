@@ -12,9 +12,10 @@ interface WiggleTextProps extends HTMLMotionProps<keyof HTMLElements>{
 interface MagnetLetterProps extends HTMLMotionProps<"div"> {
     mouseX: MotionValue<number>;
     mouseY: MotionValue<number>;
+    z?: number; // optional z-index for layering letters – useful for e.g. ensuring shadows consistently appear behind letters
 }
 
-const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
+const MagnetLetter = ({mouseX, mouseY, z, ...rest}: MagnetLetterProps) => {
     const magnetDx = useSpring(0, {stiffness: 200, damping: 25, mass: 2});
     const magnetDy = useSpring(0, {stiffness: 200, damping: 25, mass: 2});
     const selfRef = useRef<HTMLDivElement>(null);
@@ -64,9 +65,9 @@ const MagnetLetter = ({mouseX, mouseY, ...rest}: MagnetLetterProps) => {
 
 
     return <motion.div
-        className="d-inline-block"
+        className="d-inline-block position-relative"
         ref={selfRef}
-        style={{x: magnetDx, y: magnetDy, scale: scale}}
+        style={{x: magnetDx, y: magnetDy, scale: scale, zIndex: z}}
         {...rest}
     />;
 };
@@ -92,7 +93,7 @@ export const MagnetText = ({Tag = motion.div, className, children, ...rest}: Wig
         onMouseLeave={handleMouseLeave}
     >
         {children.split("").map((char, index) => {
-            return <MagnetLetter key={index} mouseX={mouseX} mouseY={mouseY}>{char}</MagnetLetter>;
+            return <MagnetLetter key={index} mouseX={mouseX} mouseY={mouseY} z={children.length - index}>{char}</MagnetLetter>;
         })}
     </Tag>;
 };
