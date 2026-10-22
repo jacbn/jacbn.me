@@ -13,7 +13,7 @@ export const IsaacSignup = (props: React.HTMLAttributes<HTMLDivElement>) => {
                 <h1 className="font-size-display text-white text-shadow-dark mt-4 mb-0 mb-md-3 pb-10">isaac <span className="text-green">signup</span></h1>
                 {/* <p className="font-size-title mb-0 mb-md-5 text-green">a redesign of the isaac science signup flow</p> */}
             </div>
-            <img src="/assets/isaac-signup/figma.png" className="w-100" alt="" />
+            <img src="/assets/isaac-signup/figma.webp" className="w-100" alt="" />
         </section>
         <section id="setting-the-scene" className="w-100 py-6 py-md-10">
             <FadeInWhenVisible className="container-xl g-9">
