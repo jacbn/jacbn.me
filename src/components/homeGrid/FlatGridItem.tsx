@@ -7,9 +7,10 @@ import classNames from "classnames";
 export const FlatGridItem = ({title, className, description, year, lang, colour, imageProps, link, ...rest} : GridSquareProps) => {
     return <Link to={link ?? "./"} {...rest} className={classNames(className, imageProps ? "card-image-rect" : "card-no-image-rect")} style={{backgroundColor: colour}}>
         {imageProps && <Image {...imageProps} />}
-        <div className="card-base p-2">
-            <h2 style={{color: colour}}>{title}</h2>
+        <div className="card-base p-2 d-flex flex-column">
+            <h3 className="font-size-headline" style={{color: colour}}>{title}</h3>
             <p>{description}</p>
+            <div className="flex-grow-1" />
             <span className="project-info-text">
                 {year} {year && lang && <>&#183;</>} {lang}
             </span>

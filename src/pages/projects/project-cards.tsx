@@ -77,7 +77,24 @@ export const ProjectsCardWebDesignStyles = (rest?: RestProps) => {
         link="/design-styles"
         {...rest}
     />;
-}
+};
+
+export const ProjectsCardIsaacSignup = (rest?: RestProps) => {
+    return <FlatGridSquare
+        title="Isaac Signup"
+        description="rethinking isaac's signup flow"
+        year="2026"
+        lang="Figma"
+        imageProps={{
+            src: "/assets/home/isaac-signup.png",
+            alt: "",
+            className: "pixel-image"
+        }}
+        colour={"var(--accent-signup)"}
+        className="scale-hover"
+        {...rest}
+    />;
+};
 
 export const ProjectsCardGreenMaps = (rest?: RestProps) => {
     return <FlatGridSquare 
