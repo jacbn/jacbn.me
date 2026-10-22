@@ -1,7 +1,7 @@
 import React from "react";
 import { UnstyledPageContainer } from "../../components/containers/UnstyledPageContainer";
 import classNames from "classnames";
-import useDeviceSize, { above, below } from "../../scripts/hooks/deviceSize";
+import useDeviceSize, { below } from "../../scripts/hooks/deviceSize";
 import { FadeInWhenVisible } from "../../components/animation/fadeInWhenVisible";
 import ScrollTop from "../../components/scrollTop";
 

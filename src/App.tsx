@@ -33,6 +33,7 @@ import { ClientError } from './pages/ClientError';
 import { Bento } from './pages/design-styles/Bento';
 import { Editorial } from './pages/design-styles/Editorial';
 import { Glassmorphism } from './pages/design-styles/Glassmorphism';
+import { IsaacSignup } from './pages/work/IsaacSignup';
 
 const DFABuilder = React.lazy(() => import('./pages/demos/dfa-builder/DfaBuilder').then(module => ({ default: module.DFABuilder })));
 
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
           {
             path: '/work/ada-cyber-transition',
             element: <AdaCyberTransition />
+          },
+          {
+            path: '/work/isaac-signup',
+            element: <IsaacSignup />
           }
         ]
       },

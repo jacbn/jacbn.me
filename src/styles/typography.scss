@@ -24,14 +24,7 @@ $font-size-bases: (
   --shadow-offset: 2px;
 
   &:is(h1), &.h1 {
-    --shadow-offset: 16px;
-      @include mixins.respond-below('md') {
-        --shadow-offset: 8px;
-      }
-
-      @include mixins.respond-below('sm') {
-        --shadow-offset: 6px;
-      }
+    --shadow-offset: 0.035lh;
   }
 }
 

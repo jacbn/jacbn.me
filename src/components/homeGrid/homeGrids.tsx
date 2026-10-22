@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProjectsCardAdaCyberTransition, ProjectsCardComponentisation, ProjectsCardDoubleBack, ProjectsCardGreenMaps, ProjectsCardIsaacRedesign, ProjectsCardMathsArt, ProjectsCardWebDesignStyles, ProjectsCardYawNN } from '../../pages/projects/project-cards';
+import { ProjectsCardAdaCyberTransition, ProjectsCardComponentisation, ProjectsCardDoubleBack, ProjectsCardGreenMaps, ProjectsCardIsaacRedesign, ProjectsCardIsaacSignup, ProjectsCardMathsArt, ProjectsCardWebDesignStyles, ProjectsCardYawNN } from '../../pages/projects/project-cards';
 import { DraggableCarousel } from '../Carousel';
 import { FadeInWhenVisible } from '../animation/fadeInWhenVisible';
 import { motion } from 'framer-motion';
@@ -15,13 +15,16 @@ export const WorkGrid = () => {
         <ProjectsCardIsaacRedesign />
       </FadeInWhenVisible>
       <FadeInWhenVisible Tag={motion.li}>
-        <ProjectsCardAdaCyberTransition />
+        <ProjectsCardIsaacSignup />
       </FadeInWhenVisible>
       <FadeInWhenVisible Tag={motion.li}>
         <ProjectsCardComponentisation />
       </FadeInWhenVisible>
       <FadeInWhenVisible Tag={motion.li} className={above['lg'](deviceSize) ? "col-span-2" : ""}>
         <ProjectsCardWebDesignStyles />
+      </FadeInWhenVisible>
+      <FadeInWhenVisible Tag={motion.li}>
+        <ProjectsCardAdaCyberTransition />
       </FadeInWhenVisible>
     </ol>
   </>;

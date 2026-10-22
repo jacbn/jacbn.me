@@ -1,0 +1,28 @@
+.isaac-signup {
+  font-family: var(--font-isaac-body);
+  font-size: 1.1rem;
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-isaac-title);
+    line-height: 120%;
+    letter-spacing: -2%;
+  }
+
+  h1 {
+    font-weight: 900;
+    --font-scale: 2;
+    --shadow-offset: 6px;
+
+    text-shadow: 
+        -2px 0 var(--sunset-blue-tertiary),
+        0 2px var(--sunset-blue-tertiary),
+        2px 0 var(--sunset-blue-tertiary),
+        0 -2px var(--sunset-blue-tertiary),
+        var(--sunset-blue-tertiary) calc(-1 * var(--shadow-offset)) var(--shadow-offset) 0;
+  }
+
+  .text-green {
+    color: #5ebc3f;
+  }
+  
+}
