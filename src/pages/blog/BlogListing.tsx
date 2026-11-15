@@ -37,6 +37,12 @@ export default function BlogIntro() {
             <p>Some fun thoughts and interesting code I've worked on.</p>
             <ol reversed className="list-unstyled">
                 <BlogPost
+                    title="Cookies! 🍪"
+                    link="/blog/4-cookies"
+                    date="Nov 2026"
+                    tags={["development"]}
+                />
+                <BlogPost
                     title="The first Design Style is live!"
                     link="/design-styles"
                     date="Oct 2026"
