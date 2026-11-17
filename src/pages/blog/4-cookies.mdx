@@ -19,6 +19,8 @@ On the first successful login, when the server responds with information that th
 These cookies have other benefits too. Since the cookie's session ID is unique to a user, it can act as a key to a database on the server storing information about that session. Such information might include, for example, the state of the cart of a user shopping online, so that the session is only lost when the cookie is. This enables "guest shopping", where a user doesn't need to be logged in to make use of a cart. Note that for shopping there is no need for authentication, so session IDs can be generated immediately for all users, rather than only on successful sign in; this enables e.g. guest shopping functionality.
 
 > The contents of the shopping cart could indeed be stored *inside* the cookie, and that this was the norm many years ago. However, for ease of integrating this with accounts and for better tracking and recommendation purposes, the norm has shifted towards storing the cart contents in the backend, using the session ID to request this info.
+> 
+> The two models here – storing session information inside the cookie vs on the server, using the key as a lookup – refer to a *stateless session* and a *stateful session*, respectively. Stateless sessions scale much better as any server in a cluster can authenticate a request without needing a DB lookup, whereas stateful sessions are more easily revoked as session info is stored on the always-accessible server rather than the client, and require only the ID in the cookie – making requests smaller in size.
 
 ### Personalisation
 
