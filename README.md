@@ -1,3 +1,3 @@
-# jacbn.me
+# jaycie.me
 
-A rewrite of jacbn.github.io using React
+My personal website / portfolio.
